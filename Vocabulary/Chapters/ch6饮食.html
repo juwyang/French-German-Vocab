@@ -1,0 +1,2042 @@
+<!-- <使用这个模板，添加单词到table的部分就可以!> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr {
+            position: relative;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .clickable {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+        .clickable:hover {
+            background-color: #e6e6e6;
+        }
+        .background-image {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        .background-image:hover {
+            opacity: 0.8;
+        }
+        .language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .language-selector select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="language-selector">
+        <select id="chineseDialect">
+            <option value="zh-CN">普通话</option>
+            <option value="zh-HK">粤语</option>
+        </select>
+    </div>
+
+    <table id="wordTable">
+        <tr>
+            <th>法语</th>
+            <th>音标</th>
+            <th>德语</th>
+            <th>音标</th>
+            <th>中文</th>
+            <th>英语</th>
+        </tr>
+        <tr>
+            <td class="clickable" data-lang="fr" data-word="steak de bœuf">steak de bœuf</td>
+            <td>[stɛk də bœf]</td>
+            <td class="clickable" data-lang="de" data-word="Rindersteak">Rindersteak</td>
+            <td>[ˈʁɪndɐʃteːk]</td>
+            <td class="clickable" data-lang="zh" data-word="牛排">牛排</td>
+            <td class="clickable" data-lang="en" data-word="beef steak">beef steak</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="poulet">poulet</td>
+            <td>[pulɛ]</td>
+            <td class="clickable" data-lang="de" data-word="Hühnerfleisch">Hühnerfleisch</td>
+            <td>[ˈhyːnɐflaɪʃ]</td>
+            <td class="clickable" data-lang="zh" data-word="鸡肉">鸡肉</td>
+            <td class="clickable" data-lang="en" data-word="chicken">chicken</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="kebab">kebab</td>
+            <td>[kebab]</td>
+            <td class="clickable" data-lang="de" data-word="Döner">Döner</td>
+            <td>[ˈdøːnɐ]</td>
+            <td class="clickable" data-lang="zh" data-word="烤肉">烤肉</td>
+            <td class="clickable" data-lang="en" data-word="kebab">kebab</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="saucisse">saucisse</td>
+            <td>[sosis]</td>
+            <td class="clickable" data-lang="de" data-word="Wurst">Wurst</td>
+            <td>[vʊʁst]</td>
+            <td class="clickable" data-lang="zh" data-word="香肠">香肠</td>
+            <td class="clickable" data-lang="en" data-word="sausage">sausage</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="escalope">escalope</td>
+            <td>[ɛskalɔp]</td>
+            <td class="clickable" data-lang="de" data-word="Schnitzel">Schnitzel</td>
+            <td>[ˈʃnɪtsl̩]</td>
+            <td class="clickable" data-lang="zh" data-word="肉排">肉排</td>
+            <td class="clickable" data-lang="en" data-word="schnitzel">schnitzel</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="porc">porc</td>
+            <td>[pɔʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Schweinefleisc">Schweinefleisc</td>
+            <td>[ˈʃvaɪnəflaɪʃ]</td>
+            <td class="clickable" data-lang="zh" data-word="猪肉">猪肉</td>
+            <td class="clickable" data-lang="en" data-word="pork">pork</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="saucisse grillée">saucisse grillée</td>
+            <td>[sosis ɡʁije]</td>
+            <td class="clickable" data-lang="de" data-word="Rostbratwurst">Rostbratwurst</td>
+            <td>[ˈʁoːstbʁaːtvʊʁst]</td>
+            <td class="clickable" data-lang="zh" data-word="烤香肠">烤香肠</td>
+            <td class="clickable" data-lang="en" data-word="grilled sausage">grilled sausage</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="viande">viande</td>
+            <td>[vjɑ̃d]</td>
+            <td class="clickable" data-lang="de" data-word="Fleisch">Fleisch</td>
+            <td>[flaɪʃ]</td>
+            <td class="clickable" data-lang="zh" data-word="肉">肉</td>
+            <td class="clickable" data-lang="en" data-word="meat">meat</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="agneau">agneau</td>
+            <td>[aɲo]</td>
+            <td class="clickable" data-lang="de" data-word="Lammfleisch">Lammfleisch</td>
+            <td>[ˈlamflaɪʃ]</td>
+            <td class="clickable" data-lang="zh" data-word="羊肉">羊肉</td>
+            <td class="clickable" data-lang="en" data-word="lamb">lamb</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="chair de poisson">chair de poisson</td>
+            <td>[ʃɛʁ də pwasɔ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Fischfleisch">Fischfleisch</td>
+            <td>[ˈfɪʃflaɪʃ]</td>
+            <td class="clickable" data-lang="zh" data-word="鱼肉">鱼肉</td>
+            <td class="clickable" data-lang="en" data-word="fish meat">fish meat</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="filet">filet</td>
+            <td>[filɛ]</td>
+            <td class="clickable" data-lang="de" data-word="Filet">Filet</td>
+            <td>[fiˈleː]</td>
+            <td class="clickable" data-lang="zh" data-word="里脊肉">里脊肉</td>
+            <td class="clickable" data-lang="en" data-word="fillet">fillet</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="crabe">crabe</td>
+            <td>[kʁab]</td>
+            <td class="clickable" data-lang="de" data-word="Krabbe">Krabbe</td>
+            <td>[ˈkʁabə]</td>
+            <td class="clickable" data-lang="zh" data-word="螃蟹">螃蟹</td>
+            <td class="clickable" data-lang="en" data-word="crab">crab</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="coquille Saint-Jacques">coquille Saint-Jacques</td>
+            <td>[kɔkij sɛ̃ ʒak]</td>
+            <td class="clickable" data-lang="de" data-word="Jakobsmuschel">Jakobsmuschel</td>
+            <td>[ˈjaːkɔpsˌmʊʃl̩]</td>
+            <td class="clickable" data-lang="zh" data-word="扇贝">扇贝</td>
+            <td class="clickable" data-lang="en" data-word="scallop">scallop</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="homard">homard</td>
+            <td>[ɔmaʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Hummer">Hummer</td>
+            <td>[ˈhʊmɐ]</td>
+            <td class="clickable" data-lang="zh" data-word="龙虾">龙虾</td>
+            <td class="clickable" data-lang="en" data-word="lobster">lobster</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="huître">huître</td>
+            <td>[ɥitʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Auster">Auster</td>
+            <td>[ˈaʊ̯stɐ]</td>
+            <td class="clickable" data-lang="zh" data-word="牡蛎">牡蛎</td>
+            <td class="clickable" data-lang="en" data-word="oyster">oyster</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="truite">truite</td>
+            <td>[tʁɥit]</td>
+            <td class="clickable" data-lang="de" data-word="Forelle">Forelle</td>
+            <td>[foˈʁɛlə]</td>
+            <td class="clickable" data-lang="zh" data-word="鳟鱼">鳟鱼</td>
+            <td class="clickable" data-lang="en" data-word="trout">trout</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="carpe">carpe</td>
+            <td>[kaʁp]</td>
+            <td class="clickable" data-lang="de" data-word="Karpfen">Karpfen</td>
+            <td>[ˈkaʁpfn̩]</td>
+            <td class="clickable" data-lang="zh" data-word="鲤鱼">鲤鱼</td>
+            <td class="clickable" data-lang="en" data-word="carp">carp</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="carassin">carassin</td>
+            <td>[kaʁasɛ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Karausche">Karausche</td>
+            <td>[kaˈʁaʊ̯ʃə]</td>
+            <td class="clickable" data-lang="zh" data-word="鲫鱼">鲫鱼</td>
+            <td class="clickable" data-lang="en" data-word="crucian carp">crucian carp</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="seiche">seiche</td>
+            <td>[sɛʃ]</td>
+            <td class="clickable" data-lang="de" data-word="Tintenfisch">Tintenfisch</td>
+            <td>[ˈtɪntn̩fɪʃ]</td>
+            <td class="clickable" data-lang="zh" data-word="墨鱼">墨鱼</td>
+            <td class="clickable" data-lang="en" data-word="cuttlefish">cuttlefish</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="fruit de mer">fruit de mer</td>
+            <td>[fʁɥi də mɛʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Meeresfrucht">Meeresfrucht</td>
+            <td>[ˈmeːʁəsfʁʊxt]</td>
+            <td class="clickable" data-lang="zh" data-word="海鲜">海鲜</td>
+            <td class="clickable" data-lang="en" data-word="seafood">seafood</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="oignon">oignon</td>
+    <td>[ɔɲɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Zwiebel">Zwiebel</td>
+    <td>[ˈtsvʲiːbl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="洋葱">洋葱</td>
+    <td class="clickable" data-lang="en" data-word="onion">onion</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="tomate">tomate</td>
+    <td>[tɔmat]</td>
+    <td class="clickable" data-lang="de" data-word="Tomate">Tomate</td>
+    <td>[toˈmaːtə]</td>
+    <td class="clickable" data-lang="zh" data-word="西红柿">西红柿</td>
+    <td class="clickable" data-lang="en" data-word="tomato">tomato</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="épinard">épinard</td>
+    <td>[epinɑʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Spinat">Spinat</td>
+    <td>[spiˈnaːt]</td>
+    <td class="clickable" data-lang="zh" data-word="菠菜">菠菜</td>
+    <td class="clickable" data-lang="en" data-word="spinach">spinach</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="céleri">céleri</td>
+    <td>[seleʁi]</td>
+    <td class="clickable" data-lang="de" data-word="Stangensellerie">Stangensellerie</td>
+    <td>[ˈʃtaŋənzɛləʁiː]</td>
+    <td class="clickable" data-lang="zh" data-word="芹菜">芹菜</td>
+    <td class="clickable" data-lang="en" data-word="celery">celery</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="patate douce">patate douce</td>
+    <td>[patat dus]</td>
+    <td class="clickable" data-lang="de" data-word="Süßkartoffel">Süßkartoffel</td>
+    <td>[ˈzyːskaʁtɔfl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="红薯">红薯</td>
+    <td class="clickable" data-lang="en" data-word="sweet potato">sweet potato</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="carotte">carotte</td>
+    <td>[kaʁɔt]</td>
+    <td class="clickable" data-lang="de" data-word="Karotte">Karotte</td>
+    <td>[kaˈʁɔtə]</td>
+    <td class="clickable" data-lang="zh" data-word="胡萝卜">胡萝卜</td>
+    <td class="clickable" data-lang="en" data-word="carrot">carrot</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="aubergine">aubergine</td>
+    <td>[obɛʁʒin]</td>
+    <td class="clickable" data-lang="de" data-word="Aubergine">Aubergine</td>
+    <td>[obɛʁˈʒiːnə]</td>
+    <td class="clickable" data-lang="zh" data-word="茄子">茄子</td>
+    <td class="clickable" data-lang="en" data-word="eggplant">eggplant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="citrouille">citrouille</td>
+    <td>[sitʁuj]</td>
+    <td class="clickable" data-lang="de" data-word="Kürbis">Kürbis</td>
+    <td>[ˈkʏʁbɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="南瓜">南瓜</td>
+    <td class="clickable" data-lang="en" data-word="pumpkin">pumpkin</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="luffa">luffa</td>
+    <td>[lyfa]</td>
+    <td class="clickable" data-lang="de" data-word="Luffa">Luffa</td>
+    <td>[ˈlʊfa]</td>
+    <td class="clickable" data-lang="zh" data-word="丝瓜">丝瓜</td>
+    <td class="clickable" data-lang="en" data-word="luffa">luffa</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="concombre">concombre</td>
+    <td>[kɔ̃kɔ̃bʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Gurke">Gurke</td>
+    <td>[ˈɡʊʁkə]</td>
+    <td class="clickable" data-lang="zh" data-word="黄瓜">黄瓜</td>
+    <td class="clickable" data-lang="en" data-word="cucumber">cucumber</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chou">chou</td>
+    <td>[ʃu]</td>
+    <td class="clickable" data-lang="de" data-word="Kohl">Kohl</td>
+    <td>[koːl]</td>
+    <td class="clickable" data-lang="zh" data-word="卷心菜">卷心菜</td>
+    <td class="clickable" data-lang="en" data-word="cabbage">cabbage</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chou chinois">chou chinois</td>
+    <td>[ʃu ʃinwa]</td>
+    <td class="clickable" data-lang="de" data-word="Chinakohl">Chinakohl</td>
+    <td>[ˈçiːnakoːl]</td>
+    <td class="clickable" data-lang="zh" data-word="大白菜">大白菜</td>
+    <td class="clickable" data-lang="en" data-word="Chinese cabbage">Chinese cabbage</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="laitue">laitue</td>
+    <td>[lɛty]</td>
+    <td class="clickable" data-lang="de" data-word="Blattsalat">Blattsalat</td>
+    <td>[ˈblatzaˌlaːt]</td>
+    <td class="clickable" data-lang="zh" data-word="生菜">生菜</td>
+    <td class="clickable" data-lang="en" data-word="lettuce">lettuce</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="brocoli">brocoli</td>
+    <td>[bʁɔkɔli]</td>
+    <td class="clickable" data-lang="de" data-word="Brokkoli">Brokkoli</td>
+    <td>[ˈbʁɔkoli]</td>
+    <td class="clickable" data-lang="zh" data-word="西兰花">西兰花</td>
+    <td class="clickable" data-lang="en" data-word="broccoli">broccoli</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chou-fleur">chou-fleur</td>
+    <td>[ʃu flœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Blumenkohl">Blumenkohl</td>
+    <td>[ˈbluːmənkoːl]</td>
+    <td class="clickable" data-lang="zh" data-word="菜花">菜花</td>
+    <td class="clickable" data-lang="en" data-word="cauliflower">cauliflower</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="poireau">poireau</td>
+    <td>[pwaʁo]</td>
+    <td class="clickable" data-lang="de" data-word="Lauch">Lauch</td>
+    <td>[laʊ̯x]</td>
+    <td class="clickable" data-lang="zh" data-word="葱">葱</td>
+    <td class="clickable" data-lang="en" data-word="leek">leek</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="champignon">champignon</td>
+    <td>[ʃɑ̃piɲɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Pilz">Pilz</td>
+    <td>[pɪlts]</td>
+    <td class="clickable" data-lang="zh" data-word="蘑菇">蘑菇</td>
+    <td class="clickable" data-lang="en" data-word="mushroom">mushroom</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ciboulette">ciboulette</td>
+    <td>[sibulɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Schnittlauch">Schnittlauch</td>
+    <td>[ˈʃnɪtlaʊ̯x]</td>
+    <td class="clickable" data-lang="zh" data-word="韭菜">韭菜</td>
+    <td class="clickable" data-lang="en" data-word="chives">chives</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="oreille de Judas">oreille de Judas</td>
+    <td>[ɔʁɛj də ʒydas]</td>
+    <td class="clickable" data-lang="de" data-word="Judasohr">Judasohr</td>
+    <td>[ˈjuːdasˌoːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="木耳">木耳</td>
+    <td class="clickable" data-lang="en" data-word="wood ear mushroom">wood ear mushroom</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pomme">pomme</td>
+    <td>[pɔm]</td>
+    <td class="clickable" data-lang="de" data-word="Apfel">Apfel</td>
+    <td>[ˈapfl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="苹果">苹果</td>
+    <td class="clickable" data-lang="en" data-word="apple">apple</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="poire">poire</td>
+    <td>[pwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Birne">Birne</td>
+    <td>[ˈbɪʁnə]</td>
+    <td class="clickable" data-lang="zh" data-word="梨">梨</td>
+    <td class="clickable" data-lang="en" data-word="pear">pear</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="banane">banane</td>
+    <td>[banan]</td>
+    <td class="clickable" data-lang="de" data-word="Banane">Banane</td>
+    <td>[baˈnaːnə]</td>
+    <td class="clickable" data-lang="zh" data-word="香蕉">香蕉</td>
+    <td class="clickable" data-lang="en" data-word="banana">banana</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fruit du dragon">fruit du dragon</td>
+    <td>[fʁɥi dy dʁaɡɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Drachenfrucht">Drachenfrucht</td>
+    <td>[ˈdʁaxn̩fʁʊxt]</td>
+    <td class="clickable" data-lang="zh" data-word="火龙果">火龙果</td>
+    <td class="clickable" data-lang="en" data-word="dragon fruit">dragon fruit</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="orange">orange</td>
+    <td>[ɔʁɑ̃ʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Orange">Orange</td>
+    <td>[oˈʁaŋʒə]</td>
+    <td class="clickable" data-lang="zh" data-word="橙子">橙子</td>
+    <td class="clickable" data-lang="en" data-word="orange">orange</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="citron">citron</td>
+    <td>[sitʁɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Zitrone">Zitrone</td>
+    <td>[tsiˈtʁoːnə]</td>
+    <td class="clickable" data-lang="zh" data-word="柠檬">柠檬</td>
+    <td class="clickable" data-lang="en" data-word="lemon">lemon</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pamplemousse">pamplemousse</td>
+    <td>[pɑ̃pləmus]</td>
+    <td class="clickable" data-lang="de" data-word="Pampelmuse">Pampelmuse</td>
+    <td>[ˈpampəlˌmuːzə]</td>
+    <td class="clickable" data-lang="zh" data-word="柚子">柚子</td>
+    <td class="clickable" data-lang="en" data-word="grapefruit">grapefruit</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mandarine">mandarine</td>
+    <td>[mɑ̃daʁin]</td>
+    <td class="clickable" data-lang="de" data-word="Mandarine">Mandarine</td>
+    <td>[mandaˈʁiːnə]</td>
+    <td class="clickable" data-lang="zh" data-word="橘子">橘子</td>
+    <td class="clickable" data-lang="en" data-word="mandarin">mandarin</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pastèque">pastèque</td>
+    <td>[pastɛk]</td>
+    <td class="clickable" data-lang="de" data-word="Wassermelone">Wassermelone</td>
+    <td>[ˈvasɐmeˌloːnə]</td>
+    <td class="clickable" data-lang="zh" data-word="西瓜">西瓜</td>
+    <td class="clickable" data-lang="en" data-word="watermelon">watermelon</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="melon">melon</td>
+    <td>[məlɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Honigmelone">Honigmelone</td>
+    <td>[ˈhoːnɪçmeˌloːnə]</td>
+    <td class="clickable" data-lang="zh" data-word="哈密瓜">哈密瓜</td>
+    <td class="clickable" data-lang="en" data-word="honeydew melon">honeydew melon</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fraise">fraise</td>
+    <td>[fʁɛz]</td>
+    <td class="clickable" data-lang="de" data-word="Erdbeere">Erdbeere</td>
+    <td>[ˈeːɐ̯tˌbeːʁə]</td>
+    <td class="clickable" data-lang="zh" data-word="草莓">草莓</td>
+    <td class="clickable" data-lang="en" data-word="strawberry">strawberry</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cerise">cerise</td>
+    <td>[səʁiz]</td>
+    <td class="clickable" data-lang="de" data-word="Kirsche">Kirsche</td>
+    <td>[ˈkɪʁʃə]</td>
+    <td class="clickable" data-lang="zh" data-word="樱桃">樱桃</td>
+    <td class="clickable" data-lang="en" data-word="cherry">cherry</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ananas">ananas</td>
+    <td>[anana]</td>
+    <td class="clickable" data-lang="de" data-word="Ananas">Ananas</td>
+    <td>[ˈananas]</td>
+    <td class="clickable" data-lang="zh" data-word="菠萝">菠萝</td>
+    <td class="clickable" data-lang="en" data-word="pineapple">pineapple</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mangue">mangue</td>
+    <td>[mɑ̃ɡ]</td>
+    <td class="clickable" data-lang="de" data-word="Mango">Mango</td>
+    <td>[ˈmaŋɡo]</td>
+    <td class="clickable" data-lang="zh" data-word="芒果">芒果</td>
+    <td class="clickable" data-lang="en" data-word="mango">mango</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="noix de coco">noix de coco</td>
+    <td>[nwa də koko]</td>
+    <td class="clickable" data-lang="de" data-word="Kokosnuss">Kokosnuss</td>
+    <td>[koˈkosnʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="椰子">椰子</td>
+    <td class="clickable" data-lang="en" data-word="coconut">coconut</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="grenade">grenade</td>
+    <td>[ɡʁənad]</td>
+    <td class="clickable" data-lang="de" data-word="Granatapfel">Granatapfel</td>
+    <td>[ɡʁaˈnaːtˌapfl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="石榴">石榴</td>
+    <td class="clickable" data-lang="en" data-word="pomegranate">pomegranate</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pêche">pêche</td>
+    <td>[pɛʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Pfirsich">Pfirsich</td>
+    <td>[ˈpfɪʁzɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="桃子">桃子</td>
+    <td class="clickable" data-lang="en" data-word="peach">peach</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="litchi">litchi</td>
+    <td>[litʃi]</td>
+    <td class="clickable" data-lang="de" data-word="Litschi">Litschi</td>
+    <td>[ˈlɪtʃi]</td>
+    <td class="clickable" data-lang="zh" data-word="荔枝">荔枝</td>
+    <td class="clickable" data-lang="en" data-word="lychee">lychee</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="raisin">raisin</td>
+    <td>[ʁɛzɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Weintraube">Weintraube</td>
+    <td>[ˈvaɪ̯nˌtʁaʊ̯bə]</td>
+    <td class="clickable" data-lang="zh" data-word="葡萄">葡萄</td>
+    <td class="clickable" data-lang="en" data-word="grape">grape</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="abricot">abricot</td>
+    <td>[abʁiko]</td>
+    <td class="clickable" data-lang="de" data-word="Aprikose">Aprikose</td>
+    <td>[apʁiˈkoːzə]</td>
+    <td class="clickable" data-lang="zh" data-word="杏">杏</td>
+    <td class="clickable" data-lang="en" data-word="apricot">apricot</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fromage">Fromage</td>
+    <td>[fʁɔmaʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Käse">Käse</td>
+    <td>[ˈkɛːzə]</td>
+    <td class="clickable" data-lang="zh" data-word="奶酪">奶酪</td>
+    <td class="clickable" data-lang="en" data-word="cheese">cheese</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Crème glacée">Crème glacée</td>
+    <td>[kʁɛm ɡlase]</td>
+    <td class="clickable" data-lang="de" data-word="Eiscreme">Eiscreme</td>
+    <td>[ˈaɪskreːm]</td>
+    <td class="clickable" data-lang="zh" data-word="冰激凌">冰激凌</td>
+    <td class="clickable" data-lang="en" data-word="ice cream">ice cream</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Petit pain">Petit pain</td>
+    <td>[pəti pɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Brötchen">Brötchen</td>
+    <td>[ˈbrøːtçən]</td>
+    <td class="clickable" data-lang="zh" data-word="小面包">小面包</td>
+    <td class="clickable" data-lang="en" data-word="roll">roll</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lait">Lait</td>
+    <td>[lɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Milch">Milch</td>
+    <td>[mɪlç]</td>
+    <td class="clickable" data-lang="zh" data-word="牛奶">牛奶</td>
+    <td class="clickable" data-lang="en" data-word="milk">milk</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Yaourt">Yaourt</td>
+    <td>[jauʁt]</td>
+    <td class="clickable" data-lang="de" data-word="Joghurt">Joghurt</td>
+    <td>[ˈjoːɡʊrt]</td>
+    <td class="clickable" data-lang="zh" data-word="酸奶">酸奶</td>
+    <td class="clickable" data-lang="en" data-word="yogurt">yogurt</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Gâteau">Gâteau</td>
+    <td>[ɡɑto]</td>
+    <td class="clickable" data-lang="de" data-word="Kuchen">Kuchen</td>
+    <td>[ˈkuːxn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="蛋糕">蛋糕</td>
+    <td class="clickable" data-lang="en" data-word="cake">cake</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Sandwich">Sandwich</td>
+    <td>[sɑ̃dwitʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Sandwich">Sandwich</td>
+    <td>[ˈzɛntvɪtʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="三明治">三明治</td>
+    <td class="clickable" data-lang="en" data-word="sandwich">sandwich</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Petit gâteau">Petit gâteau</td>
+    <td>[pəti ɡɑto]</td>
+    <td class="clickable" data-lang="de" data-word="Plätzchen">Plätzchen</td>
+    <td>[ˈplɛtsçən]</td>
+    <td class="clickable" data-lang="zh" data-word="饼干">饼干</td>
+    <td class="clickable" data-lang="en" data-word="cookie">cookie</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Gâteau à la crème">Gâteau à la crème</td>
+    <td>[ɡɑto a la kʁɛm]</td>
+    <td class="clickable" data-lang="de" data-word="Sahnetorte">Sahnetorte</td>
+    <td>[ˈzaːnətɔrtə]</td>
+    <td class="clickable" data-lang="zh" data-word="多层奶油蛋糕">多层奶油蛋糕</td>
+    <td class="clickable" data-lang="en" data-word="cream cake">cream cake</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tiramisu">Tiramisu</td>
+    <td>[tiʁamisu]</td>
+    <td class="clickable" data-lang="de" data-word="Tiramisu">Tiramisu</td>
+    <td>[ˌtiːramiˈzuː]</td>
+    <td class="clickable" data-lang="zh" data-word="提拉米苏">提拉米苏</td>
+    <td class="clickable" data-lang="en" data-word="tiramisu">tiramisu</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Forêt-Noire">Forêt-Noire</td>
+    <td>[fɔʁɛ nwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Schwarzwälder Kirschtorte">Schwarzwälder Kirschtorte</td>
+    <td>[ˈʃvartsˌvɛldɐ ˈkɪrʃtɔrtə]</td>
+    <td class="clickable" data-lang="zh" data-word="黑森林蛋糕">黑森林蛋糕</td>
+    <td class="clickable" data-lang="en" data-word="Black Forest cake">Black Forest cake</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pudding">Pudding</td>
+    <td>[pudɪŋ]</td>
+    <td class="clickable" data-lang="de" data-word="Pudding">Pudding</td>
+    <td>[ˈpʊdɪŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="布丁">布丁</td>
+    <td class="clickable" data-lang="en" data-word="pudding">pudding</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Chocolat">Chocolat</td>
+    <td>[ʃɔkɔla]</td>
+    <td class="clickable" data-lang="de" data-word="Schokolade">Schokolade</td>
+    <td>[ʃokoˈlaːdə]</td>
+    <td class="clickable" data-lang="zh" data-word="巧克力">巧克力</td>
+    <td class="clickable" data-lang="en" data-word="chocolate">chocolate</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mousse">Mousse</td>
+    <td>[mus]</td>
+    <td class="clickable" data-lang="de" data-word="Mousse">Mousse</td>
+    <td>[ˈmuːs]</td>
+    <td class="clickable" data-lang="zh" data-word="慕斯">慕斯</td>
+    <td class="clickable" data-lang="en" data-word="mousse">mousse</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Dessert">Dessert</td>
+    <td>[desɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Nachtisch">Nachtisch</td>
+    <td>[ˈnaxtɪʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="饭后甜食">饭后甜食</td>
+    <td class="clickable" data-lang="en" data-word="dessert">dessert</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Toast">Toast</td>
+    <td>[tɔst]</td>
+    <td class="clickable" data-lang="de" data-word="Toast">Toast</td>
+    <td>[toːst]</td>
+    <td class="clickable" data-lang="zh" data-word="吐司">吐司</td>
+    <td class="clickable" data-lang="en" data-word="toast">toast</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pâtisserie">Pâtisserie</td>
+    <td>[patisʁi]</td>
+    <td class="clickable" data-lang="de" data-word="Gebäck">Gebäck</td>
+    <td>[ɡəˈbɛk]</td>
+    <td class="clickable" data-lang="zh" data-word="烘焙点心">烘焙点心</td>
+    <td class="clickable" data-lang="en" data-word="pastry">pastry</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Crème">Crème</td>
+    <td>[kʁɛm]</td>
+    <td class="clickable" data-lang="de" data-word="Creme">Creme</td>
+    <td>[kʁeːm]</td>
+    <td class="clickable" data-lang="zh" data-word="奶油">奶油</td>
+    <td class="clickable" data-lang="en" data-word="cream">cream</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Dessert">Dessert</td>
+    <td>[desɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Dessert">Dessert</td>
+    <td>[dɛˈsɛːɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="甜点">甜点</td>
+    <td class="clickable" data-lang="en" data-word="dessert">dessert</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Crème fouettée">Crème fouettée</td>
+    <td>[kʁɛm fwete]</td>
+    <td class="clickable" data-lang="de" data-word="Schlagsahne">Schlagsahne</td>
+    <td>[ˈʃlaːkzaːnə]</td>
+    <td class="clickable" data-lang="zh" data-word="掼奶油">掼奶油</td>
+    <td class="clickable" data-lang="en" data-word="whipped cream">whipped cream</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Thé">Thé</td>
+    <td>[te]</td>
+    <td class="clickable" data-lang="de" data-word="Tee">Tee</td>
+    <td>[teː]</td>
+    <td class="clickable" data-lang="zh" data-word="茶">茶</td>
+    <td class="clickable" data-lang="en" data-word="tea">tea</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cola">Cola</td>
+    <td>[kɔla]</td>
+    <td class="clickable" data-lang="de" data-word="Cola">Cola</td>
+    <td>[ˈkoːla]</td>
+    <td class="clickable" data-lang="zh" data-word="可乐">可乐</td>
+    <td class="clickable" data-lang="en" data-word="cola">cola</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vin rouge">Vin rouge</td>
+    <td>[vɛ̃ ʁuʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Rotwein">Rotwein</td>
+    <td>[ˈroːtvaɪn]</td>
+    <td class="clickable" data-lang="zh" data-word="红酒">红酒</td>
+    <td class="clickable" data-lang="en" data-word="red wine">red wine</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Limonade">Limonade</td>
+    <td>[limɔnad]</td>
+    <td class="clickable" data-lang="de" data-word="Limonade">Limonade</td>
+    <td>[limoˈnaːdə]</td>
+    <td class="clickable" data-lang="zh" data-word="柠檬汁">柠檬汁</td>
+    <td class="clickable" data-lang="en" data-word="lemonade">lemonade</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Eau gazeuse">Eau gazeuse</td>
+    <td>[o ɡazøz]</td>
+    <td class="clickable" data-lang="de" data-word="Sodawasser">Sodawasser</td>
+    <td>[ˈzoːdavasɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="苏打水">苏打水</td>
+    <td class="clickable" data-lang="en" data-word="soda water">soda water</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Thé au jasmin">Thé au jasmin</td>
+    <td>[te o ʒasmɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Jasmintee">Jasmintee</td>
+    <td>[ˈjasmiːnteː]</td>
+    <td class="clickable" data-lang="zh" data-word="茉莉花茶">茉莉花茶</td>
+    <td class="clickable" data-lang="en" data-word="jasmine tea">jasmine tea</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Jus de fruit">Jus de fruit</td>
+    <td>[ʒy də fʁɥi]</td>
+    <td class="clickable" data-lang="de" data-word="Fruchtsaft">Fruchtsaft</td>
+    <td>[ˈfʁʊxtzaft]</td>
+    <td class="clickable" data-lang="zh" data-word="果汁">果汁</td>
+    <td class="clickable" data-lang="en" data-word="fruit juice">fruit juice</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Café">Café</td>
+    <td>[kafe]</td>
+    <td class="clickable" data-lang="de" data-word="Kaffee">Kaffee</td>
+    <td>[ˈkafe]</td>
+    <td class="clickable" data-lang="zh" data-word="咖啡">咖啡</td>
+    <td class="clickable" data-lang="en" data-word="coffee">coffee</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Eau-de-vie">Eau-de-vie</td>
+    <td>[odəvi]</td>
+    <td class="clickable" data-lang="de" data-word="Schnaps">Schnaps</td>
+    <td>[ʃnaps]</td>
+    <td class="clickable" data-lang="zh" data-word="烧酒">烧酒</td>
+    <td class="clickable" data-lang="en" data-word="schnapps">schnapps</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cognac">Cognac</td>
+    <td>[kɔɲak]</td>
+    <td class="clickable" data-lang="de" data-word="Weinbrand">Weinbrand</td>
+    <td>[ˈvaɪnbʁant]</td>
+    <td class="clickable" data-lang="zh" data-word="白兰地">白兰地</td>
+    <td class="clickable" data-lang="en" data-word="brandy">brandy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Rhum">Rhum</td>
+    <td>[ʁɔm]</td>
+    <td class="clickable" data-lang="de" data-word="Rum">Rum</td>
+    <td>[ʁʊm]</td>
+    <td class="clickable" data-lang="zh" data-word="朗姆酒">朗姆酒</td>
+    <td class="clickable" data-lang="en" data-word="rum">rum</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cocktail">Cocktail</td>
+    <td>[kɔktɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Cocktail">Cocktail</td>
+    <td>[ˈkɔkteɪl]</td>
+    <td class="clickable" data-lang="zh" data-word="鸡尾酒">鸡尾酒</td>
+    <td class="clickable" data-lang="en" data-word="cocktail">cocktail</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vodka">Vodka</td>
+    <td>[vɔdka]</td>
+    <td class="clickable" data-lang="de" data-word="Wodka">Wodka</td>
+    <td>[ˈvɔtka]</td>
+    <td class="clickable" data-lang="zh" data-word="伏特加">伏特加</td>
+    <td class="clickable" data-lang="en" data-word="vodka">vodka</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Champagne">Champagne</td>
+    <td>[ʃɑ̃paɲ]</td>
+    <td class="clickable" data-lang="de" data-word="Champagner">Champagner</td>
+    <td>[ʃamˈpanjɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="香槟酒">香槟酒</td>
+    <td class="clickable" data-lang="en" data-word="champagne">champagne</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bière">Bière</td>
+    <td>[bjɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Bier">Bier</td>
+    <td>[biːɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="啤酒">啤酒</td>
+    <td class="clickable" data-lang="en" data-word="beer">beer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Eau minérale">Eau minérale</td>
+    <td>[o mineʁal]</td>
+    <td class="clickable" data-lang="de" data-word="Mineralwasser">Mineralwasser</td>
+    <td>[mineˈʁaːlvasɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="矿泉水">矿泉水</td>
+    <td class="clickable" data-lang="en" data-word="mineral water">mineral water</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cidre">Cidre</td>
+    <td>[sidʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Apfelwein">Apfelwein</td>
+    <td>[ˈapfəlvaɪn]</td>
+    <td class="clickable" data-lang="zh" data-word="苹果酒">苹果酒</td>
+    <td class="clickable" data-lang="en" data-word="cider">cider</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Gin">Gin</td>
+    <td>[dʒin]</td>
+    <td class="clickable" data-lang="de" data-word="Gin">Gin</td>
+    <td>[dʒɪn]</td>
+    <td class="clickable" data-lang="zh" data-word="琴酒">琴酒</td>
+    <td class="clickable" data-lang="en" data-word="gin">gin</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Thé noir">Thé noir</td>
+    <td>[te nwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Schwarztee">Schwarztee</td>
+    <td>[ˈʃvaʁtsteː]</td>
+    <td class="clickable" data-lang="zh" data-word="红茶">红茶</td>
+    <td class="clickable" data-lang="en" data-word="black tea">black tea</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Noix">Noix</td>
+    <td>[nwa]</td>
+    <td class="clickable" data-lang="de" data-word="Walnuss">Walnuss</td>
+    <td>[ˈvalnʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="核桃">核桃</td>
+    <td class="clickable" data-lang="en" data-word="walnut">walnut</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Noix de cajou">Noix de cajou</td>
+    <td>[nwa də kaʒu]</td>
+    <td class="clickable" data-lang="de" data-word="Cashewnuss">Cashewnuss</td>
+    <td>[ˈkɛʃuːnʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="腰果">腰果</td>
+    <td class="clickable" data-lang="en" data-word="cashew">cashew</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Amande">Amande</td>
+    <td>[amɑ̃d]</td>
+    <td class="clickable" data-lang="de" data-word="Mandel">Mandel</td>
+    <td>[ˈmandəl]</td>
+    <td class="clickable" data-lang="zh" data-word="杏仁">杏仁</td>
+    <td class="clickable" data-lang="en" data-word="almond">almond</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pistache">Pistache</td>
+    <td>[pistaʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Pistazie">Pistazie</td>
+    <td>[pɪsˈtaːtsie]</td>
+    <td class="clickable" data-lang="zh" data-word="开心果">开心果</td>
+    <td class="clickable" data-lang="en" data-word="pistachio">pistachio</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Châtaigne">Châtaigne</td>
+    <td>[ʃɑtɛɲ]</td>
+    <td class="clickable" data-lang="de" data-word="Kastanie">Kastanie</td>
+    <td>[kasˈtaːniə]</td>
+    <td class="clickable" data-lang="zh" data-word="栗子">栗子</td>
+    <td class="clickable" data-lang="en" data-word="chestnut">chestnut</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cacahuète">Cacahuète</td>
+    <td>[kakaɥɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Erdnuss">Erdnuss</td>
+    <td>[ˈeːɐtnʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="花生">花生</td>
+    <td class="clickable" data-lang="en" data-word="peanut">peanut</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Raisin sec">Raisin sec</td>
+    <td>[ʁɛzɛ̃ sɛk]</td>
+    <td class="clickable" data-lang="de" data-word="Rosine">Rosine</td>
+    <td>[ʁoˈziːnə]</td>
+    <td class="clickable" data-lang="zh" data-word="葡萄干">葡萄干</td>
+    <td class="clickable" data-lang="en" data-word="raisin">raisin</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Figue">Figue</td>
+    <td>[fiɡ]</td>
+    <td class="clickable" data-lang="de" data-word="Feige">Feige</td>
+    <td>[ˈfaɪɡə]</td>
+    <td class="clickable" data-lang="zh" data-word="无花果">无花果</td>
+    <td class="clickable" data-lang="en" data-word="fig">fig</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Longan">Longan</td>
+    <td>[lɔ̃ɡɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Longan">Longan</td>
+    <td>[ˈlɔŋɡan]</td>
+    <td class="clickable" data-lang="zh" data-word="桂圆">桂圆</td>
+    <td class="clickable" data-lang="en" data-word="longan">longan</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Noix">Noix</td>
+    <td>[nwa]</td>
+    <td class="clickable" data-lang="de" data-word="Nuß">Nuß</td>
+    <td>[nʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="坚果">坚果</td>
+    <td class="clickable" data-lang="en" data-word="nut">nut</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Noisette">Noisette</td>
+    <td>[nwazɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Haselnuss">Haselnuss</td>
+    <td>[ˈhaːzl̩nʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="榛子">榛子</td>
+    <td class="clickable" data-lang="en" data-word="hazelnut">hazelnut</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Casse-noix">Casse-noix</td>
+    <td>[kas nwa]</td>
+    <td class="clickable" data-lang="de" data-word="Nussknacker">Nussknacker</td>
+    <td>[ˈnʊsknakɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="胡桃夹子">胡桃夹子</td>
+    <td class="clickable" data-lang="en" data-word="nutcracker">nutcracker</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Noix du Brésil">Noix du Brésil</td>
+    <td>[nwa dy bʁezil]</td>
+    <td class="clickable" data-lang="de" data-word="Brasilianische Nuss">Brasilianische Nuss</td>
+    <td>[bʁaziliˈaːnɪʃə nʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="巴西坚果">巴西坚果</td>
+    <td class="clickable" data-lang="en" data-word="Brazil nut">Brazil nut</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Noix de coco">Noix de coco</td>
+    <td>[nwa də koko]</td>
+    <td class="clickable" data-lang="de" data-word="Kokosnuss">Kokosnuss</td>
+    <td>[ˈkoːkɔsnʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="椰子">椰子</td>
+    <td class="clickable" data-lang="en" data-word="coconut">coconut</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Coque">Coque</td>
+    <td>[kɔk]</td>
+    <td class="clickable" data-lang="de" data-word="Schale">Schale</td>
+    <td>[ˈʃaːlə]</td>
+    <td class="clickable" data-lang="zh" data-word="壳">壳</td>
+    <td class="clickable" data-lang="en" data-word="shell">shell</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Noyau">Noyau</td>
+    <td>[nwajo]</td>
+    <td class="clickable" data-lang="de" data-word="Kern">Kern</td>
+    <td>[kɛʁn]</td>
+    <td class="clickable" data-lang="zh" data-word="果仁；果核">果仁；果核</td>
+    <td class="clickable" data-lang="en" data-word="kernel">kernel</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pignon">Pignon</td>
+    <td>[piɲɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Pinienkern">Pinienkern</td>
+    <td>[ˈpiːniənkɛʁn]</td>
+    <td class="clickable" data-lang="zh" data-word="松子">松子</td>
+    <td class="clickable" data-lang="en" data-word="pine nut">pine nut</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Noix d'hickory">Noix d'hickory</td>
+    <td>[nwa dikɔʁi]</td>
+    <td class="clickable" data-lang="de" data-word="Hickory">Hickory</td>
+    <td>[ˈhɪkəri]</td>
+    <td class="clickable" data-lang="zh" data-word="山核桃">山核桃</td>
+    <td class="clickable" data-lang="en" data-word="hickory nut">hickory nut</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Graine de melon">Graine de melon</td>
+    <td>[ɡʁɛn də məlɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Melonenkern">Melonenkern</td>
+    <td>[meˈloːnənkɛʁn]</td>
+    <td class="clickable" data-lang="zh" data-word="西瓜籽">西瓜籽</td>
+    <td class="clickable" data-lang="en" data-word="melon seed">melon seed</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Graine de tournesol">Graine de tournesol</td>
+    <td>[ɡʁɛn də tuʁnəsɔl]</td>
+    <td class="clickable" data-lang="de" data-word="Sonnenblumenkern">Sonnenblumenkern</td>
+    <td>[ˈzɔnənbluːmənkɛʁn]</td>
+    <td class="clickable" data-lang="zh" data-word="葵花籽">葵花籽</td>
+    <td class="clickable" data-lang="en" data-word="sunflower seed">sunflower seed</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="poireau">poireau</td>
+    <td>[pwaˈʁo]</td>
+    <td class="clickable" data-lang="de" data-word="Porree">Porree</td>
+    <td>[pɔˈʁeː]</td>
+    <td class="clickable" data-lang="zh" data-word="葱">葱</td>
+    <td class="clickable" data-lang="en" data-word="leek">leek</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="gingembre">gingembre</td>
+    <td>[ʒɛ̃ˈʒɑ̃bʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Ingwer">Ingwer</td>
+    <td>[ˈɪŋvɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="姜">姜</td>
+    <td class="clickable" data-lang="en" data-word="ginger">ginger</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ail">ail</td>
+    <td>[aj]</td>
+    <td class="clickable" data-lang="de" data-word="Knoblauch">Knoblauch</td>
+    <td>[ˈknoːblaʊx]</td>
+    <td class="clickable" data-lang="zh" data-word="蒜">蒜</td>
+    <td class="clickable" data-lang="en" data-word="garlic">garlic</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="vinaigre">vinaigre</td>
+    <td>[vinɛɡʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Essig">Essig</td>
+    <td>[ˈɛsɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="醋">醋</td>
+    <td class="clickable" data-lang="en" data-word="vinegar">vinegar</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sauce soja">sauce soja</td>
+    <td>[sos sɔˈja]</td>
+    <td class="clickable" data-lang="de" data-word="Sojasoße">Sojasoße</td>
+    <td>[ˈzoːjazoːsə]</td>
+    <td class="clickable" data-lang="zh" data-word="酱油">酱油</td>
+    <td class="clickable" data-lang="en" data-word="soy sauce">soy sauce</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="concentré de tomates">concentré de tomates</td>
+    <td>[kɔ̃sɑ̃tʁe də tɔmat]</td>
+    <td class="clickable" data-lang="de" data-word="Tomatenmark">Tomatenmark</td>
+    <td>[toˈmaːtənmaʁk]</td>
+    <td class="clickable" data-lang="zh" data-word="番茄酱">番茄酱</td>
+    <td class="clickable" data-lang="en" data-word="tomato paste">tomato paste</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="curry">curry</td>
+    <td>[kyʁi]</td>
+    <td class="clickable" data-lang="de" data-word="Curry">Curry</td>
+    <td>[ˈkœri]</td>
+    <td class="clickable" data-lang="zh" data-word="咖喱">咖喱</td>
+    <td class="clickable" data-lang="en" data-word="curry">curry</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sel">sel</td>
+    <td>[sɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Salz">Salz</td>
+    <td>[zalts]</td>
+    <td class="clickable" data-lang="zh" data-word="盐">盐</td>
+    <td class="clickable" data-lang="en" data-word="salt">salt</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="moutarde">moutarde</td>
+    <td>[mutaʁd]</td>
+    <td class="clickable" data-lang="de" data-word="Senf">Senf</td>
+    <td>[zɛnf]</td>
+    <td class="clickable" data-lang="zh" data-word="芥末">芥末</td>
+    <td class="clickable" data-lang="en" data-word="mustard">mustard</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="plat national">plat national</td>
+    <td>[pla nasjɔnal]</td>
+    <td class="clickable" data-lang="de" data-word="Nationalgericht">Nationalgericht</td>
+    <td>[natsjoˈnaːlɡəʁɪçt]</td>
+    <td class="clickable" data-lang="zh" data-word="某国的特色菜">某国的特色菜</td>
+    <td class="clickable" data-lang="en" data-word="national dish">national dish</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="labskaus">labskaus</td>
+    <td>[labskaʊs]</td>
+    <td class="clickable" data-lang="de" data-word="Labskaus">Labskaus</td>
+    <td>[ˈlapska͜us]</td>
+    <td class="clickable" data-lang="zh" data-word="海员杂烩">海员杂烩</td>
+    <td class="clickable" data-lang="en" data-word="labskaus (sailor's stew)">labskaus (sailor's stew)</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="goulash">goulash</td>
+    <td>[ɡulaʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Gulasch">Gulasch</td>
+    <td>[ˈɡuːlaʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="红烧牛肉">红烧牛肉</td>
+    <td class="clickable" data-lang="en" data-word="goulash">goulash</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="spécialité">spécialité</td>
+    <td>[spesjaliˈte]</td>
+    <td class="clickable" data-lang="de" data-word="Spezialität">Spezialität</td>
+    <td>[ʃpeˌtsjaːliˈtɛːt]</td>
+    <td class="clickable" data-lang="zh" data-word="名菜">名菜</td>
+    <td class="clickable" data-lang="en" data-word="specialty">specialty</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="spaghetti">spaghetti</td>
+    <td>[spaɡeti]</td>
+    <td class="clickable" data-lang="de" data-word="Spaghetti">Spaghetti</td>
+    <td>[ʃpaˈɡeti]</td>
+    <td class="clickable" data-lang="zh" data-word="意大利面">意大利面</td>
+    <td class="clickable" data-lang="en" data-word="spaghetti">spaghetti</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="nouilles">nouilles</td>
+    <td>[nuj]</td>
+    <td class="clickable" data-lang="de" data-word="Nudel">Nudel</td>
+    <td>[ˈnuːdl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="面条">面条</td>
+    <td class="clickable" data-lang="en" data-word="noodles">noodles</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="saucisse grillée">saucisse grillée</td>
+    <td>[sosis ɡʁije]</td>
+    <td class="clickable" data-lang="de" data-word="Bratwurst">Bratwurst</td>
+    <td>[ˈbʁaːtvʊʁst]</td>
+    <td class="clickable" data-lang="zh" data-word="烤肠">烤肠</td>
+    <td class="clickable" data-lang="en" data-word="bratwurst">bratwurst</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="escalope viennoise">escalope viennoise</td>
+    <td>[ɛskalɔp vjɛnwaz]</td>
+    <td class="clickable" data-lang="de" data-word="Wiener Schnitzel">Wiener Schnitzel</td>
+    <td>[ˈviːnɐ ˈʃnɪtsl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="维也纳肉排">维也纳肉排</td>
+    <td class="clickable" data-lang="en" data-word="Wiener schnitzel">Wiener schnitzel</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bouillon de poule">bouillon de poule</td>
+    <td>[bujɔ̃ də pul]</td>
+    <td class="clickable" data-lang="de" data-word="Hühnerbrühe">Hühnerbrühe</td>
+    <td>[ˈhyːnɐbʁyː]</td>
+    <td class="clickable" data-lang="zh" data-word="鸡汤">鸡汤</td>
+    <td class="clickable" data-lang="en" data-word="chicken broth">chicken broth</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="steak">steak</td>
+    <td>[stɛk]</td>
+    <td class="clickable" data-lang="de" data-word="Steak">Steak</td>
+    <td>[steːk]</td>
+    <td class="clickable" data-lang="zh" data-word="煎牛排">煎牛排</td>
+    <td class="clickable" data-lang="en" data-word="steak">steak</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="kebab">kebab</td>
+    <td>[kebab]</td>
+    <td class="clickable" data-lang="de" data-word="Döner Kebab">Döner Kebab</td>
+    <td>[ˈdøːnɐ keˈbap]</td>
+    <td class="clickable" data-lang="zh" data-word="土耳其烤肉">土耳其烤肉</td>
+    <td class="clickable" data-lang="en" data-word="döner kebab">döner kebab</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="choucroute">choucroute</td>
+    <td>[ʃukʁut]</td>
+    <td class="clickable" data-lang="de" data-word="Sauerkraut">Sauerkraut</td>
+    <td>[ˈzaʊɐkʁaʊt]</td>
+    <td class="clickable" data-lang="zh" data-word="德国酸菜">德国酸菜</td>
+    <td class="clickable" data-lang="en" data-word="sauerkraut">sauerkraut</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pot-au-feu">pot-au-feu</td>
+    <td>[potoˈfø]</td>
+    <td class="clickable" data-lang="de" data-word="Eintopf">Eintopf</td>
+    <td>[ˈaɪntɔpf]</td>
+    <td class="clickable" data-lang="zh" data-word="一锅烩">一锅烩</td>
+    <td class="clickable" data-lang="en" data-word="stew">stew</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fish and chips">fish and chips</td>
+    <td>[fiʃ ænd tʃɪps]</td>
+    <td class="clickable" data-lang="de" data-word="Fish and Chips">Fish and Chips</td>
+    <td>[fɪʃ ænd tʃɪps]</td>
+    <td class="clickable" data-lang="zh" data-word="煎鱼配炸薯条">煎鱼配炸薯条</td>
+    <td class="clickable" data-lang="en" data-word="fish and chips">fish and chips</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pizza">pizza</td>
+    <td>[pidza]</td>
+    <td class="clickable" data-lang="de" data-word="Pizza">Pizza</td>
+    <td>[ˈpɪtsa]</td>
+    <td class="clickable" data-lang="zh" data-word="比萨饼">比萨饼</td>
+    <td class="clickable" data-lang="en" data-word="pizza">pizza</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="strudel aux pommes">strudel aux pommes</td>
+    <td>[stʁydɛl o pɔm]</td>
+    <td class="clickable" data-lang="de" data-word="Apfelstrudel">Apfelstrudel</td>
+    <td>[ˈapfl̩ʃtʁuːdl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="苹果馅饼">苹果馅饼</td>
+    <td class="clickable" data-lang="en" data-word="apple strudel">apple strudel</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="rôti mariné">rôti mariné</td>
+    <td>[ʁoti maʁine]</td>
+    <td class="clickable" data-lang="de" data-word="Sauerbraten">Sauerbraten</td>
+    <td>[ˈzaʊɐbʁaːtn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="醋焖牛肉">醋焖牛肉</td>
+    <td class="clickable" data-lang="en" data-word="sauerbraten">sauerbraten</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="quenelle">quenelle</td>
+    <td>[kənɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Knödel">Knödel</td>
+    <td>[ˈknøːdl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="马铃薯麦团">马铃薯麦团</td>
+    <td class="clickable" data-lang="en" data-word="dumpling">dumpling</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="tarte à l'oignon">tarte à l'oignon</td>
+    <td>[taʁt a lɔɲɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Zwiebelkuchen">Zwiebelkuchen</td>
+    <td>[ˈtsviblekuːxn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="洋葱醺肉饼">洋葱醺肉饼</td>
+    <td class="clickable" data-lang="en" data-word="onion tart">onion tart</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="hareng">hareng</td>
+    <td>[aʁɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Hering">Hering</td>
+    <td>[ˈheːʁɪŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="腌鲱鱼">腌鲱鱼</td>
+    <td class="clickable" data-lang="en" data-word="herring">herring</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="restaurant">restaurant</td>
+    <td>[ʁɛstoʁɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Restaurant">Restaurant</td>
+    <td>[ʁɛstoˈʁɑ̃]</td>
+    <td class="clickable" data-lang="zh" data-word="餐馆">餐馆</td>
+    <td class="clickable" data-lang="en" data-word="restaurant">restaurant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="restauration rapide">restauration rapide</td>
+    <td>[ʁɛstɔʁasjɔ̃ ʁapid]</td>
+    <td class="clickable" data-lang="de" data-word="Schnellimbiss">Schnellimbiss</td>
+    <td>[ˈʃnɛlɪmbɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="快餐店">快餐店</td>
+    <td class="clickable" data-lang="en" data-word="fast food restaurant">fast food restaurant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="menu">menu</td>
+    <td>[məny]</td>
+    <td class="clickable" data-lang="de" data-word="Speisekarte">Speisekarte</td>
+    <td>[ˈʃpaɪzəkaʁtə]</td>
+    <td class="clickable" data-lang="zh" data-word="菜单">菜单</td>
+    <td class="clickable" data-lang="en" data-word="menu">menu</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="serveur">serveur</td>
+    <td>[sɛʁvœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Kellner">Kellner</td>
+    <td>[ˈkɛlnɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="服务员">服务员</td>
+    <td class="clickable" data-lang="en" data-word="waiter">waiter</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="petit déjeuner">petit déjeuner</td>
+    <td>[pəti deʒøne]</td>
+    <td class="clickable" data-lang="de" data-word="Früstück">Früstück</td>
+    <td>[ˈfʁyːʃtʏk]</td>
+    <td class="clickable" data-lang="zh" data-word="早餐">早餐</td>
+    <td class="clickable" data-lang="en" data-word="breakfast">breakfast</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="déjeuner">déjeuner</td>
+    <td>[deʒøne]</td>
+    <td class="clickable" data-lang="de" data-word="Mittagessen">Mittagessen</td>
+    <td>[ˈmɪtaːkˌɛsn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="午餐">午餐</td>
+    <td class="clickable" data-lang="en" data-word="lunch">lunch</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="dîner">dîner</td>
+    <td>[dine]</td>
+    <td class="clickable" data-lang="de" data-word="Abendessen">Abendessen</td>
+    <td>[ˈaːbəntˌɛsn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="晚餐">晚餐</td>
+    <td class="clickable" data-lang="en" data-word="dinner">dinner</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="buffet">buffet</td>
+    <td>[byfɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Buffet">Buffet</td>
+    <td>[byˈfeː]</td>
+    <td class="clickable" data-lang="zh" data-word="自助餐">自助餐</td>
+    <td class="clickable" data-lang="en" data-word="buffet">buffet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="boulangerie">boulangerie</td>
+    <td>[bulɑ̃ʒʁi]</td>
+    <td class="clickable" data-lang="de" data-word="Bäckerei">Bäckerei</td>
+    <td>[bɛkəˈʁaɪ]</td>
+    <td class="clickable" data-lang="zh" data-word="面包房">面包房</td>
+    <td class="clickable" data-lang="en" data-word="bakery">bakery</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="aliments">aliments</td>
+    <td>[alimɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Lebensmittel">Lebensmittel</td>
+    <td>[ˈleːbn̩sˌmɪtl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="食物">食物</td>
+    <td class="clickable" data-lang="en" data-word="food">food</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="appétit">appétit</td>
+    <td>[apeti]</td>
+    <td class="clickable" data-lang="de" data-word="Appetit">Appetit</td>
+    <td>[apeˈtiːt]</td>
+    <td class="clickable" data-lang="zh" data-word="胃口">胃口</td>
+    <td class="clickable" data-lang="en" data-word="appetite">appetite</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="boucherie">boucherie</td>
+    <td>[buʃʁi]</td>
+    <td class="clickable" data-lang="de" data-word="Fleischerei">Fleischerei</td>
+    <td>[ˈflaɪʃəʁaɪ]</td>
+    <td class="clickable" data-lang="zh" data-word="肉铺">肉铺</td>
+    <td class="clickable" data-lang="en" data-word="butcher shop">butcher shop</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="goûter">goûter</td>
+    <td>[ɡute]</td>
+    <td class="clickable" data-lang="de" data-word="probieren">probieren</td>
+    <td>[pʁoˈbiːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="品尝">品尝</td>
+    <td class="clickable" data-lang="en" data-word="to taste">to taste</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="goût">goût</td>
+    <td>[ɡu]</td>
+    <td class="clickable" data-lang="de" data-word="Geschmack">Geschmack</td>
+    <td>[ɡəˈʃmak]</td>
+    <td class="clickable" data-lang="zh" data-word="味道">味道</td>
+    <td class="clickable" data-lang="en" data-word="taste">taste</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bistrot">bistrot</td>
+    <td>[bistʁo]</td>
+    <td class="clickable" data-lang="de" data-word="Kneipe">Kneipe</td>
+    <td>[ˈknaɪpə]</td>
+    <td class="clickable" data-lang="zh" data-word="酒馆">酒馆</td>
+    <td class="clickable" data-lang="en" data-word="pub">pub</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pourboire">pourboire</td>
+    <td>[puʁbwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Trinkgeld">Trinkgeld</td>
+    <td>[ˈtʁɪŋkɡɛlt]</td>
+    <td class="clickable" data-lang="zh" data-word="小费">小费</td>
+    <td class="clickable" data-lang="en" data-word="tip">tip</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="commander">commander</td>
+    <td>[kɔmɑ̃de]</td>
+    <td class="clickable" data-lang="de" data-word="bestellen">bestellen</td>
+    <td>[bəˈʃtɛlən]</td>
+    <td class="clickable" data-lang="zh" data-word="点餐">点餐</td>
+    <td class="clickable" data-lang="en" data-word="to order">to order</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="payer">payer</td>
+    <td>[peje]</td>
+    <td class="clickable" data-lang="de" data-word="zahlen">zahlen</td>
+    <td>[ˈtsaːlən]</td>
+    <td class="clickable" data-lang="zh" data-word="付款">付款</td>
+    <td class="clickable" data-lang="en" data-word="to pay">to pay</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cuire">cuire</td>
+    <td>[kɥiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="kochen">kochen</td>
+    <td>[ˈkɔxən]</td>
+    <td class="clickable" data-lang="zh" data-word="煮">煮</td>
+    <td class="clickable" data-lang="en" data-word="to cook">to cook</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="frire">frire</td>
+    <td>[fʁiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="braten">braten</td>
+    <td>[ˈbʁaːtən]</td>
+    <td class="clickable" data-lang="zh" data-word="煎，炸">煎，炸</td>
+    <td class="clickable" data-lang="en" data-word="to fry">to fry</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="griller">griller</td>
+    <td>[ɡʁije]</td>
+    <td class="clickable" data-lang="de" data-word="grillen">grillen</td>
+    <td>[ˈɡʁɪlən]</td>
+    <td class="clickable" data-lang="zh" data-word="烤">烤</td>
+    <td class="clickable" data-lang="en" data-word="to grill">to grill</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="braiser">braiser</td>
+    <td>[bʁɛze]</td>
+    <td class="clickable" data-lang="de" data-word="schmoren">schmoren</td>
+    <td>[ˈʃmoːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="炖">炖</td>
+    <td class="clickable" data-lang="en" data-word="to braise">to braise</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cuire à la vapeur">cuire à la vapeur</td>
+    <td>[kɥiʁ a la vapœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="dampfen">dampfen</td>
+    <td>[ˈdampfən]</td>
+    <td class="clickable" data-lang="zh" data-word="蒸">蒸</td>
+    <td class="clickable" data-lang="en" data-word="to steam">to steam</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bien cuit">bien cuit</td>
+    <td>[bjɛ̃ kɥi]</td>
+    <td class="clickable" data-lang="de" data-word="durchgebracht">durchgebracht</td>
+    <td>[ˈdʊʁçɡəbʁaxt]</td>
+    <td class="clickable" data-lang="zh" data-word="全熟的">全熟的</td>
+    <td class="clickable" data-lang="en" data-word="well-done">well-done</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="à point">à point</td>
+    <td>[a pwɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="halbgar">halbgar</td>
+    <td>[ˈhalpɡaːɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="半生半熟的">半生半熟的</td>
+    <td class="clickable" data-lang="en" data-word="medium">medium</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="boire">boire</td>
+    <td>[bwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="trinken">trinken</td>
+    <td>[ˈtʁɪŋkən]</td>
+    <td class="clickable" data-lang="zh" data-word="喝">喝</td>
+    <td class="clickable" data-lang="en" data-word="to drink">to drink</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="verser">verser</td>
+    <td>[vɛʁse]</td>
+    <td class="clickable" data-lang="de" data-word="einschenken">einschenken</td>
+    <td>[ˈaɪnʃɛŋkən]</td>
+    <td class="clickable" data-lang="zh" data-word="倒">倒</td>
+    <td class="clickable" data-lang="en" data-word="to pour">to pour</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="couper">couper</td>
+    <td>[kupe]</td>
+    <td class="clickable" data-lang="de" data-word="schneiden">schneiden</td>
+    <td>[ˈʃnaɪdən]</td>
+    <td class="clickable" data-lang="zh" data-word="切">切</td>
+    <td class="clickable" data-lang="en" data-word="to cut">to cut</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cuisiner">cuisiner</td>
+    <td>[kɥizine]</td>
+    <td class="clickable" data-lang="de" data-word="kochen">kochen</td>
+    <td>[ˈkɔxən]</td>
+    <td class="clickable" data-lang="zh" data-word="烹饪">烹饪</td>
+    <td class="clickable" data-lang="en" data-word="to cook">to cook</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="porter un toast">porter un toast</td>
+    <td>[pɔʁte œ̃ tost]</td>
+    <td class="clickable" data-lang="de" data-word="toasten">toasten</td>
+    <td>[ˈtoːstən]</td>
+    <td class="clickable" data-lang="zh" data-word="祝酒">祝酒</td>
+    <td class="clickable" data-lang="en" data-word="to toast">to toast</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="commander">commander</td>
+    <td>[kɔmɑ̃de]</td>
+    <td class="clickable" data-lang="de" data-word="bestellen">bestellen</td>
+    <td>[bəˈʃtɛlən]</td>
+    <td class="clickable" data-lang="zh" data-word="预订">预订</td>
+    <td class="clickable" data-lang="en" data-word="to order">to order</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="prendre">prendre</td>
+    <td>[pʁɑ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="nehmen">nehmen</td>
+    <td>[ˈneːmən]</td>
+    <td class="clickable" data-lang="zh" data-word="吃">吃</td>
+    <td class="clickable" data-lang="en" data-word="to take, to eat">to take, to eat</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="baguettes">baguettes</td>
+    <td>[bagɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Essstäbchen">Essstäbchen</td>
+    <td>[ˈɛsʃtɛpçən]</td>
+    <td class="clickable" data-lang="zh" data-word="筷子">筷子</td>
+    <td class="clickable" data-lang="en" data-word="chopsticks">chopsticks</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="assaisonner">assaisonner</td>
+    <td>[asɛzɔne]</td>
+    <td class="clickable" data-lang="de" data-word="würzen">würzen</td>
+    <td>[ˈvʏʁtsən]</td>
+    <td class="clickable" data-lang="zh" data-word="给……调味">给……调味</td>
+    <td class="clickable" data-lang="en" data-word="to season">to season</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="saler">saler</td>
+    <td>[sale]</td>
+    <td class="clickable" data-lang="de" data-word="pökeln">pökeln</td>
+    <td>[ˈpøːkəln]</td>
+    <td class="clickable" data-lang="zh" data-word="腌制">腌制</td>
+    <td class="clickable" data-lang="en" data-word="to salt, to cure">to salt, to cure</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sauter">sauter</td>
+    <td>[sote]</td>
+    <td class="clickable" data-lang="de" data-word="sautieren">sautieren</td>
+    <td>[zoˈtiːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="嫩煎">嫩煎</td>
+    <td class="clickable" data-lang="en" data-word="to sauté">to sauté</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fumer">fumer</td>
+    <td>[fyme]</td>
+    <td class="clickable" data-lang="de" data-word="räuchern">räuchern</td>
+    <td>[ˈʁɔʏçɐn]</td>
+    <td class="clickable" data-lang="zh" data-word="熏制">熏制</td>
+    <td class="clickable" data-lang="en" data-word="to smoke">to smoke</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bouillant">bouillant</td>
+    <td>[bujɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="siedend">siedend</td>
+    <td>[ˈziːdənt]</td>
+    <td class="clickable" data-lang="zh" data-word="沸腾的">沸腾的</td>
+    <td class="clickable" data-lang="en" data-word="boiling">boiling</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="acide">acide</td>
+    <td>[asid]</td>
+    <td class="clickable" data-lang="de" data-word="sauer">sauer</td>
+    <td>[ˈzaʊɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="酸的">酸的</td>
+    <td class="clickable" data-lang="en" data-word="sour">sour</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sucré">sucré</td>
+    <td>[sykʁe]</td>
+    <td class="clickable" data-lang="de" data-word="süß">süß</td>
+    <td>[zyːs]</td>
+    <td class="clickable" data-lang="zh" data-word="甜的">甜的</td>
+    <td class="clickable" data-lang="en" data-word="sweet">sweet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="amer">amer</td>
+    <td>[amɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="bitter">bitter</td>
+    <td>[ˈbɪtɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="苦的">苦的</td>
+    <td class="clickable" data-lang="en" data-word="bitter">bitter</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="piquant">piquant</td>
+    <td>[pikɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="scharf">scharf</td>
+    <td>[ʃaʁf]</td>
+    <td class="clickable" data-lang="zh" data-word="辣的">辣的</td>
+    <td class="clickable" data-lang="en" data-word="spicy">spicy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="salé">salé</td>
+    <td>[sale]</td>
+    <td class="clickable" data-lang="de" data-word="salzig">salzig</td>
+    <td>[ˈzaltsɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="咸的">咸的</td>
+    <td class="clickable" data-lang="en" data-word="salty">salty</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="goût">goût</td>
+    <td>[gu]</td>
+    <td class="clickable" data-lang="de" data-word="Geschmack">Geschmack</td>
+    <td>[ɡəˈʃmak]</td>
+    <td class="clickable" data-lang="zh" data-word="味道">味道</td>
+    <td class="clickable" data-lang="en" data-word="taste">taste</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="goûter">goûter</td>
+    <td>[gute]</td>
+    <td class="clickable" data-lang="de" data-word="probieren">probieren</td>
+    <td>[pʁoˈbiːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="品尝">品尝</td>
+    <td class="clickable" data-lang="en" data-word="to taste">to taste</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="excellent">excellent</td>
+    <td>[ɛksɛlɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="ausgezeichnet">ausgezeichnet</td>
+    <td>[ˈaʊsɡətsaɪçnət]</td>
+    <td class="clickable" data-lang="zh" data-word="棒极了">棒极了</td>
+    <td class="clickable" data-lang="en" data-word="excellent">excellent</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="délicieux">délicieux</td>
+    <td>[delisjø]</td>
+    <td class="clickable" data-lang="de" data-word="lecker">lecker</td>
+    <td>[ˈlɛkɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="可口的">可口的</td>
+    <td class="clickable" data-lang="en" data-word="delicious">delicious</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="froid">froid</td>
+    <td>[fʁwa]</td>
+    <td class="clickable" data-lang="de" data-word="kalt">kalt</td>
+    <td>[kalt]</td>
+    <td class="clickable" data-lang="zh" data-word="冷的">冷的</td>
+    <td class="clickable" data-lang="en" data-word="cold">cold</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chaud">chaud</td>
+    <td>[ʃo]</td>
+    <td class="clickable" data-lang="de" data-word="heiß">heiß</td>
+    <td>[haɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="热的">热的</td>
+    <td class="clickable" data-lang="en" data-word="hot">hot</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="doux">doux</td>
+    <td>[du]</td>
+    <td class="clickable" data-lang="de" data-word="mild">mild</td>
+    <td>[mɪlt]</td>
+    <td class="clickable" data-lang="zh" data-word="适中的">适中的</td>
+    <td class="clickable" data-lang="en" data-word="mild">mild</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="avoir du goût">avoir du goût</td>
+    <td>[avwaʁ dy gu]</td>
+    <td class="clickable" data-lang="de" data-word="schmecken">schmecken</td>
+    <td>[ˈʃmɛkən]</td>
+    <td class="clickable" data-lang="zh" data-word="有滋味">有滋味</td>
+    <td class="clickable" data-lang="en" data-word="to taste">to taste</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="odeur de poisson">odeur de poisson</td>
+    <td>[odœʁ də pwasɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Fischgeruch">Fischgeruch</td>
+    <td>[ˈfɪʃɡəʁuːx]</td>
+    <td class="clickable" data-lang="zh" data-word="鱼腥味">鱼腥味</td>
+    <td class="clickable" data-lang="en" data-word="fish smell">fish smell</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sans goût">sans goût</td>
+    <td>[sɑ̃ gu]</td>
+    <td class="clickable" data-lang="de" data-word="wie Stroh schmecken">wie Stroh schmecken</td>
+    <td>[viː ʃtʁoː ˈʃmɛkən]</td>
+    <td class="clickable" data-lang="zh" data-word="毫无味道">毫无味道</td>
+    <td class="clickable" data-lang="en" data-word="tasteless">tasteless</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="brûlé">brûlé</td>
+    <td>[bʁyle]</td>
+    <td class="clickable" data-lang="de" data-word="verbrannt">verbrannt</td>
+    <td>[fɛɐ̯ˈbʁant]</td>
+    <td class="clickable" data-lang="zh" data-word="烧焦的">烧焦的</td>
+    <td class="clickable" data-lang="en" data-word="burnt">burnt</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="épicé">épicé</td>
+    <td>[epise]</td>
+    <td class="clickable" data-lang="de" data-word="würzig">würzig</td>
+    <td>[ˈvʏʁtsɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="香味浓郁的">香味浓郁的</td>
+    <td class="clickable" data-lang="en" data-word="spicy, aromatic">spicy, aromatic</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="juteux">juteux</td>
+    <td>[ʒytø]</td>
+    <td class="clickable" data-lang="de" data-word="saftig">saftig</td>
+    <td>[ˈzaftɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="多汁的">多汁的</td>
+    <td class="clickable" data-lang="en" data-word="juicy">juicy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="frais">frais</td>
+    <td>[fʁɛ]</td>
+    <td class="clickable" data-lang="de" data-word="frisch">frisch</td>
+    <td>[fʁɪʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="新鲜的">新鲜的</td>
+    <td class="clickable" data-lang="en" data-word="fresh">fresh</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="gras">gras</td>
+    <td>[ɡʁɑ]</td>
+    <td class="clickable" data-lang="de" data-word="fett">fett</td>
+    <td>[fɛt]</td>
+    <td class="clickable" data-lang="zh" data-word="油腻的">油腻的</td>
+    <td class="clickable" data-lang="en" data-word="fatty">fatty</td>
+</tr>
+    </table>
+
+    <script>
+    const PIXABAY_API_KEY = '49256357-c30f2f538120ce8d74ff8921d';
+    let speechSynth = window.speechSynthesis;
+    let voices = [];
+
+    // Wait for voices to load
+    speechSynth.onvoiceschanged = function() {
+        voices = speechSynth.getVoices();
+    };
+
+    // Pronunciation function
+    function speak(text, lang) {
+        // Cancel any ongoing speech
+        speechSynth.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        
+        // For Chinese, select appropriate voice based on dialect
+        if (lang.startsWith('zh')) {
+            const voices = window.speechSynthesis.getVoices();
+            const chineseVoice = voices.find(voice => voice.lang.includes(lang));
+            if (chineseVoice) {
+                utterance.voice = chineseVoice;
+            }
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    } 
+    
+    // Remove existing background images
+    function clearBackgroundImages() {
+        document.querySelectorAll('.background-image').forEach(img => img.remove());
+    }
+
+    // Fetch and add background image
+    async function addBackgroundImage(cell, searchTerm) {
+        clearBackgroundImages();
+        
+        try {
+            const apiUrl = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(searchTerm)}&per_page=4&safesearch=true`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.hits && data.hits.length > 0) {
+                const randomIndex = Math.floor(Math.random() * Math.min(4, data.hits.length));
+                const img = document.createElement('img');
+                img.src = data.hits[randomIndex].previewURL;
+                img.className = 'background-image';
+                img.alt = searchTerm;
+                
+                const firstCell = cell.closest('tr').querySelector('td:first-child');
+                firstCell.appendChild(img);
+
+                // Remove the image after 3 seconds
+                setTimeout(clearBackgroundImages, 3000);
+            }
+        } catch (error) {
+            console.error('Error fetching image:', error);
+        }
+    }
+
+    // Add click events to clickable cells
+    window.speechSynthesis.onvoiceschanged = () => {
+        document.querySelectorAll('.clickable').forEach(cell => {
+            cell.addEventListener('click', function() {
+                const text = this.textContent;
+                let lang;
+                
+                // Get language based on data-lang attribute
+                switch(this.dataset.lang) {
+                    case 'fr':
+                        lang = 'fr-FR';
+                        break;
+                    case 'de':
+                        lang = 'de-DE';
+                        break;
+                    case 'zh':
+                        // Use selected dialect for Chinese
+                        lang = document.getElementById('chineseDialect').value;
+                        break;
+                    default:
+                        lang = 'en-US';
+                }
+                
+                speak(text, lang);
+                addBackgroundImage(this, this.dataset.word);
+
+                // Visual feedback with cleanup
+                const originalBg = window.getComputedStyle(this).backgroundColor;
+                this.style.backgroundColor = '#c8e6c9';
+                
+                // Clear any existing timeout for this cell
+                if (this.resetTimeout) {
+                    clearTimeout(this.resetTimeout);
+                }
+                
+                // Set new timeout and store its ID
+                this.resetTimeout = setTimeout(() => {
+                    this.style.backgroundColor = '';
+                    this.resetTimeout = null;
+                }, 500);
+            });
+        });
+    };
+</script>
+
+</body>
+</html>
