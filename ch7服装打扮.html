@@ -1,0 +1,1285 @@
+<!-- <使用这个模板，添加单词到table的部分就可以!> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr {
+            position: relative;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .clickable {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+        .clickable:hover {
+            background-color: #e6e6e6;
+        }
+        .background-image {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        .background-image:hover {
+            opacity: 0.8;
+        }
+        .language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .language-selector select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="language-selector">
+        <select id="chineseDialect">
+            <option value="zh-CN">普通话</option>
+            <option value="zh-HK">粤语</option>
+        </select>
+    </div>
+
+    <table id="wordTable">
+        <tr>
+            <th>法语</th>
+            <th>音标</th>
+            <th>德语</th>
+            <th>音标</th>
+            <th>中文</th>
+            <th>英语</th>
+        </tr>
+        <tr>
+            <td class="clickable" data-lang="fr" data-word="vêtement">vêtement</td>
+            <td>[vɛtmɑ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Kleidung">Kleidung</td>
+            <td>[ˈklaɪdʊŋ]</td>
+            <td class="clickable" data-lang="zh" data-word="衣服">衣服</td>
+            <td class="clickable" data-lang="en" data-word="clothing">clothing</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="costume">costume</td>
+            <td>[kɔstym]</td>
+            <td class="clickable" data-lang="de" data-word="Anzug">Anzug</td>
+            <td>[ˈantsuk]</td>
+            <td class="clickable" data-lang="zh" data-word="西服">西服</td>
+            <td class="clickable" data-lang="en" data-word="suit">suit</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="veste">veste</td>
+            <td>[vɛst]</td>
+            <td class="clickable" data-lang="de" data-word="Jacke">Jacke</td>
+            <td>[ˈjakə]</td>
+            <td class="clickable" data-lang="zh" data-word="夹克">夹克</td>
+            <td class="clickable" data-lang="en" data-word="jacket">jacket</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="pantalon">pantalon</td>
+            <td>[pɑ̃talɔ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Hose">Hose</td>
+            <td>[ˈhoːzə]</td>
+            <td class="clickable" data-lang="zh" data-word="裤子">裤子</td>
+            <td class="clickable" data-lang="en" data-word="pants">pants</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="jean">jean</td>
+            <td>[dʒin]</td>
+            <td class="clickable" data-lang="de" data-word="Jeans">Jeans</td>
+            <td>[dʒiːns]</td>
+            <td class="clickable" data-lang="zh" data-word="牛仔裤">牛仔裤</td>
+            <td class="clickable" data-lang="en" data-word="jeans">jeans</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="chemise">chemise</td>
+            <td>[ʃəmiz]</td>
+            <td class="clickable" data-lang="de" data-word="Hemd">Hemd</td>
+            <td>[hɛmt]</td>
+            <td class="clickable" data-lang="zh" data-word="衬衫">衬衫</td>
+            <td class="clickable" data-lang="en" data-word="shirt">shirt</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="jupe">jupe</td>
+            <td>[ʒyp]</td>
+            <td class="clickable" data-lang="de" data-word="Rock">Rock</td>
+            <td>[rɔk]</td>
+            <td class="clickable" data-lang="zh" data-word="裙子">裙子</td>
+            <td class="clickable" data-lang="en" data-word="skirt">skirt</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="chemisier">chemisier</td>
+            <td>[ʃəmizje]</td>
+            <td class="clickable" data-lang="de" data-word="Bluse">Bluse</td>
+            <td>[ˈbluːzə]</td>
+            <td class="clickable" data-lang="zh" data-word="女式衬衣">女式衬衣</td>
+            <td class="clickable" data-lang="en" data-word="blouse">blouse</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="pull">pull</td>
+            <td>[pyl]</td>
+            <td class="clickable" data-lang="de" data-word="Pullover">Pullover</td>
+            <td>[ˈpʊloːvɐ]</td>
+            <td class="clickable" data-lang="zh" data-word="毛衣">毛衣</td>
+            <td class="clickable" data-lang="en" data-word="sweater">sweater</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="manteau">manteau</td>
+            <td>[mɑ̃to]</td>
+            <td class="clickable" data-lang="de" data-word="Mantel">Mantel</td>
+            <td>[ˈmantəl]</td>
+            <td class="clickable" data-lang="zh" data-word="大衣">大衣</td>
+            <td class="clickable" data-lang="en" data-word="coat">coat</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="sous-vêtements">sous-vêtements</td>
+            <td>[suvɛtmɑ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Unterwäsche">Unterwäsche</td>
+            <td>[ˈʊntɐvɛʃə]</td>
+            <td class="clickable" data-lang="zh" data-word="内衣">内衣</td>
+            <td class="clickable" data-lang="en" data-word="underwear">underwear</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="culotte">culotte</td>
+            <td>[kylɔt]</td>
+            <td class="clickable" data-lang="de" data-word="Unterhose">Unterhose</td>
+            <td>[ˈʊntɐhoːzə]</td>
+            <td class="clickable" data-lang="zh" data-word="内裤">内裤</td>
+            <td class="clickable" data-lang="en" data-word="underpants">underpants</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="bas">bas</td>
+            <td>[bɑ]</td>
+            <td class="clickable" data-lang="de" data-word="Strumpf">Strumpf</td>
+            <td>[ʃtrʊmpf]</td>
+            <td class="clickable" data-lang="zh" data-word="长筒袜">长筒袜</td>
+            <td class="clickable" data-lang="en" data-word="stocking">stocking</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="chaussette">chaussette</td>
+            <td>[ʃosɛt]</td>
+            <td class="clickable" data-lang="de" data-word="Socke">Socke</td>
+            <td>[ˈzɔkə]</td>
+            <td class="clickable" data-lang="zh" data-word="袜子">袜子</td>
+            <td class="clickable" data-lang="en" data-word="sock">sock</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="coupe-vent">coupe-vent</td>
+            <td>[kupvɑ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Windjacke">Windjacke</td>
+            <td>[ˈvɪntjakə]</td>
+            <td class="clickable" data-lang="zh" data-word="风衣">风衣</td>
+            <td class="clickable" data-lang="en" data-word="windbreaker">windbreaker</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="tailleur">tailleur</td>
+            <td>[tajœʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Kostüm">Kostüm</td>
+            <td>[kɔsˈtyːm]</td>
+            <td class="clickable" data-lang="zh" data-word="女式套装">女式套装</td>
+            <td class="clickable" data-lang="en" data-word="women's suit">women's suit</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="maillot de bain">maillot de bain</td>
+            <td>[majo də bɛ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Badeanzug">Badeanzug</td>
+            <td>[ˈbaːdəantsuk]</td>
+            <td class="clickable" data-lang="zh" data-word="泳衣">泳衣</td>
+            <td class="clickable" data-lang="en" data-word="swimsuit">swimsuit</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="gilet">gilet</td>
+            <td>[ʒilɛ]</td>
+            <td class="clickable" data-lang="de" data-word="Weste">Weste</td>
+            <td>[ˈvɛstə]</td>
+            <td class="clickable" data-lang="zh" data-word="背心">背心</td>
+            <td class="clickable" data-lang="en" data-word="vest">vest</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="vêtement de travail">vêtement de travail</td>
+            <td>[vɛtmɑ̃ də tʁavaj]</td>
+            <td class="clickable" data-lang="de" data-word="Arbeitskleidung">Arbeitskleidung</td>
+            <td>[ˈaʁbaɪtsˌklaɪdʊŋ]</td>
+            <td class="clickable" data-lang="zh" data-word="工作服">工作服</td>
+            <td class="clickable" data-lang="en" data-word="work clothes">work clothes</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="uniforme militaire">uniforme militaire</td>
+            <td>[ynifɔʁm militɛʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Waffenrock">Waffenrock</td>
+            <td>[ˈvafənˌrɔk]</td>
+            <td class="clickable" data-lang="zh" data-word="军服">军服</td>
+            <td class="clickable" data-lang="en" data-word="military uniform">military uniform</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ceinture">ceinture</td>
+    <td>[sɛ̃tyʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Gürtel">Gürtel</td>
+    <td>[ˈɡʏʁtəl]</td>
+    <td class="clickable" data-lang="zh" data-word="腰带">腰带</td>
+    <td class="clickable" data-lang="en" data-word="belt">belt</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cravate">cravate</td>
+    <td>[kʁavat]</td>
+    <td class="clickable" data-lang="de" data-word="Krawatte">Krawatte</td>
+    <td>[kʁaˈvatə]</td>
+    <td class="clickable" data-lang="zh" data-word="领带">领带</td>
+    <td class="clickable" data-lang="en" data-word="tie">tie</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bouton">bouton</td>
+    <td>[butɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Knopf">Knopf</td>
+    <td>[knɔpf]</td>
+    <td class="clickable" data-lang="zh" data-word="纽扣">纽扣</td>
+    <td class="clickable" data-lang="en" data-word="button">button</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sac à main">sac à main</td>
+    <td>[sak a mɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Handtasche">Handtasche</td>
+    <td>[ˈhanttaʃə]</td>
+    <td class="clickable" data-lang="zh" data-word="手提包">手提包</td>
+    <td class="clickable" data-lang="en" data-word="handbag">handbag</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chapeau">chapeau</td>
+    <td>[ʃapo]</td>
+    <td class="clickable" data-lang="de" data-word="Hut">Hut</td>
+    <td>[huːt]</td>
+    <td class="clickable" data-lang="zh" data-word="帽子">帽子</td>
+    <td class="clickable" data-lang="en" data-word="hat">hat</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="casquette">casquette</td>
+    <td>[kaskɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Mütze">Mütze</td>
+    <td>[ˈmʏtsə]</td>
+    <td class="clickable" data-lang="zh" data-word="棒球帽">棒球帽</td>
+    <td class="clickable" data-lang="en" data-word="cap">cap</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="écharpe">écharpe</td>
+    <td>[eʃaʁp]</td>
+    <td class="clickable" data-lang="de" data-word="Schal">Schal</td>
+    <td>[ʃaːl]</td>
+    <td class="clickable" data-lang="zh" data-word="围巾">围巾</td>
+    <td class="clickable" data-lang="en" data-word="scarf">scarf</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="gant">gant</td>
+    <td>[ɡɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Handschuh">Handschuh</td>
+    <td>[ˈhantʃuː]</td>
+    <td class="clickable" data-lang="zh" data-word="手套">手套</td>
+    <td class="clickable" data-lang="en" data-word="glove">glove</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bijoux">bijoux</td>
+    <td>[biʒu]</td>
+    <td class="clickable" data-lang="de" data-word="Schmuck">Schmuck</td>
+    <td>[ʃmʊk]</td>
+    <td class="clickable" data-lang="zh" data-word="首饰">首饰</td>
+    <td class="clickable" data-lang="en" data-word="jewelry">jewelry</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bague">bague</td>
+    <td>[baɡ]</td>
+    <td class="clickable" data-lang="de" data-word="Ring">Ring</td>
+    <td>[ʁɪŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="戒指">戒指</td>
+    <td class="clickable" data-lang="en" data-word="ring">ring</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bracelet">bracelet</td>
+    <td>[bʁaslɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Armband">Armband</td>
+    <td>[ˈaʁmbant]</td>
+    <td class="clickable" data-lang="zh" data-word="手镯">手镯</td>
+    <td class="clickable" data-lang="en" data-word="bracelet">bracelet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="collier">collier</td>
+    <td>[kɔlje]</td>
+    <td class="clickable" data-lang="de" data-word="Halskette">Halskette</td>
+    <td>[ˈhalskɛtə]</td>
+    <td class="clickable" data-lang="zh" data-word="项链">项链</td>
+    <td class="clickable" data-lang="en" data-word="necklace">necklace</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="couvre-chef">couvre-chef</td>
+    <td>[kuvʁəʃɛf]</td>
+    <td class="clickable" data-lang="de" data-word="Kopfbedeckung">Kopfbedeckung</td>
+    <td>[ˈkɔpfbəˌdɛkʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="帽子">帽子</td>
+    <td class="clickable" data-lang="en" data-word="headwear">headwear</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chaussures de danse">chaussures de danse</td>
+    <td>[ʃosyʁ də dɑ̃s]</td>
+    <td class="clickable" data-lang="de" data-word="Tanzschuh">Tanzschuh</td>
+    <td>[ˈtantsʃuː]</td>
+    <td class="clickable" data-lang="zh" data-word="舞蹈鞋">舞蹈鞋</td>
+    <td class="clickable" data-lang="en" data-word="dance shoes">dance shoes</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="escarpins">escarpins</td>
+    <td>[ɛskaʁpɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Pumps">Pumps</td>
+    <td>[pʊmps]</td>
+    <td class="clickable" data-lang="zh" data-word="女式轻便鞋">女式轻便鞋</td>
+    <td class="clickable" data-lang="en" data-word="pumps">pumps</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chaussure">chaussure</td>
+    <td>[ʃosyʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Schuh">Schuh</td>
+    <td>[ʃuː]</td>
+    <td class="clickable" data-lang="zh" data-word="鞋子">鞋子</td>
+    <td class="clickable" data-lang="en" data-word="shoe">shoe</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="botte">botte</td>
+    <td>[bɔt]</td>
+    <td class="clickable" data-lang="de" data-word="Stiefel">Stiefel</td>
+    <td>[ˈʃtiːfl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="靴子">靴子</td>
+    <td class="clickable" data-lang="en" data-word="boot">boot</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sandale">sandale</td>
+    <td>[sɑ̃dal]</td>
+    <td class="clickable" data-lang="de" data-word="Sandale">Sandale</td>
+    <td>[zanˈdaːlə]</td>
+    <td class="clickable" data-lang="zh" data-word="凉鞋">凉鞋</td>
+    <td class="clickable" data-lang="en" data-word="sandal">sandal</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pantoufle">pantoufle</td>
+    <td>[pɑ̃tufl]</td>
+    <td class="clickable" data-lang="de" data-word="Slipper">Slipper</td>
+    <td>[ˈslɪpɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="拖鞋">拖鞋</td>
+    <td class="clickable" data-lang="en" data-word="slipper">slipper</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chaussure de sport">chaussure de sport</td>
+    <td>[ʃosyʁ də spɔʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Sportschuh">Sportschuh</td>
+    <td>[ˈʃpɔʁtʃuː]</td>
+    <td class="clickable" data-lang="zh" data-word="运动鞋">运动鞋</td>
+    <td class="clickable" data-lang="en" data-word="sneaker">sneaker</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cosmétique">Cosmétique</td>
+    <td>[kɔsmetik]</td>
+    <td class="clickable" data-lang="de" data-word="Kosmetik">Kosmetik</td>
+    <td>[kɔsmeˈtiːk]</td>
+    <td class="clickable" data-lang="zh" data-word="化妆品">化妆品</td>
+    <td class="clickable" data-lang="en" data-word="cosmetics">cosmetics</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Sèche-cheveux">Sèche-cheveux</td>
+    <td>[sɛʃʃəvø]</td>
+    <td class="clickable" data-lang="de" data-word="Haartrockner">Haartrockner</td>
+    <td>[ˈhaːɐ̯ˌtʁɔknɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="吹风机">吹风机</td>
+    <td class="clickable" data-lang="en" data-word="hair dryer">hair dryer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Épingle à cheveux">Épingle à cheveux</td>
+    <td>[epɛ̃ɡl a ʃəvø]</td>
+    <td class="clickable" data-lang="de" data-word="Haarnadel">Haarnadel</td>
+    <td>[ˈhaːɐ̯ˌnaːdl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="发夹">发夹</td>
+    <td class="clickable" data-lang="en" data-word="hairpin">hairpin</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Crème pour les mains">Crème pour les mains</td>
+    <td>[kʁɛm puʁ le mɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Handcreme">Handcreme</td>
+    <td>[ˈhantˌkʁeːm]</td>
+    <td class="clickable" data-lang="zh" data-word="护手霜">护手霜</td>
+    <td class="clickable" data-lang="en" data-word="hand cream">hand cream</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mascara">Mascara</td>
+    <td>[maskaʁa]</td>
+    <td class="clickable" data-lang="de" data-word="Wimperntusche">Wimperntusche</td>
+    <td>[ˈvɪmpɐnˌtʊʃə]</td>
+    <td class="clickable" data-lang="zh" data-word="睫毛膏">睫毛膏</td>
+    <td class="clickable" data-lang="en" data-word="mascara">mascara</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bigoudis">Bigoudis</td>
+    <td>[biɡudi]</td>
+    <td class="clickable" data-lang="de" data-word="Lockenwickler">Lockenwickler</td>
+    <td>[ˈlɔkn̩ˌvɪklɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="卷发器">卷发器</td>
+    <td class="clickable" data-lang="en" data-word="hair curler">hair curler</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Rouge à lèvres">Rouge à lèvres</td>
+    <td>[ʁuʒ a lɛvʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Lippenstift">Lippenstift</td>
+    <td>[ˈlɪpn̩ˌʃtɪft]</td>
+    <td class="clickable" data-lang="zh" data-word="口红">口红</td>
+    <td class="clickable" data-lang="en" data-word="lipstick">lipstick</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Crème pour le visage">Crème pour le visage</td>
+    <td>[kʁɛm puʁ lə vizaʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Gesichtscreme">Gesichtscreme</td>
+    <td>[ɡəˈzɪçtsˌkʁeːm]</td>
+    <td class="clickable" data-lang="zh" data-word="润肤霜">润肤霜</td>
+    <td class="clickable" data-lang="en" data-word="face cream">face cream</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lotion">Lotion</td>
+    <td>[lɔsjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Lotion">Lotion</td>
+    <td>[ˈloːtsjoːn]</td>
+    <td class="clickable" data-lang="zh" data-word="乳液">乳液</td>
+    <td class="clickable" data-lang="en" data-word="lotion">lotion</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fard à joues">Fard à joues</td>
+    <td>[faʁ a ʒu]</td>
+    <td class="clickable" data-lang="de" data-word="Rouge">Rouge</td>
+    <td>[ˈʁuːʒ]</td>
+    <td class="clickable" data-lang="zh" data-word="腮红">腮红</td>
+    <td class="clickable" data-lang="en" data-word="blush">blush</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Peigne">Peigne</td>
+    <td>[pɛɲ]</td>
+    <td class="clickable" data-lang="de" data-word="Kamm">Kamm</td>
+    <td>[kam]</td>
+    <td class="clickable" data-lang="zh" data-word="梳子">梳子</td>
+    <td class="clickable" data-lang="en" data-word="comb">comb</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Rasoir">Rasoir</td>
+    <td>[ʁazwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Rasiermesser">Rasiermesser</td>
+    <td>[ʁaˈziːɐ̯ˌmɛsɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="剃须刀">剃须刀</td>
+    <td class="clickable" data-lang="en" data-word="razor">razor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Shampooing">Shampooing</td>
+    <td>[ʃɑ̃pwɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Shampoo">Shampoo</td>
+    <td>[ʃamˈpuː]</td>
+    <td class="clickable" data-lang="zh" data-word="洗发水">洗发水</td>
+    <td class="clickable" data-lang="en" data-word="shampoo">shampoo</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Parfum">Parfum</td>
+    <td>[paʁfœ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Parfüm">Parfüm</td>
+    <td>[paʁˈfyːm]</td>
+    <td class="clickable" data-lang="zh" data-word="香水">香水</td>
+    <td class="clickable" data-lang="en" data-word="perfume">perfume</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Savon">Savon</td>
+    <td>[savɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Seife">Seife</td>
+    <td>[ˈzaɪ̯fə]</td>
+    <td class="clickable" data-lang="zh" data-word="香皂">香皂</td>
+    <td class="clickable" data-lang="en" data-word="soap">soap</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fard à paupières">Fard à paupières</td>
+    <td>[faʁ a popjɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Lidschatten">Lidschatten</td>
+    <td>[ˈliːtˌʃatn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="眼影">眼影</td>
+    <td class="clickable" data-lang="en" data-word="eyeshadow">eyeshadow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vernis à ongles">Vernis à ongles</td>
+    <td>[vɛʁni a ɔ̃ɡl]</td>
+    <td class="clickable" data-lang="de" data-word="Nagellack">Nagellack</td>
+    <td>[ˈnaːɡl̩ˌlak]</td>
+    <td class="clickable" data-lang="zh" data-word="指甲油">指甲油</td>
+    <td class="clickable" data-lang="en" data-word="nail polish">nail polish</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Crayon à sourcils">Crayon à sourcils</td>
+    <td>[kʁɛjɔ̃ a suʁsi]</td>
+    <td class="clickable" data-lang="de" data-word="Augenbrauenstift">Augenbrauenstift</td>
+    <td>[ˈaʊ̯ɡn̩ˌbʁaʊ̯ənˌʃtɪft]</td>
+    <td class="clickable" data-lang="zh" data-word="眉笔">眉笔</td>
+    <td class="clickable" data-lang="en" data-word="eyebrow pencil">eyebrow pencil</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Poudre">Poudre</td>
+    <td>[pudʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Puder">Puder</td>
+    <td>[ˈpuːdɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="粉">粉</td>
+    <td class="clickable" data-lang="en" data-word="powder">powder</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lait démaquillant">Lait démaquillant</td>
+    <td>[lɛ demakijɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Reinigungsmilch">Reinigungsmilch</td>
+    <td>[ˈʁaɪ̯nɪɡʊŋsˌmɪlç]</td>
+    <td class="clickable" data-lang="zh" data-word="洗面奶">洗面奶</td>
+    <td class="clickable" data-lang="en" data-word="cleansing milk">cleansing milk</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tissu">Tissu</td>
+    <td>[tisy]</td>
+    <td class="clickable" data-lang="de" data-word="Stoff">Stoff</td>
+    <td>[ʃtɔf]</td>
+    <td class="clickable" data-lang="zh" data-word="衣料">衣料</td>
+    <td class="clickable" data-lang="en" data-word="fabric">fabric</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Laineux">Laineux</td>
+    <td>[lɛnø]</td>
+    <td class="clickable" data-lang="de" data-word="wollig">wollig</td>
+    <td>[ˈvɔlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="毛料的">毛料的</td>
+    <td class="clickable" data-lang="en" data-word="woolly">woolly</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Laine">Laine</td>
+    <td>[lɛn]</td>
+    <td class="clickable" data-lang="de" data-word="Wolle">Wolle</td>
+    <td>[ˈvɔlə]</td>
+    <td class="clickable" data-lang="zh" data-word="羊毛">羊毛</td>
+    <td class="clickable" data-lang="en" data-word="wool">wool</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Polyester">Polyester</td>
+    <td>[pɔliɛstɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Polyester">Polyester</td>
+    <td>[poliˈʔɛstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="涤纶">涤纶</td>
+    <td class="clickable" data-lang="en" data-word="polyester">polyester</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mousseline">Mousseline</td>
+    <td>[muslin]</td>
+    <td class="clickable" data-lang="de" data-word="Chiffon">Chiffon</td>
+    <td>[ʃiˈfɔ̃]</td>
+    <td class="clickable" data-lang="zh" data-word="雪纺">雪纺</td>
+    <td class="clickable" data-lang="en" data-word="chiffon">chiffon</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lin">Lin</td>
+    <td>[lɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Leinen">Leinen</td>
+    <td>[ˈlaɪ̯nən]</td>
+    <td class="clickable" data-lang="zh" data-word="亚麻布">亚麻布</td>
+    <td class="clickable" data-lang="en" data-word="linen">linen</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Flanelle">Flanelle</td>
+    <td>[flanɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Flanell">Flanell</td>
+    <td>[flaˈnɛl]</td>
+    <td class="clickable" data-lang="zh" data-word="法兰绒">法兰绒</td>
+    <td class="clickable" data-lang="en" data-word="flannel">flannel</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Dentelle">Dentelle</td>
+    <td>[dɑ̃tɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Borte">Borte</td>
+    <td>[ˈbɔʁtə]</td>
+    <td class="clickable" data-lang="zh" data-word="蕾丝">蕾丝</td>
+    <td class="clickable" data-lang="en" data-word="lace">lace</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Nylon">Nylon</td>
+    <td>[nilɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Nylon">Nylon</td>
+    <td>[ˈnaɪ̯lɔn]</td>
+    <td class="clickable" data-lang="zh" data-word="尼龙">尼龙</td>
+    <td class="clickable" data-lang="en" data-word="nylon">nylon</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fibre">Fibre</td>
+    <td>[fibʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Faser">Faser</td>
+    <td>[ˈfaːzɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="纤维">纤维</td>
+    <td class="clickable" data-lang="en" data-word="fiber">fiber</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tissu">Tissu</td>
+    <td>[tisy]</td>
+    <td class="clickable" data-lang="de" data-word="Gewebe">Gewebe</td>
+    <td>[ɡəˈveːbə]</td>
+    <td class="clickable" data-lang="zh" data-word="织物">织物</td>
+    <td class="clickable" data-lang="en" data-word="fabric, textile">fabric, textile</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cuir">Cuir</td>
+    <td>[kɥiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Leder">Leder</td>
+    <td>[ˈleːdɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="皮革">皮革</td>
+    <td class="clickable" data-lang="en" data-word="leather">leather</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Velours">Velours</td>
+    <td>[vəluʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Velvet">Velvet</td>
+    <td>[ˈvɛlvət]</td>
+    <td class="clickable" data-lang="zh" data-word="天鹅绒">天鹅绒</td>
+    <td class="clickable" data-lang="en" data-word="velvet">velvet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Déteindre">Déteindre</td>
+    <td>[detɛ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="abfärben">abfärben</td>
+    <td>[ˈapˌfɛʁbn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="褪色">褪色</td>
+    <td class="clickable" data-lang="en" data-word="fade">fade</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Se froisser">Se froisser</td>
+    <td>[sə fʁwase]</td>
+    <td class="clickable" data-lang="de" data-word="krumpeln">krumpeln</td>
+    <td>[ˈkʁʊmpəln]</td>
+    <td class="clickable" data-lang="zh" data-word="起皱">起皱</td>
+    <td class="clickable" data-lang="en" data-word="wrinkle">wrinkle</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Salir">Salir</td>
+    <td>[saliʁ]</td>
+    <td class="clickable" data-lang="de" data-word="schmuddeln">schmuddeln</td>
+    <td>[ˈʃmʊdl̩n]</td>
+    <td class="clickable" data-lang="zh" data-word="弄脏">弄脏</td>
+    <td class="clickable" data-lang="en" data-word="soil">soil</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="S'effilocher">S'effilocher</td>
+    <td>[sefilɔʃe]</td>
+    <td class="clickable" data-lang="de" data-word="fädeln">fädeln</td>
+    <td>[ˈfeːdl̩n]</td>
+    <td class="clickable" data-lang="zh" data-word="脱纱">脱纱</td>
+    <td class="clickable" data-lang="en" data-word="fray">fray</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fin">Fin</td>
+    <td>[fɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="fein">fein</td>
+    <td>[faɪ̯n]</td>
+    <td class="clickable" data-lang="zh" data-word="精细的">精细的</td>
+    <td class="clickable" data-lang="en" data-word="fine">fine</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Soie">Soie</td>
+    <td>[swa]</td>
+    <td class="clickable" data-lang="de" data-word="Seide">Seide</td>
+    <td>[ˈzaɪ̯də]</td>
+    <td class="clickable" data-lang="zh" data-word="丝绸">丝绸</td>
+    <td class="clickable" data-lang="en" data-word="silk">silk</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mohair">Mohair</td>
+    <td>[mɔɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Mohair">Mohair</td>
+    <td>[ˈmoːhɛːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="马海毛">马海毛</td>
+    <td class="clickable" data-lang="en" data-word="mohair">mohair</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mettre">Mettre</td>
+    <td>[mɛtʁ]</td>
+    <td class="clickable" data-lang="de" data-word="anziehen">anziehen</td>
+    <td>[ˈanˌtsiːən]</td>
+    <td class="clickable" data-lang="zh" data-word="穿">穿</td>
+    <td class="clickable" data-lang="en" data-word="put on">put on</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Porter">Porter</td>
+    <td>[pɔʁte]</td>
+    <td class="clickable" data-lang="de" data-word="anhaben">anhaben</td>
+    <td>[ˈanˌhaːbn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="穿着">穿着</td>
+    <td class="clickable" data-lang="en" data-word="wear">wear</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Enlever">Enlever</td>
+    <td>[ɑ̃ləve]</td>
+    <td class="clickable" data-lang="de" data-word="ausziehen">ausziehen</td>
+    <td>[ˈaʊ̯sˌtsiːən]</td>
+    <td class="clickable" data-lang="zh" data-word="脱下">脱下</td>
+    <td class="clickable" data-lang="en" data-word="take off">take off</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Se changer">Se changer</td>
+    <td>[sə ʃɑ̃ʒe]</td>
+    <td class="clickable" data-lang="de" data-word="umziehen">umziehen</td>
+    <td>[ˈʊmˌtsiːən]</td>
+    <td class="clickable" data-lang="zh" data-word="换衣服">换衣服</td>
+    <td class="clickable" data-lang="en" data-word="change clothes">change clothes</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Machine à laver">Machine à laver</td>
+    <td>[maʃin a lave]</td>
+    <td class="clickable" data-lang="de" data-word="Waschmaschine">Waschmaschine</td>
+    <td>[ˈvaʃmaˌʃiːnə]</td>
+    <td class="clickable" data-lang="zh" data-word="洗衣机">洗衣机</td>
+    <td class="clickable" data-lang="en" data-word="washing machine">washing machine</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lessive en poudre">Lessive en poudre</td>
+    <td>[lesiv ɑ̃ pudʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Waschpulver">Waschpulver</td>
+    <td>[ˈvaʃˌpʊlfɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="洗衣粉">洗衣粉</td>
+    <td class="clickable" data-lang="en" data-word="washing powder">washing powder</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Sale">Sale</td>
+    <td>[sal]</td>
+    <td class="clickable" data-lang="de" data-word="schmutzig">schmutzig</td>
+    <td>[ˈʃmʊtsɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="脏的">脏的</td>
+    <td class="clickable" data-lang="en" data-word="dirty">dirty</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tache">Tache</td>
+    <td>[taʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Fleck">Fleck</td>
+    <td>[flɛk]</td>
+    <td class="clickable" data-lang="zh" data-word="污迹">污迹</td>
+    <td class="clickable" data-lang="en" data-word="stain">stain</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Propre">Propre</td>
+    <td>[pʁɔpʁ]</td>
+    <td class="clickable" data-lang="de" data-word="sauber">sauber</td>
+    <td>[ˈzaʊ̯bɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="干净的">干净的</td>
+    <td class="clickable" data-lang="en" data-word="clean">clean</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Rincer">Rincer</td>
+    <td>[ʁɛ̃se]</td>
+    <td class="clickable" data-lang="de" data-word="spülen">spülen</td>
+    <td>[ˈʃpyːlən]</td>
+    <td class="clickable" data-lang="zh" data-word="漂洗">漂洗</td>
+    <td class="clickable" data-lang="en" data-word="rinse">rinse</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Laver">Laver</td>
+    <td>[lave]</td>
+    <td class="clickable" data-lang="de" data-word="waschen">waschen</td>
+    <td>[ˈvaʃn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="洗涤">洗涤</td>
+    <td class="clickable" data-lang="en" data-word="wash">wash</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Sécher">Sécher</td>
+    <td>[seʃe]</td>
+    <td class="clickable" data-lang="de" data-word="trocknen">trocknen</td>
+    <td>[ˈtʁɔknən]</td>
+    <td class="clickable" data-lang="zh" data-word="甩干">甩干</td>
+    <td class="clickable" data-lang="en" data-word="dry">dry</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Repasser">Repasser</td>
+    <td>[ʁəpase]</td>
+    <td class="clickable" data-lang="de" data-word="bügeln">bügeln</td>
+    <td>[ˈbyːɡl̩n]</td>
+    <td class="clickable" data-lang="zh" data-word="熨平">熨平</td>
+    <td class="clickable" data-lang="en" data-word="iron">iron</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Nettoyer">Nettoyer</td>
+    <td>[netwaje]</td>
+    <td class="clickable" data-lang="de" data-word="reinigen">reinigen</td>
+    <td>[ˈʁaɪ̯nɪɡn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="洗涤">洗涤</td>
+    <td class="clickable" data-lang="en" data-word="clean">clean</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Détergent">Détergent</td>
+    <td>[detɛʁʒɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Waschmittel">Waschmittel</td>
+    <td>[ˈvaʃˌmɪtl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="洗涤剂">洗涤剂</td>
+    <td class="clickable" data-lang="en" data-word="detergent">detergent</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Savon">Savon</td>
+    <td>[savɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Seife">Seife</td>
+    <td>[ˈzaɪ̯fə]</td>
+    <td class="clickable" data-lang="zh" data-word="肥皂">肥皂</td>
+    <td class="clickable" data-lang="en" data-word="soap">soap</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Éliminer">Éliminer</td>
+    <td>[elimine]</td>
+    <td class="clickable" data-lang="de" data-word="beseitigen">beseitigen</td>
+    <td>[bəˈzaɪ̯tɪɡn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="去掉">去掉</td>
+    <td class="clickable" data-lang="en" data-word="remove">remove</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="S'habiller">S'habiller</td>
+    <td>[sabije]</td>
+    <td class="clickable" data-lang="de" data-word="ankleiden">ankleiden</td>
+    <td>[ˈanˌklaɪ̯dn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="穿衣">穿衣</td>
+    <td class="clickable" data-lang="en" data-word="dress">dress</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Enlever">Enlever</td>
+    <td>[ɑ̃lve]</td>
+    <td class="clickable" data-lang="de" data-word="abnehmen">abnehmen</td>
+    <td>[ˈapˌneːmən]</td>
+    <td class="clickable" data-lang="zh" data-word="摘下">摘下</td>
+    <td class="clickable" data-lang="en" data-word="take off">take off</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mettre">Mettre</td>
+    <td>[mɛtʁ]</td>
+    <td class="clickable" data-lang="de" data-word="aufsetzen">aufsetzen</td>
+    <td>[ˈaʊ̯fˌzɛtsn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="戴上">戴上</td>
+    <td class="clickable" data-lang="en" data-word="put on">put on</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Étroit">Étroit</td>
+    <td>[etwʁa]</td>
+    <td class="clickable" data-lang="de" data-word="eng">eng</td>
+    <td>[ɛŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="窄">窄</td>
+    <td class="clickable" data-lang="en" data-word="narrow">narrow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Aller">Aller</td>
+    <td>[ale]</td>
+    <td class="clickable" data-lang="de" data-word="passen">passen</td>
+    <td>[ˈpasn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="合适">合适</td>
+    <td class="clickable" data-lang="en" data-word="fit">fit</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Chic">Chic</td>
+    <td>[ʃik]</td>
+    <td class="clickable" data-lang="de" data-word="schick">schick</td>
+    <td>[ʃɪk]</td>
+    <td class="clickable" data-lang="zh" data-word="时髦">时髦</td>
+    <td class="clickable" data-lang="en" data-word="chic">chic</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Joli">Joli</td>
+    <td>[ʒɔli]</td>
+    <td class="clickable" data-lang="de" data-word="hübsch">hübsch</td>
+    <td>[hʏpʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="漂亮">漂亮</td>
+    <td class="clickable" data-lang="en" data-word="pretty">pretty</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Large">Large</td>
+    <td>[laʁʒ]</td>
+    <td class="clickable" data-lang="de" data-word="weit">weit</td>
+    <td>[vaɪ̯t]</td>
+    <td class="clickable" data-lang="zh" data-word="宽松的">宽松的</td>
+    <td class="clickable" data-lang="en" data-word="loose">loose</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Long">Long</td>
+    <td>[lɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="lang">lang</td>
+    <td>[laŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="长">长</td>
+    <td class="clickable" data-lang="en" data-word="long">long</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Court">Court</td>
+    <td>[kuʁ]</td>
+    <td class="clickable" data-lang="de" data-word="kurz">kurz</td>
+    <td>[kʊʁts]</td>
+    <td class="clickable" data-lang="zh" data-word="短">短</td>
+    <td class="clickable" data-lang="en" data-word="short">short</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Grossier">Grossier</td>
+    <td>[ɡʁosje]</td>
+    <td class="clickable" data-lang="de" data-word="grob">grob</td>
+    <td>[ɡʁoːp]</td>
+    <td class="clickable" data-lang="zh" data-word="粗糙的">粗糙的</td>
+    <td class="clickable" data-lang="en" data-word="rough">rough</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lisse">Lisse</td>
+    <td>[lis]</td>
+    <td class="clickable" data-lang="de" data-word="glatt">glatt</td>
+    <td>[ɡlat]</td>
+    <td class="clickable" data-lang="zh" data-word="平整的">平整的</td>
+    <td class="clickable" data-lang="en" data-word="smooth">smooth</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Doux">Doux</td>
+    <td>[du]</td>
+    <td class="clickable" data-lang="de" data-word="weich">weich</td>
+    <td>[vaɪ̯ç]</td>
+    <td class="clickable" data-lang="zh" data-word="柔软的">柔软的</td>
+    <td class="clickable" data-lang="en" data-word="soft">soft</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Rayé">Rayé</td>
+    <td>[ʁeje]</td>
+    <td class="clickable" data-lang="de" data-word="gestreift">gestreift</td>
+    <td>[ɡəˈʃtʁaɪ̯ft]</td>
+    <td class="clickable" data-lang="zh" data-word="条纹的">条纹的</td>
+    <td class="clickable" data-lang="en" data-word="striped">striped</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Transparent">Transparent</td>
+    <td>[tʁɑ̃spaʁɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="transparent">transparent</td>
+    <td>[tʁanspaˈʁɛnt]</td>
+    <td class="clickable" data-lang="zh" data-word="透明的">透明的</td>
+    <td class="clickable" data-lang="en" data-word="transparent">transparent</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Petit">Petit</td>
+    <td>[pəti]</td>
+    <td class="clickable" data-lang="de" data-word="klein">klein</td>
+    <td>[klaɪ̯n]</td>
+    <td class="clickable" data-lang="zh" data-word="小的">小的</td>
+    <td class="clickable" data-lang="en" data-word="small">small</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Aller bien">Aller bien</td>
+    <td>[ale bjɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="stehen">stehen</td>
+    <td>[ˈʃteːən]</td>
+    <td class="clickable" data-lang="zh" data-word="适合于">适合于</td>
+    <td class="clickable" data-lang="en" data-word="suit">suit</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Confortable">Confortable</td>
+    <td>[kɔ̃fɔʁtabl]</td>
+    <td class="clickable" data-lang="de" data-word="bequem">bequem</td>
+    <td>[bəˈkveːm]</td>
+    <td class="clickable" data-lang="zh" data-word="合身的">合身的</td>
+    <td class="clickable" data-lang="en" data-word="comfortable">comfortable</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Froissable">Froissable</td>
+    <td>[fʁwasabl]</td>
+    <td class="clickable" data-lang="de" data-word="knitterig">knitterig</td>
+    <td>[ˈknɪtəʁɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="易皱的">易皱的</td>
+    <td class="clickable" data-lang="en" data-word="wrinkly">wrinkly</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="À la mode">À la mode</td>
+    <td>[a la mɔd]</td>
+    <td class="clickable" data-lang="de" data-word="modisch">modisch</td>
+    <td>[ˈmoːdɪʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="时髦的">时髦的</td>
+    <td class="clickable" data-lang="en" data-word="fashionable">fashionable</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vieillot">Vieillot</td>
+    <td>[vjejo]</td>
+    <td class="clickable" data-lang="de" data-word="ältlich">ältlich</td>
+    <td>[ˈɛltlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="老气的">老气的</td>
+    <td class="clickable" data-lang="en" data-word="elderly">elderly</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Démodé">Démodé</td>
+    <td>[demode]</td>
+    <td class="clickable" data-lang="de" data-word="altmodisch">altmodisch</td>
+    <td>[altˈmoːdɪʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="过时的">过时的</td>
+    <td class="clickable" data-lang="en" data-word="old-fashioned">old-fashioned</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Portable">Portable</td>
+    <td>[pɔʁtabl]</td>
+    <td class="clickable" data-lang="de" data-word="tragbar">tragbar</td>
+    <td>[ˈtʁaːkbaːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="穿着合适的">穿着合适的</td>
+    <td class="clickable" data-lang="en" data-word="wearable">wearable</td>
+</tr>
+    </table>
+
+    <script>
+    const PIXABAY_API_KEY = '49256357-c30f2f538120ce8d74ff8921d';
+    let speechSynth = window.speechSynthesis;
+    let voices = [];
+
+    // Wait for voices to load
+    speechSynth.onvoiceschanged = function() {
+        voices = speechSynth.getVoices();
+    };
+
+    // Pronunciation function
+    function speak(text, lang) {
+        // Cancel any ongoing speech
+        speechSynth.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        
+        // For Chinese, select appropriate voice based on dialect
+        if (lang.startsWith('zh')) {
+            const voices = window.speechSynthesis.getVoices();
+            const chineseVoice = voices.find(voice => voice.lang.includes(lang));
+            if (chineseVoice) {
+                utterance.voice = chineseVoice;
+            }
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    } 
+    
+    // Remove existing background images
+    function clearBackgroundImages() {
+        document.querySelectorAll('.background-image').forEach(img => img.remove());
+    }
+
+    // Fetch and add background image
+    async function addBackgroundImage(cell, searchTerm) {
+        clearBackgroundImages();
+        
+        try {
+            const apiUrl = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(searchTerm)}&per_page=4&safesearch=true`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.hits && data.hits.length > 0) {
+                const randomIndex = Math.floor(Math.random() * Math.min(4, data.hits.length));
+                const img = document.createElement('img');
+                img.src = data.hits[randomIndex].previewURL;
+                img.className = 'background-image';
+                img.alt = searchTerm;
+                
+                const firstCell = cell.closest('tr').querySelector('td:first-child');
+                firstCell.appendChild(img);
+
+                // Remove the image after 3 seconds
+                setTimeout(clearBackgroundImages, 3000);
+            }
+        } catch (error) {
+            console.error('Error fetching image:', error);
+        }
+    }
+
+    // Add click events to clickable cells
+    window.speechSynthesis.onvoiceschanged = () => {
+        document.querySelectorAll('.clickable').forEach(cell => {
+            cell.addEventListener('click', function() {
+                const text = this.textContent;
+                let lang;
+                
+                // Get language based on data-lang attribute
+                switch(this.dataset.lang) {
+                    case 'fr':
+                        lang = 'fr-FR';
+                        break;
+                    case 'de':
+                        lang = 'de-DE';
+                        break;
+                    case 'zh':
+                        // Use selected dialect for Chinese
+                        lang = document.getElementById('chineseDialect').value;
+                        break;
+                    default:
+                        lang = 'en-US';
+                }
+                
+                speak(text, lang);
+                addBackgroundImage(this, this.dataset.word);
+
+                // Visual feedback with cleanup
+                const originalBg = window.getComputedStyle(this).backgroundColor;
+                this.style.backgroundColor = '#c8e6c9';
+                
+                // Clear any existing timeout for this cell
+                if (this.resetTimeout) {
+                    clearTimeout(this.resetTimeout);
+                }
+                
+                // Set new timeout and store its ID
+                this.resetTimeout = setTimeout(() => {
+                    this.style.backgroundColor = '';
+                    this.resetTimeout = null;
+                }, 500);
+            });
+        });
+    };
+</script>
+
+</body>
+</html>
