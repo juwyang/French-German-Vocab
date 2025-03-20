@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr {
+            position: relative;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .clickable {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+        .clickable:hover {
+            background-color: #e6e6e6;
+        }
+        .background-image {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        .background-image:hover {
+            opacity: 0.8;
+        }
+        .language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .language-selector select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="language-selector">
+        <select id="chineseDialect">
+            <option value="zh-CN">普通话</option>
+            <option value="zh-HK">粤语</option>
+        </select>
+    </div>
+
+    <table id="wordTable">
+        <tr>
+            <th>法语</th>
+            <th>音标</th>
+            <th>德语</th>
+            <th>音标</th>
+            <th>中文</th>
+            <th>英语</th>
+        </tr>
+        <tr>
+            <td class="clickable" data-lang="fr" data-word="Circulation">Circulation</td>
+            <td>[siʁkylasjɔ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Verkehr">Verkehr</td>
+            <td>[fɛɐ̯ˈkeːɐ̯]</td>
+            <td class="clickable" data-lang="zh" data-word="交通">交通</td>
+            <td class="clickable" data-lang="en" data-word="traffic">traffic</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Taxi">Taxi</td>
+            <td>[taksi]</td>
+            <td class="clickable" data-lang="de" data-word="Taxi">Taxi</td>
+            <td>[ˈtaksi]</td>
+            <td class="clickable" data-lang="zh" data-word="出租车">出租车</td>
+            <td class="clickable" data-lang="en" data-word="taxi">taxi</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Bus">Bus</td>
+            <td>[bys]</td>
+            <td class="clickable" data-lang="de" data-word="Bus">Bus</td>
+            <td>[bʊs]</td>
+            <td class="clickable" data-lang="zh" data-word="公交车">公交车</td>
+            <td class="clickable" data-lang="en" data-word="bus">bus</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Métro">Métro</td>
+            <td>[metʁo]</td>
+            <td class="clickable" data-lang="de" data-word="U-Bahn">U-Bahn</td>
+            <td>[uːbaːn]</td>
+            <td class="clickable" data-lang="zh" data-word="地铁">地铁</td>
+            <td class="clickable" data-lang="en" data-word="subway">subway</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Train de banlieue">Train de banlieue</td>
+            <td>[tʁɛ̃ də bɑ̃ljø]</td>
+            <td class="clickable" data-lang="de" data-word="S-Bahn">S-Bahn</td>
+            <td>[ɛsbaːn]</td>
+            <td class="clickable" data-lang="zh" data-word="轻轨">轻轨</td>
+            <td class="clickable" data-lang="en" data-word="suburban train">suburban train</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Vélo">Vélo</td>
+            <td>[velo]</td>
+            <td class="clickable" data-lang="de" data-word="Fahrrad">Fahrrad</td>
+            <td>[ˈfaːɐ̯ʁaːt]</td>
+            <td class="clickable" data-lang="zh" data-word="自行车">自行车</td>
+            <td class="clickable" data-lang="en" data-word="bicycle">bicycle</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Moto">Moto</td>
+            <td>[moto]</td>
+            <td class="clickable" data-lang="de" data-word="Motorrad">Motorrad</td>
+            <td>[moˈtoːʁaːt]</td>
+            <td class="clickable" data-lang="zh" data-word="摩托车">摩托车</td>
+            <td class="clickable" data-lang="en" data-word="motorcycle">motorcycle</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Camion">Camion</td>
+            <td>[kamjɔ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Lastkraftwagen">Lastkraftwagen</td>
+            <td>[lastˈkʁaftvagən]</td>
+            <td class="clickable" data-lang="zh" data-word="卡车">卡车</td>
+            <td class="clickable" data-lang="en" data-word="truck">truck</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Voiture">Voiture</td>
+            <td>[vwatyʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Auto">Auto</td>
+            <td>[ˈaʊ̯to]</td>
+            <td class="clickable" data-lang="zh" data-word="汽车">汽车</td>
+            <td class="clickable" data-lang="en" data-word="car">car</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Train">Train</td>
+            <td>[tʁɛ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Zug">Zug</td>
+            <td>[tsuːk]</td>
+            <td class="clickable" data-lang="zh" data-word="火车">火车</td>
+            <td class="clickable" data-lang="en" data-word="train">train</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Bateau">Bateau</td>
+            <td>[bato]</td>
+            <td class="clickable" data-lang="de" data-word="Schiff">Schiff</td>
+            <td>[ʃɪf]</td>
+            <td class="clickable" data-lang="zh" data-word="轮船">轮船</td>
+            <td class="clickable" data-lang="en" data-word="ship">ship</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Avion">Avion</td>
+            <td>[avjɔ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Flugzeug">Flugzeug</td>
+            <td>[ˈfluːktsɔʏ̯k]</td>
+            <td class="clickable" data-lang="zh" data-word="飞机">飞机</td>
+            <td class="clickable" data-lang="en" data-word="airplane">airplane</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Train intercité">Train intercité</td>
+            <td>[tʁɛ̃ ɛ̃tɛʁsite]</td>
+            <td class="clickable" data-lang="de" data-word="Intercity">Intercity</td>
+            <td>[ˈɪntɐsɪti]</td>
+            <td class="clickable" data-lang="zh" data-word="城际快车">城际快车</td>
+            <td class="clickable" data-lang="en" data-word="intercity train">intercity train</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Train rapide">Train rapide</td>
+            <td>[tʁɛ̃ ʁapid]</td>
+            <td class="clickable" data-lang="de" data-word="Schnellzug">Schnellzug</td>
+            <td>[ˈʃnɛlˌtsuːk]</td>
+            <td class="clickable" data-lang="zh" data-word="快车">快车</td>
+            <td class="clickable" data-lang="en" data-word="express train">express train</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Train express">Train express</td>
+            <td>[tʁɛ̃ ɛkspʁɛs]</td>
+            <td class="clickable" data-lang="de" data-word="Eilzug">Eilzug</td>
+            <td>[ˈaɪ̯lˌtsuːk]</td>
+            <td class="clickable" data-lang="zh" data-word="普快列车">普快列车</td>
+            <td class="clickable" data-lang="en" data-word="fast train">fast train</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Voler">Voler</td>
+            <td>[vɔle]</td>
+            <td class="clickable" data-lang="de" data-word="fliegen">fliegen</td>
+            <td>[ˈfliːgən]</td>
+            <td class="clickable" data-lang="zh" data-word="飞">飞</td>
+            <td class="clickable" data-lang="en" data-word="to fly">to fly</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Chemin de fer">Chemin de fer</td>
+            <td>[ʃəmɛ̃ də fɛʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Eisenbahn">Eisenbahn</td>
+            <td>[ˈaɪ̯zənbaːn]</td>
+            <td class="clickable" data-lang="zh" data-word="铁路">铁路</td>
+            <td class="clickable" data-lang="en" data-word="railway">railway</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Yacht">Yacht</td>
+            <td>[jɔt]</td>
+            <td class="clickable" data-lang="de" data-word="Yacht">Yacht</td>
+            <td>[jaxt]</td>
+            <td class="clickable" data-lang="zh" data-word="游艇">游艇</td>
+            <td class="clickable" data-lang="en" data-word="yacht">yacht</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Voilier">Voilier</td>
+            <td>[vwalje]</td>
+            <td class="clickable" data-lang="de" data-word="Segelboot">Segelboot</td>
+            <td>[ˈzeːgəlboːt]</td>
+            <td class="clickable" data-lang="zh" data-word="帆船">帆船</td>
+            <td class="clickable" data-lang="en" data-word="sailboat">sailboat</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Chemin">Chemin</td>
+    <td>[ʃəmɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Weg">Weg</td>
+    <td>[veːk]</td>
+    <td class="clickable" data-lang="zh" data-word="道路">道路</td>
+    <td class="clickable" data-lang="en" data-word="way, path">way, path</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Autoroute">Autoroute</td>
+    <td>[otoʁut]</td>
+    <td class="clickable" data-lang="de" data-word="Autobahn">Autobahn</td>
+    <td>[ˈaʊ̯tobaːn]</td>
+    <td class="clickable" data-lang="zh" data-word="高速公路">高速公路</td>
+    <td class="clickable" data-lang="en" data-word="highway">highway</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Passerelle">Passerelle</td>
+    <td>[pasʁɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Überführung">Überführung</td>
+    <td>[ˈyːbɐˌfyːʁʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="过街天桥">过街天桥</td>
+    <td class="clickable" data-lang="en" data-word="overpass">overpass</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Passage souterrain">Passage souterrain</td>
+    <td>[pasaʒ sutɛʁɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Unterführung">Unterführung</td>
+    <td>[ˈʊntɐˌfyːʁʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="地下通道">地下通道</td>
+    <td class="clickable" data-lang="en" data-word="underpass">underpass</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Viaduc">Viaduc</td>
+    <td>[vjadyk]</td>
+    <td class="clickable" data-lang="de" data-word="Hochbahn">Hochbahn</td>
+    <td>[ˈhoːxbaːn]</td>
+    <td class="clickable" data-lang="zh" data-word="高架桥">高架桥</td>
+    <td class="clickable" data-lang="en" data-word="elevated railway">elevated railway</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Trottoir">Trottoir</td>
+    <td>[tʁɔtwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Fußweg">Fußweg</td>
+    <td>[ˈfuːsveːk]</td>
+    <td class="clickable" data-lang="zh" data-word="人行道">人行道</td>
+    <td class="clickable" data-lang="en" data-word="sidewalk">sidewalk</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Chaussée">Chaussée</td>
+    <td>[ʃose]</td>
+    <td class="clickable" data-lang="de" data-word="Fahrweg">Fahrweg</td>
+    <td>[ˈfaːɐ̯veːk]</td>
+    <td class="clickable" data-lang="zh" data-word="车行道">车行道</td>
+    <td class="clickable" data-lang="en" data-word="roadway">roadway</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Carrefour">Carrefour</td>
+    <td>[kaʁfuʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Kreuzung">Kreuzung</td>
+    <td>[ˈkʁɔʏ̯tsʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="十字路口">十字路口</td>
+    <td class="clickable" data-lang="en" data-word="intersection">intersection</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Feu de circulation">Feu de circulation</td>
+    <td>[fø də siʁkylasjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Verkehrsampel">Verkehrsampel</td>
+    <td>[fɛɐ̯ˈkeːɐ̯sˌampəl]</td>
+    <td class="clickable" data-lang="zh" data-word="交通信号灯">交通信号灯</td>
+    <td class="clickable" data-lang="en" data-word="traffic light">traffic light</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Sens unique">Sens unique</td>
+    <td>[sɑ̃s ynik]</td>
+    <td class="clickable" data-lang="de" data-word="Einbahnstraße">Einbahnstraße</td>
+    <td>[ˈaɪ̯nbaːnˌʃtʁaːsə]</td>
+    <td class="clickable" data-lang="zh" data-word="单行道">单行道</td>
+    <td class="clickable" data-lang="en" data-word="one-way street">one-way street</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Parking">Parking</td>
+    <td>[paʁkiŋ]</td>
+    <td class="clickable" data-lang="de" data-word="Parkplatz">Parkplatz</td>
+    <td>[ˈpaʁkˌplats]</td>
+    <td class="clickable" data-lang="zh" data-word="停车场">停车场</td>
+    <td class="clickable" data-lang="en" data-word="parking lot">parking lot</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Passage piéton">Passage piéton</td>
+    <td>[pasaʒ pjetɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Fußgängerüberweg">Fußgängerüberweg</td>
+    <td>[ˈfuːsɡɛŋɐˌyːbɐveːk]</td>
+    <td class="clickable" data-lang="zh" data-word="人行横道">人行横道</td>
+    <td class="clickable" data-lang="en" data-word="crosswalk">crosswalk</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Voie rapide">Voie rapide</td>
+    <td>[vwa ʁapid]</td>
+    <td class="clickable" data-lang="de" data-word="Schnellstraße">Schnellstraße</td>
+    <td>[ˈʃnɛlˌʃtʁaːsə]</td>
+    <td class="clickable" data-lang="zh" data-word="快车道">快车道</td>
+    <td class="clickable" data-lang="en" data-word="expressway">expressway</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Construire">Construire</td>
+    <td>[kɔ̃stʁɥiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="anlegen">anlegen</td>
+    <td>[ˈanleːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="铺设">铺设</td>
+    <td class="clickable" data-lang="en" data-word="to construct">to construct</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tunnel">Tunnel</td>
+    <td>[tynɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Tunnel">Tunnel</td>
+    <td>[ˈtʊnl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="隧道">隧道</td>
+    <td class="clickable" data-lang="en" data-word="tunnel">tunnel</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Panneau">Panneau</td>
+    <td>[pano]</td>
+    <td class="clickable" data-lang="de" data-word="Wegweiser">Wegweiser</td>
+    <td>[ˈveːkˌvaɪ̯zɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="路标">路标</td>
+    <td class="clickable" data-lang="en" data-word="road sign">road sign</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Risque d'effondrement">Risque d'effondrement</td>
+    <td>[ʁisk dɛfɔ̃dʁəmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Einsturzgefahr">Einsturzgefahr</td>
+    <td>[ˈaɪ̯nʃtʊʁtsɡəˌfaːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="坍塌危险">坍塌危险</td>
+    <td class="clickable" data-lang="en" data-word="collapse hazard">collapse hazard</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Route de contournement">Route de contournement</td>
+    <td>[ʁut də kɔ̃tuʁnəmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Umgehungsstraße">Umgehungsstraße</td>
+    <td>[ˈʊmɡeːʊŋsˌʃtʁaːsə]</td>
+    <td class="clickable" data-lang="zh" data-word="环形路">环形路</td>
+    <td class="clickable" data-lang="en" data-word="bypass road">bypass road</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Sortie">Sortie</td>
+    <td>[sɔʁti]</td>
+    <td class="clickable" data-lang="de" data-word="Ausgang">Ausgang</td>
+    <td>[ˈaʊ̯sɡaŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="出口">出口</td>
+    <td class="clickable" data-lang="en" data-word="exit">exit</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Entrée">Entrée</td>
+    <td>[ɑ̃tʁe]</td>
+    <td class="clickable" data-lang="de" data-word="Eingang">Eingang</td>
+    <td>[ˈaɪ̯nɡaŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="入口">入口</td>
+    <td class="clickable" data-lang="en" data-word="entrance">entrance</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Piste cyclable">Piste cyclable</td>
+    <td>[pist siklabl]</td>
+    <td class="clickable" data-lang="de" data-word="Radweg">Radweg</td>
+    <td>[ˈʁaːtveːk]</td>
+    <td class="clickable" data-lang="zh" data-word="非机动车道">非机动车道</td>
+    <td class="clickable" data-lang="en" data-word="bike path">bike path</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Se garer">Se garer</td>
+    <td>[sə ɡaʁe]</td>
+    <td class="clickable" data-lang="de" data-word="parken">parken</td>
+    <td>[ˈpaʁkən]</td>
+    <td class="clickable" data-lang="zh" data-word="停车">停车</td>
+    <td class="clickable" data-lang="en" data-word="to park">to park</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Déviation">Déviation</td>
+    <td>[devjasjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Umleitung">Umleitung</td>
+    <td>[ˈʊmlaɪ̯tʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="绕行">绕行</td>
+    <td class="clickable" data-lang="en" data-word="detour">detour</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="S'insérer">S'insérer</td>
+    <td>[sɛ̃seʁe]</td>
+    <td class="clickable" data-lang="de" data-word="einordnen">einordnen</td>
+    <td>[ˈaɪ̯nˌʔɔʁdnən]</td>
+    <td class="clickable" data-lang="zh" data-word="会车">会车</td>
+    <td class="clickable" data-lang="en" data-word="to merge">to merge</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Voie">Voie</td>
+    <td>[vwa]</td>
+    <td class="clickable" data-lang="de" data-word="Spur">Spur</td>
+    <td>[ʃpuːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="车道">车道</td>
+    <td class="clickable" data-lang="en" data-word="lane">lane</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Voie de dépassement">Voie de dépassement</td>
+    <td>[vwa də depɑsmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Überholspur">Überholspur</td>
+    <td>[ˈyːbɐhoːlˌʃpuːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="超车道">超车道</td>
+    <td class="clickable" data-lang="en" data-word="passing lane">passing lane</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Boîte de vitesses">Boîte de vitesses</td>
+    <td>[bwat də vitɛs]</td>
+    <td class="clickable" data-lang="de" data-word="Getriebe">Getriebe</td>
+    <td>[ɡəˈtʁiːbə]</td>
+    <td class="clickable" data-lang="zh" data-word="变速器">变速器</td>
+    <td class="clickable" data-lang="en" data-word="gearbox">gearbox</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pare-soleil">Pare-soleil</td>
+    <td>[paʁsɔlɛj]</td>
+    <td class="clickable" data-lang="de" data-word="Sonnenblende">Sonnenblende</td>
+    <td>[ˈzɔnənˌblɛndə]</td>
+    <td class="clickable" data-lang="zh" data-word="遮阳板">遮阳板</td>
+    <td class="clickable" data-lang="en" data-word="sun visor">sun visor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pédale d'accélérateur">Pédale d'accélérateur</td>
+    <td>[pedal dakseleʁatœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Gaspedal">Gaspedal</td>
+    <td>[ˈɡaspeˌdaːl]</td>
+    <td class="clickable" data-lang="zh" data-word="油门踏板">油门踏板</td>
+    <td class="clickable" data-lang="en" data-word="gas pedal">gas pedal</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Châssis">Châssis</td>
+    <td>[ʃasi]</td>
+    <td class="clickable" data-lang="de" data-word="Fahrgestell">Fahrgestell</td>
+    <td>[ˈfaːɐ̯ɡəˌʃtɛl]</td>
+    <td class="clickable" data-lang="zh" data-word="底盘">底盘</td>
+    <td class="clickable" data-lang="en" data-word="chassis">chassis</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tableau de bord">Tableau de bord</td>
+    <td>[tablo də bɔʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Armaturenbrett">Armaturenbrett</td>
+    <td>[aʁmaˈtuːʁənˌbʁɛt]</td>
+    <td class="clickable" data-lang="zh" data-word="仪表板">仪表板</td>
+    <td class="clickable" data-lang="en" data-word="dashboard">dashboard</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Coffre">Coffre</td>
+    <td>[kɔfʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Kofferraum">Kofferraum</td>
+    <td>[ˈkɔfɐˌʁaʊm]</td>
+    <td class="clickable" data-lang="zh" data-word="行李箱">行李箱</td>
+    <td class="clickable" data-lang="en" data-word="trunk">trunk</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Siège auto">Siège auto</td>
+    <td>[sjɛʒ oto]</td>
+    <td class="clickable" data-lang="de" data-word="Autositz">Autositz</td>
+    <td>[ˈaʊtoˌzɪts]</td>
+    <td class="clickable" data-lang="zh" data-word="车座椅">车座椅</td>
+    <td class="clickable" data-lang="en" data-word="car seat">car seat</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pare-chocs">Pare-chocs</td>
+    <td>[paʁʃɔk]</td>
+    <td class="clickable" data-lang="de" data-word="Stoßstange">Stoßstange</td>
+    <td>[ˈʃtoːsˌʃtaŋə]</td>
+    <td class="clickable" data-lang="zh" data-word="保险杠">保险杠</td>
+    <td class="clickable" data-lang="en" data-word="bumper">bumper</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pneu">Pneu</td>
+    <td>[pnø]</td>
+    <td class="clickable" data-lang="de" data-word="Reifen">Reifen</td>
+    <td>[ˈʁaɪfən]</td>
+    <td class="clickable" data-lang="zh" data-word="轮胎">轮胎</td>
+    <td class="clickable" data-lang="en" data-word="tire">tire</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Portière">Portière</td>
+    <td>[pɔʁtjɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Autotür">Autotür</td>
+    <td>[ˈaʊtoˌtyːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="车门">车门</td>
+    <td class="clickable" data-lang="en" data-word="car door">car door</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Plaque d'immatriculation">Plaque d'immatriculation</td>
+    <td>[plak dimatʁikylasjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Nummernschild">Nummernschild</td>
+    <td>[ˈnʊmɐnˌʃɪlt]</td>
+    <td class="clickable" data-lang="zh" data-word="车牌">车牌</td>
+    <td class="clickable" data-lang="en" data-word="license plate">license plate</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Station-service">Station-service</td>
+    <td>[stasjɔ̃ sɛʁvis]</td>
+    <td class="clickable" data-lang="de" data-word="Tankstelle">Tankstelle</td>
+    <td>[ˈtaŋkˌʃtɛlə]</td>
+    <td class="clickable" data-lang="zh" data-word="加油站">加油站</td>
+    <td class="clickable" data-lang="en" data-word="gas station">gas station</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Diesel">Diesel</td>
+    <td>[djezɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Diesel">Diesel</td>
+    <td>[ˈdiːzl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="柴油">柴油</td>
+    <td class="clickable" data-lang="en" data-word="diesel">diesel</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Essence">Essence</td>
+    <td>[esɑ̃s]</td>
+    <td class="clickable" data-lang="de" data-word="Benzin">Benzin</td>
+    <td>[bɛnˈtsiːn]</td>
+    <td class="clickable" data-lang="zh" data-word="汽油">汽油</td>
+    <td class="clickable" data-lang="en" data-word="gasoline">gasoline</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Outil">Outil</td>
+    <td>[uti]</td>
+    <td class="clickable" data-lang="de" data-word="Werkzeug">Werkzeug</td>
+    <td>[ˈvɛʁktsɔʏ̯k]</td>
+    <td class="clickable" data-lang="zh" data-word="工具">工具</td>
+    <td class="clickable" data-lang="en" data-word="tool">tool</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mécanicien">Mécanicien</td>
+    <td>[mekanisj]</td>
+    <td class="clickable" data-lang="de" data-word="Mechaniker">Mechaniker</td>
+    <td>[meˈçaːnɪkɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="机械工">机械工</td>
+    <td class="clickable" data-lang="en" data-word="mechanic">mechanic</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Faire le plein">Faire le plein</td>
+    <td>[fɛʁ lə plɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="volltanken">volltanken</td>
+    <td>[ˈfɔltaŋkən]</td>
+    <td class="clickable" data-lang="zh" data-word="加满（汽油等）">加满（汽油等）</td>
+    <td class="clickable" data-lang="en" data-word="to fill up">to fill up</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Réservoir">Réservoir</td>
+    <td>[ʁezɛʁvwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Benzintank">Benzintank</td>
+    <td>[bɛnˈtsiːntaŋk]</td>
+    <td class="clickable" data-lang="zh" data-word="汽油箱">汽油箱</td>
+    <td class="clickable" data-lang="en" data-word="fuel tank">fuel tank</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Faire le plein">Faire le plein</td>
+    <td>[fɛʁ lə plɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="tanken">tanken</td>
+    <td>[ˈtaŋkən]</td>
+    <td class="clickable" data-lang="zh" data-word="加油">加油</td>
+    <td class="clickable" data-lang="en" data-word="to fuel up">to fuel up</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Passage à niveau">Passage à niveau</td>
+    <td>[pasaʒ a nivo]</td>
+    <td class="clickable" data-lang="de" data-word="Bahnübergang">Bahnübergang</td>
+    <td>[ˈbaːnˌyːbɐɡaŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="铁路交叉口">铁路交叉口</td>
+    <td class="clickable" data-lang="en" data-word="railroad crossing">railroad crossing</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vitesse recommandée">Vitesse recommandée</td>
+    <td>[vitɛs ʁəkɔmɑ̃de]</td>
+    <td class="clickable" data-lang="de" data-word="Richtgeschwindigkeit">Richtgeschwindigkeit</td>
+    <td>[ˈʁɪçtɡəʃvɪndɪçkaɪt]</td>
+    <td class="clickable" data-lang="zh" data-word="标准时速">标准时速</td>
+    <td class="clickable" data-lang="en" data-word="recommended speed">recommended speed</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vitre de portière">Vitre de portière</td>
+    <td>[vitʁ də pɔʁtjɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Türfenster">Türfenster</td>
+    <td>[ˈtyːɐ̯ˌfɛnstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="车窗">车窗</td>
+    <td class="clickable" data-lang="en" data-word="car window">car window</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tourner">Tourner</td>
+    <td>[tuʁne]</td>
+    <td class="clickable" data-lang="de" data-word="biegen">biegen</td>
+    <td>[ˈbiːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="转弯">转弯</td>
+    <td class="clickable" data-lang="en" data-word="to turn">to turn</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Libre-service">Libre-service</td>
+    <td>[libʁ sɛʁvis]</td>
+    <td class="clickable" data-lang="de" data-word="Selbstbedienung">Selbstbedienung</td>
+    <td>[ˈzɛlpstbəˌdiːnʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="自助">自助</td>
+    <td class="clickable" data-lang="en" data-word="self-service">self-service</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Magasin">Magasin</td>
+    <td>[maɡazɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Geschäft">Geschäft</td>
+    <td>[ɡəˈʃɛft]</td>
+    <td class="clickable" data-lang="zh" data-word="商店">商店</td>
+    <td class="clickable" data-lang="en" data-word="shop">shop</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Toilettes">Toilettes</td>
+    <td>[twalɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Toilette">Toilette</td>
+    <td>[toaˈlɛtə]</td>
+    <td class="clickable" data-lang="zh" data-word="厕所">厕所</td>
+    <td class="clickable" data-lang="en" data-word="toilet">toilet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Gaz naturel liquéfié">Gaz naturel liquéfié</td>
+    <td>[ɡaz natyʁɛl likefje]</td>
+    <td class="clickable" data-lang="de" data-word="Flüssigerdgas">Flüssigerdgas</td>
+    <td>[ˈflʏsɪçˌeːɐ̯tɡas]</td>
+    <td class="clickable" data-lang="zh" data-word="液化天然气">液化天然气</td>
+    <td class="clickable" data-lang="en" data-word="LNG">LNG</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Aire de repos">Aire de repos</td>
+    <td>[ɛʁ də ʁəpo]</td>
+    <td class="clickable" data-lang="de" data-word="Raststätte">Raststätte</td>
+    <td>[ˈʁastˌʃtɛtə]</td>
+    <td class="clickable" data-lang="zh" data-word="休息区">休息区</td>
+    <td class="clickable" data-lang="en" data-word="rest area">rest area</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="GPL">GPL</td>
+    <td>[ʒe pe ɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Autogas">Autogas</td>
+    <td>[ˈaʊtoˌɡas]</td>
+    <td class="clickable" data-lang="zh" data-word="液化石油气">液化石油气</td>
+    <td class="clickable" data-lang="en" data-word="LPG">LPG</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Dépasser">Dépasser</td>
+    <td>[depase]</td>
+    <td class="clickable" data-lang="de" data-word="überfahren">überfahren</td>
+    <td>[ˈyːbɐˌfaːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="超车">超车</td>
+    <td class="clickable" data-lang="en" data-word="to overtake">to overtake</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Se ranger">Se ranger</td>
+    <td>[sə ʁɑ̃ʒe]</td>
+    <td class="clickable" data-lang="de" data-word="ausweichen">ausweichen</td>
+    <td>[ˈaʊsvaɪçən]</td>
+    <td class="clickable" data-lang="zh" data-word="让道，让路">让道，让路</td>
+    <td class="clickable" data-lang="en" data-word="to give way">to give way</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Monter">Monter</td>
+    <td>[mɔ̃te]</td>
+    <td class="clickable" data-lang="de" data-word="einsteigen">einsteigen</td>
+    <td>[ˈaɪ̯nˌʃtaɪɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="乘车">乘车</td>
+    <td class="clickable" data-lang="en" data-word="to get on">to get on</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Descendre">Descendre</td>
+    <td>[desɑ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="aussteigen">aussteigen</td>
+    <td>[ˈaʊsˌʃtaɪɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="下车">下车</td>
+    <td class="clickable" data-lang="en" data-word="to get off">to get off</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Changer">Changer</td>
+    <td>[ʃɑ̃ʒe]</td>
+    <td class="clickable" data-lang="de" data-word="umsteigen">umsteigen</td>
+    <td>[ˈʊmˌʃtaɪɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="转车">转车</td>
+    <td class="clickable" data-lang="en" data-word="to transfer">to transfer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Direction">Direction</td>
+    <td>[diʁɛksjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Richtung">Richtung</td>
+    <td>[ˈʁɪçtʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="方向">方向</td>
+    <td class="clickable" data-lang="en" data-word="direction">direction</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Arrivée">Arrivée</td>
+    <td>[aʁive]</td>
+    <td class="clickable" data-lang="de" data-word="Ankunft">Ankunft</td>
+    <td>[ˈanˌkʊnft]</td>
+    <td class="clickable" data-lang="zh" data-word="到达">到达</td>
+    <td class="clickable" data-lang="en" data-word="arrival">arrival</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tourner">Tourner</td>
+    <td>[tuʁne]</td>
+    <td class="clickable" data-lang="de" data-word="abbiegen">abbiegen</td>
+    <td>[ˈapˌbiːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="转弯">转弯</td>
+    <td class="clickable" data-lang="en" data-word="to turn">to turn</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Autoroute">Autoroute</td>
+    <td>[otoʁut]</td>
+    <td class="clickable" data-lang="de" data-word="Autobahn">Autobahn</td>
+    <td>[ˈaʊtobaːn]</td>
+    <td class="clickable" data-lang="zh" data-word="高速公路">高速公路</td>
+    <td class="clickable" data-lang="en" data-word="highway">highway</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Aéroport">Aéroport</td>
+    <td>[aeʁopɔʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Flughafen">Flughafen</td>
+    <td>[ˈfluːkˌhafən]</td>
+    <td class="clickable" data-lang="zh" data-word="机场">机场</td>
+    <td class="clickable" data-lang="en" data-word="airport">airport</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Freiner">Freiner</td>
+    <td>[fʁene]</td>
+    <td class="clickable" data-lang="de" data-word="bremsen">bremsen</td>
+    <td>[ˈbʁɛmzən]</td>
+    <td class="clickable" data-lang="zh" data-word="刹车">刹车</td>
+    <td class="clickable" data-lang="en" data-word="to brake">to brake</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vitesse">Vitesse</td>
+    <td>[vitɛs]</td>
+    <td class="clickable" data-lang="de" data-word="Geschwindigkeit">Geschwindigkeit</td>
+    <td>[ɡəˈʃvɪndɪçkaɪt]</td>
+    <td class="clickable" data-lang="zh" data-word="速度">速度</td>
+    <td class="clickable" data-lang="en" data-word="speed">speed</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Station">Station</td>
+    <td>[stasjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Station">Station</td>
+    <td>[ʃtaˈt͡si̯oːn]</td>
+    <td class="clickable" data-lang="zh" data-word="站">站</td>
+    <td class="clickable" data-lang="en" data-word="station">station</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Gare centrale">Gare centrale</td>
+    <td>[ɡaʁ sɑ̃tʁal]</td>
+    <td class="clickable" data-lang="de" data-word="Hauptbahnhof">Hauptbahnhof</td>
+    <td>[ˈhaʊptˌbaːnhoːf]</td>
+    <td class="clickable" data-lang="zh" data-word="火车总站">火车总站</td>
+    <td class="clickable" data-lang="en" data-word="main station">main station</td>
+</tr>
+    </table>
+
+    <script>
+    const PIXABAY_API_KEY = '49256357-c30f2f538120ce8d74ff8921d';
+    let speechSynth = window.speechSynthesis;
+    let voices = [];
+
+    // Wait for voices to load
+    speechSynth.onvoiceschanged = function() {
+        voices = speechSynth.getVoices();
+    };
+
+    // Pronunciation function
+    function speak(text, lang) {
+        // Cancel any ongoing speech
+        speechSynth.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        
+        // For Chinese, select appropriate voice based on dialect
+        if (lang.startsWith('zh')) {
+            const voices = window.speechSynthesis.getVoices();
+            const chineseVoice = voices.find(voice => voice.lang.includes(lang));
+            if (chineseVoice) {
+                utterance.voice = chineseVoice;
+            }
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    } 
+    
+    // Remove existing background images
+    function clearBackgroundImages() {
+        document.querySelectorAll('.background-image').forEach(img => img.remove());
+    }
+
+    // Fetch and add background image
+    async function addBackgroundImage(cell, searchTerm) {
+        clearBackgroundImages();
+        
+        try {
+            const apiUrl = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(searchTerm)}&per_page=4&safesearch=true`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.hits && data.hits.length > 0) {
+                const randomIndex = Math.floor(Math.random() * Math.min(4, data.hits.length));
+                const img = document.createElement('img');
+                img.src = data.hits[randomIndex].previewURL;
+                img.className = 'background-image';
+                img.alt = searchTerm;
+                
+                const firstCell = cell.closest('tr').querySelector('td:first-child');
+                firstCell.appendChild(img);
+
+                // Remove the image after 3 seconds
+                setTimeout(clearBackgroundImages, 3000);
+            }
+        } catch (error) {
+            console.error('Error fetching image:', error);
+        }
+    }
+
+    // Add click events to clickable cells
+    window.speechSynthesis.onvoiceschanged = () => {
+        document.querySelectorAll('.clickable').forEach(cell => {
+            cell.addEventListener('click', function() {
+                const text = this.textContent;
+                let lang;
+                
+                // Get language based on data-lang attribute
+                switch(this.dataset.lang) {
+                    case 'fr':
+                        lang = 'fr-FR';
+                        break;
+                    case 'de':
+                        lang = 'de-DE';
+                        break;
+                    case 'zh':
+                        // Use selected dialect for Chinese
+                        lang = document.getElementById('chineseDialect').value;
+                        break;
+                    default:
+                        lang = 'en-US';
+                }
+                
+                speak(text, lang);
+                <!-- addBackgroundImage(this, this.dataset.word); -->
+
+                // Visual feedback with cleanup
+                const originalBg = window.getComputedStyle(this).backgroundColor;
+                this.style.backgroundColor = '#c8e6c9';
+                
+                // Clear any existing timeout for this cell
+                if (this.resetTimeout) {
+                    clearTimeout(this.resetTimeout);
+                }
+                
+                // Set new timeout and store its ID
+                this.resetTimeout = setTimeout(() => {
+                    this.style.backgroundColor = '';
+                    this.resetTimeout = null;
+                }, 500);
+            });
+        });
+    };
+</script>
+
+</body>
+</html>
