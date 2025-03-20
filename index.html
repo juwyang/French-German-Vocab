@@ -190,7 +190,7 @@
             chapterList.style.display = 'none';
             contentFrame.style.display = 'block';
             backButton.style.display = 'block';
-            contentFrame.src = `Chapters/${chapterName}.html`;
+            contentFrame.src = `${chapterName}.html`;  // Remove 'Chapters/' from path
         }
 
         function showChapterList() {
