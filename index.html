@@ -3,196 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学习导航</title>
+    <title>法德词汇表</title>
+    <base href="https://juwyang.github.io/French-German-Vocab/">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        * {
             margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        body {
+            font-family: Arial, sans-serif;
+            width: 100%;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            padding: 10px;
         }
 
         h1 {
+            color: #2c3e50;
             text-align: center;
-            color: #2c3e50;
-            margin-bottom: 30px;
+            margin: 10px 0 10px 0;
+            font-size: 1.8em;
+            user-select: none;
         }
 
-        .chapter-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .chapter-item {
-            margin: 10px 0;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 5px;
-            transition: all 0.3s ease;
+        .note-span {
             cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 0 3px;
+            transition: color 0.2s;
         }
 
-        .chapter-item:hover {
-            background: #e9ecef;
-            transform: translateX(5px);
+        .note-span:hover {
+            color: #3498db;
         }
 
-        .chapter-link {
-            text-decoration: none;
-            color: #2c3e50;
-            flex-grow: 1;
+        .note-span:active {
+            transform: scale(0.98);
         }
 
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #dee2e6;
+        .chapter-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            max-width: 1600px; /* 增加最大宽度 */
+            margin: 0 auto;
+            padding: 0 10px;
         }
 
-        .nav-button {
-            padding: 10px 20px;
-            background: #007bff;
+        .chapter-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .chapter-title {
+            font-size: 1.2em;
+            color: #34495e;
+            margin-bottom: 8px;
+        }
+
+        .chapter-description {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        #content-frame {
+            width: 100%;
+            height: calc(100vh - 70px); /* 动态计算高度，减去头部和边距的空间 */
+            border: none;
+            border-radius: 8px;
+            margin-top: 10px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .content-container {
+            max-width: 1800px; /* 增加内容区域最大宽度 */
+            margin: 0 auto;
+            height: calc(100vh - 60px); /* 减少上下空间 */
+        }
+
+        .back-button {
+            display: none;
+            background: #3498db;
             color: white;
             border: none;
+            padding: 8px 16px;
             border-radius: 5px;
             cursor: pointer;
-            transition: background 0.3s ease;
+            margin: 10px 0;
+            font-size: 0.9em;
         }
 
-        .nav-button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
+        .back-button:hover {
+            background: #2980b9;
         }
 
-        .nav-button:hover:not(:disabled) {
-            background: #0056b3;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
+        /* 针对较小屏幕的响应式调整 */
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
             }
 
-            .chapter-item {
-                padding: 10px;
+            h1 {
+                font-size: 1.5em;
+                margin: 8px 0 15px 0;
+            }
+
+            .chapter-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            #content-frame {
+                height: calc(100vh - 80px);
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>章节目录</h1>
-        <div id="chapter-container">
-            <!-- 章节列表将在这里动态生成 -->
+    <h1 id="musical-title">
+        🎼 <span class="note-span" data-note="do">Do</span>-
+        <span class="note-span" data-note="re">Re</span>-
+        <span class="note-span" data-note="mi">Mi</span>-
+        <span class="note-span" data-note="fa">Fa</span>-
+        <span class="note-span" data-note="sol">Sol</span>
+    </h1>
+
+    <div id="chapter-list" class="chapter-container">
+        <div class="chapter-card" onclick="loadChapter('ch0base')">
+            <div class="chapter-title">基础</div>
+            <div class="chapter-description">数、年月季节、日常生活</div>
         </div>
-        <div class="navigation">
-            <button id="prevButton" class="nav-button" onclick="navigateChapter(-1)">上一章</button>
-            <button id="nextButton" class="nav-button" onclick="navigateChapter(1)">下一章</button>
+
+    <div id="chapter-list" class="chapter-container">
+        <div class="chapter-card" onclick="loadChapter('ch3身体部位')">
+            <div class="chapter-title">第三章: 身体部位</div>
+            <div class="chapter-description">身体相关词汇</div>
         </div>
+
+    
+    <div id="chapter-list" class="chapter-container">
+        <div class="chapter-card" onclick="loadChapter('ch6饮食')">
+            <div class="chapter-title">第六章: 饮食</div>
+            <div class="chapter-description">食物、饮料相关词汇</div>
+        </div>
+
+        <div class="chapter-card" onclick="loadChapter('ch7服装打扮')">
+            <div class="chapter-title">第七章: 服装打扮</div>
+            <div class="chapter-description">服装相关词汇</div>
+        </div>
+
+        <div class="chapter-card" onclick="loadChapter('ch11旅行')">
+            <div class="chapter-title">第十一章: 旅行</div>
+            <div class="chapter-description">旅行相关词汇</div>
+        </div>
+
+        <div class="chapter-card" onclick="loadChapter('ch12交通')">
+            <div class="chapter-title">第十二章: 交通</div>
+            <div class="chapter-description">交通工具、方向相关词汇</div>
+        </div>
+        
+        <!-- 可以继续添加更多章节 -->
+    </div>
+
+    <div class="content-container">
+        <button id="backButton" class="back-button" onclick="showChapterList()">返回目录</button>
+        <iframe id="content-frame"></iframe>
     </div>
 
     <script>
-        let currentChapterIndex = 0;
-        let chapters = [];
+        const chapterList = document.getElementById('chapter-list');
+        const contentFrame = document.getElementById('content-frame');
+        const backButton = document.getElementById('backButton');
 
-        // 获取当前目录下的所有HTML文件
-        async function fetchChapterList() {
-            try {
-                const response = await fetch('.');
-                const text = await response.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(text, 'text/html');
-                const links = Array.from(doc.querySelectorAll('a'))
-                    .filter(a => a.href.endsWith('.html') && a.href.includes('ch'))
-                    .map(a => ({
-                        href: a.href.split('/').pop(),
-                        title: a.href.split('/').pop().replace('.html', '')
-                    }))
-                    .sort((a, b) => {
-                        const getChapterNum = (str) => {
-                            const match = str.match(/ch(\d+)/);
-                            return match ? parseInt(match[1]) : 0;
-                        };
-                        return getChapterNum(a.title) - getChapterNum(b.title);
-                    });
+        function loadChapter(chapterName) {
+            chapterList.style.display = 'none';
+            contentFrame.style.display = 'block';
+            backButton.style.display = 'block';
+            contentFrame.src = `${chapterName}.html`;  // Remove 'Chapters/' from path
+        }
 
-                chapters = links;
-                displayChapters();
-                updateNavigationButtons();
+        function showChapterList() {
+            chapterList.style.display = 'grid';
+            contentFrame.style.display = 'none';
+            backButton.style.display = 'none';
+            contentFrame.src = '';
+        }
 
-                // 检查当前URL是否匹配某个章节
-                const currentFile = window.location.pathname.split('/').pop();
-                currentChapterIndex = Math.max(0, chapters.findIndex(ch => ch.href === currentFile));
-            } catch (error) {
-                console.error('Error fetching chapter list:', error);
+        // 添加全屏切换功能
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'f' || e.key === 'F') {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else {
+                    document.documentElement.requestFullscreen();
+                }
+            }
+        });
+        let audioContext = null;
+
+        function initAudioContext() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
             }
         }
 
-        function displayChapters() {
-            const container = document.getElementById('chapter-container');
-            const chaptersList = document.createElement('ul');
-            chaptersList.className = 'chapter-list';
-
-            chapters.forEach((chapter, index) => {
-                const li = document.createElement('li');
-                li.className = 'chapter-item';
-                li.innerHTML = `
-                    <a href="${chapter.href}" class="chapter-link" onclick="setCurrentChapter(${index})">${chapter.title}</a>
-                `;
-                chaptersList.appendChild(li);
-            });
-
-            container.innerHTML = '';
-            container.appendChild(chaptersList);
-        }
-
-        function setCurrentChapter(index) {
-            currentChapterIndex = index;
-            localStorage.setItem('currentChapterIndex', index);
-            updateNavigationButtons();
-        }
-
-        function navigateChapter(direction) {
-            const newIndex = currentChapterIndex + direction;
-            if (newIndex >= 0 && newIndex < chapters.length) {
-                window.location.href = chapters[newIndex].href;
-                setCurrentChapter(newIndex);
-            }
-        }
-
-        function updateNavigationButtons() {
-            const prevButton = document.getElementById('prevButton');
-            const nextButton = document.getElementById('nextButton');
-
-            prevButton.disabled = currentChapterIndex <= 0;
-            nextButton.disabled = currentChapterIndex >= chapters.length - 1;
-        }
-
-        // 页面加载时初始化
-        window.onload = () => {
-            const savedIndex = localStorage.getItem('currentChapterIndex');
-            if (savedIndex !== null) {
-                currentChapterIndex = parseInt(savedIndex);
-            }
-            fetchChapterList();
+        // Define the 9th chords frequencies for each note
+        const chordFrequencies = {
+            do: [
+                261.63,  // C (root)
+                329.63,  // E (major third)
+                392.00,  // G (perfect fifth)
+                493.88,  // B (major seventh)
+                // 587.33   // D (ninth)
+            ],
+            re: [
+                293.66,  // D (root)
+                349.23,  // F (minor third)
+                440.00,  // A (perfect fifth)
+                523.25,  // C (minor seventh)
+                659.26   // E (ninth)
+            ],
+            mi: [
+                329.63,  // E (root)
+                392.00,  // G (minor third)
+                493.88,  // B (perfect fifth)
+                587.33,  // D (minor seventh)
+                739.99   // F# (ninth)
+            ],
+            fa: [
+                349.23,  // F (root)
+                440.00,  // A (major third)
+                523.25,  // C (perfect fifth)
+                622.25,  // Eb (minor seventh)
+                783.99   // G (ninth)
+            ],
+            sol: [
+                392.00,  // G (root)
+                493.88,  // B (major third)
+                587.33,  // D (perfect fifth)
+                // 698.46,  // F (minor seventh)
+                880.00   // A (ninth)
+            ]
         };
+
+        function playChord(frequencies) {
+            initAudioContext();
+            
+            frequencies.forEach(freq => {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
+                
+                gainNode.gain.setValueAtTime(0.15, audioContext.currentTime); // Reduced volume for chord
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 1);
+            });
+        }
+
+        // Add click event listeners to each note span
+        document.querySelectorAll('.note-span').forEach(noteSpan => {
+            noteSpan.addEventListener('click', () => {
+                const note = noteSpan.dataset.note;
+                playChord(chordFrequencies[note]);
+                
+                // Visual feedback
+                const originalColor = noteSpan.style.color;
+                noteSpan.style.color = '#3498db';
+                setTimeout(() => {
+                    noteSpan.style.color = originalColor;
+                }, 200);
+            });
+        });
+
+        // Rest of your previous script remains the same
     </script>
 </body>
 </html>
