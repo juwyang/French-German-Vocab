@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>法德词汇表</title>
-    <base href="https://juwyang.github.io/French-German-Vocab/">
     <style>
         * {
             margin: 0;
@@ -190,7 +189,7 @@
             chapterList.style.display = 'none';
             contentFrame.style.display = 'block';
             backButton.style.display = 'block';
-            contentFrame.src = `${chapterName}.html`;  // Remove 'Chapters/' from path
+            contentFrame.src = `chapters/${chapterName}.html`;
         }
 
         function showChapterList() {
