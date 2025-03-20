@@ -189,7 +189,13 @@
             chapterList.style.display = 'none';
             contentFrame.style.display = 'block';
             backButton.style.display = 'block';
-            contentFrame.src = `Chapters/${chapterName}.html`;
+            
+            // 动态获取基础URL
+            const baseUrl = window.location.pathname.split('/index.html')[0];
+            const chapterUrl = `${baseUrl}/Chapters/${chapterName}.html`;
+            
+            console.log('Loading chapter URL:', chapterUrl);
+            contentFrame.src = chapterUrl;
         }
 
         function showChapterList() {
