@@ -1,0 +1,1616 @@
+<!-- <使用这个模板，添加单词到table的部分就可以!> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr {
+            position: relative;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .clickable {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+        .clickable:hover {
+            background-color: #e6e6e6;
+        }
+        .background-image {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        .background-image:hover {
+            opacity: 0.8;
+        }
+        .language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .language-selector select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="language-selector">
+        <select id="chineseDialect">
+            <option value="zh-CN">普通话</option>
+            <option value="zh-HK">粤语</option>
+        </select>
+    </div>
+
+    <table id="wordTable">
+        <tr>
+            <th>法语</th>
+            <th>音标</th>
+            <th>德语</th>
+            <th>音标</th>
+            <th>中文</th>
+            <th>英语</th>
+        </tr>
+        <tr>
+            <td class="clickable" data-lang="fr" data-word="Terre">Terre</td>
+            <td>[tɛʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Erde">Erde</td>
+            <td>[ˈeːɐ̯də]</td>
+            <td class="clickable" data-lang="zh" data-word="地球">地球</td>
+            <td class="clickable" data-lang="en" data-word="Earth">Earth</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Globe">Globe</td>
+            <td>[ɡlɔb]</td>
+            <td class="clickable" data-lang="de" data-word="Globus">Globus</td>
+            <td>[ˈɡloːbʊs]</td>
+            <td class="clickable" data-lang="zh" data-word="地球仪">地球仪</td>
+            <td class="clickable" data-lang="en" data-word="globe">globe</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Géographie">Géographie</td>
+            <td>[ʒeɔɡʁafi]</td>
+            <td class="clickable" data-lang="de" data-word="Geographie">Geographie</td>
+            <td>[ɡeoɡʁaˈfiː]</td>
+            <td class="clickable" data-lang="zh" data-word="地理">地理</td>
+            <td class="clickable" data-lang="en" data-word="geography">geography</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Géographe">Géographe</td>
+            <td>[ʒeɔɡʁaf]</td>
+            <td class="clickable" data-lang="de" data-word="Geograph">Geograph</td>
+            <td>[ɡeoˈɡʁaːf]</td>
+            <td class="clickable" data-lang="zh" data-word="地理学家">地理学家</td>
+            <td class="clickable" data-lang="en" data-word="geographer">geographer</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Continent">Continent</td>
+            <td>[kɔ̃tinɑ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Kontinent">Kontinent</td>
+            <td>[kɔntiˈnɛnt]</td>
+            <td class="clickable" data-lang="zh" data-word="陆地">陆地</td>
+            <td class="clickable" data-lang="en" data-word="continent">continent</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Mer">Mer</td>
+            <td>[mɛʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Meer">Meer</td>
+            <td>[meːɐ̯]</td>
+            <td class="clickable" data-lang="zh" data-word="海洋">海洋</td>
+            <td class="clickable" data-lang="en" data-word="sea">sea</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Équateur">Équateur</td>
+            <td>[ekyatœʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Äquator">Äquator</td>
+            <td>[ɛkvaˈtoːɐ̯]</td>
+            <td class="clickable" data-lang="zh" data-word="赤道">赤道</td>
+            <td class="clickable" data-lang="en" data-word="equator">equator</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Europe">Europe</td>
+            <td>[øʁɔp]</td>
+            <td class="clickable" data-lang="de" data-word="Europa">Europa</td>
+            <td>[ɔʏˈʁoːpa]</td>
+            <td class="clickable" data-lang="zh" data-word="欧洲">欧洲</td>
+            <td class="clickable" data-lang="en" data-word="Europe">Europe</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Asie">Asie</td>
+            <td>[azi]</td>
+            <td class="clickable" data-lang="de" data-word="Asien">Asien</td>
+            <td>[ˈaːzi̯ən]</td>
+            <td class="clickable" data-lang="zh" data-word="亚洲">亚洲</td>
+            <td class="clickable" data-lang="en" data-word="Asia">Asia</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Amérique">Amérique</td>
+            <td>[ameʁik]</td>
+            <td class="clickable" data-lang="de" data-word="Amerika">Amerika</td>
+            <td>[aˈmeːʁika]</td>
+            <td class="clickable" data-lang="zh" data-word="美洲">美洲</td>
+            <td class="clickable" data-lang="en" data-word="America">America</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Afrique">Afrique</td>
+            <td>[afʁik]</td>
+            <td class="clickable" data-lang="de" data-word="Afrika">Afrika</td>
+            <td>[ˈafʁika]</td>
+            <td class="clickable" data-lang="zh" data-word="非洲">非洲</td>
+            <td class="clickable" data-lang="en" data-word="Africa">Africa</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Océan Pacifique">Océan Pacifique</td>
+            <td>[ɔseɑ̃ pasifik]</td>
+            <td class="clickable" data-lang="de" data-word="Pazifischer Ozean">Pazifischer Ozean</td>
+            <td>[paˈtsiːfɪʃɐ oˈtseːan]</td>
+            <td class="clickable" data-lang="zh" data-word="太平洋">太平洋</td>
+            <td class="clickable" data-lang="en" data-word="Pacific Ocean">Pacific Ocean</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Océan Indien">Océan Indien</td>
+            <td>[ɔseɑ̃ ɛ̃djɛ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Indischer Ozean">Indischer Ozean</td>
+            <td>[ˈɪndɪʃɐ oˈtseːan]</td>
+            <td class="clickable" data-lang="zh" data-word="印度洋">印度洋</td>
+            <td class="clickable" data-lang="en" data-word="Indian Ocean">Indian Ocean</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Océan Atlantique">Océan Atlantique</td>
+            <td>[ɔseɑ̃ atlɑ̃tik]</td>
+            <td class="clickable" data-lang="de" data-word="Atlantischer Ozean">Atlantischer Ozean</td>
+            <td>[atˈlantɪʃɐ oˈtseːan]</td>
+            <td class="clickable" data-lang="zh" data-word="大西洋">大西洋</td>
+            <td class="clickable" data-lang="en" data-word="Atlantic Ocean">Atlantic Ocean</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Océan">Océan</td>
+            <td>[ɔseɑ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Ozean">Ozean</td>
+            <td>[oˈtseːan]</td>
+            <td class="clickable" data-lang="zh" data-word="大洋">大洋</td>
+            <td class="clickable" data-lang="en" data-word="ocean">ocean</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Océan Arctique">Océan Arctique</td>
+            <td>[ɔseɑ̃ aʁktik]</td>
+            <td class="clickable" data-lang="de" data-word="Nordpolarmeer">Nordpolarmeer</td>
+            <td>[ˈnɔʁtpoːlaɐ̯meːɐ̯]</td>
+            <td class="clickable" data-lang="zh" data-word="北冰洋">北冰洋</td>
+            <td class="clickable" data-lang="en" data-word="Arctic Ocean">Arctic Ocean</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Tropique">Tropique</td>
+            <td>[tʁɔpik]</td>
+            <td class="clickable" data-lang="de" data-word="Wendekreis">Wendekreis</td>
+            <td>[ˈvɛndəkʁaɪs]</td>
+            <td class="clickable" data-lang="zh" data-word="回归线">回归线</td>
+            <td class="clickable" data-lang="en" data-word="tropic">tropic</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Fuseau horaire">Fuseau horaire</td>
+            <td>[fyzo ɔʁjɛʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Zeitzone">Zeitzone</td>
+            <td>[ˈtsaɪtˌtsoːnə]</td>
+            <td class="clickable" data-lang="zh" data-word="时区">时区</td>
+            <td class="clickable" data-lang="en" data-word="time zone">time zone</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Décalage horaire">Décalage horaire</td>
+            <td>[dekalɑʒ ɔʁjɛʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Zeitverschiebung">Zeitverschiebung</td>
+            <td>[ˈtsaɪtfɛɐ̯ˌʃiːbʊŋ]</td>
+            <td class="clickable" data-lang="zh" data-word="时差">时差</td>
+            <td class="clickable" data-lang="en" data-word="time difference">time difference</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lever du soleil">Lever du soleil</td>
+    <td>[ləve dy sɔlɛj]</td>
+    <td class="clickable" data-lang="de" data-word="Sonnenaufgang">Sonnenaufgang</td>
+    <td>[ˈzɔnənˌaʊ̯fɡaŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="日出">日出</td>
+    <td class="clickable" data-lang="en" data-word="sunrise">sunrise</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Coucher du soleil">Coucher du soleil</td>
+    <td>[kuʃe dy sɔlɛj]</td>
+    <td class="clickable" data-lang="de" data-word="Sonnenuntergang">Sonnenuntergang</td>
+    <td>[ˈzɔnənˌʊntɐɡaŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="日落">日落</td>
+    <td class="clickable" data-lang="en" data-word="sunset">sunset</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Aurore">Aurore</td>
+    <td>[ɔʁɔʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Morgenröte">Morgenröte</td>
+    <td>[ˈmɔʁɡənˌʁøːtə]</td>
+    <td class="clickable" data-lang="zh" data-word="朝霞">朝霞</td>
+    <td class="clickable" data-lang="en" data-word="dawn">dawn</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Aurore boréale">Aurore boréale</td>
+    <td>[ɔʁɔʁ bɔʁeal]</td>
+    <td class="clickable" data-lang="de" data-word="Polarlicht">Polarlicht</td>
+    <td>[poˈlaːɐ̯lɪçt]</td>
+    <td class="clickable" data-lang="zh" data-word="极光">极光</td>
+    <td class="clickable" data-lang="en" data-word="aurora borealis">aurora borealis</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Soleil">Soleil</td>
+    <td>[sɔlɛj]</td>
+    <td class="clickable" data-lang="de" data-word="Sonne">Sonne</td>
+    <td>[ˈzɔnə]</td>
+    <td class="clickable" data-lang="zh" data-word="太阳">太阳</td>
+    <td class="clickable" data-lang="en" data-word="sun">sun</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ciel">Ciel</td>
+    <td>[sjɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Himmel">Himmel</td>
+    <td>[ˈhɪml̩]</td>
+    <td class="clickable" data-lang="zh" data-word="天空">天空</td>
+    <td class="clickable" data-lang="en" data-word="sky">sky</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lune">Lune</td>
+    <td>[lyn]</td>
+    <td class="clickable" data-lang="de" data-word="Mond">Mond</td>
+    <td>[moːnt]</td>
+    <td class="clickable" data-lang="zh" data-word="月亮">月亮</td>
+    <td class="clickable" data-lang="en" data-word="moon">moon</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Étoile">Étoile</td>
+    <td>[etwal]</td>
+    <td class="clickable" data-lang="de" data-word="Stern">Stern</td>
+    <td>[ʃtɛʁn]</td>
+    <td class="clickable" data-lang="zh" data-word="星星">星星</td>
+    <td class="clickable" data-lang="en" data-word="star">star</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Aube">Aube</td>
+    <td>[ob]</td>
+    <td class="clickable" data-lang="de" data-word="Tagesanbruch">Tagesanbruch</td>
+    <td>[ˈtaːɡəsˌanbʁʊx]</td>
+    <td class="clickable" data-lang="zh" data-word="黎明">黎明</td>
+    <td class="clickable" data-lang="en" data-word="daybreak">daybreak</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Crépuscule">Crépuscule</td>
+    <td>[kʁepyskyl]</td>
+    <td class="clickable" data-lang="de" data-word="Abenddämmerung">Abenddämmerung</td>
+    <td>[ˈaːbəntˌdɛməʁʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="黄昏">黄昏</td>
+    <td class="clickable" data-lang="en" data-word="dusk">dusk</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Arc-en-ciel">Arc-en-ciel</td>
+    <td>[aʁkɑ̃sjɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Regenbogen">Regenbogen</td>
+    <td>[ˈʁeːɡn̩boːɡn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="彩虹">彩虹</td>
+    <td class="clickable" data-lang="en" data-word="rainbow">rainbow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Éclipse lunaire">Éclipse lunaire</td>
+    <td>[eklips lynɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Mondfinsternis">Mondfinsternis</td>
+    <td>[ˈmoːntˌfɪnstɐnɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="月食">月食</td>
+    <td class="clickable" data-lang="en" data-word="lunar eclipse">lunar eclipse</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Coucher de soleil">Coucher de soleil</td>
+    <td>[kuʃe də sɔlɛj]</td>
+    <td class="clickable" data-lang="de" data-word="Abendrot">Abendrot</td>
+    <td>[ˈaːbəntˌʁoːt]</td>
+    <td class="clickable" data-lang="zh" data-word="夕阳">夕阳</td>
+    <td class="clickable" data-lang="en" data-word="sunset glow">sunset glow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Marée haute">Marée haute</td>
+    <td>[maʁe ot]</td>
+    <td class="clickable" data-lang="de" data-word="fluten">fluten</td>
+    <td>[ˈfluːtn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="涨潮">涨潮</td>
+    <td class="clickable" data-lang="en" data-word="flood tide">flood tide</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Marée basse">Marée basse</td>
+    <td>[maʁe bas]</td>
+    <td class="clickable" data-lang="de" data-word="Ebbe">Ebbe</td>
+    <td>[ˈɛbə]</td>
+    <td class="clickable" data-lang="zh" data-word="退潮">退潮</td>
+    <td class="clickable" data-lang="en" data-word="ebb tide">ebb tide</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tsunami">Tsunami</td>
+    <td>[tsunami]</td>
+    <td class="clickable" data-lang="de" data-word="Tsunami">Tsunami</td>
+    <td>[tsuˈnaːmi]</td>
+    <td class="clickable" data-lang="zh" data-word="海啸">海啸</td>
+    <td class="clickable" data-lang="en" data-word="tsunami">tsunami</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Séisme">Séisme</td>
+    <td>[seism]</td>
+    <td class="clickable" data-lang="de" data-word="Erdbeben">Erdbeben</td>
+    <td>[ˈeːɐ̯tˌbeːbn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="地震">地震</td>
+    <td class="clickable" data-lang="en" data-word="earthquake">earthquake</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Éruption volcanique">Éruption volcanique</td>
+    <td>[eʁypsjɔ̃ vɔlkanik]</td>
+    <td class="clickable" data-lang="de" data-word="Vulkanausbruch">Vulkanausbruch</td>
+    <td>[vʊlˈkaːnˌaʊ̯sbʁʊx]</td>
+    <td class="clickable" data-lang="zh" data-word="火山爆发">火山爆发</td>
+    <td class="clickable" data-lang="en" data-word="volcanic eruption">volcanic eruption</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Inondation">Inondation</td>
+    <td>[inɔ̃dasjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Hochwasser">Hochwasser</td>
+    <td>[ˈhoːxˌvasɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="洪水">洪水</td>
+    <td class="clickable" data-lang="en" data-word="flood">flood</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Éclipse solaire">Éclipse solaire</td>
+    <td>[eklips sɔlɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Sonnenfinsternis">Sonnenfinsternis</td>
+    <td>[ˈzɔnənˌfɪnstɐnɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="日食">日食</td>
+    <td class="clickable" data-lang="en" data-word="solar eclipse">solar eclipse</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Plaine">Plaine</td>
+    <td>[plɛn]</td>
+    <td class="clickable" data-lang="de" data-word="Ebene">Ebene</td>
+    <td>[ˈeːbənə]</td>
+    <td class="clickable" data-lang="zh" data-word="平原">平原</td>
+    <td class="clickable" data-lang="en" data-word="plain">plain</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vallée">Vallée</td>
+    <td>[vale]</td>
+    <td class="clickable" data-lang="de" data-word="Tal">Tal</td>
+    <td>[taːl]</td>
+    <td class="clickable" data-lang="zh" data-word="山谷">山谷</td>
+    <td class="clickable" data-lang="en" data-word="valley">valley</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Désert">Désert</td>
+    <td>[dezɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Wüste">Wüste</td>
+    <td>[ˈvyːstə]</td>
+    <td class="clickable" data-lang="zh" data-word="沙漠">沙漠</td>
+    <td class="clickable" data-lang="en" data-word="desert">desert</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mer">Mer</td>
+    <td>[mɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Meer">Meer</td>
+    <td>[meːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="海洋">海洋</td>
+    <td class="clickable" data-lang="en" data-word="sea">sea</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Rive">Rive</td>
+    <td>[ʁiv]</td>
+    <td class="clickable" data-lang="de" data-word="Ufer">Ufer</td>
+    <td>[ˈuːfɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="海岸">海岸</td>
+    <td class="clickable" data-lang="en" data-word="shore">shore</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fleuve">Fleuve</td>
+    <td>[flœv]</td>
+    <td class="clickable" data-lang="de" data-word="Fluss">Fluss</td>
+    <td>[flʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="河流">河流</td>
+    <td class="clickable" data-lang="en" data-word="river">river</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lac">Lac</td>
+    <td>[lak]</td>
+    <td class="clickable" data-lang="de" data-word="See">See</td>
+    <td>[zeː]</td>
+    <td class="clickable" data-lang="zh" data-word="湖泊">湖泊</td>
+    <td class="clickable" data-lang="en" data-word="lake">lake</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Récif">Récif</td>
+    <td>[ʁesif]</td>
+    <td class="clickable" data-lang="de" data-word="Klippe">Klippe</td>
+    <td>[ˈklɪpə]</td>
+    <td class="clickable" data-lang="zh" data-word="礁石">礁石</td>
+    <td class="clickable" data-lang="en" data-word="reef">reef</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Montagne">Montagne</td>
+    <td>[mɔ̃taɲ]</td>
+    <td class="clickable" data-lang="de" data-word="Berg">Berg</td>
+    <td>[bɛʁk]</td>
+    <td class="clickable" data-lang="zh" data-word="山">山</td>
+    <td class="clickable" data-lang="en" data-word="mountain">mountain</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Zone humide">Zone humide</td>
+    <td>[zɔn ymid]</td>
+    <td class="clickable" data-lang="de" data-word="Feuchtgebiet">Feuchtgebiet</td>
+    <td>[ˈfɔʏçtɡəˌbiːt]</td>
+    <td class="clickable" data-lang="zh" data-word="湿地">湿地</td>
+    <td class="clickable" data-lang="en" data-word="wetland">wetland</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Île">Île</td>
+    <td>[il]</td>
+    <td class="clickable" data-lang="de" data-word="Insel">Insel</td>
+    <td>[ˈɪnzl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="岛屿">岛屿</td>
+    <td class="clickable" data-lang="en" data-word="island">island</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Côte">Côte</td>
+    <td>[kot]</td>
+    <td class="clickable" data-lang="de" data-word="Küste">Küste</td>
+    <td>[ˈkʏstə]</td>
+    <td class="clickable" data-lang="zh" data-word="海岸">海岸</td>
+    <td class="clickable" data-lang="en" data-word="coast">coast</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Plage">Plage</td>
+    <td>[plaʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Strand">Strand</td>
+    <td>[ʃtʁant]</td>
+    <td class="clickable" data-lang="zh" data-word="沙滩">沙滩</td>
+    <td class="clickable" data-lang="en" data-word="beach">beach</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Sommet">Sommet</td>
+    <td>[sɔmɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Gipfel">Gipfel</td>
+    <td>[ˈɡɪpfl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="山峰">山峰</td>
+    <td class="clickable" data-lang="en" data-word="peak">peak</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Plateau">Plateau</td>
+    <td>[plato]</td>
+    <td class="clickable" data-lang="de" data-word="Tafelland">Tafelland</td>
+    <td>[ˈtaːfl̩lant]</td>
+    <td class="clickable" data-lang="zh" data-word="高原">高原</td>
+    <td class="clickable" data-lang="en" data-word="plateau">plateau</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Plaine basse">Plaine basse</td>
+    <td>[plɛn bas]</td>
+    <td class="clickable" data-lang="de" data-word="Tiefland">Tiefland</td>
+    <td>[ˈtiːflant]</td>
+    <td class="clickable" data-lang="zh" data-word="低地">低地</td>
+    <td class="clickable" data-lang="en" data-word="lowland">lowland</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Colline">Colline</td>
+    <td>[kɔlin]</td>
+    <td class="clickable" data-lang="de" data-word="Hügel">Hügel</td>
+    <td>[ˈhyːɡl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="丘陵">丘陵</td>
+    <td class="clickable" data-lang="en" data-word="hill">hill</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bassin">Bassin</td>
+    <td>[basɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Becken">Becken</td>
+    <td>[ˈbɛkn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="盆地">盆地</td>
+    <td class="clickable" data-lang="en" data-word="basin">basin</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Marais">Marais</td>
+    <td>[maʁɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Moor">Moor</td>
+    <td>[moːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="沼泽">沼泽</td>
+    <td class="clickable" data-lang="en" data-word="marsh">marsh</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Forêt">Forêt</td>
+    <td>[fɔʁɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Wald">Wald</td>
+    <td>[valt]</td>
+    <td class="clickable" data-lang="zh" data-word="森林">森林</td>
+    <td class="clickable" data-lang="en" data-word="forest">forest</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Saison">Saison</td>
+    <td>[sɛzɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Jahreszeit">Jahreszeit</td>
+    <td>[ˈjaːʁəsˌtsaɪt]</td>
+    <td class="clickable" data-lang="zh" data-word="季节">季节</td>
+    <td class="clickable" data-lang="en" data-word="season">season</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Printemps">Printemps</td>
+    <td>[pʁɛ̃tɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Frühling">Frühling</td>
+    <td>[ˈfʁyːlɪŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="春天">春天</td>
+    <td class="clickable" data-lang="en" data-word="spring">spring</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Été">Été</td>
+    <td>[ete]</td>
+    <td class="clickable" data-lang="de" data-word="Sommer">Sommer</td>
+    <td>[ˈzɔmɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="夏天">夏天</td>
+    <td class="clickable" data-lang="en" data-word="summer">summer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Automne">Automne</td>
+    <td>[otɔn]</td>
+    <td class="clickable" data-lang="de" data-word="Herbst">Herbst</td>
+    <td>[hɛʁpst]</td>
+    <td class="clickable" data-lang="zh" data-word="秋天">秋天</td>
+    <td class="clickable" data-lang="en" data-word="autumn">autumn</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Hiver">Hiver</td>
+    <td>[ivɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Winter">Winter</td>
+    <td>[ˈvɪntɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="冬天">冬天</td>
+    <td class="clickable" data-lang="en" data-word="winter">winter</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tempête">Tempête</td>
+    <td>[tɑ̃pɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Sturm">Sturm</td>
+    <td>[ʃtʊʁm]</td>
+    <td class="clickable" data-lang="zh" data-word="狂风">狂风</td>
+    <td class="clickable" data-lang="en" data-word="storm">storm</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Éclair">Éclair</td>
+    <td>[eklɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Blitz">Blitz</td>
+    <td>[blɪts]</td>
+    <td class="clickable" data-lang="zh" data-word="闪电">闪电</td>
+    <td class="clickable" data-lang="en" data-word="lightning">lightning</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ensoleillé">Ensoleillé</td>
+    <td>[ɑ̃sɔleje]</td>
+    <td class="clickable" data-lang="de" data-word="sonnig">sonnig</td>
+    <td>[ˈzɔnɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="晴的">晴的</td>
+    <td class="clickable" data-lang="en" data-word="sunny">sunny</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Sombre">Sombre</td>
+    <td>[sɔ̃bʁ]</td>
+    <td class="clickable" data-lang="de" data-word="dunkel">dunkel</td>
+    <td>[ˈdʊŋkl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="暗的">暗的</td>
+    <td class="clickable" data-lang="en" data-word="dark">dark</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Nuageux">Nuageux</td>
+    <td>[nɥaʒø]</td>
+    <td class="clickable" data-lang="de" data-word="wolkig">wolkig</td>
+    <td>[ˈvɔlkɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="多云的">多云的</td>
+    <td class="clickable" data-lang="en" data-word="cloudy">cloudy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pluie">Pluie</td>
+    <td>[plɥi]</td>
+    <td class="clickable" data-lang="de" data-word="Regen">Regen</td>
+    <td>[ˈʁeːɡn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="雨">雨</td>
+    <td class="clickable" data-lang="en" data-word="rain">rain</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Neige">Neige</td>
+    <td>[nɛʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Schnee">Schnee</td>
+    <td>[ʃneː]</td>
+    <td class="clickable" data-lang="zh" data-word="雪">雪</td>
+    <td class="clickable" data-lang="en" data-word="snow">snow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Glace">Glace</td>
+    <td>[ɡlas]</td>
+    <td class="clickable" data-lang="de" data-word="Eis">Eis</td>
+    <td>[aɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="冰">冰</td>
+    <td class="clickable" data-lang="en" data-word="ice">ice</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Brume">Brume</td>
+    <td>[bʁym]</td>
+    <td class="clickable" data-lang="de" data-word="Dunst">Dunst</td>
+    <td>[dʊnst]</td>
+    <td class="clickable" data-lang="zh" data-word="雾">雾</td>
+    <td class="clickable" data-lang="en" data-word="haze">haze</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tonnerre">Tonnerre</td>
+    <td>[tɔnɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Donner">Donner</td>
+    <td>[ˈdɔnɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="雷">雷</td>
+    <td class="clickable" data-lang="en" data-word="thunder">thunder</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Frais">Frais</td>
+    <td>[fʁɛ]</td>
+    <td class="clickable" data-lang="de" data-word="kühl">kühl</td>
+    <td>[kyːl]</td>
+    <td class="clickable" data-lang="zh" data-word="凉爽的">凉爽的</td>
+    <td class="clickable" data-lang="en" data-word="cool">cool</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Humide">Humide</td>
+    <td>[ymid]</td>
+    <td class="clickable" data-lang="de" data-word="feucht">feucht</td>
+    <td>[fɔʏçt]</td>
+    <td class="clickable" data-lang="zh" data-word="潮湿的">潮湿的</td>
+    <td class="clickable" data-lang="en" data-word="humid">humid</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Sec">Sec</td>
+    <td>[sɛk]</td>
+    <td class="clickable" data-lang="de" data-word="trocken">trocken</td>
+    <td>[ˈtʁɔkn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="干燥的">干燥的</td>
+    <td class="clickable" data-lang="en" data-word="dry">dry</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Doux">Doux</td>
+    <td>[du]</td>
+    <td class="clickable" data-lang="de" data-word="mild">mild</td>
+    <td>[mɪlt]</td>
+    <td class="clickable" data-lang="zh" data-word="温和的">温和的</td>
+    <td class="clickable" data-lang="en" data-word="mild">mild</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Brumeux">Brumeux</td>
+    <td>[bʁymø]</td>
+    <td class="clickable" data-lang="de" data-word="neblig">neblig</td>
+    <td>[ˈneːblɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="有雾的">有雾的</td>
+    <td class="clickable" data-lang="en" data-word="foggy">foggy</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Univers">Univers</td>
+    <td>[ynivɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Weltall">Weltall</td>
+    <td>[ˈvɛltʔal]</td>
+    <td class="clickable" data-lang="zh" data-word="宇宙">宇宙</td>
+    <td class="clickable" data-lang="en" data-word="universe">universe</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Étoile fixe">Étoile fixe</td>
+    <td>[etwal fiks]</td>
+    <td class="clickable" data-lang="de" data-word="Fixstern">Fixstern</td>
+    <td>[ˈfɪksʃtɛʁn]</td>
+    <td class="clickable" data-lang="zh" data-word="恒星">恒星</td>
+    <td class="clickable" data-lang="en" data-word="fixed star">fixed star</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Planète">Planète</td>
+    <td>[planɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Planet">Planet</td>
+    <td>[plaˈneːt]</td>
+    <td class="clickable" data-lang="zh" data-word="行星">行星</td>
+    <td class="clickable" data-lang="en" data-word="planet">planet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Système solaire">Système solaire</td>
+    <td>[sistɛm sɔlɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Sonnensystem">Sonnensystem</td>
+    <td>[ˈzɔnənˌzʏsteːm]</td>
+    <td class="clickable" data-lang="zh" data-word="太阳系">太阳系</td>
+    <td class="clickable" data-lang="en" data-word="solar system">solar system</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Voie lactée">Voie lactée</td>
+    <td>[vwa lakte]</td>
+    <td class="clickable" data-lang="de" data-word="Milchstraße">Milchstraße</td>
+    <td>[ˈmɪlçˌʃtʁaːsə]</td>
+    <td class="clickable" data-lang="zh" data-word="银河系">银河系</td>
+    <td class="clickable" data-lang="en" data-word="Milky Way">Milky Way</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Année-lumière">Année-lumière</td>
+    <td>[ane lymjɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Lichtjahr">Lichtjahr</td>
+    <td>[ˈlɪçtjaːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="光年">光年</td>
+    <td class="clickable" data-lang="en" data-word="light year">light year</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Comète">Comète</td>
+    <td>[kɔmɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Komet">Komet</td>
+    <td>[koˈmeːt]</td>
+    <td class="clickable" data-lang="zh" data-word="彗星">彗星</td>
+    <td class="clickable" data-lang="en" data-word="comet">comet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Météore">Météore</td>
+    <td>[meteɔʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Meteor">Meteor</td>
+    <td>[meteˈoːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="流星">流星</td>
+    <td class="clickable" data-lang="en" data-word="meteor">meteor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pluton">Pluton</td>
+    <td>[plytɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Pluto">Pluto</td>
+    <td>[ˈpluːto]</td>
+    <td class="clickable" data-lang="zh" data-word="冥王星">冥王星</td>
+    <td class="clickable" data-lang="en" data-word="Pluto">Pluto</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Satellite">Satellite</td>
+    <td>[satɛlit]</td>
+    <td class="clickable" data-lang="de" data-word="Satellit">Satellit</td>
+    <td>[zateˈliːt]</td>
+    <td class="clickable" data-lang="zh" data-word="卫星">卫星</td>
+    <td class="clickable" data-lang="en" data-word="satellite">satellite</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mercure">Mercure</td>
+    <td>[mɛʁkyʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Merkur">Merkur</td>
+    <td>[ˈmɛʁkuːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="水星">水星</td>
+    <td class="clickable" data-lang="en" data-word="Mercury">Mercury</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vénus">Vénus</td>
+    <td>[venys]</td>
+    <td class="clickable" data-lang="de" data-word="Venus">Venus</td>
+    <td>[ˈveːnʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="金星">金星</td>
+    <td class="clickable" data-lang="en" data-word="Venus">Venus</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mars">Mars</td>
+    <td>[maʁs]</td>
+    <td class="clickable" data-lang="de" data-word="Mars">Mars</td>
+    <td>[maʁs]</td>
+    <td class="clickable" data-lang="zh" data-word="火星">火星</td>
+    <td class="clickable" data-lang="en" data-word="Mars">Mars</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Terre">Terre</td>
+    <td>[tɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Erde">Erde</td>
+    <td>[ˈeːɐ̯də]</td>
+    <td class="clickable" data-lang="zh" data-word="地球">地球</td>
+    <td class="clickable" data-lang="en" data-word="Earth">Earth</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Astéroïde">Astéroïde</td>
+    <td>[asteʁɔid]</td>
+    <td class="clickable" data-lang="de" data-word="Asteroid">Asteroid</td>
+    <td>[asteʁoˈiːt]</td>
+    <td class="clickable" data-lang="zh" data-word="小行星">小行星</td>
+    <td class="clickable" data-lang="en" data-word="asteroid">asteroid</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fusée">Fusée</td>
+    <td>[fyze]</td>
+    <td class="clickable" data-lang="de" data-word="Rakete">Rakete</td>
+    <td>[ʁaˈkeːtə]</td>
+    <td class="clickable" data-lang="zh" data-word="火箭">火箭</td>
+    <td class="clickable" data-lang="en" data-word="rocket">rocket</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Onde gravitationnelle">Onde gravitationnelle</td>
+    <td>[ɔ̃d ɡʁavitasjɔnɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Gravitationswelle">Gravitationswelle</td>
+    <td>[ɡʁavitaˈtsi̯oːnsˌvɛlə]</td>
+    <td class="clickable" data-lang="zh" data-word="引力波">引力波</td>
+    <td class="clickable" data-lang="en" data-word="gravitational wave">gravitational wave</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Trou noir">Trou noir</td>
+    <td>[tʁu nwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Schwarzes Loch">Schwarzes Loch</td>
+    <td>[ˈʃvaʁtsəs lɔx]</td>
+    <td class="clickable" data-lang="zh" data-word="黑洞">黑洞</td>
+    <td class="clickable" data-lang="en" data-word="black hole">black hole</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Matériau">Matériau</td>
+    <td>[mateʁjo]</td>
+    <td class="clickable" data-lang="de" data-word="Material">Material</td>
+    <td>[mateˈʁiaːl]</td>
+    <td class="clickable" data-lang="zh" data-word="材料">材料</td>
+    <td class="clickable" data-lang="en" data-word="material">material</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Flanelle">Flanelle</td>
+    <td>[flanɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Flanell">Flanell</td>
+    <td>[flaˈnɛl]</td>
+    <td class="clickable" data-lang="zh" data-word="法兰绒">法兰绒</td>
+    <td class="clickable" data-lang="en" data-word="flannel">flannel</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Textile">Textile</td>
+    <td>[tɛkstil]</td>
+    <td class="clickable" data-lang="de" data-word="Textilien">Textilien</td>
+    <td>[tɛksˈtiːli̯ən]</td>
+    <td class="clickable" data-lang="zh" data-word="纺织品">纺织品</td>
+    <td class="clickable" data-lang="en" data-word="textile">textile</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Feu">Feu</td>
+    <td>[fø]</td>
+    <td class="clickable" data-lang="de" data-word="Feuer">Feuer</td>
+    <td>[ˈfɔʏɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="火">火</td>
+    <td class="clickable" data-lang="en" data-word="fire">fire</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Air">Air</td>
+    <td>[ɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Luft">Luft</td>
+    <td>[lʊft]</td>
+    <td class="clickable" data-lang="zh" data-word="空气">空气</td>
+    <td class="clickable" data-lang="en" data-word="air">air</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bois">Bois</td>
+    <td>[bwa]</td>
+    <td class="clickable" data-lang="de" data-word="Holz">Holz</td>
+    <td>[hɔlts]</td>
+    <td class="clickable" data-lang="zh" data-word="木头">木头</td>
+    <td class="clickable" data-lang="en" data-word="wood">wood</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Gaz">Gaz</td>
+    <td>[ɡaz]</td>
+    <td class="clickable" data-lang="de" data-word="Gas">Gas</td>
+    <td>[ɡaːs]</td>
+    <td class="clickable" data-lang="zh" data-word="煤气">煤气</td>
+    <td class="clickable" data-lang="en" data-word="gas">gas</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cuir">Cuir</td>
+    <td>[kɥiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Leder">Leder</td>
+    <td>[ˈleːdɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="皮革">皮革</td>
+    <td class="clickable" data-lang="en" data-word="leather">leather</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Eau">Eau</td>
+    <td>[o]</td>
+    <td class="clickable" data-lang="de" data-word="Wasser">Wasser</td>
+    <td>[ˈvasɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="水">水</td>
+    <td class="clickable" data-lang="en" data-word="water">water</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pétrole">Pétrole</td>
+    <td>[petʁɔl]</td>
+    <td class="clickable" data-lang="de" data-word="Petroleum">Petroleum</td>
+    <td>[petʁoˈleːʊm]</td>
+    <td class="clickable" data-lang="zh" data-word="石油">石油</td>
+    <td class="clickable" data-lang="en" data-word="petroleum">petroleum</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Essence">Essence</td>
+    <td>[esɑ̃s]</td>
+    <td class="clickable" data-lang="de" data-word="Benzin">Benzin</td>
+    <td>[bɛnˈtsiːn]</td>
+    <td class="clickable" data-lang="zh" data-word="汽油">汽油</td>
+    <td class="clickable" data-lang="en" data-word="gasoline">gasoline</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Brique">Brique</td>
+    <td>[bʁik]</td>
+    <td class="clickable" data-lang="de" data-word="Ziegel">Ziegel</td>
+    <td>[ˈtsiːɡl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="砖">砖</td>
+    <td class="clickable" data-lang="en" data-word="brick">brick</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Aimant">Aimant</td>
+    <td>[ɛmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Magnet">Magnet</td>
+    <td>[maˈɡneːt]</td>
+    <td class="clickable" data-lang="zh" data-word="磁铁">磁铁</td>
+    <td class="clickable" data-lang="en" data-word="magnet">magnet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Quincaillerie">Quincaillerie</td>
+    <td>[kɛ̃kajʁi]</td>
+    <td class="clickable" data-lang="de" data-word="Eisenwarenhandlung">Eisenwarenhandlung</td>
+    <td>[ˈaɪ̯zn̩ˌvaːʁənˌhandlʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="五金店">五金店</td>
+    <td class="clickable" data-lang="en" data-word="hardware store">hardware store</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Aluminium">Aluminium</td>
+    <td>[alyminjɔm]</td>
+    <td class="clickable" data-lang="de" data-word="Aluminium">Aluminium</td>
+    <td>[aluˈmiːni̯ʊm]</td>
+    <td class="clickable" data-lang="zh" data-word="铝">铝</td>
+    <td class="clickable" data-lang="en" data-word="aluminum">aluminum</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Métal">Métal</td>
+    <td>[metal]</td>
+    <td class="clickable" data-lang="de" data-word="Metall">Metall</td>
+    <td>[meˈtal]</td>
+    <td class="clickable" data-lang="zh" data-word="金属">金属</td>
+    <td class="clickable" data-lang="en" data-word="metal">metal</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Or">Or</td>
+    <td>[ɔʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Gold">Gold</td>
+    <td>[ɡɔlt]</td>
+    <td class="clickable" data-lang="zh" data-word="金">金</td>
+    <td class="clickable" data-lang="en" data-word="gold">gold</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Argent">Argent</td>
+    <td>[aʁʒɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Silber">Silber</td>
+    <td>[ˈzɪlbɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="银">银</td>
+    <td class="clickable" data-lang="en" data-word="silver">silver</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cuivre">Cuivre</td>
+    <td>[kɥivʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Kupfer">Kupfer</td>
+    <td>[ˈkʊpfɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="铜">铜</td>
+    <td class="clickable" data-lang="en" data-word="copper">copper</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fer">Fer</td>
+    <td>[fɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Eisen">Eisen</td>
+    <td>[ˈaɪ̯zn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="铁">铁</td>
+    <td class="clickable" data-lang="en" data-word="iron">iron</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mou">Mou</td>
+    <td>[mu]</td>
+    <td class="clickable" data-lang="de" data-word="weich">weich</td>
+    <td>[vaɪ̯ç]</td>
+    <td class="clickable" data-lang="zh" data-word="软的">软的</td>
+    <td class="clickable" data-lang="en" data-word="soft">soft</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Dur">Dur</td>
+    <td>[dyʁ]</td>
+    <td class="clickable" data-lang="de" data-word="hart">hart</td>
+    <td>[haʁt]</td>
+    <td class="clickable" data-lang="zh" data-word="硬的">硬的</td>
+    <td class="clickable" data-lang="en" data-word="hard">hard</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Grand">Grand</td>
+    <td>[ɡʁɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="groß">groß</td>
+    <td>[ɡʁoːs]</td>
+    <td class="clickable" data-lang="zh" data-word="大的">大的</td>
+    <td class="clickable" data-lang="en" data-word="big">big</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Petit">Petit</td>
+    <td>[pəti]</td>
+    <td class="clickable" data-lang="de" data-word="klein">klein</td>
+    <td>[klaɪ̯n]</td>
+    <td class="clickable" data-lang="zh" data-word="小的">小的</td>
+    <td class="clickable" data-lang="en" data-word="small">small</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Léger">Léger</td>
+    <td>[leʒe]</td>
+    <td class="clickable" data-lang="de" data-word="leicht">leicht</td>
+    <td>[laɪ̯çt]</td>
+    <td class="clickable" data-lang="zh" data-word="轻的">轻的</td>
+    <td class="clickable" data-lang="en" data-word="light">light</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lourd">Lourd</td>
+    <td>[luʁ]</td>
+    <td class="clickable" data-lang="de" data-word="schwer">schwer</td>
+    <td>[ʃveːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="重的">重的</td>
+    <td class="clickable" data-lang="en" data-word="heavy">heavy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Transparent">Transparent</td>
+    <td>[tʁɑ̃spaʁɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="transparent">transparent</td>
+    <td>[tʁanspaˈʁɛnt]</td>
+    <td class="clickable" data-lang="zh" data-word="透明的">透明的</td>
+    <td class="clickable" data-lang="en" data-word="transparent">transparent</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Robuste">Robuste</td>
+    <td>[ʁɔbyst]</td>
+    <td class="clickable" data-lang="de" data-word="robust">robust</td>
+    <td>[ʁoˈbʊst]</td>
+    <td class="clickable" data-lang="zh" data-word="结实的">结实的</td>
+    <td class="clickable" data-lang="en" data-word="robust">robust</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Rugueux">Rugueux</td>
+    <td>[ʁyɡø]</td>
+    <td class="clickable" data-lang="de" data-word="grob">grob</td>
+    <td>[ɡʁoːp]</td>
+    <td class="clickable" data-lang="zh" data-word="粗糙的">粗糙的</td>
+    <td class="clickable" data-lang="en" data-word="rough">rough</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lisse">Lisse</td>
+    <td>[lis]</td>
+    <td class="clickable" data-lang="de" data-word="glatt">glatt</td>
+    <td>[ɡlat]</td>
+    <td class="clickable" data-lang="zh" data-word="平滑的">平滑的</td>
+    <td class="clickable" data-lang="en" data-word="smooth">smooth</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Artificiel">Artificiel</td>
+    <td>[aʁtifisjɛl]</td>
+    <td class="clickable" data-lang="de" data-word="künstlich">künstlich</td>
+    <td>[ˈkʏnstlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="人工的">人工的</td>
+    <td class="clickable" data-lang="en" data-word="artificial">artificial</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Stable">Stable</td>
+    <td>[stabl]</td>
+    <td class="clickable" data-lang="de" data-word="stabil">stabil</td>
+    <td>[ʃtaˈbiːl]</td>
+    <td class="clickable" data-lang="zh" data-word="稳定的">稳定的</td>
+    <td class="clickable" data-lang="en" data-word="stable">stable</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Conduire">Conduire</td>
+    <td>[kɔ̃dɥiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="leiten">leiten</td>
+    <td>[ˈlaɪ̯tn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="导电">导电</td>
+    <td class="clickable" data-lang="en" data-word="conduct">conduct</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Froid">Froid</td>
+    <td>[fʁwa]</td>
+    <td class="clickable" data-lang="de" data-word="kalt">kalt</td>
+    <td>[kalt]</td>
+    <td class="clickable" data-lang="zh" data-word="冷的">冷的</td>
+    <td class="clickable" data-lang="en" data-word="cold">cold</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Chaud">Chaud</td>
+    <td>[ʃo]</td>
+    <td class="clickable" data-lang="de" data-word="heiß">heiß</td>
+    <td>[haɪ̯s]</td>
+    <td class="clickable" data-lang="zh" data-word="热的">热的</td>
+    <td class="clickable" data-lang="en" data-word="hot">hot</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Haut">Haut</td>
+    <td>[o]</td>
+    <td class="clickable" data-lang="de" data-word="hoch">hoch</td>
+    <td>[hoːx]</td>
+    <td class="clickable" data-lang="zh" data-word="高的">高的</td>
+    <td class="clickable" data-lang="en" data-word="high">high</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bas">Bas</td>
+    <td>[ba]</td>
+    <td class="clickable" data-lang="de" data-word="niedrig">niedrig</td>
+    <td>[ˈniːdʁɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="低的">低的</td>
+    <td class="clickable" data-lang="en" data-word="low">low</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Trouble">Trouble</td>
+    <td>[tʁubl]</td>
+    <td class="clickable" data-lang="de" data-word="trüb">trüb</td>
+    <td>[tʁyːp]</td>
+    <td class="clickable" data-lang="zh" data-word="模糊的">模糊的</td>
+    <td class="clickable" data-lang="en" data-word="cloudy">cloudy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Force">Force</td>
+    <td>[fɔʁs]</td>
+    <td class="clickable" data-lang="de" data-word="Stärke">Stärke</td>
+    <td>[ˈʃtɛʁkə]</td>
+    <td class="clickable" data-lang="zh" data-word="强度">强度</td>
+    <td class="clickable" data-lang="en" data-word="strength">strength</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Anticorrosif">Anticorrosif</td>
+    <td>[ɑ̃tikɔʁozif]</td>
+    <td class="clickable" data-lang="de" data-word="korrosionsbeständig">korrosionsbeständig</td>
+    <td>[kɔʁoˈzi̯oːnsbəˌʃtɛndɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="抗腐蚀的">抗腐蚀的</td>
+    <td class="clickable" data-lang="en" data-word="corrosion-resistant">corrosion-resistant</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Couleur">Couleur</td>
+    <td>[kulœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Farbe">Farbe</td>
+    <td>[ˈfaʁbə]</td>
+    <td class="clickable" data-lang="zh" data-word="色彩">色彩</td>
+    <td class="clickable" data-lang="en" data-word="color">color</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Blanc">Blanc</td>
+    <td>[blɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="weiß">weiß</td>
+    <td>[vaɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="白色的">白色的</td>
+    <td class="clickable" data-lang="en" data-word="white">white</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Noir">Noir</td>
+    <td>[nwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="schwarz">schwarz</td>
+    <td>[ʃvaʁts]</td>
+    <td class="clickable" data-lang="zh" data-word="黑色的">黑色的</td>
+    <td class="clickable" data-lang="en" data-word="black">black</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Rose">Rose</td>
+    <td>[ʁoz]</td>
+    <td class="clickable" data-lang="de" data-word="rosa">rosa</td>
+    <td>[ˈʁoːza]</td>
+    <td class="clickable" data-lang="zh" data-word="粉红的">粉红的</td>
+    <td class="clickable" data-lang="en" data-word="pink">pink</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Rouge">Rouge</td>
+    <td>[ʁuʒ]</td>
+    <td class="clickable" data-lang="de" data-word="rot">rot</td>
+    <td>[ʁoːt]</td>
+    <td class="clickable" data-lang="zh" data-word="红色的">红色的</td>
+    <td class="clickable" data-lang="en" data-word="red">red</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Jaune">Jaune</td>
+    <td>[ʒon]</td>
+    <td class="clickable" data-lang="de" data-word="gelb">gelb</td>
+    <td>[ɡɛlp]</td>
+    <td class="clickable" data-lang="zh" data-word="黄色的">黄色的</td>
+    <td class="clickable" data-lang="en" data-word="yellow">yellow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bleu">Bleu</td>
+    <td>[blø]</td>
+    <td class="clickable" data-lang="de" data-word="blau">blau</td>
+    <td>[blaʊ]</td>
+    <td class="clickable" data-lang="zh" data-word="蓝色的">蓝色的</td>
+    <td class="clickable" data-lang="en" data-word="blue">blue</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vert">Vert</td>
+    <td>[vɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="grün">grün</td>
+    <td>[ɡʁyːn]</td>
+    <td class="clickable" data-lang="zh" data-word="绿色的">绿色的</td>
+    <td class="clickable" data-lang="en" data-word="green">green</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pourpre">Pourpre</td>
+    <td>[puʁpʁ]</td>
+    <td class="clickable" data-lang="de" data-word="purpurrot">purpurrot</td>
+    <td>[ˈpʊʁpʊʁˌʁoːt]</td>
+    <td class="clickable" data-lang="zh" data-word="紫红色的">紫红色的</td>
+    <td class="clickable" data-lang="en" data-word="purple">purple</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Gris">Gris</td>
+    <td>[ɡʁi]</td>
+    <td class="clickable" data-lang="de" data-word="grau">grau</td>
+    <td>[ɡʁaʊ]</td>
+    <td class="clickable" data-lang="zh" data-word="灰色的">灰色的</td>
+    <td class="clickable" data-lang="en" data-word="gray">gray</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Doré">Doré</td>
+    <td>[dɔʁe]</td>
+    <td class="clickable" data-lang="de" data-word="golden">golden</td>
+    <td>[ˈɡɔldn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="金色的">金色的</td>
+    <td class="clickable" data-lang="en" data-word="golden">golden</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Argenté">Argenté</td>
+    <td>[aʁʒɑ̃te]</td>
+    <td class="clickable" data-lang="de" data-word="silbern">silbern</td>
+    <td>[ˈzɪlbɐn]</td>
+    <td class="clickable" data-lang="zh" data-word="银色的">银色的</td>
+    <td class="clickable" data-lang="en" data-word="silver">silver</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Clair">Clair</td>
+    <td>[klɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="hell">hell</td>
+    <td>[hɛl]</td>
+    <td class="clickable" data-lang="zh" data-word="鲜艳的">鲜艳的</td>
+    <td class="clickable" data-lang="en" data-word="bright">bright</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Sombre">Sombre</td>
+    <td>[sɔ̃bʁ]</td>
+    <td class="clickable" data-lang="de" data-word="dunkel">dunkel</td>
+    <td>[ˈdʊŋkl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="暗的">暗的</td>
+    <td class="clickable" data-lang="en" data-word="dark">dark</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Coloré">Coloré</td>
+    <td>[kɔlɔʁe]</td>
+    <td class="clickable" data-lang="de" data-word="farbenfroh">farbenfroh</td>
+    <td>[ˈfaʁbn̩ˌfʁoː]</td>
+    <td class="clickable" data-lang="zh" data-word="彩色的">彩色的</td>
+    <td class="clickable" data-lang="en" data-word="colorful">colorful</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Teint">Teint</td>
+    <td>[tɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Hautfarbe">Hautfarbe</td>
+    <td>[ˈhaʊ̯tˌfaʁbə]</td>
+    <td class="clickable" data-lang="zh" data-word="肤色">肤色</td>
+    <td class="clickable" data-lang="en" data-word="complexion">complexion</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Décolorer">Décolorer</td>
+    <td>[dekɔlɔʁe]</td>
+    <td class="clickable" data-lang="de" data-word="ausgehen">ausgehen</td>
+    <td>[ˈaʊ̯sˌɡeːən]</td>
+    <td class="clickable" data-lang="zh" data-word="褪色">褪色</td>
+    <td class="clickable" data-lang="en" data-word="fade">fade</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Violet">Violet</td>
+    <td>[vjɔlɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Violett">Violett</td>
+    <td>[vioˈlɛt]</td>
+    <td class="clickable" data-lang="zh" data-word="紫罗兰色">紫罗兰色</td>
+    <td class="clickable" data-lang="en" data-word="violet">violet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pâle">Pâle</td>
+    <td>[pɑl]</td>
+    <td class="clickable" data-lang="de" data-word="blass">blass</td>
+    <td>[blas]</td>
+    <td class="clickable" data-lang="zh" data-word="苍白的">苍白的</td>
+    <td class="clickable" data-lang="en" data-word="pale">pale</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tendre">Tendre</td>
+    <td>[tɑ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="zart">zart</td>
+    <td>[tsaʁt]</td>
+    <td class="clickable" data-lang="zh" data-word="柔和的">柔和的</td>
+    <td class="clickable" data-lang="en" data-word="tender">tender</td>
+</tr>
+    </table>
+
+    <script>
+    const PIXABAY_API_KEY = '49256357-c30f2f538120ce8d74ff8921d';
+    let speechSynth = window.speechSynthesis;
+    let voices = [];
+
+    // Wait for voices to load
+    speechSynth.onvoiceschanged = function() {
+        voices = speechSynth.getVoices();
+    };
+
+    // Pronunciation function
+    function speak(text, lang) {
+        // Cancel any ongoing speech
+        speechSynth.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        
+        // For Chinese, select appropriate voice based on dialect
+        if (lang.startsWith('zh')) {
+            const voices = window.speechSynthesis.getVoices();
+            const chineseVoice = voices.find(voice => voice.lang.includes(lang));
+            if (chineseVoice) {
+                utterance.voice = chineseVoice;
+            }
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    } 
+    
+    // Remove existing background images
+    function clearBackgroundImages() {
+        document.querySelectorAll('.background-image').forEach(img => img.remove());
+    }
+
+    // Fetch and add background image
+    async function addBackgroundImage(cell, searchTerm) {
+        clearBackgroundImages();
+        
+        try {
+            const apiUrl = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(searchTerm)}&per_page=4&safesearch=true`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.hits && data.hits.length > 0) {
+                const randomIndex = Math.floor(Math.random() * Math.min(4, data.hits.length));
+                const img = document.createElement('img');
+                img.src = data.hits[randomIndex].previewURL;
+                img.className = 'background-image';
+                img.alt = searchTerm;
+                
+                const firstCell = cell.closest('tr').querySelector('td:first-child');
+                firstCell.appendChild(img);
+
+                // Remove the image after 3 seconds
+                setTimeout(clearBackgroundImages, 3000);
+            }
+        } catch (error) {
+            console.error('Error fetching image:', error);
+        }
+    }
+
+    // Add click events to clickable cells
+    window.speechSynthesis.onvoiceschanged = () => {
+        document.querySelectorAll('.clickable').forEach(cell => {
+            cell.addEventListener('click', function() {
+                const text = this.textContent;
+                let lang;
+                
+                // Get language based on data-lang attribute
+                switch(this.dataset.lang) {
+                    case 'fr':
+                        lang = 'fr-FR';
+                        break;
+                    case 'de':
+                        lang = 'de-DE';
+                        break;
+                    case 'zh':
+                        // Use selected dialect for Chinese
+                        lang = document.getElementById('chineseDialect').value;
+                        break;
+                    default:
+                        lang = 'en-US';
+                }
+                
+                speak(text, lang);
+                addBackgroundImage(this, this.dataset.word);
+
+                // Visual feedback with cleanup
+                const originalBg = window.getComputedStyle(this).backgroundColor;
+                this.style.backgroundColor = '#c8e6c9';
+                
+                // Clear any existing timeout for this cell
+                if (this.resetTimeout) {
+                    clearTimeout(this.resetTimeout);
+                }
+                
+                // Set new timeout and store its ID
+                this.resetTimeout = setTimeout(() => {
+                    this.style.backgroundColor = '';
+                    this.resetTimeout = null;
+                }, 500);
+            });
+        });
+    };
+</script>
+
+</body>
+</html>

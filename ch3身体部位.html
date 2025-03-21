@@ -1,0 +1,927 @@
+<!-- <使用这个模板，添加单词到table的部分就可以!> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr {
+            position: relative;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .clickable {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+        .clickable:hover {
+            background-color: #e6e6e6;
+        }
+        .background-image {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        .background-image:hover {
+            opacity: 0.8;
+        }
+        .language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .language-selector select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="index.html" class="back-button">🏠 主页</a>
+        <h1>ch3身体部位</h1>
+      </div>
+
+    <div class="language-selector">
+        <select id="chineseDialect">
+            <option value="zh-CN">普通话</option>
+            <option value="zh-HK">粤语</option>
+        </select>
+    </div>
+
+    <table id="wordTable">
+        <tr>
+            <th>法语</th>
+            <th>音标</th>
+            <th>德语</th>
+            <th>音标</th>
+            <th>中文</th>
+            <th>英语</th>
+        </tr>
+
+        <tr>
+            <td class="clickable" data-lang="fr" data-word="tête">tête</td>
+            <td>[tɛt]</td>
+            <td class="clickable" data-lang="de" data-word="Kopf">Kopf</td>
+            <td>[kɔpf]</td>
+            <td class="clickable" data-lang="zh" data-word="头">头</td>
+            <td class="clickable" data-lang="en" data-word="head">head</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="cou">cou</td>
+            <td>[ku]</td>
+            <td class="clickable" data-lang="de" data-word="Hals">Hals</td>
+            <td>[hals]</td>
+            <td class="clickable" data-lang="zh" data-word="脖子">脖子</td>
+            <td class="clickable" data-lang="en" data-word="neck">neck</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="bras">bras</td>
+            <td>[bʁa]</td>
+            <td class="clickable" data-lang="de" data-word="Arm">Arm</td>
+            <td>[aʁm]</td>
+            <td class="clickable" data-lang="zh" data-word="手臂">手臂</td>
+            <td class="clickable" data-lang="en" data-word="arm">arm</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="main">main</td>
+            <td>[mɛ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Hand">Hand</td>
+            <td>[hant]</td>
+            <td class="clickable" data-lang="zh" data-word="手">手</td>
+            <td class="clickable" data-lang="en" data-word="hand">hand</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="dos">dos</td>
+            <td>[do]</td>
+            <td class="clickable" data-lang="de" data-word="Rücken">Rücken</td>
+            <td>[ˈʁʏkən]</td>
+            <td class="clickable" data-lang="zh" data-word="背">背</td>
+            <td class="clickable" data-lang="en" data-word="back">back</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="ventre">ventre</td>
+            <td>[vɑ̃tʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Bauch">Bauch</td>
+            <td>[baʊx]</td>
+            <td class="clickable" data-lang="zh" data-word="腹部">腹部</td>
+            <td class="clickable" data-lang="en" data-word="belly">belly</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="jambe">jambe</td>
+            <td>[ʒɑ̃b]</td>
+            <td class="clickable" data-lang="de" data-word="Bein">Bein</td>
+            <td>[baɪn]</td>
+            <td class="clickable" data-lang="zh" data-word="腿">腿</td>
+            <td class="clickable" data-lang="en" data-word="leg">leg</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="pied">pied</td>
+            <td>[pje]</td>
+            <td class="clickable" data-lang="de" data-word="Fuß">Fuß</td>
+            <td>[fuːs]</td>
+            <td class="clickable" data-lang="zh" data-word="脚">脚</td>
+            <td class="clickable" data-lang="en" data-word="foot">foot</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="taille">taille</td>
+            <td>[taj]</td>
+            <td class="clickable" data-lang="de" data-word="Taille">Taille</td>
+            <td>[ˈtaɪjə]</td>
+            <td class="clickable" data-lang="zh" data-word="腰">腰</td>
+            <td class="clickable" data-lang="en" data-word="waist">waist</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="poitrine">poitrine</td>
+            <td>[pwatʁin]</td>
+            <td class="clickable" data-lang="de" data-word="Brust">Brust</td>
+            <td>[bʁʊst]</td>
+            <td class="clickable" data-lang="zh" data-word="胸">胸</td>
+            <td class="clickable" data-lang="en" data-word="chest">chest</td>
+</tr>    
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="corps">corps</td>
+    <td>[kɔʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Körper">Körper</td>
+    <td>[ˈkœʁpɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="身体">身体</td>
+    <td class="clickable" data-lang="en" data-word="body">body</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="épaule">épaule</td>
+    <td>[epol]</td>
+    <td class="clickable" data-lang="de" data-word="Schulter">Schulter</td>
+    <td>[ˈʃʊltɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="肩膀">肩膀</td>
+    <td class="clickable" data-lang="en" data-word="shoulder">shoulder</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fesses">fesses</td>
+    <td>[fɛs]</td>
+    <td class="clickable" data-lang="de" data-word="Hintern">Hintern</td>
+    <td>[ˈhɪntɐn]</td>
+    <td class="clickable" data-lang="zh" data-word="臀部">臀部</td>
+    <td class="clickable" data-lang="en" data-word="bottom">bottom</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="genou">genou</td>
+    <td>[ʒənu]</td>
+    <td class="clickable" data-lang="de" data-word="Knie">Knie</td>
+    <td>[kniː]</td>
+    <td class="clickable" data-lang="zh" data-word="膝盖">膝盖</td>
+    <td class="clickable" data-lang="en" data-word="knee">knee</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cheville">cheville</td>
+    <td>[ʃəvij]</td>
+    <td class="clickable" data-lang="de" data-word="Knöchel">Knöchel</td>
+    <td>[ˈknœçəl]</td>
+    <td class="clickable" data-lang="zh" data-word="脚踝">脚踝</td>
+    <td class="clickable" data-lang="en" data-word="ankle">ankle</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="visage">visage</td>
+    <td>[vizaʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Gesicht">Gesicht</td>
+    <td>[gəˈzɪçt]</td>
+    <td class="clickable" data-lang="zh" data-word="脸">脸</td>
+    <td class="clickable" data-lang="en" data-word="face">face</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="coude">coude</td>
+    <td>[kud]</td>
+    <td class="clickable" data-lang="de" data-word="Ellbogen">Ellbogen</td>
+    <td>[ˈɛlboːgən]</td>
+    <td class="clickable" data-lang="zh" data-word="肘部">肘部</td>
+    <td class="clickable" data-lang="en" data-word="elbow">elbow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="aisselle">aisselle</td>
+    <td>[ɛsɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Achselhöhle">Achselhöhle</td>
+    <td>[ˈaksəlhøːlə]</td>
+    <td class="clickable" data-lang="zh" data-word="腋窝">腋窝</td>
+    <td class="clickable" data-lang="en" data-word="armpit">armpit</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="nombril">nombril</td>
+    <td>[nɔ̃bʁil]</td>
+    <td class="clickable" data-lang="de" data-word="Nabel">Nabel</td>
+    <td>[ˈnaːbəl]</td>
+    <td class="clickable" data-lang="zh" data-word="肚脐">肚脐</td>
+    <td class="clickable" data-lang="en" data-word="navel">navel</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="poignet">poignet</td>
+    <td>[pwaɲɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Handgelenk">Handgelenk</td>
+    <td>[ˈhantgəlɛŋk]</td>
+    <td class="clickable" data-lang="zh" data-word="手腕">手腕</td>
+    <td class="clickable" data-lang="en" data-word="wrist">wrist</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sourcil">sourcil</td>
+    <td>[suʁsi]</td>
+    <td class="clickable" data-lang="de" data-word="Augenbraue">Augenbraue</td>
+    <td>[ˈaʊgənbʁaʊə]</td>
+    <td class="clickable" data-lang="zh" data-word="眉毛">眉毛</td>
+    <td class="clickable" data-lang="en" data-word="eyebrow">eyebrow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="œil">œil</td>
+    <td>[œj]</td>
+    <td class="clickable" data-lang="de" data-word="Auge">Auge</td>
+    <td>[ˈaʊgə]</td>
+    <td class="clickable" data-lang="zh" data-word="眼睛">眼睛</td>
+    <td class="clickable" data-lang="en" data-word="eye">eye</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cheveux">cheveux</td>
+    <td>[ʃəvø]</td>
+    <td class="clickable" data-lang="de" data-word="Haar">Haar</td>
+    <td>[haːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="头发">头发</td>
+    <td class="clickable" data-lang="en" data-word="hair">hair</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="front">front</td>
+    <td>[fʁɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Stirn">Stirn</td>
+    <td>[ʃtɪʁn]</td>
+    <td class="clickable" data-lang="zh" data-word="前额">前额</td>
+    <td class="clickable" data-lang="en" data-word="forehead">forehead</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="nez">nez</td>
+    <td>[ne]</td>
+    <td class="clickable" data-lang="de" data-word="Nase">Nase</td>
+    <td>[ˈnaːzə]</td>
+    <td class="clickable" data-lang="zh" data-word="鼻子">鼻子</td>
+    <td class="clickable" data-lang="en" data-word="nose">nose</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="oreille">oreille</td>
+<td>[ɔʁɛj]</td>
+<td class="clickable" data-lang="de" data-word="Ohr">Ohr</td>
+<td>[oːɐ̯]</td>
+<td class="clickable" data-lang="zh" data-word="耳朵">耳朵</td>
+<td class="clickable" data-lang="en" data-word="ear">ear</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="bouche">bouche</td>
+<td>[buʃ]</td>
+<td class="clickable" data-lang="de" data-word="Mund">Mund</td>
+<td>[mʊnt]</td>
+<td class="clickable" data-lang="zh" data-word="嘴">嘴</td>
+<td class="clickable" data-lang="en" data-word="mouth">mouth</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="cil">cil</td>
+<td>[sil]</td>
+<td class="clickable" data-lang="de" data-word="Wimper">Wimper</td>
+<td>[ˈvɪmpɐ]</td>
+<td class="clickable" data-lang="zh" data-word="睫毛">睫毛</td>
+<td class="clickable" data-lang="en" data-word="eyelash">eyelash</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="joue">joue</td>
+<td>[ʒu]</td>
+<td class="clickable" data-lang="de" data-word="Wange">Wange</td>
+<td>[ˈvaŋə]</td>
+<td class="clickable" data-lang="zh" data-word="脸颊">脸颊</td>
+<td class="clickable" data-lang="en" data-word="cheek">cheek</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="pupille">pupille</td>
+<td>[pypij]</td>
+<td class="clickable" data-lang="de" data-word="Pupille">Pupille</td>
+<td>[puˈpɪlə]</td>
+<td class="clickable" data-lang="zh" data-word="瞳孔">瞳孔</td>
+<td class="clickable" data-lang="en" data-word="pupil">pupil</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="orbite">orbite</td>
+<td>[ɔʁbit]</td>
+<td class="clickable" data-lang="de" data-word="Augenhöhle">Augenhöhle</td>
+<td>[ˈaʊgənhøːlə]</td>
+<td class="clickable" data-lang="zh" data-word="眼眶">眼眶</td>
+<td class="clickable" data-lang="en" data-word="eye socket">eye socket</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="paupière">paupière</td>
+<td>[popjɛʁ]</td>
+<td class="clickable" data-lang="de" data-word="Augenlid">Augenlid</td>
+<td>[ˈaʊgənliːt]</td>
+<td class="clickable" data-lang="zh" data-word="眼睑">眼睑</td>
+<td class="clickable" data-lang="en" data-word="eyelid">eyelid</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="narine">narine</td>
+<td>[naʁin]</td>
+<td class="clickable" data-lang="de" data-word="Nasenloch">Nasenloch</td>
+<td>[ˈnaːzənlɔx]</td>
+<td class="clickable" data-lang="zh" data-word="鼻孔">鼻孔</td>
+<td class="clickable" data-lang="en" data-word="nostril">nostril</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="lèvre">lèvre</td>
+<td>[lɛvʁ]</td>
+<td class="clickable" data-lang="de" data-word="Lippe">Lippe</td>
+<td>[ˈlɪpə]</td>
+<td class="clickable" data-lang="zh" data-word="嘴唇">嘴唇</td>
+<td class="clickable" data-lang="en" data-word="lip">lip</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="langue">langue</td>
+<td>[lɑ̃g]</td>
+<td class="clickable" data-lang="de" data-word="Zunge">Zunge</td>
+<td>[ˈtsʊŋə]</td>
+<td class="clickable" data-lang="zh" data-word="舌头">舌头</td>
+<td class="clickable" data-lang="en" data-word="tongue">tongue</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="dent">dent</td>
+<td>[dɑ̃]</td>
+<td class="clickable" data-lang="de" data-word="Zahn">Zahn</td>
+<td>[tsaːn]</td>
+<td class="clickable" data-lang="zh" data-word="牙齿">牙齿</td>
+<td class="clickable" data-lang="en" data-word="tooth">tooth</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="menton">menton</td>
+<td>[mɑ̃tɔ̃]</td>
+<td class="clickable" data-lang="de" data-word="Kinn">Kinn</td>
+<td>[kɪn]</td>
+<td class="clickable" data-lang="zh" data-word="下巴">下巴</td>
+<td class="clickable" data-lang="en" data-word="chin">chin</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="globe oculaire">globe oculaire</td>
+<td>[glɔb‿ɔkylɛʁ]</td>
+<td class="clickable" data-lang="de" data-word="Augapfel">Augapfel</td>
+<td>[ˈaʊgapfəl]</td>
+<td class="clickable" data-lang="zh" data-word="眼球">眼球</td>
+<td class="clickable" data-lang="en" data-word="eyeball">eyeball</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="mâchoire">mâchoire</td>
+<td>[maʃwaʁ]</td>
+<td class="clickable" data-lang="de" data-word="Kiefer">Kiefer</td>
+<td>[ˈkiːfɐ]</td>
+<td class="clickable" data-lang="zh" data-word="下颌">下颌</td>
+<td class="clickable" data-lang="en" data-word="jaw">jaw</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="philtrum">philtrum</td>
+<td>[filtʁɔm]</td>
+<td class="clickable" data-lang="de" data-word="Philtrum">Philtrum</td>
+<td>[ˈfɪltʁʊm]</td>
+<td class="clickable" data-lang="zh" data-word="人中">人中</td>
+<td class="clickable" data-lang="en" data-word="philtrum">philtrum</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="cœur">cœur</td>
+<td>[kœʁ]</td>
+<td class="clickable" data-lang="de" data-word="Herz">Herz</td>
+<td>[hɛʁts]</td>
+<td class="clickable" data-lang="zh" data-word="心脏">心脏</td>
+<td class="clickable" data-lang="en" data-word="heart">heart</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="foie">foie</td>
+<td>[fwa]</td>
+<td class="clickable" data-lang="de" data-word="Leber">Leber</td>
+<td>[ˈleːbɐ]</td>
+<td class="clickable" data-lang="zh" data-word="肝脏">肝脏</td>
+<td class="clickable" data-lang="en" data-word="liver">liver</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="rate">rate</td>
+<td>[ʁat]</td>
+<td class="clickable" data-lang="de" data-word="Milz">Milz</td>
+<td>[mɪlts]</td>
+<td class="clickable" data-lang="zh" data-word="脾脏">脾脏</td>
+<td class="clickable" data-lang="en" data-word="spleen">spleen</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="poumon">poumon</td>
+<td>[pumɔ̃]</td>
+<td class="clickable" data-lang="de" data-word="Lunge">Lunge</td>
+<td>[ˈlʊŋə]</td>
+<td class="clickable" data-lang="zh" data-word="肺">肺</td>
+<td class="clickable" data-lang="en" data-word="lung">lung</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="rein">rein</td>
+<td>[ʁɛ̃]</td>
+<td class="clickable" data-lang="de" data-word="Niere">Niere</td>
+<td>[ˈniːʁə]</td>
+<td class="clickable" data-lang="zh" data-word="肾脏">肾脏</td>
+<td class="clickable" data-lang="en" data-word="kidney">kidney</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="estomac">estomac</td>
+<td>[ɛstɔma]</td>
+<td class="clickable" data-lang="de" data-word="Magen">Magen</td>
+<td>[ˈmaːgən]</td>
+<td class="clickable" data-lang="zh" data-word="胃">胃</td>
+<td class="clickable" data-lang="en" data-word="stomach">stomach</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="vésicule biliaire">vésicule biliaire</td>
+<td>[vezikyl biljɛʁ]</td>
+<td class="clickable" data-lang="de" data-word="Gallenblase">Gallenblase</td>
+<td>[ˈgalənblaːzə]</td>
+<td class="clickable" data-lang="zh" data-word="胆囊">胆囊</td>
+<td class="clickable" data-lang="en" data-word="gallbladder">gallbladder</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="intestin grêle">intestin grêle</td>
+<td>[ɛ̃tɛstɛ̃ gʁɛl]</td>
+<td class="clickable" data-lang="de" data-word="Dünndarm">Dünndarm</td>
+<td>[ˈdʏndaʁm]</td>
+<td class="clickable" data-lang="zh" data-word="小肠">小肠</td>
+<td class="clickable" data-lang="en" data-word="small intestine">small intestine</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="gros intestin">gros intestin</td>
+<td>[gʁo ɛ̃tɛstɛ̃]</td>
+<td class="clickable" data-lang="de" data-word="Dickdarm">Dickdarm</td>
+<td>[ˈdɪkdaʁm]</td>
+<td class="clickable" data-lang="zh" data-word="大肠">大肠</td>
+<td class="clickable" data-lang="en" data-word="large intestine">large intestine</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="vessie">vessie</td>
+<td>[vesi]</td>
+<td class="clickable" data-lang="de" data-word="Harnblase">Harnblase</td>
+<td>[ˈhaʁnblaːzə]</td>
+<td class="clickable" data-lang="zh" data-word="膀胱">膀胱</td>
+<td class="clickable" data-lang="en" data-word="bladder">bladder</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="utérus">utérus</td>
+<td>[yteʁys]</td>
+<td class="clickable" data-lang="de" data-word="Gebärmutter">Gebärmutter</td>
+<td>[gəˈbɛːɐ̯mʊtɐ]</td>
+<td class="clickable" data-lang="zh" data-word="子宫">子宫</td>
+<td class="clickable" data-lang="en" data-word="uterus">uterus</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="peau">peau</td>
+<td>[po]</td>
+<td class="clickable" data-lang="de" data-word="Haut">Haut</td>
+<td>[haʊt]</td>
+<td class="clickable" data-lang="zh" data-word="皮肤">皮肤</td>
+<td class="clickable" data-lang="en" data-word="skin">skin</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="ongle">ongle</td>
+<td>[ɔ̃gl]</td>
+<td class="clickable" data-lang="de" data-word="Nagel">Nagel</td>
+<td>[ˈnaːgəl]</td>
+<td class="clickable" data-lang="zh" data-word="指甲">指甲</td>
+<td class="clickable" data-lang="en" data-word="nail">nail</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="articulation">articulation</td>
+<td>[aʁtikylasjɔ̃]</td>
+<td class="clickable" data-lang="de" data-word="Gelenk">Gelenk</td>
+<td>[gəˈlɛŋk]</td>
+<td class="clickable" data-lang="zh" data-word="关节">关节</td>
+<td class="clickable" data-lang="en" data-word="joint">joint</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="os">os</td>
+<td>[ɔs]</td>
+<td class="clickable" data-lang="de" data-word="Knochen">Knochen</td>
+<td>[ˈknɔxən]</td>
+<td class="clickable" data-lang="zh" data-word="骨头">骨头</td>
+<td class="clickable" data-lang="en" data-word="bone">bone</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="gorge">gorge</td>
+<td>[gɔʁʒ]</td>
+<td class="clickable" data-lang="de" data-word="Kehle">Kehle</td>
+<td>[ˈkeːlə]</td>
+<td class="clickable" data-lang="zh" data-word="喉咙">喉咙</td>
+<td class="clickable" data-lang="en" data-word="throat">throat</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="muscle">muscle</td>
+<td>[myskl]</td>
+<td class="clickable" data-lang="de" data-word="Muskel">Muskel</td>
+<td>[ˈmʊskəl]</td>
+<td class="clickable" data-lang="zh" data-word="肌肉">肌肉</td>
+<td class="clickable" data-lang="en" data-word="muscle">muscle</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="vaisseau sanguin">vaisseau sanguin</td>
+<td>[vɛso sɑ̃gɛ̃]</td>
+<td class="clickable" data-lang="de" data-word="Blutgefäß">Blutgefäß</td>
+<td>[ˈbluːtgəfɛːs]</td>
+<td class="clickable" data-lang="zh" data-word="血管">血管</td>
+<td class="clickable" data-lang="en" data-word="blood vessel">blood vessel</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="orteil">orteil</td>
+<td>[ɔʁtɛj]</td>
+<td class="clickable" data-lang="de" data-word="Zehe">Zehe</td>
+<td>[ˈtseːə]</td>
+<td class="clickable" data-lang="zh" data-word="脚趾">脚趾</td>
+<td class="clickable" data-lang="en" data-word="toe">toe</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="doigt">doigt</td>
+<td>[dwa]</td>
+<td class="clickable" data-lang="de" data-word="Finger">Finger</td>
+<td>[ˈfɪŋɐ]</td>
+<td class="clickable" data-lang="zh" data-word="手指">手指</td>
+<td class="clickable" data-lang="en" data-word="finger">finger</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="joli">joli</td>
+<td>[ʒɔli]</td>
+<td class="clickable" data-lang="de" data-word="hübsch">hübsch</td>
+<td>[hʏpʃ]</td>
+<td class="clickable" data-lang="zh" data-word="漂亮的">漂亮的</td>
+<td class="clickable" data-lang="en" data-word="pretty">pretty</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="laid">laid</td>
+<td>[lɛ]</td>
+<td class="clickable" data-lang="de" data-word="häßlich">häßlich</td>
+<td>[ˈhɛslɪç]</td>
+<td class="clickable" data-lang="zh" data-word="丑的">丑的</td>
+<td class="clickable" data-lang="en" data-word="ugly">ugly</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="gros">gros</td>
+<td>[gʁo]</td>
+<td class="clickable" data-lang="de" data-word="dick">dick</td>
+<td>[dɪk]</td>
+<td class="clickable" data-lang="zh" data-word="胖的">胖的</td>
+<td class="clickable" data-lang="en" data-word="fat">fat</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="mince">mince</td>
+<td>[mɛ̃s]</td>
+<td class="clickable" data-lang="de" data-word="schlank">schlank</td>
+<td>[ʃlaŋk]</td>
+<td class="clickable" data-lang="zh" data-word="瘦的">瘦的</td>
+<td class="clickable" data-lang="en" data-word="slim">slim</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="grand">grand</td>
+<td>[gʁɑ̃]</td>
+<td class="clickable" data-lang="de" data-word="groß">groß</td>
+<td>[gʁoːs]</td>
+<td class="clickable" data-lang="zh" data-word="高的">高的</td>
+<td class="clickable" data-lang="en" data-word="tall">tall</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="petit">petit</td>
+<td>[pəti]</td>
+<td class="clickable" data-lang="de" data-word="klein">klein</td>
+<td>[klaɪn]</td>
+<td class="clickable" data-lang="zh" data-word="矮的">矮的</td>
+<td class="clickable" data-lang="en" data-word="small">small</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="mignon">mignon</td>
+<td>[miɲɔ̃]</td>
+<td class="clickable" data-lang="de" data-word="süß">süß</td>
+<td>[zyːs]</td>
+<td class="clickable" data-lang="zh" data-word="可爱的">可爱的</td>
+<td class="clickable" data-lang="en" data-word="cute">cute</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="charmant">charmant</td>
+<td>[ʃaʁmɑ̃]</td>
+<td class="clickable" data-lang="de" data-word="charmant">charmant</td>
+<td>[ʃaʁˈmant]</td>
+<td class="clickable" data-lang="zh" data-word="迷人的">迷人的</td>
+<td class="clickable" data-lang="en" data-word="charming">charming</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="jeune">jeune</td>
+<td>[ʒœn]</td>
+<td class="clickable" data-lang="de" data-word="jung">jung</td>
+<td>[jʊŋ]</td>
+<td class="clickable" data-lang="zh" data-word="年轻的">年轻的</td>
+<td class="clickable" data-lang="en" data-word="young">young</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="vieux">vieux</td>
+<td>[vjø]</td>
+<td class="clickable" data-lang="de" data-word="alt">alt</td>
+<td>[alt]</td>
+<td class="clickable" data-lang="zh" data-word="老的">老的</td>
+<td class="clickable" data-lang="en" data-word="old">old</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="naïf">naïf</td>
+<td>[naif]</td>
+<td class="clickable" data-lang="de" data-word="naiv">naiv</td>
+<td>[naˈiːf]</td>
+<td class="clickable" data-lang="zh" data-word="天真的">天真的</td>
+<td class="clickable" data-lang="en" data-word="naive">naive</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="attirant">attirant</td>
+<td>[atiʁɑ̃]</td>
+<td class="clickable" data-lang="de" data-word="attraktiv">attraktiv</td>
+<td>[atʁakˈtiːf]</td>
+<td class="clickable" data-lang="zh" data-word="有魅力的">有魅力的</td>
+<td class="clickable" data-lang="en" data-word="attractive">attractive</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="fort">fort</td>
+<td>[fɔʁ]</td>
+<td class="clickable" data-lang="de" data-word="stark">stark</td>
+<td>[ʃtaʁk]</td>
+<td class="clickable" data-lang="zh" data-word="强壮的">强壮的</td>
+<td class="clickable" data-lang="en" data-word="strong">strong</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="faible">faible</td>
+<td>[fɛbl]</td>
+<td class="clickable" data-lang="de" data-word="schwach">schwach</td>
+<td>[ʃvax]</td>
+<td class="clickable" data-lang="zh" data-word="虚弱的">虚弱的</td>
+<td class="clickable" data-lang="en" data-word="weak">weak</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="souriant">souriant</td>
+<td>[suʁjɑ̃]</td>
+<td class="clickable" data-lang="de" data-word="lächelnd">lächelnd</td>
+<td>[ˈlɛçəlnt]</td>
+<td class="clickable" data-lang="zh" data-word="微笑的">微笑的</td>
+<td class="clickable" data-lang="en" data-word="smiling">smiling</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="élégant">élégant</td>
+<td>[elegɑ̃]</td>
+<td class="clickable" data-lang="de" data-word="elegant">elegant</td>
+<td>[eleˈgant]</td>
+<td class="clickable" data-lang="zh" data-word="优雅的">优雅的</td>
+<td class="clickable" data-lang="en" data-word="elegant">elegant</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="pâle">pâle</td>
+<td>[pɑl]</td>
+<td class="clickable" data-lang="de" data-word="blass">blass</td>
+<td>[blas]</td>
+<td class="clickable" data-lang="zh" data-word="苍白的">苍白的</td>
+<td class="clickable" data-lang="en" data-word="pale">pale</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="bronzé">bronzé</td>
+<td>[bʁɔ̃ze]</td>
+<td class="clickable" data-lang="de" data-word="bräunen">bräunen</td>
+<td>[ˈbʁɔʏnən]</td>
+<td class="clickable" data-lang="zh" data-word="晒黑的">晒黑的</td>
+<td class="clickable" data-lang="en" data-word="tanned">tanned</td>
+</tr>
+
+<tr>
+<td class="clickable" data-lang="fr" data-word="ridé">ridé</td>
+<td>[ʁide]</td>
+<td class="clickable" data-lang="de" data-word="faltig">faltig</td>
+<td>[ˈfaltɪç]</td>
+<td class="clickable" data-lang="zh" data-word="有皱纹的">有皱纹的</td>
+<td class="clickable" data-lang="en" data-word="wrinkled">wrinkled</td>
+</tr>
+    </table>
+
+    <script>
+    const PIXABAY_API_KEY = '49256357-c30f2f538120ce8d74ff8921d';
+    let speechSynth = window.speechSynthesis;
+    let voices = [];
+
+    // Wait for voices to load
+    speechSynth.onvoiceschanged = function() {
+        voices = speechSynth.getVoices();
+    };
+
+    // Pronunciation function
+    function speak(text, lang) {
+        // Cancel any ongoing speech
+        speechSynth.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        
+        // For Chinese, select appropriate voice based on dialect
+        if (lang.startsWith('zh')) {
+            const voices = window.speechSynthesis.getVoices();
+            const chineseVoice = voices.find(voice => voice.lang.includes(lang));
+            if (chineseVoice) {
+                utterance.voice = chineseVoice;
+            }
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    } 
+    
+    // Remove existing background images
+    function clearBackgroundImages() {
+        document.querySelectorAll('.background-image').forEach(img => img.remove());
+    }
+
+    // Fetch and add background image
+    async function addBackgroundImage(cell, searchTerm) {
+        clearBackgroundImages();
+        
+        try {
+            const apiUrl = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(searchTerm)}&per_page=4&safesearch=true`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.hits && data.hits.length > 0) {
+                const randomIndex = Math.floor(Math.random() * Math.min(4, data.hits.length));
+                const img = document.createElement('img');
+                img.src = data.hits[randomIndex].previewURL;
+                img.className = 'background-image';
+                img.alt = searchTerm;
+                
+                const firstCell = cell.closest('tr').querySelector('td:first-child');
+                firstCell.appendChild(img);
+
+                // Remove the image after 3 seconds
+                setTimeout(clearBackgroundImages, 3000);
+            }
+        } catch (error) {
+            console.error('Error fetching image:', error);
+        }
+    }
+
+    // Add click events to clickable cells
+    window.speechSynthesis.onvoiceschanged = () => {
+        document.querySelectorAll('.clickable').forEach(cell => {
+            cell.addEventListener('click', function() {
+                const text = this.textContent;
+                let lang;
+                
+                // Get language based on data-lang attribute
+                switch(this.dataset.lang) {
+                    case 'fr':
+                        lang = 'fr-FR';
+                        break;
+                    case 'de':
+                        lang = 'de-DE';
+                        break;
+                    case 'zh':
+                        // Use selected dialect for Chinese
+                        lang = document.getElementById('chineseDialect').value;
+                        break;
+                    default:
+                        lang = 'en-US';
+                }
+                
+                speak(text, lang);
+                addBackgroundImage(this, this.dataset.word);
+
+                // Visual feedback with cleanup
+                const originalBg = window.getComputedStyle(this).backgroundColor;
+                this.style.backgroundColor = '#c8e6c9';
+                
+                // Clear any existing timeout for this cell
+                if (this.resetTimeout) {
+                    clearTimeout(this.resetTimeout);
+                }
+                
+                // Set new timeout and store its ID
+                this.resetTimeout = setTimeout(() => {
+                    this.style.backgroundColor = '';
+                    this.resetTimeout = null;
+                }, 500);
+            });
+        });
+    };
+</script>
+
+</body>
+</html>
