@@ -1,0 +1,832 @@
+<!-- <使用这个模板，添加单词到table的部分就可以!> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr {
+            position: relative;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .clickable {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+        .clickable:hover {
+            background-color: #e6e6e6;
+        }
+        .background-image {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            opacity: 0;  /* 初始设置为透明 */
+            transition: opacity 0.3s ease-in-out;  /* 添加过渡效果 */
+        }
+        .background-image:hover {
+            opacity: 0.8;
+        }
+        .language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .language-selector select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="index.html" class="back-button">🏠 主页</a>
+      </div>
+
+    <div class="language-selector">
+        <select id="chineseDialect">
+            <option value="zh-CN">普通话</option>
+            <option value="zh-HK">粤语</option>
+        </select>
+    </div>
+
+
+    <table id="wordTable">
+        <tr>
+            <th>法语</th>
+            <th>音标</th>
+            <th>德语</th>
+            <th>音标</th>
+            <th>中文</th>
+            <th>英语</th>
+        </tr>
+     
+<tr>
+                <td class="clickable" data-lang="fr" data-word="zero">zéro</td>
+                <td>[zeʁo]</td>
+                <td class="clickable" data-lang="de" data-word="zero">null</td>
+                <td>[nʊl]</td>
+                <td class="clickable" data-lang="zh" data-word="zero">零</td><td class="clickable" data-lang="en" data-word="zero">zero</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="one">un</td>
+                <td>[œ̃]</td>
+                <td class="clickable" data-lang="de" data-word="one">eins</td>
+                <td>[aɪns]</td>
+                <td class="clickable" data-lang="zh" data-word="one">一</td><td class="clickable" data-lang="en" data-word="one">one</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="two">deux</td>
+                <td>[dø]</td>
+                <td class="clickable" data-lang="de" data-word="two">zwei</td>
+                <td>[tsvaɪ]</td>
+                <td class="clickable" data-lang="zh" data-word="two">二</td><td class="clickable" data-lang="en" data-word="two">two</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="three">trois</td>
+                <td>[tʁwa]</td>
+                <td class="clickable" data-lang="de" data-word="three">drei</td>
+                <td>[dʁaɪ]</td>
+                <td class="clickable" data-lang="zh" data-word="three">三</td><td class="clickable" data-lang="en" data-word="three">three</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="four">quatre</td>
+                <td>[katʁ]</td>
+                <td class="clickable" data-lang="de" data-word="four">vier</td>
+                <td>[fiːɐ]</td>
+                <td class="clickable" data-lang="zh" data-word="four">四</td><td class="clickable" data-lang="en" data-word="four">four</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="five">cinq</td>
+                <td>[sɛ̃k]</td>
+                <td class="clickable" data-lang="de" data-word="five">fünf</td>
+                <td>[fʏnf]</td>
+                <td class="clickable" data-lang="zh" data-word="five">五</td><td class="clickable" data-lang="en" data-word="five">five</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="six">six</td>
+                <td>[sis]</td>
+                <td class="clickable" data-lang="de" data-word="six">sechs</td>
+                <td>[zɛks]</td>
+                <td class="clickable" data-lang="zh" data-word="six">六</td><td class="clickable" data-lang="en" data-word="six">six</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="seven">sept</td>
+                <td>[sɛt]</td>
+                <td class="clickable" data-lang="de" data-word="seven">sieben</td>
+                <td>[ˈziːbn̩]</td>
+                <td class="clickable" data-lang="zh" data-word="seven">七</td><td class="clickable" data-lang="en" data-word="seven">seven</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="eight">huit</td>
+                <td>[ɥit]</td>
+                <td class="clickable" data-lang="de" data-word="eight">acht</td>
+                <td>[axt]</td>
+                <td class="clickable" data-lang="zh" data-word="eight">八</td><td class="clickable" data-lang="en" data-word="eight">eight</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="nine">neuf</td>
+                <td>[nœf]</td>
+                <td class="clickable" data-lang="de" data-word="nine">neun</td>
+                <td>[nɔʏn]</td>
+                <td class="clickable" data-lang="zh" data-word="nine">九</td><td class="clickable" data-lang="en" data-word="nine">nine</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="ten">dix</td>
+                <td>[dis]</td>
+                <td class="clickable" data-lang="de" data-word="ten">zehn</td>
+                <td>[tseːn]</td>
+                <td class="clickable" data-lang="zh" data-word="ten">十</td><td class="clickable" data-lang="en" data-word="ten">ten</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="eleven">onze</td>
+                <td>[ɔ̃z]</td>
+                <td class="clickable" data-lang="de" data-word="eleven">elf</td>
+                <td>[ɛlf]</td>
+                <td class="clickable" data-lang="zh" data-word="eleven">十一</td><td class="clickable" data-lang="en" data-word="eleven">eleven</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="twelve">douze</td>
+                <td>[duz]</td>
+                <td class="clickable" data-lang="de" data-word="twelve">zwölf</td>
+                <td>[tsvœlf]</td>
+                <td class="clickable" data-lang="zh" data-word="twelve">十二</td><td class="clickable" data-lang="en" data-word="twelve">twelve</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="thirteen">treize</td>
+                <td>[tʁɛz]</td>
+                <td class="clickable" data-lang="de" data-word="thirteen">dreizehn</td>
+                <td>[ˈdʁaɪtseːn]</td>
+                <td class="clickable" data-lang="zh" data-word="thirteen">十三</td><td class="clickable" data-lang="en" data-word="thirteen">thirteen</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="fourteen">quatorze</td>
+                <td>[katɔʁz]</td>
+                <td class="clickable" data-lang="de" data-word="fourteen">vierzehn</td>
+                <td>[ˈfɪʁtseːn]</td>
+                <td class="clickable" data-lang="zh" data-word="fourteen">十四</td><td class="clickable" data-lang="en" data-word="fourteen">fourteen</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="fifteen">quinze</td>
+                <td>[kɛ̃z]</td>
+                <td class="clickable" data-lang="de" data-word="fifteen">fünfzehn</td>
+                <td>[ˈfʏnftseːn]</td>
+                <td class="clickable" data-lang="zh" data-word="fifteen">十五</td><td class="clickable" data-lang="en" data-word="fifteen">fifteen</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="sixteen">seize</td>
+                <td>[sɛz]</td>
+                <td class="clickable" data-lang="de" data-word="sixteen">sechzehn</td>
+                <td>[ˈzɛçtseːn]</td>
+                <td class="clickable" data-lang="zh" data-word="sixteen">十六</td><td class="clickable" data-lang="en" data-word="sixteen">sixteen</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="seventeen">dix-sept</td>
+                <td>[disɛt]</td>
+                <td class="clickable" data-lang="de" data-word="seventeen">siebzehn</td>
+                <td>[ˈziːptseːn]</td>
+                <td class="clickable" data-lang="zh" data-word="seventeen">十七</td><td class="clickable" data-lang="en" data-word="seventeen">seventeen</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="eighteen">dix-huit</td>
+                <td>[dizɥit]</td>
+                <td class="clickable" data-lang="de" data-word="eighteen">achtzehn</td>
+                <td>[ˈaxtseːn]</td>
+                <td class="clickable" data-lang="zh" data-word="eighteen">十八</td><td class="clickable" data-lang="en" data-word="eighteen">eighteen</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="nineteen">dix-neuf</td>
+                <td>[diznœf]</td>
+                <td class="clickable" data-lang="de" data-word="nineteen">neunzehn</td>
+                <td>[ˈnɔʏntseːn]</td>
+                <td class="clickable" data-lang="zh" data-word="nineteen">十九</td><td class="clickable" data-lang="en" data-word="nineteen">nineteen</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="twenty">vingt</td>
+                <td>[vɛ̃]</td>
+                <td class="clickable" data-lang="de" data-word="twenty">zwanzig</td>
+                <td>[ˈtsvantsiç]</td>
+                <td class="clickable" data-lang="zh" data-word="twenty">二十</td><td class="clickable" data-lang="en" data-word="twenty">twenty</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="thirty">trente</td>
+                <td>[tʁɑ̃t]</td>
+                <td class="clickable" data-lang="de" data-word="thirty">dreißig</td>
+                <td>[ˈdʁaɪsiç]</td>
+                <td class="clickable" data-lang="zh" data-word="thirty">三十</td><td class="clickable" data-lang="en" data-word="thirty">thirty</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="forty">quarante</td>
+                <td>[kaʁɑ̃t]</td>
+                <td class="clickable" data-lang="de" data-word="forty">vierzig</td>
+                <td>[ˈfɪʁtsiç]</td>
+                <td class="clickable" data-lang="zh" data-word="forty">四十</td><td class="clickable" data-lang="en" data-word="forty">forty</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="fifty">cinquante</td>
+                <td>[sɛ̃kɑ̃t]</td>
+                <td class="clickable" data-lang="de" data-word="fifty">fünfzig</td>
+                <td>[ˈfʏnftsiç]</td>
+                <td class="clickable" data-lang="zh" data-word="fifty">五十</td><td class="clickable" data-lang="en" data-word="fifty">fifty</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="sixty">soixante</td>
+                <td>[swasɑ̃t]</td>
+                <td class="clickable" data-lang="de" data-word="sixty">sechzig</td>
+                <td>[ˈzɛçtsiç]</td>
+                <td class="clickable" data-lang="zh" data-word="sixty">六十</td><td class="clickable" data-lang="en" data-word="sixty">sixty</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="seventy">soixante-dix</td>
+                <td>[swasɑ̃tdis]</td>
+                <td class="clickable" data-lang="de" data-word="seventy">siebzig</td>
+                <td>[ˈziːptsiç]</td>
+                <td class="clickable" data-lang="zh" data-word="seventy">七十</td><td class="clickable" data-lang="en" data-word="seventy">seventy</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="eighty">quatre-vingts</td>
+                <td>[katʁəvɛ̃]</td>
+                <td class="clickable" data-lang="de" data-word="eighty">achtzig</td>
+                <td>[ˈaxtsiç]</td>
+                <td class="clickable" data-lang="zh" data-word="eighty">八十</td><td class="clickable" data-lang="en" data-word="eighty">eighty</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="ninety">quatre-vingt-dix</td>
+                <td>[katʁəvɛ̃dis]</td>
+                <td class="clickable" data-lang="de" data-word="ninety">neunzig</td>
+                <td>[ˈnɔʏntsiç]</td>
+                <td class="clickable" data-lang="zh" data-word="ninety">九十</td><td class="clickable" data-lang="en" data-word="ninety">ninety</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="thousand">mille</td>
+                <td>[mil]</td>
+                <td class="clickable" data-lang="de" data-word="thousand">tausend</td>
+                <td>[ˈtaʊzənt]</td>
+                <td class="clickable" data-lang="zh" data-word="thousand">千</td><td class="clickable" data-lang="en" data-word="thousand">thousand</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="million">million</td>
+                <td>[miljɔ̃]</td>
+                <td class="clickable" data-lang="de" data-word="million">Million</td>
+                <td>[milˈjoːn]</td>
+                <td class="clickable" data-lang="zh" data-word="million">百万</td><td class="clickable" data-lang="en" data-word="million">million</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="billion">milliard</td>
+                <td>[miljaʁ]</td>
+                <td class="clickable" data-lang="de" data-word="billion">Milliarde</td>
+                <td>[milˈjaʁdə]</td>
+                <td class="clickable" data-lang="zh" data-word="billion">十亿</td><td class="clickable" data-lang="en" data-word="billion">billion</td>
+</tr>
+
+<tr>
+        <td class="clickable" data-lang="fr" data-word="first">premier</td>
+        <td>[pʁəmje]</td>
+        <td class="clickable" data-lang="de" data-word="first">erst</td>
+        <td>[eːɐ̯st]</td>
+        <td class="clickable" data-lang="zh" data-word="first">第一</td><td class="clickable" data-lang="en" data-word="first">first</td>
+</tr>
+
+<tr>
+        <td class="clickable" data-lang="fr" data-word="second">deuxième</td>
+        <td>[døzjɛm]</td>
+        <td class="clickable" data-lang="de" data-word="second">zweit</td>
+        <td>[tsvaɪt]</td>
+        <td class="clickable" data-lang="zh" data-word="second">第二</td><td class="clickable" data-lang="en" data-word="second">second</td>
+</tr>
+
+<tr>
+        <td class="clickable" data-lang="fr" data-word="third">troisième</td>
+        <td>[tʁwazjɛm]</td>
+        <td class="clickable" data-lang="de" data-word="third">dritt</td>
+        <td>[dʁɪt]</td>
+        <td class="clickable" data-lang="zh" data-word="third">第三</td><td class="clickable" data-lang="en" data-word="third">third</td>
+</tr>
+
+<tr>
+        <td class="clickable" data-lang="fr" data-word="fourth">quatrième</td>
+        <td>[katʁijɛm]</td>
+        <td class="clickable" data-lang="de" data-word="fourth">viert</td>
+        <td>[fiːɐ̯t]</td>
+        <td class="clickable" data-lang="zh" data-word="fourth">第四</td><td class="clickable" data-lang="en" data-word="fourth">fourth</td>
+</tr>
+
+<tr>
+        <td class="clickable" data-lang="fr" data-word="fifth">cinquième</td>
+        <td>[sɛ̃kjɛm]</td>
+        <td class="clickable" data-lang="de" data-word="fifth">fünft</td>
+        <td>[fʏnft]</td>
+        <td class="clickable" data-lang="zh" data-word="fifth">第五</td><td class="clickable" data-lang="en" data-word="fifth">fifth</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="figure">figure</td>
+            <td>[figyʁ]</td>
+            <td class="clickable" data-lang="de" data-word="figure">Figur</td>
+            <td>[fiˈguːɐ̯]</td>
+            <td class="clickable" data-lang="zh" data-word="figure">图形</td><td class="clickable" data-lang="en" data-word="figure">figure</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="shape">forme</td>
+            <td>[fɔʁm]</td>
+            <td class="clickable" data-lang="de" data-word="shape">Gestalt</td>
+            <td>[gəˈʃtalt]</td>
+            <td class="clickable" data-lang="zh" data-word="shape">形状</td><td class="clickable" data-lang="en" data-word="shape">shape</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="circle">cercle</td>
+            <td>[sɛʁkl]</td>
+            <td class="clickable" data-lang="de" data-word="circle">Kreis</td>
+            <td>[kʁaɪs]</td>
+            <td class="clickable" data-lang="zh" data-word="circle">圆形</td><td class="clickable" data-lang="en" data-word="circle">circle</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="rectangle">rectangle</td>
+            <td>[ʁɛktɑ̃gl]</td>
+            <td class="clickable" data-lang="de" data-word="rectangle">Rechteck</td>
+            <td>[ˈʁɛçtˌʔɛk]</td>
+            <td class="clickable" data-lang="zh" data-word="rectangle">长方形</td><td class="clickable" data-lang="en" data-word="rectangle">rectangle</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="square">carré</td>
+            <td>[kaʁe]</td>
+            <td class="clickable" data-lang="de" data-word="square">Quadrat</td>
+            <td>[kvaˈdʁaːt]</td>
+            <td class="clickable" data-lang="zh" data-word="square">正方形</td><td class="clickable" data-lang="en" data-word="square">square</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="rhombus">losange</td>
+                <td>[lozɑ̃ʒ]</td>
+                <td class="clickable" data-lang="de" data-word="rhombus">Raute</td>
+                <td>[ˈʁaʊtə]</td>
+                <td class="clickable" data-lang="zh" data-word="rhombus">菱形</td><td class="clickable" data-lang="en" data-word="rhombus">rhombus</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="triangle">triangle</td>
+                <td>[tʁijɑ̃gl]</td>
+                <td class="clickable" data-lang="de" data-word="triangle">Dreieck</td>
+                <td>[ˈdʁaɪˌʔɛk]</td>
+                <td class="clickable" data-lang="zh" data-word="triangle">三角形</td><td class="clickable" data-lang="en" data-word="triangle">triangle</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="sphere">sphère</td>
+                <td>[sfɛʁ]</td>
+                <td class="clickable" data-lang="de" data-word="sphere">Kugel</td>
+                <td>[ˈkuːɡl̩]</td>
+                <td class="clickable" data-lang="zh" data-word="sphere">球体</td><td class="clickable" data-lang="en" data-word="sphere">sphere</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="cone">cône</td>
+                <td>[koːn]</td>
+                <td class="clickable" data-lang="de" data-word="cone">Kegel</td>
+                <td>[ˈkeːɡl̩]</td>
+                <td class="clickable" data-lang="zh" data-word="cone">圆锥体</td><td class="clickable" data-lang="en" data-word="cone">cone</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="ellipse">ellipse</td>
+                <td>[elips]</td>
+                <td class="clickable" data-lang="de" data-word="ellipse">Ellipse</td>
+                <td>[eˈlɪpsə]</td>
+                <td class="clickable" data-lang="zh" data-word="ellipse">椭圆</td><td class="clickable" data-lang="en" data-word="ellipse">ellipse</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="cube">cube</td>
+                <td>[kyb]</td>
+                <td class="clickable" data-lang="de" data-word="cube">Kubus</td>
+                <td>[ˈkuːbʊs]</td>
+                <td class="clickable" data-lang="zh" data-word="cube">立方体</td><td class="clickable" data-lang="en" data-word="cube">cube</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="column">colonne</td>
+                <td>[kɔlɔn]</td>
+                <td class="clickable" data-lang="de" data-word="column">Säule</td>
+                <td>[ˈzɔʏlə]</td>
+                <td class="clickable" data-lang="zh" data-word="column">柱体</td><td class="clickable" data-lang="en" data-word="column">column</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="big">grand</td>
+                <td>[ɡʁɑ̃]</td>
+                <td class="clickable" data-lang="de" data-word="big">groß</td>
+                <td>[ɡʁoːs]</td>
+                <td class="clickable" data-lang="zh" data-word="big">大的</td><td class="clickable" data-lang="en" data-word="big">big</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="small">petit</td>
+                <td>[pəti]</td>
+                <td class="clickable" data-lang="de" data-word="small">klein</td>
+                <td>[klaɪn]</td>
+                <td class="clickable" data-lang="zh" data-word="small">小的</td><td class="clickable" data-lang="en" data-word="small">small</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="thick">épais</td>
+                <td>[epɛ]</td>
+                <td class="clickable" data-lang="de" data-word="thick">dick</td>
+                <td>[dɪk]</td>
+                <td class="clickable" data-lang="zh" data-word="thick">粗的</td><td class="clickable" data-lang="en" data-word="thick">thick</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="thin">mince</td>
+                <td>[mɛ̃s]</td>
+                <td class="clickable" data-lang="de" data-word="thin">dünn</td>
+                <td>[dʏn]</td>
+                <td class="clickable" data-lang="zh" data-word="thin">细的</td><td class="clickable" data-lang="en" data-word="thin">thin</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="wide">large</td>
+                <td>[laʁʒ]</td>
+                <td class="clickable" data-lang="de" data-word="wide">breit</td>
+                <td>[bʁaɪt]</td>
+                <td class="clickable" data-lang="zh" data-word="wide">宽的</td><td class="clickable" data-lang="en" data-word="wide">wide</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="narrow">étroit</td>
+                <td>[etʁwa]</td>
+                <td class="clickable" data-lang="de" data-word="narrow">eng</td>
+                <td>[ɛŋ]</td>
+                <td class="clickable" data-lang="zh" data-word="narrow">窄的</td><td class="clickable" data-lang="en" data-word="narrow">narrow</td>
+</tr>
+
+<tr>
+                    <td class="clickable" data-lang="fr" data-word="length">longueur</td>
+                    <td>[lɔ̃ɡœʁ]</td>
+                    <td class="clickable" data-lang="de" data-word="length">Länge</td>
+                    <td>[ˈlɛŋə]</td>
+                    <td class="clickable" data-lang="zh" data-word="length">长度</td><td class="clickable" data-lang="en" data-word="length">length</td>
+</tr>
+
+<tr>
+                    <td class="clickable" data-lang="fr" data-word="area">surface</td>
+                    <td>[syʁfas]</td>
+                    <td class="clickable" data-lang="de" data-word="area">Fläche</td>
+                    <td>[ˈflɛçə]</td>
+                    <td class="clickable" data-lang="zh" data-word="area">面积</td><td class="clickable" data-lang="en" data-word="area">area</td>
+</tr>
+
+<tr>
+                    <td class="clickable" data-lang="fr" data-word="volume">volume</td>
+                    <td>[vɔlym]</td>
+                    <td class="clickable" data-lang="de" data-word="volume">Volumen</td>
+                    <td>[voˈluːmən]</td>
+                    <td class="clickable" data-lang="zh" data-word="volume">体积</td><td class="clickable" data-lang="en" data-word="volume">volume</td>
+</tr>
+
+<tr>
+                    <td class="clickable" data-lang="fr" data-word="power">puissance</td>
+                    <td>[pɥisɑ̃s]</td>
+                    <td class="clickable" data-lang="de" data-word="power">Leistung</td>
+                    <td>[ˈlaɪstʊŋ]</td>
+                    <td class="clickable" data-lang="zh" data-word="power">功率</td><td class="clickable" data-lang="en" data-word="power">power</td>
+</tr>
+
+<tr>
+                    <td class="clickable" data-lang="fr" data-word="pressure">pression</td>
+                    <td>[pʁɛsjɔ̃]</td>
+                    <td class="clickable" data-lang="de" data-word="pressure">Druck</td>
+                    <td>[dʁʊk]</td>
+                    <td class="clickable" data-lang="zh" data-word="pressure">压力</td><td class="clickable" data-lang="en" data-word="pressure">pressure</td>
+</tr>
+
+<tr>
+                    <td class="clickable" data-lang="fr" data-word="weight">poids</td>
+                    <td>[pwa]</td>
+                    <td class="clickable" data-lang="de" data-word="weight">Gewicht</td>
+                    <td>[ɡəˈvɪçt]</td>
+                    <td class="clickable" data-lang="zh" data-word="weight">重量</td><td class="clickable" data-lang="en" data-word="weight">weight</td>
+</tr>
+
+<tr>
+                    <td class="clickable" data-lang="fr" data-word="speed">vitesse</td>
+                    <td>[vitɛs]</td>
+                    <td class="clickable" data-lang="de" data-word="speed">Geschwindigkeit</td>
+                    <td>[ɡəˈʃvɪndɪçkaɪt]</td>
+                    <td class="clickable" data-lang="zh" data-word="speed">速度</td><td class="clickable" data-lang="en" data-word="speed">speed</td>
+</tr>
+
+<tr>
+                    <td class="clickable" data-lang="fr" data-word="temperature">température</td>
+                    <td>[tɑ̃peʁatyʁ]</td>
+                    <td class="clickable" data-lang="de" data-word="temperature">Temperatur</td>
+                    <td>[tɛmpəʁaˈtuːɐ̯]</td>
+                    <td class="clickable" data-lang="zh" data-word="temperature">温度</td><td class="clickable" data-lang="en" data-word="temperature">temperature</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="kilometer">kilomètre</td>
+                <td>[kilɔmɛtʁ]</td>
+                <td class="clickable" data-lang="de" data-word="kilometer">Kilometer</td>
+                <td>[kiloˈmeːtɐ]</td>
+                <td class="clickable" data-lang="zh" data-word="kilometer">公里</td><td class="clickable" data-lang="en" data-word="kilometer">kilometer</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="meter">mètre</td>
+                <td>[mɛtʁ]</td>
+                <td class="clickable" data-lang="de" data-word="meter">Meter</td>
+                <td>[ˈmeːtɐ]</td>
+                <td class="clickable" data-lang="zh" data-word="meter">米</td><td class="clickable" data-lang="en" data-word="meter">meter</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="centimeter">centimètre</td>
+                <td>[sɑ̃timɛtʁ]</td>
+                <td class="clickable" data-lang="de" data-word="centimeter">Zentimeter</td>
+                <td>[tsɛntiˈmeːtɐ]</td>
+                <td class="clickable" data-lang="zh" data-word="centimeter">厘米</td><td class="clickable" data-lang="en" data-word="centimeter">centimeter</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="hectare">hectare</td>
+                <td>[ɛktaʁ]</td>
+                <td class="clickable" data-lang="de" data-word="hectare">Hektar</td>
+                <td>[hɛkˈtaːɐ̯]</td>
+                <td class="clickable" data-lang="zh" data-word="hectare">公顷</td><td class="clickable" data-lang="en" data-word="hectare">hectare</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="square meter">mètre carré</td>
+                <td>[mɛtʁ kaʁe]</td>
+                <td class="clickable" data-lang="de" data-word="square meter">Quadratmeter</td>
+                <td>[kvaˈdʁaːtmeːtɐ]</td>
+                <td class="clickable" data-lang="zh" data-word="square meter">平方米</td><td class="clickable" data-lang="en" data-word="square meter">square meter</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="liter">litre</td>
+                <td>[litʁ]</td>
+                <td class="clickable" data-lang="de" data-word="liter">Liter</td>
+                <td>[ˈliːtɐ]</td>
+                <td class="clickable" data-lang="zh" data-word="liter">升</td><td class="clickable" data-lang="en" data-word="liter">liter</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="degree">degré</td>
+                <td>[dəɡʁe]</td>
+                <td class="clickable" data-lang="de" data-word="degree">Grad</td>
+                <td>[ɡʁaːt]</td>
+                <td class="clickable" data-lang="zh" data-word="degree">度</td><td class="clickable" data-lang="en" data-word="degree">degree</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="minute">minute</td>
+                <td>[minyt]</td>
+                <td class="clickable" data-lang="de" data-word="minute">Minute</td>
+                <td>[miˈnuːtə]</td>
+                <td class="clickable" data-lang="zh" data-word="minute">分钟</td><td class="clickable" data-lang="en" data-word="minute">minute</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="second">seconde</td>
+                <td>[səɡɔ̃d]</td>
+                <td class="clickable" data-lang="de" data-word="second">Sekunde</td>
+                <td>[zeˈkʊndə]</td>
+                <td class="clickable" data-lang="zh" data-word="second">秒</td><td class="clickable" data-lang="en" data-word="second">second</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="ton">tonne</td>
+                <td>[tɔn]</td>
+                <td class="clickable" data-lang="de" data-word="ton">Tonne</td>
+                <td>[ˈtɔnə]</td>
+                <td class="clickable" data-lang="zh" data-word="ton">吨</td><td class="clickable" data-lang="en" data-word="ton">ton</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="kilo">kilo</td>
+                <td>[kilo]</td>
+                <td class="clickable" data-lang="de" data-word="kilo">Kilo</td>
+                <td>[ˈkiːlo]</td>
+                <td class="clickable" data-lang="zh" data-word="kilo">千克</td><td class="clickable" data-lang="en" data-word="kilo">kilo</td>
+</tr>
+
+<tr>
+                <td class="clickable" data-lang="fr" data-word="gram">gramme</td>
+                <td>[ɡʁam]</td>
+                <td class="clickable" data-lang="de" data-word="gram">Gramm</td>
+                <td>[ɡʁam]</td>
+                <td class="clickable" data-lang="zh" data-word="gram">克</td><td class="clickable" data-lang="en" data-word="gram">gram</td>
+</tr>
+
+
+
+
+     </table>
+
+
+    <script>
+    const PIXABAY_API_KEY = '49256357-c30f2f538120ce8d74ff8921d';
+    let speechSynth = window.speechSynthesis;
+    let voices = [];
+
+    // Wait for voices to load
+    speechSynth.onvoiceschanged = function() {
+        voices = speechSynth.getVoices();
+    };
+
+    // Pronunciation function
+    function speak(text, lang) {
+        // Cancel any ongoing speech
+        speechSynth.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        
+        // For Chinese, select appropriate voice based on dialect
+        if (lang.startsWith('zh')) {
+            const voices = window.speechSynthesis.getVoices();
+            const chineseVoice = voices.find(voice => voice.lang.includes(lang));
+            if (chineseVoice) {
+                utterance.voice = chineseVoice;
+            }
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    } 
+    
+    let currentImageTimeout = null;  // 添加超时变量
+
+    // 清除背景图片
+    function clearBackgroundImages() {
+        if (currentImageTimeout) {
+            clearTimeout(currentImageTimeout);
+            currentImageTimeout = null;
+        }
+        document.querySelectorAll('.background-image').forEach(img => {
+            img.style.opacity = '0';
+            setTimeout(() => img.remove(), 300); // 淡出效果后移除
+        });
+    }
+
+    // Fetch and add background image
+    async function addBackgroundImage(cell, searchTerm) {
+        clearBackgroundImages();
+        
+        try {
+            const apiUrl = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(searchTerm)}&per_page=4&safesearch=true`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.hits && data.hits.length > 0) {
+                const randomIndex = Math.floor(Math.random() * Math.min(4, data.hits.length));
+                const img = document.createElement('img');
+                img.className = 'background-image';
+                img.alt = searchTerm;
+
+                // 图片加载完成后再显示
+                img.onload = () => {
+                    setTimeout(() => {
+                        img.style.opacity = '0.9';  // 设置为原来的不透明度
+                    }, 50);
+                };
+                
+                img.src = data.hits[randomIndex].previewURL;
+                
+                const firstCell = cell.closest('tr').querySelector('td:first-child');
+                firstCell.appendChild(img);
+
+                // 设置新的超时
+                currentImageTimeout = setTimeout(() => {
+                    clearBackgroundImages();
+                }, 3000);
+            }
+        } catch (error) {
+            console.error('Error fetching image:', error);
+        }
+    }
+
+    // Add click events to clickable cells
+    window.speechSynthesis.onvoiceschanged = () => {
+        document.querySelectorAll('.clickable').forEach(cell => {
+            cell.addEventListener('click', function() {
+                const text = this.textContent;
+                let lang;
+                
+                // Get language based on data-lang attribute
+                switch(this.dataset.lang) {
+                    case 'fr':
+                        lang = 'fr-FR';
+                        break;
+                    case 'de':
+                        lang = 'de-DE';
+                        break;
+                    case 'zh':
+                        // Use selected dialect for Chinese
+                        lang = document.getElementById('chineseDialect').value;
+                        break;
+                    default:
+                        lang = 'en-US';
+                }
+                
+                speak(text, lang);
+                addBackgroundImage(this, this.dataset.word);
+
+                // Visual feedback with cleanup
+                const originalBg = window.getComputedStyle(this).backgroundColor;
+                this.style.backgroundColor = '#c8e6c9';
+                
+                // Clear any existing timeout for this cell
+                if (this.resetTimeout) {
+                    clearTimeout(this.resetTimeout);
+                }
+                
+                // Set new timeout and store its ID
+                this.resetTimeout = setTimeout(() => {
+                    this.style.backgroundColor = '';
+                    this.resetTimeout = null;
+                }, 500);
+            });
+        });
+    };
+</script>
+
+</body>
+</html>

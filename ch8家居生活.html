@@ -1,0 +1,2333 @@
+<!-- <使用这个模板，添加单词到table的部分就可以!> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr {
+            position: relative;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .clickable {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+        .clickable:hover {
+            background-color: #e6e6e6;
+        }
+        .background-image {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            opacity: 0;  /* 初始设置为透明 */
+            transition: opacity 0.3s ease-in-out;  /* 添加过渡效果 */
+        }
+        .background-image:hover {
+            opacity: 0.8;
+        }
+        .language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .language-selector select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="index.html" class="back-button">🏠 主页</a>
+      </div>
+
+    <div class="language-selector">
+        <select id="chineseDialect">
+            <option value="zh-CN">普通话</option>
+            <option value="zh-HK">粤语</option>
+        </select>
+    </div>
+
+
+    <table id="wordTable">
+        <tr>
+            <th>法语</th>
+            <th>音标</th>
+            <th>德语</th>
+            <th>音标</th>
+            <th>中文</th>
+            <th>英语</th>
+        </tr>
+
+        <tr>
+            <td class="clickable" data-lang="fr" data-word="Capitale">Capitale</td>
+            <td>[kapitaːl]</td>
+            <td class="clickable" data-lang="de" data-word="Hauptstadt">Hauptstadt</td>
+            <td>[ˈhaʊ̯ptʃtat]</td>
+            <td class="clickable" data-lang="zh" data-word="首都">首都</td>
+            <td class="clickable" data-lang="en" data-word="capital city">capital city</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Ville">Ville</td>
+            <td>[vil]</td>
+            <td class="clickable" data-lang="de" data-word="Stadt">Stadt</td>
+            <td>[ʃtat]</td>
+            <td class="clickable" data-lang="zh" data-word="城市">城市</td>
+            <td class="clickable" data-lang="en" data-word="city">city</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Village">Village</td>
+            <td>[vilaːʒ]</td>
+            <td class="clickable" data-lang="de" data-word="Dorf">Dorf</td>
+            <td>[dɔʁf]</td>
+            <td class="clickable" data-lang="zh" data-word="农村">农村</td>
+            <td class="clickable" data-lang="en" data-word="village">village</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Centre commercial">Centre commercial</td>
+            <td>[sɑ̃tʁ kɔmɛʁsjal]</td>
+            <td class="clickable" data-lang="de" data-word="Einkaufszentrum">Einkaufszentrum</td>
+            <td>[ˈaɪ̯nkaʊ̯fsˌtsɛntʁʊm]</td>
+            <td class="clickable" data-lang="zh" data-word="购物中心">购物中心</td>
+            <td class="clickable" data-lang="en" data-word="shopping center">shopping center</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Centre">Centre</td>
+            <td>[sɑ̃tʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Zentrum">Zentrum</td>
+            <td>[ˈtsɛntʁʊm]</td>
+            <td class="clickable" data-lang="zh" data-word="市中心">市中心</td>
+            <td class="clickable" data-lang="en" data-word="center">center</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Banlieue">Banlieue</td>
+            <td>[bɑ̃ljø]</td>
+            <td class="clickable" data-lang="de" data-word="Vorort">Vorort</td>
+            <td>[ˈfoːʁˌʔɔʁt]</td>
+            <td class="clickable" data-lang="zh" data-word="郊区">郊区</td>
+            <td class="clickable" data-lang="en" data-word="suburb">suburb</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Maison">Maison</td>
+            <td>[mɛzɔ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Haus">Haus</td>
+            <td>[haʊ̯s]</td>
+            <td class="clickable" data-lang="zh" data-word="房子">房子</td>
+            <td class="clickable" data-lang="en" data-word="house">house</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Campagne">Campagne</td>
+            <td>[kɑ̃paɲ]</td>
+            <td class="clickable" data-lang="de" data-word="Land">Land</td>
+            <td>[lant]</td>
+            <td class="clickable" data-lang="zh" data-word="乡下">乡下</td>
+            <td class="clickable" data-lang="en" data-word="countryside">countryside</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Métropole">Métropole</td>
+            <td>[metʁɔpɔl]</td>
+            <td class="clickable" data-lang="de" data-word="Metropole">Metropole</td>
+            <td>[metʁoˈpoːlə]</td>
+            <td class="clickable" data-lang="zh" data-word="大都会">大都会</td>
+            <td class="clickable" data-lang="en" data-word="metropolis">metropolis</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Quartier d'affaires">Quartier d'affaires</td>
+            <td>[kaʁtje dafɛʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Geschäftsviertel">Geschäftsviertel</td>
+            <td>[ɡəˈʃɛftsˌfɪʁtl̩]</td>
+            <td class="clickable" data-lang="zh" data-word="商业区">商业区</td>
+            <td class="clickable" data-lang="en" data-word="business district">business district</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Arrondissement">Arrondissement</td>
+            <td>[aʁɔ̃dismɑ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Stadtbezirk">Stadtbezirk</td>
+            <td>[ˈʃtatbəˌtsɪʁk]</td>
+            <td class="clickable" data-lang="zh" data-word="市属区">市属区</td>
+            <td class="clickable" data-lang="en" data-word="district">district</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Région">Région</td>
+            <td>[ʁeʒjɔ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Region">Region</td>
+            <td>[ʁeˈɡi̯oːn]</td>
+            <td class="clickable" data-lang="zh" data-word="地区">地区</td>
+            <td class="clickable" data-lang="en" data-word="region">region</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Canton">Canton</td>
+            <td>[kɑ̃tɔ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Kanton">Kanton</td>
+            <td>[ˈkantɔn]</td>
+            <td class="clickable" data-lang="zh" data-word="州（瑞士）">州（瑞士）</td>
+            <td class="clickable" data-lang="en" data-word="canton">canton</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Province">Province</td>
+            <td>[pʁɔvɛ̃s]</td>
+            <td class="clickable" data-lang="de" data-word="Provinz">Provinz</td>
+            <td>[pʁoˈvɪnts]</td>
+            <td class="clickable" data-lang="zh" data-word="省">省</td>
+            <td class="clickable" data-lang="en" data-word="province">province</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Cité ouvrière">Cité ouvrière</td>
+            <td>[site uvʁijɛʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Arbeitersiedlung">Arbeitersiedlung</td>
+            <td>[ˈaʁbaɪtɐˌziːdlʊŋ]</td>
+            <td class="clickable" data-lang="zh" data-word="工人住宅区">工人住宅区</td>
+            <td class="clickable" data-lang="en" data-word="workers' housing estate">workers' housing estate</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Calme">Calme</td>
+            <td>[kalm]</td>
+            <td class="clickable" data-lang="de" data-word="ruhig">ruhig</td>
+            <td>[ˈʁuːɪç]</td>
+            <td class="clickable" data-lang="zh" data-word="安静的">安静的</td>
+            <td class="clickable" data-lang="en" data-word="quiet">quiet</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Bruyant">Bruyant</td>
+            <td>[bʁɥijɑ̃]</td>
+            <td class="clickable" data-lang="de" data-word="laut">laut</td>
+            <td>[laʊ̯t]</td>
+            <td class="clickable" data-lang="zh" data-word="嘈杂的">嘈杂的</td>
+            <td class="clickable" data-lang="en" data-word="noisy">noisy</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Animation">Animation</td>
+            <td>[animasjɔ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Treiben">Treiben</td>
+            <td>[ˈtʁaɪbən]</td>
+            <td class="clickable" data-lang="zh" data-word="熙熙攘攘">熙熙攘攘</td>
+            <td class="clickable" data-lang="en" data-word="bustle">bustle</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Abandonné">Abandonné</td>
+            <td>[abɑ̃dɔne]</td>
+            <td class="clickable" data-lang="de" data-word="verlassen">verlassen</td>
+            <td>[fɛɐ̯ˈlasn̩]</td>
+            <td class="clickable" data-lang="zh" data-word="荒凉的">荒凉的</td>
+            <td class="clickable" data-lang="en" data-word="deserted">deserted</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Peu peuplé">Peu peuplé</td>
+            <td>[pø pøple]</td>
+            <td class="clickable" data-lang="de" data-word="schwachbevölkert">schwachbevölkert</td>
+            <td>[ʃvax.bəˈfœlkɐt]</td>
+            <td class="clickable" data-lang="zh" data-word="人烟稀少的">人烟稀少的</td>
+            <td class="clickable" data-lang="en" data-word="sparsely populated">sparsely populated</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Dernier étage">Dernier étage</td>
+    <td>[dɛʁnje etaʒ]</td>
+    <td class="clickable" data-lang="de" data-word="die oberste Etage">die oberste Etage</td>
+    <td>[di ˈoːbɐstə eˈtaːʒə]</td>
+    <td class="clickable" data-lang="zh" data-word="顶层">顶层</td>
+    <td class="clickable" data-lang="en" data-word="top floor">top floor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Villa">Villa</td>
+    <td>[vila]</td>
+    <td class="clickable" data-lang="de" data-word="Villa">Villa</td>
+    <td>[ˈvɪla]</td>
+    <td class="clickable" data-lang="zh" data-word="别墅">别墅</td>
+    <td class="clickable" data-lang="en" data-word="villa">villa</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Rez-de-chaussée">Rez-de-chaussée</td>
+    <td>[ʁe.də.ʃo.se]</td>
+    <td class="clickable" data-lang="de" data-word="Erdgeschoss">Erdgeschoss</td>
+    <td>[ˈeːɐ̯tɡəˌʃɔs]</td>
+    <td class="clickable" data-lang="zh" data-word="底层">底层</td>
+    <td class="clickable" data-lang="en" data-word="ground floor">ground floor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Deuxième étage">Deuxième étage</td>
+    <td>[døzjɛm etaʒ]</td>
+    <td class="clickable" data-lang="de" data-word="die zweite Etage">die zweite Etage</td>
+    <td>[di ˈtsvaɪtə eˈtaːʒə]</td>
+    <td class="clickable" data-lang="zh" data-word="三楼">三楼</td>
+    <td class="clickable" data-lang="en" data-word="third floor">third floor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pompeux">Pompeux</td>
+    <td>[pɔ̃pø]</td>
+    <td class="clickable" data-lang="de" data-word="pompös">pompös</td>
+    <td>[pɔmˈpøːs]</td>
+    <td class="clickable" data-lang="zh" data-word="富丽堂皇的">富丽堂皇的</td>
+    <td class="clickable" data-lang="en" data-word="pompous">pompous</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Espace de rangement">Espace de rangement</td>
+    <td>[ɛspas də ʁɑ̃ʒmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Stauraum">Stauraum</td>
+    <td>[ˈʃtaʊ̯ˌʁaʊ̯m]</td>
+    <td class="clickable" data-lang="zh" data-word="储藏室">储藏室</td>
+    <td class="clickable" data-lang="en" data-word="storage space">storage space</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cave">Cave</td>
+    <td>[kav]</td>
+    <td class="clickable" data-lang="de" data-word="Keller">Keller</td>
+    <td>[ˈkɛlɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="地下室">地下室</td>
+    <td class="clickable" data-lang="en" data-word="cellar">cellar</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Toit">Toit</td>
+    <td>[twa]</td>
+    <td class="clickable" data-lang="de" data-word="Dach">Dach</td>
+    <td>[dax]</td>
+    <td class="clickable" data-lang="zh" data-word="房顶">房顶</td>
+    <td class="clickable" data-lang="en" data-word="roof">roof</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pièce">Pièce</td>
+    <td>[pjɛs]</td>
+    <td class="clickable" data-lang="de" data-word="Raum">Raum</td>
+    <td>[ʁaʊm]</td>
+    <td class="clickable" data-lang="zh" data-word="房间">房间</td>
+    <td class="clickable" data-lang="en" data-word="room">room</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Maison">Maison</td>
+    <td>[mɛzɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Haus">Haus</td>
+    <td>[haʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="房屋">房屋</td>
+    <td class="clickable" data-lang="en" data-word="house">house</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Appartement">Appartement</td>
+    <td>[apaʁtəmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Wohnung">Wohnung</td>
+    <td>[ˈvoːnʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="住宅">住宅</td>
+    <td class="clickable" data-lang="en" data-word="apartment">apartment</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Grenier">Grenier</td>
+    <td>[ɡʁənje]</td>
+    <td class="clickable" data-lang="de" data-word="Dachgeschoss">Dachgeschoss</td>
+    <td>[ˈdaxɡəˌʃɔs]</td>
+    <td class="clickable" data-lang="zh" data-word="阁楼">阁楼</td>
+    <td class="clickable" data-lang="en" data-word="attic">attic</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Colocation">Colocation</td>
+    <td>[kɔlɔkasjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Wohngemeinschaft">Wohngemeinschaft</td>
+    <td>[ˈvoːnɡəˌmaɪnʃaft]</td>
+    <td class="clickable" data-lang="zh" data-word="合租房">合租房</td>
+    <td class="clickable" data-lang="en" data-word="shared apartment">shared apartment</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Escalier">Escalier</td>
+    <td>[ɛskalje]</td>
+    <td class="clickable" data-lang="de" data-word="Treppe">Treppe</td>
+    <td>[ˈtʁɛpə]</td>
+    <td class="clickable" data-lang="zh" data-word="楼梯">楼梯</td>
+    <td class="clickable" data-lang="en" data-word="stairs">stairs</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Terrasse">Terrasse</td>
+    <td>[tɛʁas]</td>
+    <td class="clickable" data-lang="de" data-word="Terrasse">Terrasse</td>
+    <td>[tɛˈʁasə]</td>
+    <td class="clickable" data-lang="zh" data-word="露台">露台</td>
+    <td class="clickable" data-lang="en" data-word="terrace">terrace</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pension">Pension</td>
+    <td>[pɑ̃sjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Pension">Pension</td>
+    <td>[pɑ̃ˈsjoːn]</td>
+    <td class="clickable" data-lang="zh" data-word="膳宿公寓">膳宿公寓</td>
+    <td class="clickable" data-lang="en" data-word="boarding house">boarding house</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Balcon">Balcon</td>
+    <td>[balkɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Balkon">Balkon</td>
+    <td>[balˈkɔŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="阳台">阳台</td>
+    <td class="clickable" data-lang="en" data-word="balcony">balcony</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Corridor">Corridor</td>
+    <td>[kɔʁidɔʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Korridor">Korridor</td>
+    <td>[kɔʁiˈdoːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="走廊">走廊</td>
+    <td class="clickable" data-lang="en" data-word="corridor">corridor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Appartement de deux pièces">Appartement de deux pièces</td>
+    <td>[apaʁtəmɑ̃ də dø pjɛs]</td>
+    <td class="clickable" data-lang="de" data-word="eine Wohnung mit zwei Zimmern">eine Wohnung mit zwei Zimmern</td>
+    <td>[ˈaɪ̯nə ˈvoːnʊŋ mɪt tsvaɪ ˈtsɪmɐn]</td>
+    <td class="clickable" data-lang="zh" data-word="两居室住房">两居室住房</td>
+    <td class="clickable" data-lang="en" data-word="two-room apartment">two-room apartment</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pièce">Pièce</td>
+    <td>[pjɛs]</td>
+    <td class="clickable" data-lang="de" data-word="Zimmer">Zimmer</td>
+    <td>[ˈtsɪmɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="房间">房间</td>
+    <td class="clickable" data-lang="en" data-word="room">room</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Salle de bain">Salle de bain</td>
+    <td>[sal də bɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Bad">Bad</td>
+    <td>[baːt]</td>
+    <td class="clickable" data-lang="zh" data-word="浴室">浴室</td>
+    <td class="clickable" data-lang="en" data-word="bathroom">bathroom</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Débarras">Débarras</td>
+    <td>[debaʁa]</td>
+    <td class="clickable" data-lang="de" data-word="Kammer">Kammer</td>
+    <td>[ˈkamɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="贮藏室">贮藏室</td>
+    <td class="clickable" data-lang="en" data-word="storage room">storage room</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Salon">Salon</td>
+    <td>[salɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Wohnzimmer">Wohnzimmer</td>
+    <td>[ˈvoːnˌtsɪmɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="起居室，客厅">起居室，客厅</td>
+    <td class="clickable" data-lang="en" data-word="living room">living room</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Chambre">Chambre</td>
+    <td>[ʃɑ̃bʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Stube">Stube</td>
+    <td>[ˈʃtuːbə]</td>
+    <td class="clickable" data-lang="zh" data-word="寝室，房间">寝室，房间</td>
+    <td class="clickable" data-lang="en" data-word="room, chamber">room, chamber</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mur">Mur</td>
+    <td>[myʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Wand">Wand</td>
+    <td>[vant]</td>
+    <td class="clickable" data-lang="zh" data-word="墙">墙</td>
+    <td class="clickable" data-lang="en" data-word="wall">wall</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Partager">Partager</td>
+    <td>[paʁtaʒe]</td>
+    <td class="clickable" data-lang="de" data-word="teilen">teilen</td>
+    <td>[ˈtaɪlən]</td>
+    <td class="clickable" data-lang="zh" data-word="分开">分开</td>
+    <td class="clickable" data-lang="en" data-word="to divide">to divide</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Porte">Porte</td>
+    <td>[pɔʁt]</td>
+    <td class="clickable" data-lang="de" data-word="Tür">Tür</td>
+    <td>[tyːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="门">门</td>
+    <td class="clickable" data-lang="en" data-word="door">door</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Habiter">Habiter</td>
+    <td>[abite]</td>
+    <td class="clickable" data-lang="de" data-word="wohnen">wohnen</td>
+    <td>[ˈvoːnən]</td>
+    <td class="clickable" data-lang="zh" data-word="居住">居住</td>
+    <td class="clickable" data-lang="en" data-word="to live">to live</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cuisine">Cuisine</td>
+    <td>[kɥizin]</td>
+    <td class="clickable" data-lang="de" data-word="Küche">Küche</td>
+    <td>[ˈkʏçə]</td>
+    <td class="clickable" data-lang="zh" data-word="厨房">厨房</td>
+    <td class="clickable" data-lang="en" data-word="kitchen">kitchen</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Chambre à coucher">Chambre à coucher</td>
+    <td>[ʃɑ̃bʁ a kuʃe]</td>
+    <td class="clickable" data-lang="de" data-word="Schlafzimmer">Schlafzimmer</td>
+    <td>[ˈʃlaːfˌtsɪmɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="卧室">卧室</td>
+    <td class="clickable" data-lang="en" data-word="bedroom">bedroom</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Toilettes">Toilettes</td>
+    <td>[twalɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Waschraum">Waschraum</td>
+    <td>[ˈvaʃʁaʊm]</td>
+    <td class="clickable" data-lang="zh" data-word="洗手间">洗手间</td>
+    <td class="clickable" data-lang="en" data-word="washroom">washroom</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fenêtre">Fenêtre</td>
+    <td>[fənɛtʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Fenster">Fenster</td>
+    <td>[ˈfɛnstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="窗户">窗户</td>
+    <td class="clickable" data-lang="en" data-word="window">window</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Salle à manger">Salle à manger</td>
+    <td>[sal a mɑ̃ʒe]</td>
+    <td class="clickable" data-lang="de" data-word="Esszimmer">Esszimmer</td>
+    <td>[ˈɛsˌtsɪmɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="餐厅">餐厅</td>
+    <td class="clickable" data-lang="en" data-word="dining room">dining room</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Garage">Garage</td>
+    <td>[ɡaʁaʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Garage">Garage</td>
+    <td>[ɡaˈʁaːʒə]</td>
+    <td class="clickable" data-lang="zh" data-word="车库">车库</td>
+    <td class="clickable" data-lang="en" data-word="garage">garage</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vestiaire">Vestiaire</td>
+    <td>[vɛstjɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Garderobe">Garderobe</td>
+    <td>[ɡaʁdəˈʁoːbə]</td>
+    <td class="clickable" data-lang="zh" data-word="衣帽间">衣帽间</td>
+    <td class="clickable" data-lang="en" data-word="cloakroom">cloakroom</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bureau">Bureau</td>
+    <td>[byʁo]</td>
+    <td class="clickable" data-lang="de" data-word="Studierzimmer">Studierzimmer</td>
+    <td>[ʃtuˈdiːɐ̯ˌtsɪmɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="书房">书房</td>
+    <td class="clickable" data-lang="en" data-word="study room">study room</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vestiaire">Vestiaire</td>
+    <td>[vɛstjɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Umkleideraum">Umkleideraum</td>
+    <td>[ˈʊmklaɪdəˌʁaʊm]</td>
+    <td class="clickable" data-lang="zh" data-word="更衣室">更衣室</td>
+    <td class="clickable" data-lang="en" data-word="changing room">changing room</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Chambre d'enfant">Chambre d'enfant</td>
+    <td>[ʃɑ̃bʁ dɑ̃fɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Kinderzimmer">Kinderzimmer</td>
+    <td>[ˈkɪndɐˌtsɪmɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="儿童房">儿童房</td>
+    <td class="clickable" data-lang="en" data-word="children's room">children's room</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Armoire">Armoire</td>
+    <td>[aʁmwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Schrank">Schrank</td>
+    <td>[ʃʁaŋk]</td>
+    <td class="clickable" data-lang="zh" data-word="柜子">柜子</td>
+    <td class="clickable" data-lang="en" data-word="wardrobe">wardrobe</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Commode">Commode</td>
+    <td>[kɔmɔd]</td>
+    <td class="clickable" data-lang="de" data-word="Kommode">Kommode</td>
+    <td>[kɔˈmoːdə]</td>
+    <td class="clickable" data-lang="zh" data-word="抽屉柜">抽屉柜</td>
+    <td class="clickable" data-lang="en" data-word="chest of drawers">chest of drawers</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lit">Lit</td>
+    <td>[li]</td>
+    <td class="clickable" data-lang="de" data-word="Bett">Bett</td>
+    <td>[bɛt]</td>
+    <td class="clickable" data-lang="zh" data-word="床">床</td>
+    <td class="clickable" data-lang="en" data-word="bed">bed</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Table de chevet">Table de chevet</td>
+    <td>[tabl də ʃəvɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Nachttisch">Nachttisch</td>
+    <td>[ˈnaxtˌtɪʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="床头柜">床头柜</td>
+    <td class="clickable" data-lang="en" data-word="bedside table">bedside table</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lampe">Lampe</td>
+    <td>[lɑ̃p]</td>
+    <td class="clickable" data-lang="de" data-word="Lampe">Lampe</td>
+    <td>[ˈlampə]</td>
+    <td class="clickable" data-lang="zh" data-word="灯">灯</td>
+    <td class="clickable" data-lang="en" data-word="lamp">lamp</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Chaise">Chaise</td>
+    <td>[ʃɛz]</td>
+    <td class="clickable" data-lang="de" data-word="Stuhl">Stuhl</td>
+    <td>[ʃtuːl]</td>
+    <td class="clickable" data-lang="zh" data-word="椅子">椅子</td>
+    <td class="clickable" data-lang="en" data-word="chair">chair</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Planche à repasser">Planche à repasser</td>
+    <td>[plɑ̃ʃ a ʁəpase]</td>
+    <td class="clickable" data-lang="de" data-word="Bügelbrett">Bügelbrett</td>
+    <td>[ˈbyːɡl̩ˌbʁɛt]</td>
+    <td class="clickable" data-lang="zh" data-word="烫衣板">烫衣板</td>
+    <td class="clickable" data-lang="en" data-word="ironing board">ironing board</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tapis">Tapis</td>
+    <td>[tapi]</td>
+    <td class="clickable" data-lang="de" data-word="Teppich">Teppich</td>
+    <td>[ˈtɛpɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="地毯">地毯</td>
+    <td class="clickable" data-lang="en" data-word="carpet">carpet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vase">Vase</td>
+    <td>[vaz]</td>
+    <td class="clickable" data-lang="de" data-word="Vase">Vase</td>
+    <td>[ˈvaːzə]</td>
+    <td class="clickable" data-lang="zh" data-word="花瓶">花瓶</td>
+    <td class="clickable" data-lang="en" data-word="vase">vase</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Meuble">Meuble</td>
+    <td>[mœbl]</td>
+    <td class="clickable" data-lang="de" data-word="Möbel">Möbel</td>
+    <td>[ˈmøːbl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="家具">家具</td>
+    <td class="clickable" data-lang="en" data-word="furniture">furniture</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Miroir">Miroir</td>
+    <td>[miʁwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Spiegel">Spiegel</td>
+    <td>[ˈʃpiːɡl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="镜子">镜子</td>
+    <td class="clickable" data-lang="en" data-word="mirror">mirror</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Canapé">Canapé</td>
+    <td>[kanape]</td>
+    <td class="clickable" data-lang="de" data-word="Sofa">Sofa</td>
+    <td>[ˈzoːfa]</td>
+    <td class="clickable" data-lang="zh" data-word="沙发">沙发</td>
+    <td class="clickable" data-lang="en" data-word="sofa">sofa</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bureau">Bureau</td>
+    <td>[byʁo]</td>
+    <td class="clickable" data-lang="de" data-word="Schreibtisch">Schreibtisch</td>
+    <td>[ˈʃʁaɪ̯pˌtɪʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="书桌">书桌</td>
+    <td class="clickable" data-lang="en" data-word="desk">desk</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cintre">Cintre</td>
+    <td>[sɛ̃tʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Kleiderbügel">Kleiderbügel</td>
+    <td>[ˈklaɪ̯dɐˌbyːɡl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="衣架">衣架</td>
+    <td class="clickable" data-lang="en" data-word="clothes hanger">clothes hanger</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Aménagement">Aménagement</td>
+    <td>[amenaʒmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Ausstattung">Ausstattung</td>
+    <td>[ˈaʊ̯sˌʃtatʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="布置">布置</td>
+    <td class="clickable" data-lang="en" data-word="furnishing">furnishing</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Carreau">Carreau</td>
+    <td>[kaʁo]</td>
+    <td class="clickable" data-lang="de" data-word="Fliese">Fliese</td>
+    <td>[ˈfliːzə]</td>
+    <td class="clickable" data-lang="zh" data-word="瓷砖">瓷砖</td>
+    <td class="clickable" data-lang="en" data-word="tile">tile</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Interrupteur">Interrupteur</td>
+    <td>[ɛ̃tɛʁyptœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Schalter">Schalter</td>
+    <td>[ˈʃaltɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="开关">开关</td>
+    <td class="clickable" data-lang="en" data-word="switch">switch</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Appareil électrique">Appareil électrique</td>
+    <td>[apaʁɛj elɛktʁik]</td>
+    <td class="clickable" data-lang="de" data-word="Elektrogerät">Elektrogerät</td>
+    <td>[eˈlɛktʁoɡəˌʁɛːt]</td>
+    <td class="clickable" data-lang="zh" data-word="家电">家电</td>
+    <td class="clickable" data-lang="en" data-word="electrical appliance">electrical appliance</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Laqué">Laqué</td>
+    <td>[lake]</td>
+    <td class="clickable" data-lang="de" data-word="lackiert">lackiert</td>
+    <td>[laˈkiːɐ̯t]</td>
+    <td class="clickable" data-lang="zh" data-word="上漆了的">上漆了的</td>
+    <td class="clickable" data-lang="en" data-word="lacquered">lacquered</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Solide">Solide</td>
+    <td>[sɔlid]</td>
+    <td class="clickable" data-lang="de" data-word="solide">solide</td>
+    <td>[zoˈliːdə]</td>
+    <td class="clickable" data-lang="zh" data-word="坚固的">坚固的</td>
+    <td class="clickable" data-lang="en" data-word="solid">solid</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Radio">Radio</td>
+    <td>[ʁadjo]</td>
+    <td class="clickable" data-lang="de" data-word="Radio">Radio</td>
+    <td>[ˈʁaːdi̯o]</td>
+    <td class="clickable" data-lang="zh" data-word="收音机">收音机</td>
+    <td class="clickable" data-lang="en" data-word="radio">radio</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ordinateur">Ordinateur</td>
+    <td>[ɔʁdinatœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Computer">Computer</td>
+    <td>[kɔmˈpjuːtɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="电脑">电脑</td>
+    <td class="clickable" data-lang="en" data-word="computer">computer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Portable">Portable</td>
+    <td>[pɔʁtabl]</td>
+    <td class="clickable" data-lang="de" data-word="Handy">Handy</td>
+    <td>[ˈhɛndi]</td>
+    <td class="clickable" data-lang="zh" data-word="手机">手机</td>
+    <td class="clickable" data-lang="en" data-word="mobile phone">mobile phone</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Numérique">Numérique</td>
+    <td>[nymeʁik]</td>
+    <td class="clickable" data-lang="de" data-word="digital">digital</td>
+    <td>[diɡiˈtaːl]</td>
+    <td class="clickable" data-lang="zh" data-word="数字的">数字的</td>
+    <td class="clickable" data-lang="en" data-word="digital">digital</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Voyant lumineux">Voyant lumineux</td>
+    <td>[vwajɑ̃ lyminø]</td>
+    <td class="clickable" data-lang="de" data-word="Leuchtanzeige">Leuchtanzeige</td>
+    <td>[ˈlɔʏçtˌʔantsaɪɡə]</td>
+    <td class="clickable" data-lang="zh" data-word="指示灯">指示灯</td>
+    <td class="clickable" data-lang="en" data-word="indicator light">indicator light</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Smartphone">Smartphone</td>
+    <td>[smaʁtfɔn]</td>
+    <td class="clickable" data-lang="de" data-word="Smartphone">Smartphone</td>
+    <td>[ˈsmaːtfoʊ̯n]</td>
+    <td class="clickable" data-lang="zh" data-word="智能手机">智能手机</td>
+    <td class="clickable" data-lang="en" data-word="smartphone">smartphone</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Appareil photo numérique">Appareil photo numérique</td>
+    <td>[apaʁɛj foto nymeʁik]</td>
+    <td class="clickable" data-lang="de" data-word="Digitalkamera">Digitalkamera</td>
+    <td>[diɡiˈtaːlˌkaməʁa]</td>
+    <td class="clickable" data-lang="zh" data-word="数码相机">数码相机</td>
+    <td class="clickable" data-lang="en" data-word="digital camera">digital camera</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Garantie">Garantie</td>
+    <td>[ɡaʁɑ̃ti]</td>
+    <td class="clickable" data-lang="de" data-word="Garantie">Garantie</td>
+    <td>[ɡaʁanˈtiː]</td>
+    <td class="clickable" data-lang="zh" data-word="保修">保修</td>
+    <td class="clickable" data-lang="en" data-word="warranty">warranty</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Photographier">Photographier</td>
+    <td>[fɔtɔɡʁafje]</td>
+    <td class="clickable" data-lang="de" data-word="photographieren">photographieren</td>
+    <td>[fotoɡʁaˈfiːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="拍照">拍照</td>
+    <td class="clickable" data-lang="en" data-word="to photograph">to photograph</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Écouter de la musique">Écouter de la musique</td>
+    <td>[ekute də la myzik]</td>
+    <td class="clickable" data-lang="de" data-word="Musik hören">Musik hören</td>
+    <td>[muˈziːk ˈhøːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="听歌">听歌</td>
+    <td class="clickable" data-lang="en" data-word="listen to music">listen to music</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Surfer">Surfer</td>
+    <td>[syʁfe]</td>
+    <td class="clickable" data-lang="de" data-word="surfen">surfen</td>
+    <td>[ˈzʊʁfn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="上网">上网</td>
+    <td class="clickable" data-lang="en" data-word="to surf">to surf</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tendance">Tendance</td>
+    <td>[tɑ̃dɑ̃s]</td>
+    <td class="clickable" data-lang="de" data-word="Trend">Trend</td>
+    <td>[tʁɛnt]</td>
+    <td class="clickable" data-lang="zh" data-word="趋势，潮流">趋势，潮流</td>
+    <td class="clickable" data-lang="en" data-word="trend">trend</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lecteur DVD">Lecteur DVD</td>
+    <td>[lɛktœʁ devedе]</td>
+    <td class="clickable" data-lang="de" data-word="DVD-Spieler">DVD-Spieler</td>
+    <td>[deːveːdeːˈʃpiːlɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="DVD播放器">DVD播放器</td>
+    <td class="clickable" data-lang="en" data-word="DVD player">DVD player</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mise à jour">Mise à jour</td>
+    <td>[miz a ʒuʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Update">Update</td>
+    <td>[ˈʌpdeɪt]</td>
+    <td class="clickable" data-lang="zh" data-word="升级">升级</td>
+    <td class="clickable" data-lang="en" data-word="update">update</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Emporter">Emporter</td>
+    <td>[ɑ̃pɔʁte]</td>
+    <td class="clickable" data-lang="de" data-word="mitnehmen">mitnehmen</td>
+    <td>[ˈmɪtˌneːmən]</td>
+    <td class="clickable" data-lang="zh" data-word="携带">携带</td>
+    <td class="clickable" data-lang="en" data-word="to take along">to take along</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Chargeur">Chargeur</td>
+    <td>[ʃaʁʒœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Ladegerät">Ladegerät</td>
+    <td>[ˈlaːdəɡəˌʁɛːt]</td>
+    <td class="clickable" data-lang="zh" data-word="充电器">充电器</td>
+    <td class="clickable" data-lang="en" data-word="charger">charger</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ordinateur de bureau">Ordinateur de bureau</td>
+    <td>[ɔʁdinatœʁ də byʁo]</td>
+    <td class="clickable" data-lang="de" data-word="Desktop">Desktop</td>
+    <td>[ˈdɛskˌtɔp]</td>
+    <td class="clickable" data-lang="zh" data-word="台式电脑">台式电脑</td>
+    <td class="clickable" data-lang="en" data-word="desktop computer">desktop computer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tablette">Tablette</td>
+    <td>[tablɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Tabletcomputer">Tabletcomputer</td>
+    <td>[ˈtæblətkəmpjuːtɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="平板电脑">平板电脑</td>
+    <td class="clickable" data-lang="en" data-word="tablet computer">tablet computer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Photocopieur">Photocopieur</td>
+    <td>[fotokopjœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Kopiermaschine">Kopiermaschine</td>
+    <td>[kɔˈpiːɐ̯maˌʃiːnə]</td>
+    <td class="clickable" data-lang="zh" data-word="复印机">复印机</td>
+    <td class="clickable" data-lang="en" data-word="copy machine">copy machine</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Imprimante">Imprimante</td>
+    <td>[ɛ̃pʁimɑ̃t]</td>
+    <td class="clickable" data-lang="de" data-word="Drucker">Drucker</td>
+    <td>[ˈdʁʊkɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="打印机">打印机</td>
+    <td class="clickable" data-lang="en" data-word="printer">printer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Douche">Douche</td>
+    <td>[duʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Dusche">Dusche</td>
+    <td>[ˈduːʃə]</td>
+    <td class="clickable" data-lang="zh" data-word="淋浴">淋浴</td>
+    <td class="clickable" data-lang="en" data-word="shower">shower</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Robinet">Robinet</td>
+    <td>[ʁɔbinɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Wasserhahn">Wasserhahn</td>
+    <td>[ˈvasɐˌhaːn]</td>
+    <td class="clickable" data-lang="zh" data-word="水龙头">水龙头</td>
+    <td class="clickable" data-lang="en" data-word="tap, faucet">tap, faucet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lavabo">Lavabo</td>
+    <td>[lavabo]</td>
+    <td class="clickable" data-lang="de" data-word="Waschbecken">Waschbecken</td>
+    <td>[ˈvaʃˌbɛkn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="洗脸盆">洗脸盆</td>
+    <td class="clickable" data-lang="en" data-word="sink">sink</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Baignoire">Baignoire</td>
+    <td>[bɛɲwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Badewanne">Badewanne</td>
+    <td>[ˈbaːdəˌvanə]</td>
+    <td class="clickable" data-lang="zh" data-word="浴缸">浴缸</td>
+    <td class="clickable" data-lang="en" data-word="bathtub">bathtub</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Gel douche">Gel douche</td>
+    <td>[ʒɛl duʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Duschgel">Duschgel</td>
+    <td>[ˈduːʃˌɡeːl]</td>
+    <td class="clickable" data-lang="zh" data-word="沐浴露">沐浴露</td>
+    <td class="clickable" data-lang="en" data-word="shower gel">shower gel</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Serviette">Serviette</td>
+    <td>[sɛʁvjɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Handtuch">Handtuch</td>
+    <td>[ˈhanttuːx]</td>
+    <td class="clickable" data-lang="zh" data-word="毛巾">毛巾</td>
+    <td class="clickable" data-lang="en" data-word="towel">towel</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lait démaquillant">Lait démaquillant</td>
+    <td>[lɛ demakijɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Reinigungsmilch">Reinigungsmilch</td>
+    <td>[ˈʁaɪnɪɡʊŋsˌmɪlç]</td>
+    <td class="clickable" data-lang="zh" data-word="洗面奶">洗面奶</td>
+    <td class="clickable" data-lang="en" data-word="cleansing milk">cleansing milk</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Savon">Savon</td>
+    <td>[savɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Seife">Seife</td>
+    <td>[ˈzaɪfə]</td>
+    <td class="clickable" data-lang="zh" data-word="香皂">香皂</td>
+    <td class="clickable" data-lang="en" data-word="soap">soap</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Rideau">Rideau</td>
+    <td>[ʁido]</td>
+    <td class="clickable" data-lang="de" data-word="Vorhang">Vorhang</td>
+    <td>[ˈfoːɐ̯haŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="窗帘">窗帘</td>
+    <td class="clickable" data-lang="en" data-word="curtain">curtain</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Drap">Drap</td>
+    <td>[dʁa]</td>
+    <td class="clickable" data-lang="de" data-word="Bettdecke">Bettdecke</td>
+    <td>[ˈbɛtˌdɛkə]</td>
+    <td class="clickable" data-lang="zh" data-word="床单">床单</td>
+    <td class="clickable" data-lang="en" data-word="bed sheet">bed sheet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Housse de couette">Housse de couette</td>
+    <td>[us də kwɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Bettbezug">Bettbezug</td>
+    <td>[ˈbɛtbəˌtsuːk]</td>
+    <td class="clickable" data-lang="zh" data-word="被套">被套</td>
+    <td class="clickable" data-lang="en" data-word="duvet cover">duvet cover</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Couverture">Couverture</td>
+    <td>[kuvɛʁtyʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Decke">Decke</td>
+    <td>[ˈdɛkə]</td>
+    <td class="clickable" data-lang="zh" data-word="毛毯">毛毯</td>
+    <td class="clickable" data-lang="en" data-word="blanket">blanket</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Oreiller">Oreiller</td>
+    <td>[ɔʁɛje]</td>
+    <td class="clickable" data-lang="de" data-word="Kissen">Kissen</td>
+    <td>[ˈkɪsn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="枕头">枕头</td>
+    <td class="clickable" data-lang="en" data-word="pillow">pillow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Taie d'oreiller">Taie d'oreiller</td>
+    <td>[tɛ dɔʁɛje]</td>
+    <td class="clickable" data-lang="de" data-word="Kissenbezug">Kissenbezug</td>
+    <td>[ˈkɪsn̩bəˌtsuːk]</td>
+    <td class="clickable" data-lang="zh" data-word="枕头套">枕头套</td>
+    <td class="clickable" data-lang="en" data-word="pillowcase">pillowcase</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mouchoir">Mouchoir</td>
+    <td>[muʃwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Taschentuch">Taschentuch</td>
+    <td>[ˈtaʃn̩ˌtuːx]</td>
+    <td class="clickable" data-lang="zh" data-word="手帕">手帕</td>
+    <td class="clickable" data-lang="en" data-word="handkerchief">handkerchief</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Dentifrice">Dentifrice</td>
+    <td>[dɑ̃tifʁis]</td>
+    <td class="clickable" data-lang="de" data-word="Zahnpasta">Zahnpasta</td>
+    <td>[ˈtsaːnˌpasta]</td>
+    <td class="clickable" data-lang="zh" data-word="牙膏">牙膏</td>
+    <td class="clickable" data-lang="en" data-word="toothpaste">toothpaste</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cintre">Cintre</td>
+    <td>[sɛ̃tʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Kleiderbügel">Kleiderbügel</td>
+    <td>[ˈklaɪdɐˌbyːɡl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="衣架">衣架</td>
+    <td class="clickable" data-lang="en" data-word="clothes hanger">clothes hanger</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fermeture éclair">Fermeture éclair</td>
+    <td>[fɛʁmətyʁ ekleʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Reißverschluß">Reißverschluß</td>
+    <td>[ˈʁaɪsˌfɛɐ̯ʃlʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="拉链">拉链</td>
+    <td class="clickable" data-lang="en" data-word="zipper">zipper</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Coussin">Coussin</td>
+    <td>[kusɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Polster">Polster</td>
+    <td>[ˈpɔlstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="坐垫">坐垫</td>
+    <td class="clickable" data-lang="en" data-word="cushion">cushion</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Brosse">Brosse</td>
+    <td>[bʁɔs]</td>
+    <td class="clickable" data-lang="de" data-word="Bürste">Bürste</td>
+    <td>[ˈbʏʁstə]</td>
+    <td class="clickable" data-lang="zh" data-word="刷子">刷子</td>
+    <td class="clickable" data-lang="en" data-word="brush">brush</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Buffet">Buffet</td>
+    <td>[byfɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Anrichte">Anrichte</td>
+    <td>[ˈanʁɪçtə]</td>
+    <td class="clickable" data-lang="zh" data-word="碗橱">碗橱</td>
+    <td class="clickable" data-lang="en" data-word="sideboard">sideboard</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tasse">Tasse</td>
+    <td>[tas]</td>
+    <td class="clickable" data-lang="de" data-word="Tasse">Tasse</td>
+    <td>[ˈtasə]</td>
+    <td class="clickable" data-lang="zh" data-word="杯子">杯子</td>
+    <td class="clickable" data-lang="en" data-word="cup">cup</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Serviette">Serviette</td>
+    <td>[sɛʁvjɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Serviette">Serviette</td>
+    <td>[zɛʁviˈɛtə]</td>
+    <td class="clickable" data-lang="zh" data-word="餐巾">餐巾</td>
+    <td class="clickable" data-lang="en" data-word="napkin">napkin</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vaisselle">Vaisselle</td>
+    <td>[vɛsɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Geschirr">Geschirr</td>
+    <td>[ɡəˈʃɪʁ]</td>
+    <td class="clickable" data-lang="zh" data-word="餐具">餐具</td>
+    <td class="clickable" data-lang="en" data-word="dishes">dishes</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fourchette">Fourchette</td>
+    <td>[fuʁʃɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Gabel">Gabel</td>
+    <td>[ˈɡaːbl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="叉子">叉子</td>
+    <td class="clickable" data-lang="en" data-word="fork">fork</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Couteau">Couteau</td>
+    <td>[kuto]</td>
+    <td class="clickable" data-lang="de" data-word="Messer">Messer</td>
+    <td>[ˈmɛsɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="刀">刀</td>
+    <td class="clickable" data-lang="en" data-word="knife">knife</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Boîte">Boîte</td>
+    <td>[bwat]</td>
+    <td class="clickable" data-lang="de" data-word="Dose">Dose</td>
+    <td>[ˈdoːzə]</td>
+    <td class="clickable" data-lang="zh" data-word="罐">罐</td>
+    <td class="clickable" data-lang="en" data-word="can">can</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cuisinière">Cuisinière</td>
+    <td>[kɥizinjɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Herd">Herd</td>
+    <td>[heːɐ̯t]</td>
+    <td class="clickable" data-lang="zh" data-word="炉子">炉子</td>
+    <td class="clickable" data-lang="en" data-word="stove">stove</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Grille-pain">Grille-pain</td>
+    <td>[ɡʁij pɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Toaster">Toaster</td>
+    <td>[ˈtoːstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="烤面包机">烤面包机</td>
+    <td class="clickable" data-lang="en" data-word="toaster">toaster</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Panier">Panier</td>
+    <td>[panje]</td>
+    <td class="clickable" data-lang="de" data-word="Korb">Korb</td>
+    <td>[kɔʁp]</td>
+    <td class="clickable" data-lang="zh" data-word="篮子">篮子</td>
+    <td class="clickable" data-lang="en" data-word="basket">basket</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Assiette">Assiette</td>
+    <td>[asjɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Teller">Teller</td>
+    <td>[ˈtɛlɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="盘子">盘子</td>
+    <td class="clickable" data-lang="en" data-word="plate">plate</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bouteille">Bouteille</td>
+    <td>[butɛj]</td>
+    <td class="clickable" data-lang="de" data-word="Flasche">Flasche</td>
+    <td>[ˈflaʃə]</td>
+    <td class="clickable" data-lang="zh" data-word="瓶子">瓶子</td>
+    <td class="clickable" data-lang="en" data-word="bottle">bottle</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bouilloire">Bouilloire</td>
+    <td>[bujwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Kessel">Kessel</td>
+    <td>[ˈkɛsl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="水壶">水壶</td>
+    <td class="clickable" data-lang="en" data-word="kettle">kettle</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cuillère">Cuillère</td>
+    <td>[kɥijɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Löffel">Löffel</td>
+    <td>[ˈlœfl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="汤匙">汤匙</td>
+    <td class="clickable" data-lang="en" data-word="spoon">spoon</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Baguettes">Baguettes</td>
+    <td>[baɡɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Stäbchen">Stäbchen</td>
+    <td>[ˈʃtɛːpçən]</td>
+    <td class="clickable" data-lang="zh" data-word="筷子">筷子</td>
+    <td class="clickable" data-lang="en" data-word="chopsticks">chopsticks</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Four à micro-ondes">Four à micro-ondes</td>
+    <td>[fuʁ a mikʁo ɔ̃d]</td>
+    <td class="clickable" data-lang="de" data-word="Mikrowellenherd">Mikrowellenherd</td>
+    <td>[mikʁoˈvɛlənˌheːɐ̯t]</td>
+    <td class="clickable" data-lang="zh" data-word="微波炉">微波炉</td>
+    <td class="clickable" data-lang="en" data-word="microwave oven">microwave oven</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bol">Bol</td>
+    <td>[bɔl]</td>
+    <td class="clickable" data-lang="de" data-word="Schüssel">Schüssel</td>
+    <td>[ˈʃʏsl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="碗">碗</td>
+    <td class="clickable" data-lang="en" data-word="bowl">bowl</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Soucoupe">Soucoupe</td>
+    <td>[sukup]</td>
+    <td class="clickable" data-lang="de" data-word="Schale">Schale</td>
+    <td>[ˈʃaːlə]</td>
+    <td class="clickable" data-lang="zh" data-word="碟子">碟子</td>
+    <td class="clickable" data-lang="en" data-word="saucer">saucer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tasse à thé">Tasse à thé</td>
+    <td>[tas a te]</td>
+    <td class="clickable" data-lang="de" data-word="Teetasse">Teetasse</td>
+    <td>[ˈteːˌtasə]</td>
+    <td class="clickable" data-lang="zh" data-word="茶杯">茶杯</td>
+    <td class="clickable" data-lang="en" data-word="teacup">teacup</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Peinture">Peinture</td>
+    <td>[pɛ̃tyʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Anstrichfarbe">Anstrichfarbe</td>
+    <td>[ˈanʃtʁɪçˌfaʁbə]</td>
+    <td class="clickable" data-lang="zh" data-word="油漆">油漆</td>
+    <td class="clickable" data-lang="en" data-word="paint">paint</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fusible">Fusible</td>
+    <td>[fyzibl]</td>
+    <td class="clickable" data-lang="de" data-word="Sicherung">Sicherung</td>
+    <td>[ˈzɪçəʁʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="保险丝">保险丝</td>
+    <td class="clickable" data-lang="en" data-word="fuse">fuse</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Verrou">Verrou</td>
+    <td>[veʁu]</td>
+    <td class="clickable" data-lang="de" data-word="Bolzen">Bolzen</td>
+    <td>[ˈbɔltsn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="插销">插销</td>
+    <td class="clickable" data-lang="en" data-word="bolt">bolt</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fiche">Fiche</td>
+    <td>[fiʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Stecker">Stecker</td>
+    <td>[ˈʃtɛkɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="插头">插头</td>
+    <td class="clickable" data-lang="en" data-word="plug">plug</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Marteau">Marteau</td>
+    <td>[maʁto]</td>
+    <td class="clickable" data-lang="de" data-word="Hammer">Hammer</td>
+    <td>[ˈhamɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="锤子">锤子</td>
+    <td class="clickable" data-lang="en" data-word="hammer">hammer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Clou">Clou</td>
+    <td>[klu]</td>
+    <td class="clickable" data-lang="de" data-word="Nagel">Nagel</td>
+    <td>[ˈnaːɡl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="钉子">钉子</td>
+    <td class="clickable" data-lang="en" data-word="nail">nail</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fil">Fil</td>
+    <td>[fil]</td>
+    <td class="clickable" data-lang="de" data-word="Draht">Draht</td>
+    <td>[dʁaːt]</td>
+    <td class="clickable" data-lang="zh" data-word="电线">电线</td>
+    <td class="clickable" data-lang="en" data-word="wire">wire</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vis">Vis</td>
+    <td>[vis]</td>
+    <td class="clickable" data-lang="de" data-word="Schraube">Schraube</td>
+    <td>[ˈʃʁaʊbə]</td>
+    <td class="clickable" data-lang="zh" data-word="螺丝">螺丝</td>
+    <td class="clickable" data-lang="en" data-word="screw">screw</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pince">Pince</td>
+    <td>[pɛ̃s]</td>
+    <td class="clickable" data-lang="de" data-word="Zange">Zange</td>
+    <td>[ˈtsaŋə]</td>
+    <td class="clickable" data-lang="zh" data-word="钳子">钳子</td>
+    <td class="clickable" data-lang="en" data-word="pliers">pliers</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Quincaillerie">Quincaillerie</td>
+    <td>[kɛ̃kajʁi]</td>
+    <td class="clickable" data-lang="de" data-word="Eisenwarenhandlung">Eisenwarenhandlung</td>
+    <td>[ˈaɪ̯zn̩ˌvaːʁənhandlʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="五金店">五金店</td>
+    <td class="clickable" data-lang="en" data-word="hardware store">hardware store</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Outil">Outil</td>
+    <td>[uti]</td>
+    <td class="clickable" data-lang="de" data-word="Werkzeug">Werkzeug</td>
+    <td>[ˈvɛʁktsɔʏk]</td>
+    <td class="clickable" data-lang="zh" data-word="工具">工具</td>
+    <td class="clickable" data-lang="en" data-word="tool">tool</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Manche">Manche</td>
+    <td>[mɑ̃ʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Heft">Heft</td>
+    <td>[hɛft]</td>
+    <td class="clickable" data-lang="zh" data-word="柄">柄</td>
+    <td class="clickable" data-lang="en" data-word="handle">handle</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Serrer">Serrer</td>
+    <td>[sɛʁe]</td>
+    <td class="clickable" data-lang="de" data-word="anziehen">anziehen</td>
+    <td>[ˈanˌtsiːən]</td>
+    <td class="clickable" data-lang="zh" data-word="拧紧">拧紧</td>
+    <td class="clickable" data-lang="en" data-word="to tighten">to tighten</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Manipuler">Manipuler</td>
+    <td>[manipyle]</td>
+    <td class="clickable" data-lang="de" data-word="bedienen">bedienen</td>
+    <td>[bəˈdiːnən]</td>
+    <td class="clickable" data-lang="zh" data-word="操纵，使用">操纵，使用</td>
+    <td class="clickable" data-lang="en" data-word="to operate">to operate</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Desserrer">Desserrer</td>
+    <td>[desɛʁe]</td>
+    <td class="clickable" data-lang="de" data-word="lösen">lösen</td>
+    <td>[ˈløːzn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="松开">松开</td>
+    <td class="clickable" data-lang="en" data-word="to loosen">to loosen</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Clé">Clé</td>
+    <td>[kle]</td>
+    <td class="clickable" data-lang="de" data-word="Schraubenschlüssel">Schraubenschlüssel</td>
+    <td>[ˈʃʁaʊbn̩ˌʃlʏsl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="扳手">扳手</td>
+    <td class="clickable" data-lang="en" data-word="wrench">wrench</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tourner">Tourner</td>
+    <td>[tuʁne]</td>
+    <td class="clickable" data-lang="de" data-word="drehen">drehen</td>
+    <td>[ˈdʁeːən]</td>
+    <td class="clickable" data-lang="zh" data-word="转动">转动</td>
+    <td class="clickable" data-lang="en" data-word="to turn">to turn</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Régler">Régler</td>
+    <td>[ʁeɡle]</td>
+    <td class="clickable" data-lang="de" data-word="einstellen">einstellen</td>
+    <td>[ˈaɪ̯nˌʃtɛlən]</td>
+    <td class="clickable" data-lang="zh" data-word="调整，校准">调整，校准</td>
+    <td class="clickable" data-lang="en" data-word="to adjust">to adjust</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Roulement">Roulement</td>
+    <td>[ʁulmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Lager">Lager</td>
+    <td>[ˈlaːɡɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="轴承">轴承</td>
+    <td class="clickable" data-lang="en" data-word="bearing">bearing</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tournevis">Tournevis</td>
+    <td>[tuʁnəvis]</td>
+    <td class="clickable" data-lang="de" data-word="Schraubendreher">Schraubendreher</td>
+    <td>[ˈʃʁaʊbn̩ˌdʁeːɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="螺丝刀">螺丝刀</td>
+    <td class="clickable" data-lang="en" data-word="screwdriver">screwdriver</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Jouet">Jouet</td>
+    <td>[ʒwɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Spielzeug">Spielzeug</td>
+    <td>[ˈʃpiːlˌtsɔʏk]</td>
+    <td class="clickable" data-lang="zh" data-word="玩具">玩具</td>
+    <td class="clickable" data-lang="en" data-word="toy">toy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Peluche">Peluche</td>
+    <td>[pəlyʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Kuscheltier">Kuscheltier</td>
+    <td>[ˈkʊʃl̩ˌtiːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="毛绒玩具">毛绒玩具</td>
+    <td class="clickable" data-lang="en" data-word="stuffed animal">stuffed animal</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Poupée">Poupée</td>
+    <td>[pupe]</td>
+    <td class="clickable" data-lang="de" data-word="Puppe">Puppe</td>
+    <td>[ˈpʊpə]</td>
+    <td class="clickable" data-lang="zh" data-word="木偶">木偶</td>
+    <td class="clickable" data-lang="en" data-word="doll">doll</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tétine">Tétine</td>
+    <td>[tetin]</td>
+    <td class="clickable" data-lang="de" data-word="Schnuller">Schnuller</td>
+    <td>[ˈʃnʊlɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="奶嘴">奶嘴</td>
+    <td class="clickable" data-lang="en" data-word="pacifier">pacifier</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lit de bébé">Lit de bébé</td>
+    <td>[li də bebe]</td>
+    <td class="clickable" data-lang="de" data-word="Kinderbett">Kinderbett</td>
+    <td>[ˈkɪndɐˌbɛt]</td>
+    <td class="clickable" data-lang="zh" data-word="婴儿床">婴儿床</td>
+    <td class="clickable" data-lang="en" data-word="crib">crib</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Livre pour enfants">Livre pour enfants</td>
+    <td>[livʁ puʁ ɑ̃fɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Kinderbuch">Kinderbuch</td>
+    <td>[ˈkɪndɐˌbuːx]</td>
+    <td class="clickable" data-lang="zh" data-word="儿童读物">儿童读物</td>
+    <td class="clickable" data-lang="en" data-word="children's book">children's book</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vêtements pour enfants">Vêtements pour enfants</td>
+    <td>[vɛtmɑ̃ puʁ ɑ̃fɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Kinderkleidung">Kinderkleidung</td>
+    <td>[ˈkɪndɐˌklaɪdʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="童装">童装</td>
+    <td class="clickable" data-lang="en" data-word="children's clothing">children's clothing</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Chaussures pour enfants">Chaussures pour enfants</td>
+    <td>[ʃosyʁ puʁ ɑ̃fɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Kinderschuh">Kinderschuh</td>
+    <td>[ˈkɪndɐˌʃuː]</td>
+    <td class="clickable" data-lang="zh" data-word="童鞋">童鞋</td>
+    <td class="clickable" data-lang="en" data-word="children's shoes">children's shoes</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lait en poudre">Lait en poudre</td>
+    <td>[lɛ ɑ̃ pudʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Trockenmilch">Trockenmilch</td>
+    <td>[ˈtʁɔkn̩ˌmɪlç]</td>
+    <td class="clickable" data-lang="zh" data-word="奶粉">奶粉</td>
+    <td class="clickable" data-lang="en" data-word="milk powder">milk powder</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Biberon">Biberon</td>
+    <td>[bibʁɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Milchflasche">Milchflasche</td>
+    <td>[ˈmɪlçˌflaʃə]</td>
+    <td class="clickable" data-lang="zh" data-word="奶瓶">奶瓶</td>
+    <td class="clickable" data-lang="en" data-word="baby bottle">baby bottle</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Poussette">Poussette</td>
+    <td>[pusɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Kinderwagen">Kinderwagen</td>
+    <td>[ˈkɪndɐˌvaːɡn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="童车">童车</td>
+    <td class="clickable" data-lang="en" data-word="stroller">stroller</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Histoire pour enfants">Histoire pour enfants</td>
+    <td>[istwaʁ puʁ ɑ̃fɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Kindergeschichte">Kindergeschichte</td>
+    <td>[ˈkɪndɐɡəˌʃɪçtə]</td>
+    <td class="clickable" data-lang="zh" data-word="儿童故事">儿童故事</td>
+    <td class="clickable" data-lang="en" data-word="children's story">children's story</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Couche">Couche</td>
+    <td>[kuʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Windel">Windel</td>
+    <td>[ˈvɪndl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="尿布">尿布</td>
+    <td class="clickable" data-lang="en" data-word="diaper">diaper</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Jeu de construction">Jeu de construction</td>
+    <td>[ʒø də kɔ̃stʁyksjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Baukasten">Baukasten</td>
+    <td>[ˈbaʊ̯ˌkastn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="积木">积木</td>
+    <td class="clickable" data-lang="en" data-word="building blocks">building blocks</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Couche-culotte">Couche-culotte</td>
+    <td>[kuʃ kylɔt]</td>
+    <td class="clickable" data-lang="de" data-word="Windelhose">Windelhose</td>
+    <td>[ˈvɪndl̩ˌhoːzə]</td>
+    <td class="clickable" data-lang="zh" data-word="纸尿裤">纸尿裤</td>
+    <td class="clickable" data-lang="en" data-word="disposable diaper">disposable diaper</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cube magique">Cube magique</td>
+    <td>[kyb maʒik]</td>
+    <td class="clickable" data-lang="de" data-word="Zauberwürfel">Zauberwürfel</td>
+    <td>[ˈtsaʊ̯bɐˌvʏʁfl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="魔方">魔方</td>
+    <td class="clickable" data-lang="en" data-word="magic cube">magic cube</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Berceau">Berceau</td>
+    <td>[bɛʁso]</td>
+    <td class="clickable" data-lang="de" data-word="Wiege">Wiege</td>
+    <td>[ˈviːɡə]</td>
+    <td class="clickable" data-lang="zh" data-word="摇篮">摇篮</td>
+    <td class="clickable" data-lang="en" data-word="cradle">cradle</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Marionnette chaussette">Marionnette chaussette</td>
+    <td>[maʁjɔnɛt ʃosɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Sockenpuppe">Sockenpuppe</td>
+    <td>[ˈzɔkn̩ˌpʊpə]</td>
+    <td class="clickable" data-lang="zh" data-word="手偶">手偶</td>
+    <td class="clickable" data-lang="en" data-word="sock puppet">sock puppet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Arroser">Arroser</td>
+    <td>[aʁoze]</td>
+    <td class="clickable" data-lang="de" data-word="gießen">gießen</td>
+    <td>[ˈɡiːsn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="浇">浇</td>
+    <td class="clickable" data-lang="en" data-word="to water">to water</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mauvaise herbe">Mauvaise herbe</td>
+    <td>[movɛz ɛʁb]</td>
+    <td class="clickable" data-lang="de" data-word="Unkraut">Unkraut</td>
+    <td>[ˈʊnkʁaʊt]</td>
+    <td class="clickable" data-lang="zh" data-word="杂草">杂草</td>
+    <td class="clickable" data-lang="en" data-word="weed">weed</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Jardin">Jardin</td>
+    <td>[ʒaʁdɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Garten">Garten</td>
+    <td>[ˈɡaʁtn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="花园">花园</td>
+    <td class="clickable" data-lang="en" data-word="garden">garden</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Jardinier">Jardinier</td>
+    <td>[ʒaʁdinje]</td>
+    <td class="clickable" data-lang="de" data-word="Gärtner">Gärtner</td>
+    <td>[ˈɡɛʁtnɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="园丁">园丁</td>
+    <td class="clickable" data-lang="en" data-word="gardener">gardener</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Art floral japonais">Art floral japonais</td>
+    <td>[aʁ flɔʁal ʒapɔnɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Ikebana">Ikebana</td>
+    <td>[ikeˈbana]</td>
+    <td class="clickable" data-lang="zh" data-word="插花">插花</td>
+    <td class="clickable" data-lang="en" data-word="flower arrangement">flower arrangement</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tailler">Tailler</td>
+    <td>[taje]</td>
+    <td class="clickable" data-lang="de" data-word="kuppen">kuppen</td>
+    <td>[ˈkʊpən]</td>
+    <td class="clickable" data-lang="zh" data-word="修剪">修剪</td>
+    <td class="clickable" data-lang="en" data-word="to trim">to trim</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cueillir">Cueillir</td>
+    <td>[kœjiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="pflücken">pflücken</td>
+    <td>[ˈpflʏkn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="采摘">采摘</td>
+    <td class="clickable" data-lang="en" data-word="to pick">to pick</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Greffer">Greffer</td>
+    <td>[ɡʁefe]</td>
+    <td class="clickable" data-lang="de" data-word="veredeln">veredeln</td>
+    <td>[fɛɐ̯ˈeːdl̩n]</td>
+    <td class="clickable" data-lang="zh" data-word="嫁接">嫁接</td>
+    <td class="clickable" data-lang="en" data-word="to graft">to graft</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Plante en pot">Plante en pot</td>
+    <td>[plɑ̃t ɑ̃ po]</td>
+    <td class="clickable" data-lang="de" data-word="Topfpflanze">Topfpflanze</td>
+    <td>[ˈtɔpfˌpflantsə]</td>
+    <td class="clickable" data-lang="zh" data-word="盆栽植物">盆栽植物</td>
+    <td class="clickable" data-lang="en" data-word="potted plant">potted plant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Germe">Germe</td>
+    <td>[ʒɛʁm]</td>
+    <td class="clickable" data-lang="de" data-word="Keim">Keim</td>
+    <td>[kaɪm]</td>
+    <td class="clickable" data-lang="zh" data-word="萌芽">萌芽</td>
+    <td class="clickable" data-lang="en" data-word="sprout">sprout</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Semer">Semer</td>
+    <td>[səme]</td>
+    <td class="clickable" data-lang="de" data-word="säen">säen</td>
+    <td>[ˈzɛːən]</td>
+    <td class="clickable" data-lang="zh" data-word="播种">播种</td>
+    <td class="clickable" data-lang="en" data-word="to sow">to sow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pesticide">Pesticide</td>
+    <td>[pɛstisid]</td>
+    <td class="clickable" data-lang="de" data-word="Bekämpfungsmittel">Bekämpfungsmittel</td>
+    <td>[bəˈkɛmpfʊŋsˌmɪtl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="杀虫剂">杀虫剂</td>
+    <td class="clickable" data-lang="en" data-word="pesticide">pesticide</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Arrosoir">Arrosoir</td>
+    <td>[aʁozwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Brause">Brause</td>
+    <td>[ˈbʁaʊzə]</td>
+    <td class="clickable" data-lang="zh" data-word="喷壶">喷壶</td>
+    <td class="clickable" data-lang="en" data-word="watering can">watering can</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tondeuse">Tondeuse</td>
+    <td>[tɔ̃døz]</td>
+    <td class="clickable" data-lang="de" data-word="Rasenmäher">Rasenmäher</td>
+    <td>[ˈʁaːzn̩ˌmɛːɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="割草机">割草机</td>
+    <td class="clickable" data-lang="en" data-word="lawn mower">lawn mower</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Engrais">Engrais</td>
+    <td>[ɑ̃ɡʁɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Düngemittel">Düngemittel</td>
+    <td>[ˈdʏŋəˌmɪtl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="肥料">肥料</td>
+    <td class="clickable" data-lang="en" data-word="fertilizer">fertilizer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bêcher">Bêcher</td>
+    <td>[beʃe]</td>
+    <td class="clickable" data-lang="de" data-word="umgraben">umgraben</td>
+    <td>[ˈʊmˌɡʁaːbn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="翻掘">翻掘</td>
+    <td class="clickable" data-lang="en" data-word="to dig up">to dig up</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tuyau">Tuyau</td>
+    <td>[tɥijo]</td>
+    <td class="clickable" data-lang="de" data-word="Schlauch">Schlauch</td>
+    <td>[ʃlaʊx]</td>
+    <td class="clickable" data-lang="zh" data-word="橡胶软管">橡胶软管</td>
+    <td class="clickable" data-lang="en" data-word="hose">hose</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Faucille">Faucille</td>
+    <td>[fosij]</td>
+    <td class="clickable" data-lang="de" data-word="Sichel">Sichel</td>
+    <td>[ˈzɪçl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="镰刀">镰刀</td>
+    <td class="clickable" data-lang="en" data-word="sickle">sickle</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Puceron">Puceron</td>
+    <td>[pysʁɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Blattlaus">Blattlaus</td>
+    <td>[ˈblatlaʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="蚜虫">蚜虫</td>
+    <td class="clickable" data-lang="en" data-word="aphid">aphid</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pot de fleurs">Pot de fleurs</td>
+    <td>[po də flœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Blumentopf">Blumentopf</td>
+    <td>[ˈbluːmənˌtɔpf]</td>
+    <td class="clickable" data-lang="zh" data-word="花盆">花盆</td>
+    <td class="clickable" data-lang="en" data-word="flower pot">flower pot</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Chiffon à poussière">Chiffon à poussière</td>
+    <td>[ʃifɔ̃ a pusjɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Staublappen">Staublappen</td>
+    <td>[ˈʃtaʊbˌlapən]</td>
+    <td class="clickable" data-lang="zh" data-word="抹布">抹布</td>
+    <td class="clickable" data-lang="en" data-word="dust cloth">dust cloth</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Balai">Balai</td>
+    <td>[balɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Besen">Besen</td>
+    <td>[ˈbeːzn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="扫帚">扫帚</td>
+    <td class="clickable" data-lang="en" data-word="broom">broom</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Rincer">Rincer</td>
+    <td>[ʁɛ̃se]</td>
+    <td class="clickable" data-lang="de" data-word="spülen">spülen</td>
+    <td>[ˈʃpyːlən]</td>
+    <td class="clickable" data-lang="zh" data-word="冲洗">冲洗</td>
+    <td class="clickable" data-lang="en" data-word="to rinse">to rinse</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Laver">Laver</td>
+    <td>[lave]</td>
+    <td class="clickable" data-lang="de" data-word="waschen">waschen</td>
+    <td>[ˈvaʃn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="洗">洗</td>
+    <td class="clickable" data-lang="en" data-word="to wash">to wash</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Repasser">Repasser</td>
+    <td>[ʁəpase]</td>
+    <td class="clickable" data-lang="de" data-word="bügeln">bügeln</td>
+    <td>[ˈbyːɡl̩n]</td>
+    <td class="clickable" data-lang="zh" data-word="熨烫">熨烫</td>
+    <td class="clickable" data-lang="en" data-word="to iron">to iron</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ranger">Ranger</td>
+    <td>[ʁɑ̃ʒe]</td>
+    <td class="clickable" data-lang="de" data-word="aufräumen">aufräumen</td>
+    <td>[ˈaʊ̯fˌʁɔʏmən]</td>
+    <td class="clickable" data-lang="zh" data-word="收拾，整理">收拾，整理</td>
+    <td class="clickable" data-lang="en" data-word="to tidy up">to tidy up</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Jeter les ordures">Jeter les ordures</td>
+    <td>[ʒəte le ɔʁdyʁ]</td>
+    <td class="clickable" data-lang="de" data-word="den Müll werfen">den Müll werfen</td>
+    <td>[den mʏl ˈvɛʁfn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="倒垃圾">倒垃圾</td>
+    <td class="clickable" data-lang="en" data-word="to take out the garbage">to take out the garbage</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Nettoyer">Nettoyer</td>
+    <td>[netwaje]</td>
+    <td class="clickable" data-lang="de" data-word="putzen">putzen</td>
+    <td>[ˈpʊtsn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="擦">擦</td>
+    <td class="clickable" data-lang="en" data-word="to clean">to clean</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Aspirateur">Aspirateur</td>
+    <td>[aspiʁatœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Staubsauger">Staubsauger</td>
+    <td>[ˈʃtaʊpˌzaʊɡɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="吸尘器">吸尘器</td>
+    <td class="clickable" data-lang="en" data-word="vacuum cleaner">vacuum cleaner</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Femme au foyer">Femme au foyer</td>
+    <td>[fam o fwaje]</td>
+    <td class="clickable" data-lang="de" data-word="Hausfrau">Hausfrau</td>
+    <td>[ˈhaʊ̯sˌfʁaʊ]</td>
+    <td class="clickable" data-lang="zh" data-word="家庭主妇">家庭主妇</td>
+    <td class="clickable" data-lang="en" data-word="housewife">housewife</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Propre">Propre</td>
+    <td>[pʁɔpʁ]</td>
+    <td class="clickable" data-lang="de" data-word="sauber">sauber</td>
+    <td>[ˈzaʊbɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="干净的">干净的</td>
+    <td class="clickable" data-lang="en" data-word="clean">clean</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Débarrasser la table">Débarrasser la table</td>
+    <td>[debaʁase la tabl]</td>
+    <td class="clickable" data-lang="de" data-word="den Tisch abdecken">den Tisch abdecken</td>
+    <td>[den tɪʃ ˈapˌdɛkn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="收拾桌子">收拾桌子</td>
+    <td class="clickable" data-lang="en" data-word="to clear the table">to clear the table</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Faire le lit">Faire le lit</td>
+    <td>[fɛʁ lə li]</td>
+    <td class="clickable" data-lang="de" data-word="das Bett machen">das Bett machen</td>
+    <td>[das bɛt ˈmaxn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="整理床铺">整理床铺</td>
+    <td class="clickable" data-lang="en" data-word="to make the bed">to make the bed</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Gants en caoutchouc">Gants en caoutchouc</td>
+    <td>[ɡɑ̃ ɑ̃ kautʃu]</td>
+    <td class="clickable" data-lang="de" data-word="Gummihandschuh">Gummihandschuh</td>
+    <td>[ˈɡʊmiˌhantʃuː]</td>
+    <td class="clickable" data-lang="zh" data-word="橡胶手套">橡胶手套</td>
+    <td class="clickable" data-lang="en" data-word="rubber gloves">rubber gloves</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Arroser">Arroser</td>
+    <td>[aʁoze]</td>
+    <td class="clickable" data-lang="de" data-word="gießen">gießen</td>
+    <td>[ˈɡiːsn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="浇">浇</td>
+    <td class="clickable" data-lang="en" data-word="to water">to water</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Cuisiner">Cuisiner</td>
+    <td>[kɥizine]</td>
+    <td class="clickable" data-lang="de" data-word="kochen">kochen</td>
+    <td>[ˈkɔxn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="烹饪">烹饪</td>
+    <td class="clickable" data-lang="en" data-word="to cook">to cook</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Couper">Couper</td>
+    <td>[kupe]</td>
+    <td class="clickable" data-lang="de" data-word="schneiden">schneiden</td>
+    <td>[ˈʃnaɪdn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="切">切</td>
+    <td class="clickable" data-lang="en" data-word="to cut">to cut</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Réparer">Réparer</td>
+    <td>[ʁepaʁe]</td>
+    <td class="clickable" data-lang="de" data-word="reparieren">reparieren</td>
+    <td>[ʁepaˈʁiːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="修理">修理</td>
+    <td class="clickable" data-lang="en" data-word="to repair">to repair</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Louer">Louer</td>
+    <td>[lwe]</td>
+    <td class="clickable" data-lang="de" data-word="vermieten">vermieten</td>
+    <td>[fɛɐ̯ˈmiːtn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="出租">出租</td>
+    <td class="clickable" data-lang="en" data-word="to rent out">to rent out</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Acheter">Acheter</td>
+    <td>[aʃte]</td>
+    <td class="clickable" data-lang="de" data-word="kaufen">kaufen</td>
+    <td>[ˈkaʊfn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="买">买</td>
+    <td class="clickable" data-lang="en" data-word="to buy">to buy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Vendre">Vendre</td>
+    <td>[vɑ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="verkaufen">verkaufen</td>
+    <td>[fɛɐ̯ˈkaʊfn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="卖，出售">卖，出售</td>
+    <td class="clickable" data-lang="en" data-word="to sell">to sell</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Appartement">Appartement</td>
+    <td>[apaʁtəmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Wohnung">Wohnung</td>
+    <td>[ˈvoːnʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="住房">住房</td>
+    <td class="clickable" data-lang="en" data-word="apartment">apartment</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Propriétaire">Propriétaire</td>
+    <td>[pʁɔpʁijetɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Hausherr">Hausherr</td>
+    <td>[ˈhaʊsˌhɛʁ]</td>
+    <td class="clickable" data-lang="zh" data-word="主人；房主">主人；房主</td>
+    <td class="clickable" data-lang="en" data-word="landlord">landlord</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Locataire">Locataire</td>
+    <td>[lɔkatɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Mieter">Mieter</td>
+    <td>[ˈmiːtɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="房客">房客</td>
+    <td class="clickable" data-lang="en" data-word="tenant">tenant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Loyer">Loyer</td>
+    <td>[lwaje]</td>
+    <td class="clickable" data-lang="de" data-word="Miete">Miete</td>
+    <td>[ˈmiːtə]</td>
+    <td class="clickable" data-lang="zh" data-word="租金">租金</td>
+    <td class="clickable" data-lang="en" data-word="rent">rent</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Louer">Louer</td>
+    <td>[lwe]</td>
+    <td class="clickable" data-lang="de" data-word="mieten">mieten</td>
+    <td>[ˈmiːtn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="租用">租用</td>
+    <td class="clickable" data-lang="en" data-word="to rent">to rent</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bâtiment">Bâtiment</td>
+    <td>[batimɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Gebäude">Gebäude</td>
+    <td>[ɡəˈbɔʏdə]</td>
+    <td class="clickable" data-lang="zh" data-word="建筑">建筑</td>
+    <td class="clickable" data-lang="en" data-word="building">building</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ascenseur">Ascenseur</td>
+    <td>[asɑ̃sœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Aufzug">Aufzug</td>
+    <td>[ˈaʊ̯fˌtsuːk]</td>
+    <td class="clickable" data-lang="zh" data-word="电梯">电梯</td>
+    <td class="clickable" data-lang="en" data-word="elevator">elevator</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Étage">Étage</td>
+    <td>[etaʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Etage">Etage</td>
+    <td>[eˈtaːʒə]</td>
+    <td class="clickable" data-lang="zh" data-word="楼层">楼层</td>
+    <td class="clickable" data-lang="en" data-word="floor">floor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Visiter">Visiter</td>
+    <td>[vizite]</td>
+    <td class="clickable" data-lang="de" data-word="anschauen">anschauen</td>
+    <td>[ˈanʃaʊn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="参观">参观</td>
+    <td class="clickable" data-lang="en" data-word="to view">to view</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Charges">Charges</td>
+    <td>[ʃaʁʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Nebenkosten">Nebenkosten</td>
+    <td>[ˈneːbn̩ˌkɔstn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="附加费用">附加费用</td>
+    <td class="clickable" data-lang="en" data-word="utilities">utilities</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Emménager">Emménager</td>
+    <td>[ɑ̃menaʒe]</td>
+    <td class="clickable" data-lang="de" data-word="einziehen">einziehen</td>
+    <td>[ˈaɪ̯nˌtsiːən]</td>
+    <td class="clickable" data-lang="zh" data-word="迁入">迁入</td>
+    <td class="clickable" data-lang="en" data-word="to move in">to move in</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Déménager">Déménager</td>
+    <td>[demenaʒe]</td>
+    <td class="clickable" data-lang="de" data-word="ausziehen">ausziehen</td>
+    <td>[ˈaʊ̯sˌtsiːən]</td>
+    <td class="clickable" data-lang="zh" data-word="迁出">迁出</td>
+    <td class="clickable" data-lang="en" data-word="to move out">to move out</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bail">Bail</td>
+    <td>[baj]</td>
+    <td class="clickable" data-lang="de" data-word="Mietvertrag">Mietvertrag</td>
+    <td>[ˈmiːtfɛɐ̯ˌtʁaːk]</td>
+    <td class="clickable" data-lang="zh" data-word="租房合同">租房合同</td>
+    <td class="clickable" data-lang="en" data-word="lease">lease</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Caution">Caution</td>
+    <td>[kosjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Kaution">Kaution</td>
+    <td>[kaʊˈtsjoːn]</td>
+    <td class="clickable" data-lang="zh" data-word="押金">押金</td>
+    <td class="clickable" data-lang="en" data-word="deposit">deposit</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Locataire suivant">Locataire suivant</td>
+    <td>[lɔkatɛʁ sɥivɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Nachmieter">Nachmieter</td>
+    <td>[ˈnaxˌmiːtɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="续租客">续租客</td>
+    <td class="clickable" data-lang="en" data-word="subsequent tenant">subsequent tenant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Crédit">Crédit</td>
+    <td>[kʁedi]</td>
+    <td class="clickable" data-lang="de" data-word="Kredit">Kredit</td>
+    <td>[kʁeˈdiːt]</td>
+    <td class="clickable" data-lang="zh" data-word="贷款">贷款</td>
+    <td class="clickable" data-lang="en" data-word="loan">loan</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Sous-location">Sous-location</td>
+    <td>[su lɔkasjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Untermiete">Untermiete</td>
+    <td>[ˈʊntɐˌmiːtə]</td>
+    <td class="clickable" data-lang="zh" data-word="转租">转租</td>
+    <td class="clickable" data-lang="en" data-word="sublease">sublease</td>
+</tr>
+</table>
+
+
+    <script>
+    const PIXABAY_API_KEY = '49256357-c30f2f538120ce8d74ff8921d';
+    let speechSynth = window.speechSynthesis;
+    let voices = [];
+
+    // Wait for voices to load
+    speechSynth.onvoiceschanged = function() {
+        voices = speechSynth.getVoices();
+    };
+
+    // Pronunciation function
+    function speak(text, lang) {
+        // Cancel any ongoing speech
+        speechSynth.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        
+        // For Chinese, select appropriate voice based on dialect
+        if (lang.startsWith('zh')) {
+            const voices = window.speechSynthesis.getVoices();
+            const chineseVoice = voices.find(voice => voice.lang.includes(lang));
+            if (chineseVoice) {
+                utterance.voice = chineseVoice;
+            }
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    } 
+    
+    let currentImageTimeout = null;  // 添加超时变量
+
+    // 清除背景图片
+    function clearBackgroundImages() {
+        if (currentImageTimeout) {
+            clearTimeout(currentImageTimeout);
+            currentImageTimeout = null;
+        }
+        document.querySelectorAll('.background-image').forEach(img => {
+            img.style.opacity = '0';
+            setTimeout(() => img.remove(), 300); // 淡出效果后移除
+        });
+    }
+
+    // Fetch and add background image
+    async function addBackgroundImage(cell, searchTerm) {
+        clearBackgroundImages();
+        
+        try {
+            const apiUrl = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(searchTerm)}&per_page=4&safesearch=true`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.hits && data.hits.length > 0) {
+                const randomIndex = Math.floor(Math.random() * Math.min(4, data.hits.length));
+                const img = document.createElement('img');
+                img.className = 'background-image';
+                img.alt = searchTerm;
+
+                // 图片加载完成后再显示
+                img.onload = () => {
+                    setTimeout(() => {
+                        img.style.opacity = '0.9';  // 设置为原来的不透明度
+                    }, 50);
+                };
+                
+                img.src = data.hits[randomIndex].previewURL;
+                
+                const firstCell = cell.closest('tr').querySelector('td:first-child');
+                firstCell.appendChild(img);
+
+                // 设置新的超时
+                currentImageTimeout = setTimeout(() => {
+                    clearBackgroundImages();
+                }, 3000);
+            }
+        } catch (error) {
+            console.error('Error fetching image:', error);
+        }
+    }
+
+    // Add click events to clickable cells
+    window.speechSynthesis.onvoiceschanged = () => {
+        document.querySelectorAll('.clickable').forEach(cell => {
+            cell.addEventListener('click', function() {
+                const text = this.textContent;
+                let lang;
+                
+                // Get language based on data-lang attribute
+                switch(this.dataset.lang) {
+                    case 'fr':
+                        lang = 'fr-FR';
+                        break;
+                    case 'de':
+                        lang = 'de-DE';
+                        break;
+                    case 'zh':
+                        // Use selected dialect for Chinese
+                        lang = document.getElementById('chineseDialect').value;
+                        break;
+                    default:
+                        lang = 'en-US';
+                }
+                
+                speak(text, lang);
+                addBackgroundImage(this, this.dataset.word);
+
+                // Visual feedback with cleanup
+                const originalBg = window.getComputedStyle(this).backgroundColor;
+                this.style.backgroundColor = '#c8e6c9';
+                
+                // Clear any existing timeout for this cell
+                if (this.resetTimeout) {
+                    clearTimeout(this.resetTimeout);
+                }
+                
+                // Set new timeout and store its ID
+                this.resetTimeout = setTimeout(() => {
+                    this.style.backgroundColor = '';
+                    this.resetTimeout = null;
+                }, 500);
+            });
+        });
+    };
+</script>
+
+</body>
+</html>
