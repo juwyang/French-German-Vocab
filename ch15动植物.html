@@ -1,0 +1,1801 @@
+<!-- <使用这个模板，添加单词到table的部分就可以!> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr {
+            position: relative;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .clickable {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+        .clickable:hover {
+            background-color: #e6e6e6;
+        }
+        .background-image {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            opacity: 0;  /* 初始设置为透明 */
+            transition: opacity 0.3s ease-in-out;  /* 添加过渡效果 */
+        }
+        .background-image:hover {
+            opacity: 0.8;
+        }
+        .language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .language-selector select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="index.html" class="back-button">🏠 主页</a>
+      </div>
+
+    <div class="language-selector">
+        <select id="chineseDialect">
+            <option value="zh-CN">普通话</option>
+            <option value="zh-HK">粤语</option>
+        </select>
+    </div>
+
+
+    <table id="wordTable">
+        <tr>
+            <th>法语</th>
+            <th>音标</th>
+            <th>德语</th>
+            <th>音标</th>
+            <th>中文</th>
+            <th>英语</th>
+        </tr>
+        <tr>
+            <td class="clickable" data-lang="fr" data-word="fleur">fleur</td>
+            <td>[flœʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Blume">Blume</td>
+            <td>[ˈbluːmə]</td>
+            <td class="clickable" data-lang="zh" data-word="花">花</td>
+            <td class="clickable" data-lang="en" data-word="flower">flower</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="lys">lys</td>
+            <td>[lis]</td>
+            <td class="clickable" data-lang="de" data-word="Lilie">Lilie</td>
+            <td>[ˈliːliə]</td>
+            <td class="clickable" data-lang="zh" data-word="百合花">百合花</td>
+            <td class="clickable" data-lang="en" data-word="lily">lily</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="orchidée">orchidée</td>
+            <td>[ɔʁkide]</td>
+            <td class="clickable" data-lang="de" data-word="Orchidee">Orchidee</td>
+            <td>[ɔrçiˈdeː]</td>
+            <td class="clickable" data-lang="zh" data-word="兰花">兰花</td>
+            <td class="clickable" data-lang="en" data-word="orchid">orchid</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="rose">rose</td>
+            <td>[ʁoz]</td>
+            <td class="clickable" data-lang="de" data-word="Rose">Rose</td>
+            <td>[ˈʁoːzə]</td>
+            <td class="clickable" data-lang="zh" data-word="玫瑰">玫瑰</td>
+            <td class="clickable" data-lang="en" data-word="rose">rose</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="camélia">camélia</td>
+            <td>[kamelia]</td>
+            <td class="clickable" data-lang="de" data-word="Kamelie">Kamelie</td>
+            <td>[kaˈmeːliə]</td>
+            <td class="clickable" data-lang="zh" data-word="山茶花">山茶花</td>
+            <td class="clickable" data-lang="en" data-word="camellia">camellia</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="pivoine">pivoine</td>
+            <td>[pivwan]</td>
+            <td class="clickable" data-lang="de" data-word="Pfingstrose">Pfingstrose</td>
+            <td>[ˈp͡fɪŋstʁoːzə]</td>
+            <td class="clickable" data-lang="zh" data-word="牡丹">牡丹</td>
+            <td class="clickable" data-lang="en" data-word="peony">peony</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="tournesol">tournesol</td>
+            <td>[tuʁnəsɔl]</td>
+            <td class="clickable" data-lang="de" data-word="Sonnenblume">Sonnenblume</td>
+            <td>[ˈzɔnənbluːmə]</td>
+            <td class="clickable" data-lang="zh" data-word="向日葵">向日葵</td>
+            <td class="clickable" data-lang="en" data-word="sunflower">sunflower</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="fleur de cerisier">fleur de cerisier</td>
+            <td>[flœʁ də səʁizje]</td>
+            <td class="clickable" data-lang="de" data-word="Kirschblüte">Kirschblüte</td>
+            <td>[ˈkɪʁʃblyːtə]</td>
+            <td class="clickable" data-lang="zh" data-word="樱花">樱花</td>
+            <td class="clickable" data-lang="en" data-word="cherry blossom">cherry blossom</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="tulipe">tulipe</td>
+            <td>[tylip]</td>
+            <td class="clickable" data-lang="de" data-word="Tulpe">Tulpe</td>
+            <td>[ˈtʊlpə]</td>
+            <td class="clickable" data-lang="zh" data-word="郁金香">郁金香</td>
+            <td class="clickable" data-lang="en" data-word="tulip">tulip</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="œillet">œillet</td>
+            <td>[œjɛ]</td>
+            <td class="clickable" data-lang="de" data-word="Gartennelke">Gartennelke</td>
+            <td>[ˈɡaʁtənˌnɛlkə]</td>
+            <td class="clickable" data-lang="zh" data-word="康乃馨">康乃馨</td>
+            <td class="clickable" data-lang="en" data-word="carnation">carnation</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bourgeon">bourgeon</td>
+    <td>[buʁʒɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Knospe">Knospe</td>
+    <td>[ˈknɔspə]</td>
+    <td class="clickable" data-lang="zh" data-word="蓓蕾">蓓蕾</td>
+    <td class="clickable" data-lang="en" data-word="bud">bud</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pétale">pétale</td>
+    <td>[petal]</td>
+    <td class="clickable" data-lang="de" data-word="Blütenblatt">Blütenblatt</td>
+    <td>[ˈblyːtənblat]</td>
+    <td class="clickable" data-lang="zh" data-word="花瓣">花瓣</td>
+    <td class="clickable" data-lang="en" data-word="petal">petal</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="narcisse">narcisse</td>
+    <td>[naʁsis]</td>
+    <td class="clickable" data-lang="de" data-word="Narzisse">Narzisse</td>
+    <td>[naʁˈt͡sɪsə]</td>
+    <td class="clickable" data-lang="zh" data-word="水仙">水仙</td>
+    <td class="clickable" data-lang="en" data-word="daffodil">daffodil</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="jasmin">jasmin</td>
+    <td>[ʒasmɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Jasmin">Jasmin</td>
+    <td>[jasˈmiːn]</td>
+    <td class="clickable" data-lang="zh" data-word="茉莉花">茉莉花</td>
+    <td class="clickable" data-lang="en" data-word="jasmine">jasmine</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="lavande">lavande</td>
+    <td>[lavɑ̃d]</td>
+    <td class="clickable" data-lang="de" data-word="Lavendel">Lavendel</td>
+    <td>[laˈvɛndəl]</td>
+    <td class="clickable" data-lang="zh" data-word="薰衣草">薰衣草</td>
+    <td class="clickable" data-lang="en" data-word="lavender">lavender</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fleurir">fleurir</td>
+    <td>[flœʁiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="blühen">blühen</td>
+    <td>[ˈblyːən]</td>
+    <td class="clickable" data-lang="zh" data-word="开花">开花</td>
+    <td class="clickable" data-lang="en" data-word="to bloom">to bloom</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bouquet">bouquet</td>
+    <td>[bukɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Strauß">Strauß</td>
+    <td>[ʃtʁaʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="花束">花束</td>
+    <td class="clickable" data-lang="en" data-word="bouquet">bouquet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="embaumer">embaumer</td>
+    <td>[ɑ̃bome]</td>
+    <td class="clickable" data-lang="de" data-word="duften">duften</td>
+    <td>[ˈdʊftən]</td>
+    <td class="clickable" data-lang="zh" data-word="发出香味">发出香味</td>
+    <td class="clickable" data-lang="en" data-word="to smell fragrant">to smell fragrant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pollen">pollen</td>
+    <td>[pɔlɛn]</td>
+    <td class="clickable" data-lang="de" data-word="Blütenstaub">Blütenstaub</td>
+    <td>[ˈblyːtənʃtaʊp]</td>
+    <td class="clickable" data-lang="zh" data-word="花粉">花粉</td>
+    <td class="clickable" data-lang="en" data-word="pollen">pollen</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="arbre">arbre</td>
+    <td>[aʁbʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Baum">Baum</td>
+    <td>[baʊm]</td>
+    <td class="clickable" data-lang="zh" data-word="树">树</td>
+    <td class="clickable" data-lang="en" data-word="tree">tree</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="tronc">tronc</td>
+    <td>[tʁɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Stamm">Stamm</td>
+    <td>[ʃtam]</td>
+    <td class="clickable" data-lang="zh" data-word="树干">树干</td>
+    <td class="clickable" data-lang="en" data-word="trunk">trunk</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="écorce">écorce</td>
+    <td>[ekɔʁs]</td>
+    <td class="clickable" data-lang="de" data-word="Baumrinde">Baumrinde</td>
+    <td>[ˈbaʊmˌʁɪndə]</td>
+    <td class="clickable" data-lang="zh" data-word="树皮">树皮</td>
+    <td class="clickable" data-lang="en" data-word="bark">bark</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="branche">branche</td>
+    <td>[bʁɑ̃ʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Zweig">Zweig</td>
+    <td>[t͡svaɪk]</td>
+    <td class="clickable" data-lang="zh" data-word="树枝">树枝</td>
+    <td class="clickable" data-lang="en" data-word="branch">branch</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="feuillage">feuillage</td>
+    <td>[fœjaʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Laub">Laub</td>
+    <td>[laʊp]</td>
+    <td class="clickable" data-lang="zh" data-word="树叶">树叶</td>
+    <td class="clickable" data-lang="en" data-word="foliage">foliage</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="peuplier">peuplier</td>
+    <td>[pøplje]</td>
+    <td class="clickable" data-lang="de" data-word="Pappel">Pappel</td>
+    <td>[ˈpapəl]</td>
+    <td class="clickable" data-lang="zh" data-word="白杨">白杨</td>
+    <td class="clickable" data-lang="en" data-word="poplar">poplar</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cyprès">cyprès</td>
+    <td>[sipʁɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Zypresse">Zypresse</td>
+    <td>[t͡syˈpʁɛsə]</td>
+    <td class="clickable" data-lang="zh" data-word="柏树">柏树</td>
+    <td class="clickable" data-lang="en" data-word="cypress">cypress</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="érable">érable</td>
+    <td>[eʁabl]</td>
+    <td class="clickable" data-lang="de" data-word="Ahorn">Ahorn</td>
+    <td>[ˈaːhɔʁn]</td>
+    <td class="clickable" data-lang="zh" data-word="枫树">枫树</td>
+    <td class="clickable" data-lang="en" data-word="maple">maple</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="arbre fruitier">arbre fruitier</td>
+    <td>[aʁbʁ fʁɥitje]</td>
+    <td class="clickable" data-lang="de" data-word="Obstbaum">Obstbaum</td>
+    <td>[ˈoːpstbaʊm]</td>
+    <td class="clickable" data-lang="zh" data-word="果树">果树</td>
+    <td class="clickable" data-lang="en" data-word="fruit tree">fruit tree</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bouleau">bouleau</td>
+    <td>[bulo]</td>
+    <td class="clickable" data-lang="de" data-word="Birke">Birke</td>
+    <td>[ˈbɪʁkə]</td>
+    <td class="clickable" data-lang="zh" data-word="白桦">白桦</td>
+    <td class="clickable" data-lang="en" data-word="birch">birch</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sapin">sapin</td>
+    <td>[sapɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Tanne">Tanne</td>
+    <td>[ˈtanə]</td>
+    <td class="clickable" data-lang="zh" data-word="冷杉">冷杉</td>
+    <td class="clickable" data-lang="en" data-word="fir">fir</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="saule">saule</td>
+    <td>[sol]</td>
+    <td class="clickable" data-lang="de" data-word="Weide">Weide</td>
+    <td>[ˈvaɪdə]</td>
+    <td class="clickable" data-lang="zh" data-word="柳树">柳树</td>
+    <td class="clickable" data-lang="en" data-word="willow">willow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pin">pin</td>
+    <td>[pɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Kiefer">Kiefer</td>
+    <td>[ˈkiːfɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="松树">松树</td>
+    <td class="clickable" data-lang="en" data-word="pine">pine</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="palmier">palmier</td>
+    <td>[palmje]</td>
+    <td class="clickable" data-lang="de" data-word="Palme">Palme</td>
+    <td>[ˈpalmə]</td>
+    <td class="clickable" data-lang="zh" data-word="棕榈树">棕榈树</td>
+    <td class="clickable" data-lang="en" data-word="palm tree">palm tree</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fruit">fruit</td>
+    <td>[fʁɥi]</td>
+    <td class="clickable" data-lang="de" data-word="Frucht">Frucht</td>
+    <td>[fʁʊxt]</td>
+    <td class="clickable" data-lang="zh" data-word="果实">果实</td>
+    <td class="clickable" data-lang="en" data-word="fruit">fruit</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="prairie">prairie</td>
+    <td>[pʁeʁi]</td>
+    <td class="clickable" data-lang="de" data-word="Prärie">Prärie</td>
+    <td>[pʁɛˈʁiː]</td>
+    <td class="clickable" data-lang="zh" data-word="草原">草原</td>
+    <td class="clickable" data-lang="en" data-word="prairie">prairie</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="se ramifier">se ramifier</td>
+    <td>[sə ʁamifje]</td>
+    <td class="clickable" data-lang="de" data-word="verzweigen">verzweigen</td>
+    <td>[fɛɐ̯ˈt͡svaɪɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="分枝">分枝</td>
+    <td class="clickable" data-lang="en" data-word="to branch">to branch</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="abattre">abattre</td>
+    <td>[abatʁ]</td>
+    <td class="clickable" data-lang="de" data-word="fällen">fällen</td>
+    <td>[ˈfɛlən]</td>
+    <td class="clickable" data-lang="zh" data-word="砍伐">砍伐</td>
+    <td class="clickable" data-lang="en" data-word="to fell">to fell</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="tronc d'arbre">tronc d'arbre</td>
+    <td>[tʁɔ̃ daʁbʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Baumstamm">Baumstamm</td>
+    <td>[ˈbaʊmʃtam]</td>
+    <td class="clickable" data-lang="zh" data-word="树干">树干</td>
+    <td class="clickable" data-lang="en" data-word="tree trunk">tree trunk</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="branche">branche</td>
+    <td>[bʁɑ̃ʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Ast">Ast</td>
+    <td>[ast]</td>
+    <td class="clickable" data-lang="zh" data-word="树枝">树枝</td>
+    <td class="clickable" data-lang="en" data-word="branch">branch</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="botanique">botanique</td>
+    <td>[bɔtanik]</td>
+    <td class="clickable" data-lang="de" data-word="Botanik">Botanik</td>
+    <td>[boˈtaːnɪk]</td>
+    <td class="clickable" data-lang="zh" data-word="植物学">植物学</td>
+    <td class="clickable" data-lang="en" data-word="botany">botany</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="plante">plante</td>
+    <td>[plɑ̃t]</td>
+    <td class="clickable" data-lang="de" data-word="Pflanze">Pflanze</td>
+    <td>[ˈp͡flan͡t͡sə]</td>
+    <td class="clickable" data-lang="zh" data-word="植物">植物</td>
+    <td class="clickable" data-lang="en" data-word="plant">plant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="planter">planter</td>
+    <td>[plɑ̃te]</td>
+    <td class="clickable" data-lang="de" data-word="pflanzen">pflanzen</td>
+    <td>[ˈp͡flan͡t͡sən]</td>
+    <td class="clickable" data-lang="zh" data-word="种植">种植</td>
+    <td class="clickable" data-lang="en" data-word="to plant">to plant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="graine">graine</td>
+    <td>[ɡʁɛn]</td>
+    <td class="clickable" data-lang="de" data-word="Samen">Samen</td>
+    <td>[ˈzaːmən]</td>
+    <td class="clickable" data-lang="zh" data-word="种子">种子</td>
+    <td class="clickable" data-lang="en" data-word="seed">seed</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="racine">racine</td>
+    <td>[ʁasin]</td>
+    <td class="clickable" data-lang="de" data-word="Wurzel">Wurzel</td>
+    <td>[ˈvʊʁt͡səl]</td>
+    <td class="clickable" data-lang="zh" data-word="根">根</td>
+    <td class="clickable" data-lang="en" data-word="root">root</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="angiosperme">angiosperme</td>
+    <td>[ɑ̃ʒjɔspɛʁm]</td>
+    <td class="clickable" data-lang="de" data-word="Bedecktsamer">Bedecktsamer</td>
+    <td>[bəˈdɛktzaːmɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="被子植物">被子植物</td>
+    <td class="clickable" data-lang="en" data-word="angiosperm">angiosperm</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="plante annuelle">plante annuelle</td>
+    <td>[plɑ̃t anɥɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Einjährige Pflanze">Einjährige Pflanze</td>
+    <td>[ˈaɪnˌjɛːʁɪɡə ˈp͡flan͡t͡sə]</td>
+    <td class="clickable" data-lang="zh" data-word="一年生植物">一年生植物</td>
+    <td class="clickable" data-lang="en" data-word="annual plant">annual plant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="plante rustique">plante rustique</td>
+    <td>[plɑ̃t ʁystik]</td>
+    <td class="clickable" data-lang="de" data-word="winterharte Pflanze">winterharte Pflanze</td>
+    <td>[ˈvɪntɐˌhaʁtə ˈp͡flan͡t͡sə]</td>
+    <td class="clickable" data-lang="zh" data-word="抗寒植物">抗寒植物</td>
+    <td class="clickable" data-lang="en" data-word="hardy plant">hardy plant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="marcotter">marcotter</td>
+    <td>[maʁkɔte]</td>
+    <td class="clickable" data-lang="de" data-word="absenken">absenken</td>
+    <td>[ˈapzɛŋkən]</td>
+    <td class="clickable" data-lang="zh" data-word="压条">压条</td>
+    <td class="clickable" data-lang="en" data-word="to layer">to layer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="vivace">vivace</td>
+    <td>[vivas]</td>
+    <td class="clickable" data-lang="de" data-word="perennierend">perennierend</td>
+    <td>[peˈʁɛniːʁənt]</td>
+    <td class="clickable" data-lang="zh" data-word="多年生的">多年生的</td>
+    <td class="clickable" data-lang="en" data-word="perennial">perennial</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chlorophylle">chlorophylle</td>
+    <td>[klɔʁɔfil]</td>
+    <td class="clickable" data-lang="de" data-word="Chlorophyll">Chlorophyll</td>
+    <td>[kloʁoˈfʏl]</td>
+    <td class="clickable" data-lang="zh" data-word="叶绿素">叶绿素</td>
+    <td class="clickable" data-lang="en" data-word="chlorophyll">chlorophyll</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cerne">cerne</td>
+    <td>[sɛʁn]</td>
+    <td class="clickable" data-lang="de" data-word="Jahresring">Jahresring</td>
+    <td>[ˈjaːʁəsʁɪŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="年轮">年轮</td>
+    <td class="clickable" data-lang="en" data-word="annual ring">annual ring</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pollinisation croisée">pollinisation croisée</td>
+    <td>[pɔlinizasjɔ̃ kʁwaze]</td>
+    <td class="clickable" data-lang="de" data-word="Fremdbestäubung">Fremdbestäubung</td>
+    <td>[ˈfʁɛmtbəˌʃtɔʏbʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="异花传粉">异花传粉</td>
+    <td class="clickable" data-lang="en" data-word="cross-pollination">cross-pollination</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="germe">germe</td>
+    <td>[ʒɛʁm]</td>
+    <td class="clickable" data-lang="de" data-word="Keim">Keim</td>
+    <td>[kaɪm]</td>
+    <td class="clickable" data-lang="zh" data-word="胚">胚</td>
+    <td class="clickable" data-lang="en" data-word="germ">germ</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="féconder">féconder</td>
+    <td>[fekɔ̃de]</td>
+    <td class="clickable" data-lang="de" data-word="befruchten">befruchten</td>
+    <td>[bəˈfʁʊxtən]</td>
+    <td class="clickable" data-lang="zh" data-word="授粉">授粉</td>
+    <td class="clickable" data-lang="en" data-word="to fertilize">to fertilize</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="genre">genre</td>
+    <td>[ʒɑ̃ʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Gattung">Gattung</td>
+    <td>[ˈɡatʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="种属">种属</td>
+    <td class="clickable" data-lang="en" data-word="genus">genus</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="germer">germer</td>
+    <td>[ʒɛʁme]</td>
+    <td class="clickable" data-lang="de" data-word="sprossen">sprossen</td>
+    <td>[ˈʃpʁɔsən]</td>
+    <td class="clickable" data-lang="zh" data-word="抽条">抽条</td>
+    <td class="clickable" data-lang="en" data-word="to sprout">to sprout</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="dinosaure">dinosaure</td>
+    <td>[dinozɔʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Dinosaurier">Dinosaurier</td>
+    <td>[dinoˈzaʊ̯ʁiɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="恐龙类">恐龙类</td>
+    <td class="clickable" data-lang="en" data-word="dinosaur">dinosaur</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="loup">loup</td>
+    <td>[lu]</td>
+    <td class="clickable" data-lang="de" data-word="Wolf">Wolf</td>
+    <td>[vɔlf]</td>
+    <td class="clickable" data-lang="zh" data-word="狼">狼</td>
+    <td class="clickable" data-lang="en" data-word="wolf">wolf</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="lion">lion</td>
+    <td>[ljɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Löwe">Löwe</td>
+    <td>[ˈløːvə]</td>
+    <td class="clickable" data-lang="zh" data-word="狮子">狮子</td>
+    <td class="clickable" data-lang="en" data-word="lion">lion</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="léopard">léopard</td>
+    <td>[leɔpaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Leopard">Leopard</td>
+    <td>[ˈleːopaʁt]</td>
+    <td class="clickable" data-lang="zh" data-word="豹子">豹子</td>
+    <td class="clickable" data-lang="en" data-word="leopard">leopard</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="tigre">tigre</td>
+    <td>[tiɡʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Tiger">Tiger</td>
+    <td>[ˈtiːɡɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="老虎">老虎</td>
+    <td class="clickable" data-lang="en" data-word="tiger">tiger</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="rhinocéros">rhinocéros</td>
+    <td>[ʁinoseʁɔs]</td>
+    <td class="clickable" data-lang="de" data-word="Nashorn">Nashorn</td>
+    <td>[ˈnaːsˌhɔʁn]</td>
+    <td class="clickable" data-lang="zh" data-word="犀牛">犀牛</td>
+    <td class="clickable" data-lang="en" data-word="rhinoceros">rhinoceros</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ours">ours</td>
+    <td>[uʁs]</td>
+    <td class="clickable" data-lang="de" data-word="Bär">Bär</td>
+    <td>[bɛːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="熊">熊</td>
+    <td class="clickable" data-lang="en" data-word="bear">bear</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="zèbre">zèbre</td>
+    <td>[zɛbʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Zebra">Zebra</td>
+    <td>[ˈt͡seːbʁa]</td>
+    <td class="clickable" data-lang="zh" data-word="斑马">斑马</td>
+    <td class="clickable" data-lang="en" data-word="zebra">zebra</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="girafe">girafe</td>
+    <td>[ʒiʁaf]</td>
+    <td class="clickable" data-lang="de" data-word="Giraffe">Giraffe</td>
+    <td>[ɡiˈʁafə]</td>
+    <td class="clickable" data-lang="zh" data-word="长颈鹿">长颈鹿</td>
+    <td class="clickable" data-lang="en" data-word="giraffe">giraffe</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="gorille">gorille</td>
+    <td>[ɡɔʁij]</td>
+    <td class="clickable" data-lang="de" data-word="Gorilla">Gorilla</td>
+    <td>[ɡoˈʁɪla]</td>
+    <td class="clickable" data-lang="zh" data-word="大猩猩">大猩猩</td>
+    <td class="clickable" data-lang="en" data-word="gorilla">gorilla</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="kangourou">kangourou</td>
+    <td>[kɑ̃ɡuʁu]</td>
+    <td class="clickable" data-lang="de" data-word="Känguru">Känguru</td>
+    <td>[ˈkɛŋɡuˌʁuː]</td>
+    <td class="clickable" data-lang="zh" data-word="袋鼠">袋鼠</td>
+    <td class="clickable" data-lang="en" data-word="kangaroo">kangaroo</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="éléphant">éléphant</td>
+    <td>[elefɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Elefant">Elefant</td>
+    <td>[eleˈfant]</td>
+    <td class="clickable" data-lang="zh" data-word="大象">大象</td>
+    <td class="clickable" data-lang="en" data-word="elephant">elephant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="phoque">phoque</td>
+    <td>[fɔk]</td>
+    <td class="clickable" data-lang="de" data-word="Robbe">Robbe</td>
+    <td>[ˈʁɔbə]</td>
+    <td class="clickable" data-lang="zh" data-word="海豹">海豹</td>
+    <td class="clickable" data-lang="en" data-word="seal">seal</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="hippopotame">hippopotame</td>
+    <td>[ipɔpɔtam]</td>
+    <td class="clickable" data-lang="de" data-word="Nilpferd">Nilpferd</td>
+    <td>[ˈniːlp͡feːɐ̯t]</td>
+    <td class="clickable" data-lang="zh" data-word="河马">河马</td>
+    <td class="clickable" data-lang="en" data-word="hippopotamus">hippopotamus</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="singe">singe</td>
+    <td>[sɛ̃ʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Affe">Affe</td>
+    <td>[ˈafə]</td>
+    <td class="clickable" data-lang="zh" data-word="猴子">猴子</td>
+    <td class="clickable" data-lang="en" data-word="monkey">monkey</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="renard">renard</td>
+    <td>[ʁənaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Fuchs">Fuchs</td>
+    <td>[fʊks]</td>
+    <td class="clickable" data-lang="zh" data-word="狐狸">狐狸</td>
+    <td class="clickable" data-lang="en" data-word="fox">fox</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="baleine">baleine</td>
+    <td>[balɛn]</td>
+    <td class="clickable" data-lang="de" data-word="Wal">Wal</td>
+    <td>[vaːl]</td>
+    <td class="clickable" data-lang="zh" data-word="鲸鱼">鲸鱼</td>
+    <td class="clickable" data-lang="en" data-word="whale">whale</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="antilope">antilope</td>
+    <td>[ɑ̃tilɔp]</td>
+    <td class="clickable" data-lang="de" data-word="Antilope">Antilope</td>
+    <td>[antiˈloːpə]</td>
+    <td class="clickable" data-lang="zh" data-word="羚羊">羚羊</td>
+    <td class="clickable" data-lang="en" data-word="antelope">antelope</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cerf">cerf</td>
+    <td>[sɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Hirsch">Hirsch</td>
+    <td>[hɪʁʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="鹿">鹿</td>
+    <td class="clickable" data-lang="en" data-word="deer">deer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chameau">chameau</td>
+    <td>[ʃamo]</td>
+    <td class="clickable" data-lang="de" data-word="Kamel">Kamel</td>
+    <td>[kaˈmeːl]</td>
+    <td class="clickable" data-lang="zh" data-word="骆驼">骆驼</td>
+    <td class="clickable" data-lang="en" data-word="camel">camel</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bétail">bétail</td>
+    <td>[betaj]</td>
+    <td class="clickable" data-lang="de" data-word="Vieh">Vieh</td>
+    <td>[fiː]</td>
+    <td class="clickable" data-lang="zh" data-word="家畜">家畜</td>
+    <td class="clickable" data-lang="en" data-word="cattle">cattle</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="âne">âne</td>
+    <td>[ɑn]</td>
+    <td class="clickable" data-lang="de" data-word="Esel">Esel</td>
+    <td>[ˈeːzl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="驴子">驴子</td>
+    <td class="clickable" data-lang="en" data-word="donkey">donkey</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cheval">cheval</td>
+    <td>[ʃəval]</td>
+    <td class="clickable" data-lang="de" data-word="Pferd">Pferd</td>
+    <td>[p͡feːɐ̯t]</td>
+    <td class="clickable" data-lang="zh" data-word="马">马</td>
+    <td class="clickable" data-lang="en" data-word="horse">horse</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chat">chat</td>
+    <td>[ʃa]</td>
+    <td class="clickable" data-lang="de" data-word="Katze">Katze</td>
+    <td>[ˈkat͡sə]</td>
+    <td class="clickable" data-lang="zh" data-word="猫">猫</td>
+    <td class="clickable" data-lang="en" data-word="cat">cat</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chien">chien</td>
+    <td>[ʃjɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Hund">Hund</td>
+    <td>[hʊnt]</td>
+    <td class="clickable" data-lang="zh" data-word="狗">狗</td>
+    <td class="clickable" data-lang="en" data-word="dog">dog</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cochon">cochon</td>
+    <td>[kɔʃɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Schwein">Schwein</td>
+    <td>[ʃvaɪn]</td>
+    <td class="clickable" data-lang="zh" data-word="猪">猪</td>
+    <td class="clickable" data-lang="en" data-word="pig">pig</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="poule">poule</td>
+    <td>[pul]</td>
+    <td class="clickable" data-lang="de" data-word="Huhn">Huhn</td>
+    <td>[huːn]</td>
+    <td class="clickable" data-lang="zh" data-word="母鸡">母鸡</td>
+    <td class="clickable" data-lang="en" data-word="hen">hen</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bœuf">bœuf</td>
+    <td>[bœf]</td>
+    <td class="clickable" data-lang="de" data-word="Rind">Rind</td>
+    <td>[ʁɪnt]</td>
+    <td class="clickable" data-lang="zh" data-word="牛">牛</td>
+    <td class="clickable" data-lang="en" data-word="cattle">cattle</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="canard">canard</td>
+    <td>[kanaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Ente">Ente</td>
+    <td>[ˈɛntə]</td>
+    <td class="clickable" data-lang="zh" data-word="鸭子">鸭子</td>
+    <td class="clickable" data-lang="en" data-word="duck">duck</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mouton">mouton</td>
+    <td>[mutɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Schaf">Schaf</td>
+    <td>[ʃaːf]</td>
+    <td class="clickable" data-lang="zh" data-word="绵羊">绵羊</td>
+    <td class="clickable" data-lang="en" data-word="sheep">sheep</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pigeon">pigeon</td>
+    <td>[piʒɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Taube">Taube</td>
+    <td>[ˈtaʊbə]</td>
+    <td class="clickable" data-lang="zh" data-word="鸽子">鸽子</td>
+    <td class="clickable" data-lang="en" data-word="pigeon">pigeon</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="oie">oie</td>
+    <td>[wa]</td>
+    <td class="clickable" data-lang="de" data-word="Gans">Gans</td>
+    <td>[ɡans]</td>
+    <td class="clickable" data-lang="zh" data-word="鹅">鹅</td>
+    <td class="clickable" data-lang="en" data-word="goose">goose</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="lapin">lapin</td>
+    <td>[lapɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Hase">Hase</td>
+    <td>[ˈhaːzə]</td>
+    <td class="clickable" data-lang="zh" data-word="兔子">兔子</td>
+    <td class="clickable" data-lang="en" data-word="rabbit">rabbit</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="traire">traire</td>
+    <td>[tʁɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="melken">melken</td>
+    <td>[ˈmɛlkən]</td>
+    <td class="clickable" data-lang="zh" data-word="挤奶">挤奶</td>
+    <td class="clickable" data-lang="en" data-word="to milk">to milk</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="vache">vache</td>
+    <td>[vaʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Kuh">Kuh</td>
+    <td>[kuː]</td>
+    <td class="clickable" data-lang="zh" data-word="奶牛">奶牛</td>
+    <td class="clickable" data-lang="en" data-word="cow">cow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="élever">élever</td>
+    <td>[elve]</td>
+    <td class="clickable" data-lang="de" data-word="züchten">züchten</td>
+    <td>[ˈt͡sʏçtən]</td>
+    <td class="clickable" data-lang="zh" data-word="饲养">饲养</td>
+    <td class="clickable" data-lang="en" data-word="to breed">to breed</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="caresser">caresser</td>
+    <td>[kaʁese]</td>
+    <td class="clickable" data-lang="de" data-word="streicheln">streicheln</td>
+    <td>[ˈʃtʁaɪçəln]</td>
+    <td class="clickable" data-lang="zh" data-word="抚摸">抚摸</td>
+    <td class="clickable" data-lang="en" data-word="to pet">to pet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pâturage">pâturage</td>
+    <td>[pɑtyʁaʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Weide">Weide</td>
+    <td>[ˈvaɪdə]</td>
+    <td class="clickable" data-lang="zh" data-word="牧场">牧场</td>
+    <td class="clickable" data-lang="en" data-word="pasture">pasture</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="étable">étable</td>
+    <td>[etabl]</td>
+    <td class="clickable" data-lang="de" data-word="Stall">Stall</td>
+    <td>[ʃtal]</td>
+    <td class="clickable" data-lang="zh" data-word="厩，棚">厩，棚</td>
+    <td class="clickable" data-lang="en" data-word="stable">stable</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="nourrir">nourrir</td>
+    <td>[nuʁiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="füttern">füttern</td>
+    <td>[ˈfʏtɐn]</td>
+    <td class="clickable" data-lang="zh" data-word="喂食">喂食</td>
+    <td class="clickable" data-lang="en" data-word="to feed">to feed</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="amphibien">amphibien</td>
+    <td>[ɑ̃fibjɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Amphibien">Amphibien</td>
+    <td>[amˈfiːbi̯ən]</td>
+    <td class="clickable" data-lang="zh" data-word="两栖动物">两栖动物</td>
+    <td class="clickable" data-lang="en" data-word="amphibian">amphibian</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="reptile">reptile</td>
+    <td>[ʁɛptil]</td>
+    <td class="clickable" data-lang="de" data-word="Kriechtier">Kriechtier</td>
+    <td>[ˈkʁiːçtiːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="爬行动物">爬行动物</td>
+    <td class="clickable" data-lang="en" data-word="reptile">reptile</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="tortue">tortue</td>
+    <td>[tɔʁty]</td>
+    <td class="clickable" data-lang="de" data-word="Schildkröte">Schildkröte</td>
+    <td>[ˈʃɪltkʁøːtə]</td>
+    <td class="clickable" data-lang="zh" data-word="龟">龟</td>
+    <td class="clickable" data-lang="en" data-word="turtle">turtle</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="crocodile">crocodile</td>
+    <td>[kʁɔkɔdil]</td>
+    <td class="clickable" data-lang="de" data-word="Krokodil">Krokodil</td>
+    <td>[kʁokoˈdiːl]</td>
+    <td class="clickable" data-lang="zh" data-word="鳄鱼">鳄鱼</td>
+    <td class="clickable" data-lang="en" data-word="crocodile">crocodile</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="lézard">lézard</td>
+    <td>[lezaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Eidechse">Eidechse</td>
+    <td>[ˈaɪdɛksə]</td>
+    <td class="clickable" data-lang="zh" data-word="蜥蜴">蜥蜴</td>
+    <td class="clickable" data-lang="en" data-word="lizard">lizard</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="caméléon">caméléon</td>
+    <td>[kameleɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Chamäleon">Chamäleon</td>
+    <td>[kaˈmɛːleɔn]</td>
+    <td class="clickable" data-lang="zh" data-word="变色龙">变色龙</td>
+    <td class="clickable" data-lang="en" data-word="chameleon">chameleon</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="animal à sang froid">animal à sang froid</td>
+    <td>[animal a sɑ̃ fʁwa]</td>
+    <td class="clickable" data-lang="de" data-word="Kaltblüter">Kaltblüter</td>
+    <td>[ˈkaltblyːtɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="冷血动物">冷血动物</td>
+    <td class="clickable" data-lang="en" data-word="cold-blooded animal">cold-blooded animal</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="salamandre">salamandre</td>
+    <td>[salamɑ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Salamander">Salamander</td>
+    <td>[zalaˈmandɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="蝾螈">蝾螈</td>
+    <td class="clickable" data-lang="en" data-word="salamander">salamander</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="crapaud">crapaud</td>
+    <td>[kʁapo]</td>
+    <td class="clickable" data-lang="de" data-word="Kröte">Kröte</td>
+    <td>[ˈkʁøːtə]</td>
+    <td class="clickable" data-lang="zh" data-word="蛤蟆">蛤蟆</td>
+    <td class="clickable" data-lang="en" data-word="toad">toad</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="serpent">serpent</td>
+    <td>[sɛʁpɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Schlange">Schlange</td>
+    <td>[ˈʃlaŋə]</td>
+    <td class="clickable" data-lang="zh" data-word="蛇">蛇</td>
+    <td class="clickable" data-lang="en" data-word="snake">snake</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="grenouille">grenouille</td>
+    <td>[ɡʁənuj]</td>
+    <td class="clickable" data-lang="de" data-word="Frosch">Frosch</td>
+    <td>[fʁɔʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="蛙">蛙</td>
+    <td class="clickable" data-lang="en" data-word="frog">frog</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="nocturne">nocturne</td>
+    <td>[nɔktyʁn]</td>
+    <td class="clickable" data-lang="de" data-word="nachtaktiv">nachtaktiv</td>
+    <td>[ˈnaxtaktiːf]</td>
+    <td class="clickable" data-lang="zh" data-word="夜间活动的">夜间活动的</td>
+    <td class="clickable" data-lang="en" data-word="nocturnal">nocturnal</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="gecko">gecko</td>
+    <td>[ɡeko]</td>
+    <td class="clickable" data-lang="de" data-word="Gecko">Gecko</td>
+    <td>[ˈɡɛko]</td>
+    <td class="clickable" data-lang="zh" data-word="壁虎">壁虎</td>
+    <td class="clickable" data-lang="en" data-word="gecko">gecko</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cobra">cobra</td>
+    <td>[kɔbʁa]</td>
+    <td class="clickable" data-lang="de" data-word="Kobra">Kobra</td>
+    <td>[ˈkoːbʁa]</td>
+    <td class="clickable" data-lang="zh" data-word="眼镜蛇">眼镜蛇</td>
+    <td class="clickable" data-lang="en" data-word="cobra">cobra</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="muer">muer</td>
+    <td>[mɥe]</td>
+    <td class="clickable" data-lang="de" data-word="abstreifen">abstreifen</td>
+    <td>[ˈapʃtʁaɪfən]</td>
+    <td class="clickable" data-lang="zh" data-word="蜕皮">蜕皮</td>
+    <td class="clickable" data-lang="en" data-word="to shed skin">to shed skin</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="visqueux">visqueux</td>
+    <td>[viskø]</td>
+    <td class="clickable" data-lang="de" data-word="schlüpfrig">schlüpfrig</td>
+    <td>[ˈʃlʏpfʁɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="黏滑的">黏滑的</td>
+    <td class="clickable" data-lang="en" data-word="slippery">slippery</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ramper">ramper</td>
+    <td>[ʁɑ̃pe]</td>
+    <td class="clickable" data-lang="de" data-word="kriechen">kriechen</td>
+    <td>[ˈkʁiːçən]</td>
+    <td class="clickable" data-lang="zh" data-word="爬行">爬行</td>
+    <td class="clickable" data-lang="en" data-word="to crawl">to crawl</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="terre">terre</td>
+    <td>[tɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Land">Land</td>
+    <td>[lant]</td>
+    <td class="clickable" data-lang="zh" data-word="陆地">陆地</td>
+    <td class="clickable" data-lang="en" data-word="land">land</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="eau">eau</td>
+    <td>[o]</td>
+    <td class="clickable" data-lang="de" data-word="Wasser">Wasser</td>
+    <td>[ˈvasɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="水域">水域</td>
+    <td class="clickable" data-lang="en" data-word="water">water</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="plume">plume</td>
+    <td>[plym]</td>
+    <td class="clickable" data-lang="de" data-word="Feder">Feder</td>
+    <td>[ˈfeːdɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="羽毛">羽毛</td>
+    <td class="clickable" data-lang="en" data-word="feather">feather</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="nid">nid</td>
+    <td>[ni]</td>
+    <td class="clickable" data-lang="de" data-word="Nest">Nest</td>
+    <td>[nɛst]</td>
+    <td class="clickable" data-lang="zh" data-word="巢">巢</td>
+    <td class="clickable" data-lang="en" data-word="nest">nest</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="coucou">coucou</td>
+    <td>[kuku]</td>
+    <td class="clickable" data-lang="de" data-word="Kuckuck">Kuckuck</td>
+    <td>[ˈkʊkʊk]</td>
+    <td class="clickable" data-lang="zh" data-word="杜鹃">杜鹃</td>
+    <td class="clickable" data-lang="en" data-word="cuckoo">cuckoo</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pigeon">pigeon</td>
+    <td>[piʒɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Taube">Taube</td>
+    <td>[ˈtaʊbə]</td>
+    <td class="clickable" data-lang="zh" data-word="鸽子">鸽子</td>
+    <td class="clickable" data-lang="en" data-word="pigeon">pigeon</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="oiseau">oiseau</td>
+    <td>[wazo]</td>
+    <td class="clickable" data-lang="de" data-word="Vogel">Vogel</td>
+    <td>[ˈfoːɡl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="鸟">鸟</td>
+    <td class="clickable" data-lang="en" data-word="bird">bird</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mouette">mouette</td>
+    <td>[muɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Möwe">Möwe</td>
+    <td>[ˈmøːvə]</td>
+    <td class="clickable" data-lang="zh" data-word="海鸥">海鸥</td>
+    <td class="clickable" data-lang="en" data-word="seagull">seagull</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="paon">paon</td>
+    <td>[pɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Pfau">Pfau</td>
+    <td>[p͡faʊ]</td>
+    <td class="clickable" data-lang="zh" data-word="孔雀">孔雀</td>
+    <td class="clickable" data-lang="en" data-word="peacock">peacock</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="moineau">moineau</td>
+    <td>[mwano]</td>
+    <td class="clickable" data-lang="de" data-word="Spatz">Spatz</td>
+    <td>[ʃpat͡s]</td>
+    <td class="clickable" data-lang="zh" data-word="麻雀">麻雀</td>
+    <td class="clickable" data-lang="en" data-word="sparrow">sparrow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="hibou">hibou</td>
+    <td>[ibu]</td>
+    <td class="clickable" data-lang="de" data-word="Eule">Eule</td>
+    <td>[ˈɔʏlə]</td>
+    <td class="clickable" data-lang="zh" data-word="猫头鹰">猫头鹰</td>
+    <td class="clickable" data-lang="en" data-word="owl">owl</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cygne">cygne</td>
+    <td>[siɲ]</td>
+    <td class="clickable" data-lang="de" data-word="Schwan">Schwan</td>
+    <td>[ʃvaːn]</td>
+    <td class="clickable" data-lang="zh" data-word="天鹅">天鹅</td>
+    <td class="clickable" data-lang="en" data-word="swan">swan</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="autruche">autruche</td>
+    <td>[otʁyʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Strauß">Strauß</td>
+    <td>[ʃtʁaʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="鸵鸟">鸵鸟</td>
+    <td class="clickable" data-lang="en" data-word="ostrich">ostrich</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="corneille">corneille</td>
+    <td>[kɔʁnɛj]</td>
+    <td class="clickable" data-lang="de" data-word="Krähe">Krähe</td>
+    <td>[ˈkʁɛːə]</td>
+    <td class="clickable" data-lang="zh" data-word="乌鸦">乌鸦</td>
+    <td class="clickable" data-lang="en" data-word="crow">crow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="hirondelle">hirondelle</td>
+    <td>[iʁɔ̃dɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Schwalbe">Schwalbe</td>
+    <td>[ˈʃvalbə]</td>
+    <td class="clickable" data-lang="zh" data-word="燕子">燕子</td>
+    <td class="clickable" data-lang="en" data-word="swallow">swallow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="rossignol">rossignol</td>
+    <td>[ʁɔsiɲɔl]</td>
+    <td class="clickable" data-lang="de" data-word="Nachtigall">Nachtigall</td>
+    <td>[ˈnaxtɪɡal]</td>
+    <td class="clickable" data-lang="zh" data-word="夜莺">夜莺</td>
+    <td class="clickable" data-lang="en" data-word="nightingale">nightingale</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="perroquet">perroquet</td>
+    <td>[pɛʁɔkɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Papagei">Papagei</td>
+    <td>[papaˈɡaɪ]</td>
+    <td class="clickable" data-lang="zh" data-word="鹦鹉">鹦鹉</td>
+    <td class="clickable" data-lang="en" data-word="parrot">parrot</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pic">pic</td>
+    <td>[pik]</td>
+    <td class="clickable" data-lang="de" data-word="Specht">Specht</td>
+    <td>[ʃpɛçt]</td>
+    <td class="clickable" data-lang="zh" data-word="啄木鸟">啄木鸟</td>
+    <td class="clickable" data-lang="en" data-word="woodpecker">woodpecker</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bec">bec</td>
+    <td>[bɛk]</td>
+    <td class="clickable" data-lang="de" data-word="Schnabel">Schnabel</td>
+    <td>[ˈʃnaːbl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="喙">喙</td>
+    <td class="clickable" data-lang="en" data-word="beak">beak</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="moineau">moineau</td>
+    <td>[mwano]</td>
+    <td class="clickable" data-lang="de" data-word="Spatz">Spatz</td>
+    <td>[ʃpat͡s]</td>
+    <td class="clickable" data-lang="zh" data-word="雀">雀</td>
+    <td class="clickable" data-lang="en" data-word="sparrow">sparrow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="perruche">perruche</td>
+    <td>[peʁyʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Sittich">Sittich</td>
+    <td>[ˈzɪtɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="鹦鹉">鹦鹉</td>
+    <td class="clickable" data-lang="en" data-word="parakeet">parakeet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="phénix">phénix</td>
+    <td>[feniks]</td>
+    <td class="clickable" data-lang="de" data-word="Phönix">Phönix</td>
+    <td>[ˈføːnɪks]</td>
+    <td class="clickable" data-lang="zh" data-word="凤凰">凤凰</td>
+    <td class="clickable" data-lang="en" data-word="phoenix">phoenix</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="insecte">insecte</td>
+    <td>[ɛ̃sɛkt]</td>
+    <td class="clickable" data-lang="de" data-word="Insekt">Insekt</td>
+    <td>[ɪnˈzɛkt]</td>
+    <td class="clickable" data-lang="zh" data-word="昆虫">昆虫</td>
+    <td class="clickable" data-lang="en" data-word="insect">insect</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mouche">mouche</td>
+    <td>[muʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Fliege">Fliege</td>
+    <td>[ˈfliːɡə]</td>
+    <td class="clickable" data-lang="zh" data-word="苍蝇">苍蝇</td>
+    <td class="clickable" data-lang="en" data-word="fly">fly</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="moustique">moustique</td>
+    <td>[mustik]</td>
+    <td class="clickable" data-lang="de" data-word="Moskito">Moskito</td>
+    <td>[mɔsˈkiːto]</td>
+    <td class="clickable" data-lang="zh" data-word="蚊子">蚊子</td>
+    <td class="clickable" data-lang="en" data-word="mosquito">mosquito</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fourmi">fourmi</td>
+    <td>[fuʁmi]</td>
+    <td class="clickable" data-lang="de" data-word="Ameise">Ameise</td>
+    <td>[ˈamaɪzə]</td>
+    <td class="clickable" data-lang="zh" data-word="蚂蚁">蚂蚁</td>
+    <td class="clickable" data-lang="en" data-word="ant">ant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ver à soie">ver à soie</td>
+    <td>[vɛʁ a swa]</td>
+    <td class="clickable" data-lang="de" data-word="Seidenraupe">Seidenraupe</td>
+    <td>[ˈzaɪdənˌʁaʊpə]</td>
+    <td class="clickable" data-lang="zh" data-word="蚕">蚕</td>
+    <td class="clickable" data-lang="en" data-word="silkworm">silkworm</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="abeille">abeille</td>
+    <td>[abɛj]</td>
+    <td class="clickable" data-lang="de" data-word="Biene">Biene</td>
+    <td>[ˈbiːnə]</td>
+    <td class="clickable" data-lang="zh" data-word="蜜蜂">蜜蜂</td>
+    <td class="clickable" data-lang="en" data-word="bee">bee</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="papillon">papillon</td>
+    <td>[papijɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Schmetterling">Schmetterling</td>
+    <td>[ˈʃmɛtɐlɪŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="蝴蝶">蝴蝶</td>
+    <td class="clickable" data-lang="en" data-word="butterfly">butterfly</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="libellule">libellule</td>
+    <td>[libɛlyl]</td>
+    <td class="clickable" data-lang="de" data-word="Libelle">Libelle</td>
+    <td>[liˈbɛlə]</td>
+    <td class="clickable" data-lang="zh" data-word="蜻蜓">蜻蜓</td>
+    <td class="clickable" data-lang="en" data-word="dragonfly">dragonfly</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="grillon">grillon</td>
+    <td>[ɡʁijɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Grille">Grille</td>
+    <td>[ˈɡʁɪlə]</td>
+    <td class="clickable" data-lang="zh" data-word="蟋蟀">蟋蟀</td>
+    <td class="clickable" data-lang="en" data-word="cricket">cricket</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="araignée">araignée</td>
+    <td>[aʁɛɲe]</td>
+    <td class="clickable" data-lang="de" data-word="Spinne">Spinne</td>
+    <td>[ˈʃpɪnə]</td>
+    <td class="clickable" data-lang="zh" data-word="蜘蛛">蜘蛛</td>
+    <td class="clickable" data-lang="en" data-word="spider">spider</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="puce">puce</td>
+    <td>[pys]</td>
+    <td class="clickable" data-lang="de" data-word="Floh">Floh</td>
+    <td>[floː]</td>
+    <td class="clickable" data-lang="zh" data-word="跳蚤">跳蚤</td>
+    <td class="clickable" data-lang="en" data-word="flea">flea</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="luciole">luciole</td>
+    <td>[lysjɔl]</td>
+    <td class="clickable" data-lang="de" data-word="Leuchtekäfer">Leuchtekäfer</td>
+    <td>[ˈlɔʏçtəˌkɛːfɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="萤火虫">萤火虫</td>
+    <td class="clickable" data-lang="en" data-word="firefly">firefly</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cigale">cigale</td>
+    <td>[siɡal]</td>
+    <td class="clickable" data-lang="de" data-word="Zikade">Zikade</td>
+    <td>[t͡siˈkaːdə]</td>
+    <td class="clickable" data-lang="zh" data-word="蝉">蝉</td>
+    <td class="clickable" data-lang="en" data-word="cicada">cicada</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sauterelle">sauterelle</td>
+    <td>[sotʁɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Heuschrecke">Heuschrecke</td>
+    <td>[ˈhɔʏʃʁɛkə]</td>
+    <td class="clickable" data-lang="zh" data-word="蝗虫">蝗虫</td>
+    <td class="clickable" data-lang="en" data-word="grasshopper">grasshopper</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mite">mite</td>
+    <td>[mit]</td>
+    <td class="clickable" data-lang="de" data-word="Motte">Motte</td>
+    <td>[ˈmɔtə]</td>
+    <td class="clickable" data-lang="zh" data-word="蛾子">蛾子</td>
+    <td class="clickable" data-lang="en" data-word="moth">moth</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ver de terre">ver de terre</td>
+    <td>[vɛʁ də tɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Regenwurm">Regenwurm</td>
+    <td>[ˈʁeːɡn̩vʊʁm]</td>
+    <td class="clickable" data-lang="zh" data-word="蚯蚓">蚯蚓</td>
+    <td class="clickable" data-lang="en" data-word="earthworm">earthworm</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chrysalide">chrysalide</td>
+    <td>[kʁizalid]</td>
+    <td class="clickable" data-lang="de" data-word="Puppe">Puppe</td>
+    <td>[ˈpʊpə]</td>
+    <td class="clickable" data-lang="zh" data-word="蛹">蛹</td>
+    <td class="clickable" data-lang="en" data-word="pupa">pupa</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="scolopendre">scolopendre</td>
+    <td>[skɔlɔpɑ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Skolopender">Skolopender</td>
+    <td>[skoloˈpɛndɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="蜈蚣">蜈蚣</td>
+    <td class="clickable" data-lang="en" data-word="centipede">centipede</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="escargot">escargot</td>
+    <td>[ɛskaʁɡo]</td>
+    <td class="clickable" data-lang="de" data-word="Schnecke">Schnecke</td>
+    <td>[ˈʃnɛkə]</td>
+    <td class="clickable" data-lang="zh" data-word="蜗牛">蜗牛</td>
+    <td class="clickable" data-lang="en" data-word="snail">snail</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="punaise">punaise</td>
+    <td>[pynɛz]</td>
+    <td class="clickable" data-lang="de" data-word="Wanze">Wanze</td>
+    <td>[ˈvant͡sə]</td>
+    <td class="clickable" data-lang="zh" data-word="臭虫">臭虫</td>
+    <td class="clickable" data-lang="en" data-word="bedbug">bedbug</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="carassin">carassin</td>
+    <td>[kaʁasɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Karausche">Karausche</td>
+    <td>[kaˈʁaʊʃə]</td>
+    <td class="clickable" data-lang="zh" data-word="鲫鱼">鲫鱼</td>
+    <td class="clickable" data-lang="en" data-word="crucian carp">crucian carp</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="animal aquatique">animal aquatique</td>
+    <td>[animal akatik]</td>
+    <td class="clickable" data-lang="de" data-word="Wassertier">Wassertier</td>
+    <td>[ˈvasɐtiːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="水生动物">水生动物</td>
+    <td class="clickable" data-lang="en" data-word="aquatic animal">aquatic animal</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="crabe">crabe</td>
+    <td>[kʁab]</td>
+    <td class="clickable" data-lang="de" data-word="Krebs">Krebs</td>
+    <td>[kʁeːps]</td>
+    <td class="clickable" data-lang="zh" data-word="螃蟹">螃蟹</td>
+    <td class="clickable" data-lang="en" data-word="crab">crab</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="poulpe">poulpe</td>
+    <td>[pulp]</td>
+    <td class="clickable" data-lang="de" data-word="Krake">Krake</td>
+    <td>[ˈkʁaːkə]</td>
+    <td class="clickable" data-lang="zh" data-word="章鱼">章鱼</td>
+    <td class="clickable" data-lang="en" data-word="octopus">octopus</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="huître">huître</td>
+    <td>[ɥitʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Auster">Auster</td>
+    <td>[ˈaʊstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="牡蛎">牡蛎</td>
+    <td class="clickable" data-lang="en" data-word="oyster">oyster</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="phoque">phoque</td>
+    <td>[fɔk]</td>
+    <td class="clickable" data-lang="de" data-word="Seehund">Seehund</td>
+    <td>[ˈzeːhʊnt]</td>
+    <td class="clickable" data-lang="zh" data-word="海豹">海豹</td>
+    <td class="clickable" data-lang="en" data-word="seal">seal</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="plie">plie</td>
+    <td>[pli]</td>
+    <td class="clickable" data-lang="de" data-word="Flunder">Flunder</td>
+    <td>[ˈflʊndɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="比目鱼">比目鱼</td>
+    <td class="clickable" data-lang="en" data-word="flounder">flounder</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="thon">thon</td>
+    <td>[tɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Thunfisch">Thunfisch</td>
+    <td>[ˈtuːnfɪʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="金枪鱼">金枪鱼</td>
+    <td class="clickable" data-lang="en" data-word="tuna">tuna</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="nager">nager</td>
+    <td>[naʒe]</td>
+    <td class="clickable" data-lang="de" data-word="schwimmen">schwimmen</td>
+    <td>[ˈʃvɪmən]</td>
+    <td class="clickable" data-lang="zh" data-word="游">游</td>
+    <td class="clickable" data-lang="en" data-word="to swim">to swim</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fleuve">fleuve</td>
+    <td>[flœv]</td>
+    <td class="clickable" data-lang="de" data-word="Fluss">Fluss</td>
+    <td>[flʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="河">河</td>
+    <td class="clickable" data-lang="en" data-word="river">river</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mer">mer</td>
+    <td>[mɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="See">See</td>
+    <td>[zeː]</td>
+    <td class="clickable" data-lang="zh" data-word="海">海</td>
+    <td class="clickable" data-lang="en" data-word="sea">sea</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="canne à pêche">canne à pêche</td>
+    <td>[kan a pɛʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Angel">Angel</td>
+    <td>[ˈaŋəl]</td>
+    <td class="clickable" data-lang="zh" data-word="鱼竿">鱼竿</td>
+    <td class="clickable" data-lang="en" data-word="fishing rod">fishing rod</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="écaille">écaille</td>
+    <td>[ekaj]</td>
+    <td class="clickable" data-lang="de" data-word="Schuppe">Schuppe</td>
+    <td>[ˈʃʊpə]</td>
+    <td class="clickable" data-lang="zh" data-word="鳞">鳞</td>
+    <td class="clickable" data-lang="en" data-word="scale">scale</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="baleine">baleine</td>
+    <td>[balɛn]</td>
+    <td class="clickable" data-lang="de" data-word="Wal">Wal</td>
+    <td>[vaːl]</td>
+    <td class="clickable" data-lang="zh" data-word="鲸鱼">鲸鱼</td>
+    <td class="clickable" data-lang="en" data-word="whale">whale</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="dauphin">dauphin</td>
+    <td>[dofɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Delfin">Delfin</td>
+    <td>[dɛlˈfiːn]</td>
+    <td class="clickable" data-lang="zh" data-word="海豚">海豚</td>
+    <td class="clickable" data-lang="en" data-word="dolphin">dolphin</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="poisson rouge">poisson rouge</td>
+    <td>[pwasɔ̃ ʁuʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Goldfisch">Goldfisch</td>
+    <td>[ˈɡɔltfɪʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="金鱼">金鱼</td>
+    <td class="clickable" data-lang="en" data-word="goldfish">goldfish</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="langouste">langouste</td>
+    <td>[lɑ̃ɡust]</td>
+    <td class="clickable" data-lang="de" data-word="Languste">Languste</td>
+    <td>[laŋˈɡʊstə]</td>
+    <td class="clickable" data-lang="zh" data-word="龙虾">龙虾</td>
+    <td class="clickable" data-lang="en" data-word="spiny lobster">spiny lobster</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="requin">requin</td>
+    <td>[ʁəkɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Haifisch">Haifisch</td>
+    <td>[ˈhaɪfɪʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="鲨鱼">鲨鱼</td>
+    <td class="clickable" data-lang="en" data-word="shark">shark</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="poisson">poisson</td>
+    <td>[pwasɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Fisch">Fisch</td>
+    <td>[fɪʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="鱼">鱼</td>
+    <td class="clickable" data-lang="en" data-word="fish">fish</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="lion de mer">lion de mer</td>
+    <td>[ljɔ̃ də mɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Seelöwe">Seelöwe</td>
+    <td>[ˈzeːløːvə]</td>
+    <td class="clickable" data-lang="zh" data-word="海狮">海狮</td>
+    <td class="clickable" data-lang="en" data-word="sea lion">sea lion</td>
+</tr>
+</table>
+
+
+    <script>
+    const PIXABAY_API_KEY = '49256357-c30f2f538120ce8d74ff8921d';
+    let speechSynth = window.speechSynthesis;
+    let voices = [];
+
+    // Wait for voices to load
+    speechSynth.onvoiceschanged = function() {
+        voices = speechSynth.getVoices();
+    };
+
+    // Pronunciation function
+    function speak(text, lang) {
+        // Cancel any ongoing speech
+        speechSynth.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        
+        // For Chinese, select appropriate voice based on dialect
+        if (lang.startsWith('zh')) {
+            const voices = window.speechSynthesis.getVoices();
+            const chineseVoice = voices.find(voice => voice.lang.includes(lang));
+            if (chineseVoice) {
+                utterance.voice = chineseVoice;
+            }
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    } 
+    
+    let currentImageTimeout = null;  // 添加超时变量
+
+    // 清除背景图片
+    function clearBackgroundImages() {
+        if (currentImageTimeout) {
+            clearTimeout(currentImageTimeout);
+            currentImageTimeout = null;
+        }
+        document.querySelectorAll('.background-image').forEach(img => {
+            img.style.opacity = '0';
+            setTimeout(() => img.remove(), 300); // 淡出效果后移除
+        });
+    }
+
+    // Fetch and add background image
+    async function addBackgroundImage(cell, searchTerm) {
+        clearBackgroundImages();
+        
+        try {
+            const apiUrl = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(searchTerm)}&per_page=4&safesearch=true`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.hits && data.hits.length > 0) {
+                const randomIndex = Math.floor(Math.random() * Math.min(4, data.hits.length));
+                const img = document.createElement('img');
+                img.className = 'background-image';
+                img.alt = searchTerm;
+
+                // 图片加载完成后再显示
+                img.onload = () => {
+                    setTimeout(() => {
+                        img.style.opacity = '0.9';  // 设置为原来的不透明度
+                    }, 50);
+                };
+                
+                img.src = data.hits[randomIndex].previewURL;
+                
+                const firstCell = cell.closest('tr').querySelector('td:first-child');
+                firstCell.appendChild(img);
+
+                // 设置新的超时
+                currentImageTimeout = setTimeout(() => {
+                    clearBackgroundImages();
+                }, 3000);
+            }
+        } catch (error) {
+            console.error('Error fetching image:', error);
+        }
+    }
+
+    // Add click events to clickable cells
+    window.speechSynthesis.onvoiceschanged = () => {
+        document.querySelectorAll('.clickable').forEach(cell => {
+            cell.addEventListener('click', function() {
+                const text = this.textContent;
+                let lang;
+                
+                // Get language based on data-lang attribute
+                switch(this.dataset.lang) {
+                    case 'fr':
+                        lang = 'fr-FR';
+                        break;
+                    case 'de':
+                        lang = 'de-DE';
+                        break;
+                    case 'zh':
+                        // Use selected dialect for Chinese
+                        lang = document.getElementById('chineseDialect').value;
+                        break;
+                    default:
+                        lang = 'en-US';
+                }
+                
+                speak(text, lang);
+                addBackgroundImage(this, this.dataset.word);
+
+                // Visual feedback with cleanup
+                const originalBg = window.getComputedStyle(this).backgroundColor;
+                this.style.backgroundColor = '#c8e6c9';
+                
+                // Clear any existing timeout for this cell
+                if (this.resetTimeout) {
+                    clearTimeout(this.resetTimeout);
+                }
+                
+                // Set new timeout and store its ID
+                this.resetTimeout = setTimeout(() => {
+                    this.style.backgroundColor = '';
+                    this.resetTimeout = null;
+                }, 500);
+            });
+        });
+    };
+</script>
+
+</body>
+</html>

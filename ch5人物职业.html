@@ -1,0 +1,1287 @@
+<!-- <使用这个模板，添加单词到table的部分就可以!> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr {
+            position: relative;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .clickable {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+        .clickable:hover {
+            background-color: #e6e6e6;
+        }
+        .background-image {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            opacity: 0;  /* 初始设置为透明 */
+            transition: opacity 0.3s ease-in-out;  /* 添加过渡效果 */
+        }
+        .background-image:hover {
+            opacity: 0.8;
+        }
+        .language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .language-selector select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="index.html" class="back-button">🏠 主页</a>
+      </div>
+
+    <div class="language-selector">
+        <select id="chineseDialect">
+            <option value="zh-CN">普通话</option>
+            <option value="zh-HK">粤语</option>
+        </select>
+    </div>
+
+
+    <table id="wordTable">
+        <tr>
+            <th>法语</th>
+            <th>音标</th>
+            <th>德语</th>
+            <th>音标</th>
+            <th>中文</th>
+            <th>英语</th>
+        </tr>
+        <tr>
+            <td class="clickable" data-lang="fr" data-word="Famille">Famille</td>
+            <td>[famij]</td>
+            <td class="clickable" data-lang="de" data-word="Familie">Familie</td>
+            <td>[faˈmiːliə]</td>
+            <td class="clickable" data-lang="zh" data-word="家庭">家庭</td>
+            <td class="clickable" data-lang="en" data-word="family">family</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Photo de famille">Photo de famille</td>
+            <td>[fɔto də famij]</td>
+            <td class="clickable" data-lang="de" data-word="Familienfoto">Familienfoto</td>
+            <td>[faˈmiːliənˌfoːtoː]</td>
+            <td class="clickable" data-lang="zh" data-word="全家福">全家福</td>
+            <td class="clickable" data-lang="en" data-word="family photo">family photo</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Parents">Parents</td>
+            <td>[paʁɑ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Eltern">Eltern</td>
+            <td>[ˈɛltɐn]</td>
+            <td class="clickable" data-lang="zh" data-word="父母">父母</td>
+            <td class="clickable" data-lang="en" data-word="parents">parents</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Enfant">Enfant</td>
+            <td>[ɑ̃fɑ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Kind">Kind</td>
+            <td>[kɪnt]</td>
+            <td class="clickable" data-lang="zh" data-word="孩子">孩子</td>
+            <td class="clickable" data-lang="en" data-word="child">child</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Père">Père</td>
+            <td>[pɛʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Vater">Vater</td>
+            <td>[ˈfaːtɐ]</td>
+            <td class="clickable" data-lang="zh" data-word="父亲">父亲</td>
+            <td class="clickable" data-lang="en" data-word="father">father</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Mère">Mère</td>
+            <td>[mɛʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Mutter">Mutter</td>
+            <td>[ˈmʊtɐ]</td>
+            <td class="clickable" data-lang="zh" data-word="母亲">母亲</td>
+            <td class="clickable" data-lang="en" data-word="mother">mother</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Fils">Fils</td>
+            <td>[fis]</td>
+            <td class="clickable" data-lang="de" data-word="Sohn">Sohn</td>
+            <td>[zoːn]</td>
+            <td class="clickable" data-lang="zh" data-word="儿子">儿子</td>
+            <td class="clickable" data-lang="en" data-word="son">son</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Fille">Fille</td>
+            <td>[fij]</td>
+            <td class="clickable" data-lang="de" data-word="Tochter">Tochter</td>
+            <td>[ˈtɔxtɐ]</td>
+            <td class="clickable" data-lang="zh" data-word="女儿">女儿</td>
+            <td class="clickable" data-lang="en" data-word="daughter">daughter</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Sœur">Sœur</td>
+            <td>[sœʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Schwester">Schwester</td>
+            <td>[ˈʃvɛstɐ]</td>
+            <td class="clickable" data-lang="zh" data-word="姐妹">姐妹</td>
+            <td class="clickable" data-lang="en" data-word="sister">sister</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Frère">Frère</td>
+            <td>[fʁɛʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Bruder">Bruder</td>
+            <td>[ˈbruːdɐ]</td>
+            <td class="clickable" data-lang="zh" data-word="兄弟">兄弟</td>
+            <td class="clickable" data-lang="en" data-word="brother">brother</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Grand-père">Grand-père</td>
+            <td>[ɡʁɑ̃pɛʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Großvater">Großvater</td>
+            <td>[ˈɡroːsfaːtɐ]</td>
+            <td class="clickable" data-lang="zh" data-word="祖父，外祖父">祖父，外祖父</td>
+            <td class="clickable" data-lang="en" data-word="grandfather">grandfather</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Grand-mère">Grand-mère</td>
+            <td>[ɡʁɑ̃mɛʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Großmutter">Großmutter</td>
+            <td>[ˈɡroːsmʊtɐ]</td>
+            <td class="clickable" data-lang="zh" data-word="祖母，外祖母">祖母，外祖母</td>
+            <td class="clickable" data-lang="en" data-word="grandmother">grandmother</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Oncle">Oncle</td>
+            <td>[ɔ̃kl]</td>
+            <td class="clickable" data-lang="de" data-word="Onkel">Onkel</td>
+            <td>[ˈɔŋkl̩]</td>
+            <td class="clickable" data-lang="zh" data-word="伯伯，叔叔，舅舅，姑父，姨父">伯伯，叔叔，舅舅，姑父，姨父</td>
+            <td class="clickable" data-lang="en" data-word="uncle">uncle</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Tante">Tante</td>
+            <td>[tɑ̃t]</td>
+            <td class="clickable" data-lang="de" data-word="Tante">Tante</td>
+            <td>[ˈtantə]</td>
+            <td class="clickable" data-lang="zh" data-word="伯母，舅母，姨母，姑姑，婶婶">伯母，舅母，姨母，姑姑，婶婶</td>
+            <td class="clickable" data-lang="en" data-word="aunt">aunt</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Neveu">Neveu</td>
+            <td>[nəvø]</td>
+            <td class="clickable" data-lang="de" data-word="Neffe">Neffe</td>
+            <td>[ˈnɛfə]</td>
+            <td class="clickable" data-lang="zh" data-word="侄子，外甥">侄子，外甥</td>
+            <td class="clickable" data-lang="en" data-word="nephew">nephew</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Nièce">Nièce</td>
+            <td>[njɛs]</td>
+            <td class="clickable" data-lang="de" data-word="Nichte">Nichte</td>
+            <td>[ˈnɪçtə]</td>
+            <td class="clickable" data-lang="zh" data-word="侄女，外甥女">侄女，外甥女</td>
+            <td class="clickable" data-lang="en" data-word="niece">niece</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Petit-fils">Petit-fils</td>
+            <td>[pətifis]</td>
+            <td class="clickable" data-lang="de" data-word="Enkel">Enkel</td>
+            <td>[ˈɛŋkl̩]</td>
+            <td class="clickable" data-lang="zh" data-word="孙子，外孙">孙子，外孙</td>
+            <td class="clickable" data-lang="en" data-word="grandson">grandson</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Fratrie">Fratrie</td>
+            <td>[fʁatʁi]</td>
+            <td class="clickable" data-lang="de" data-word="Geschwister">Geschwister</td>
+            <td>[ɡəˈʃvɪstɐ]</td>
+            <td class="clickable" data-lang="zh" data-word="兄弟姐妹">兄弟姐妹</td>
+            <td class="clickable" data-lang="en" data-word="siblings">siblings</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Cousin">Cousin</td>
+            <td>[kuzɛ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Cousin">Cousin</td>
+            <td>[kuˈzɛ̃]</td>
+            <td class="clickable" data-lang="zh" data-word="堂兄弟，表兄弟">堂兄弟，表兄弟</td>
+            <td class="clickable" data-lang="en" data-word="cousin">cousin</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Jumeau">Jumeau</td>
+            <td>[ʒymo]</td>
+            <td class="clickable" data-lang="de" data-word="Zwilling">Zwilling</td>
+            <td>[ˈt͡svɪlɪŋ]</td>
+            <td class="clickable" data-lang="zh" data-word="双胞胎">双胞胎</td>
+            <td class="clickable" data-lang="en" data-word="twin">twin</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ami">Ami</td>
+    <td>[ami]</td>
+    <td class="clickable" data-lang="de" data-word="Freund">Freund</td>
+    <td>[frɔʏnt]</td>
+    <td class="clickable" data-lang="zh" data-word="男朋友">男朋友</td>
+    <td class="clickable" data-lang="en" data-word="boyfriend, friend">boyfriend, friend</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Amie">Amie</td>
+    <td>[ami]</td>
+    <td class="clickable" data-lang="de" data-word="Freundin">Freundin</td>
+    <td>[ˈfrɔʏndɪn]</td>
+    <td class="clickable" data-lang="zh" data-word="女朋友">女朋友</td>
+    <td class="clickable" data-lang="en" data-word="girlfriend, friend">girlfriend, friend</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Camarade d'études">Camarade d'études</td>
+    <td>[kamaʁad detyd]</td>
+    <td class="clickable" data-lang="de" data-word="Kommilitone">Kommilitone</td>
+    <td>[kɔmiːliˈtoːnə]</td>
+    <td class="clickable" data-lang="zh" data-word="同学（大学生）">同学（大学生）</td>
+    <td class="clickable" data-lang="en" data-word="fellow student">fellow student</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Partenaire">Partenaire</td>
+    <td>[paʁtənɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Partner">Partner</td>
+    <td>[ˈpartnɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="同伴，伴侣">同伴，伴侣</td>
+    <td class="clickable" data-lang="en" data-word="partner">partner</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mari">Mari</td>
+    <td>[maʁi]</td>
+    <td class="clickable" data-lang="de" data-word="Ehemann">Ehemann</td>
+    <td>[ˈeːman]</td>
+    <td class="clickable" data-lang="zh" data-word="丈夫">丈夫</td>
+    <td class="clickable" data-lang="en" data-word="husband">husband</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Épouse">Épouse</td>
+    <td>[epuz]</td>
+    <td class="clickable" data-lang="de" data-word="Ehefrau">Ehefrau</td>
+    <td>[ˈeːfraʊ]</td>
+    <td class="clickable" data-lang="zh" data-word="妻子">妻子</td>
+    <td class="clickable" data-lang="en" data-word="wife">wife</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fiancée">Fiancée</td>
+    <td>[fjɑ̃se]</td>
+    <td class="clickable" data-lang="de" data-word="Braut">Braut</td>
+    <td>[braʊt]</td>
+    <td class="clickable" data-lang="zh" data-word="未婚妻">未婚妻</td>
+    <td class="clickable" data-lang="en" data-word="bride, fiancée">bride, fiancée</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fiancé">Fiancé</td>
+    <td>[fjɑ̃se]</td>
+    <td class="clickable" data-lang="de" data-word="Bräutigam">Bräutigam</td>
+    <td>[ˈbrɔʏtɪɡam]</td>
+    <td class="clickable" data-lang="zh" data-word="未婚夫">未婚夫</td>
+    <td class="clickable" data-lang="en" data-word="groom, fiancé">groom, fiancé</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Collègue">Collègue</td>
+    <td>[kɔlɛɡ]</td>
+    <td class="clickable" data-lang="de" data-word="Kollege">Kollege</td>
+    <td>[kɔˈleːɡə]</td>
+    <td class="clickable" data-lang="zh" data-word="同事">同事</td>
+    <td class="clickable" data-lang="en" data-word="colleague">colleague</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Parent">Parent</td>
+    <td>[paʁɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Verwandte">Verwandte</td>
+    <td>[fɛɐ̯ˈvantə]</td>
+    <td class="clickable" data-lang="zh" data-word="亲戚">亲戚</td>
+    <td class="clickable" data-lang="en" data-word="relative">relative</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Coopérateur">Coopérateur</td>
+    <td>[kɔɔpeʁatœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Kooperateur">Kooperateur</td>
+    <td>[koːopeʁaˈtøːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="合伙人">合伙人</td>
+    <td class="clickable" data-lang="en" data-word="cooperator">cooperator</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Employeur">Employeur</td>
+    <td>[ɑ̃plwajœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Arbeitgeber">Arbeitgeber</td>
+    <td>[ˈaʁbaɪtˌɡeːbɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="雇主">雇主</td>
+    <td class="clickable" data-lang="en" data-word="employer">employer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Employé">Employé</td>
+    <td>[ɑ̃plwaje]</td>
+    <td class="clickable" data-lang="de" data-word="Arbeitnehmer">Arbeitnehmer</td>
+    <td>[ˈaʁbaɪtˌneːmɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="雇员">雇员</td>
+    <td class="clickable" data-lang="en" data-word="employee">employee</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Propriétaire">Propriétaire</td>
+    <td>[pʁɔpʁijetɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Vermieter">Vermieter</td>
+    <td>[fɛɐ̯ˈmiːtɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="房东">房东</td>
+    <td class="clickable" data-lang="en" data-word="landlord">landlord</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Locataire">Locataire</td>
+    <td>[lɔkatɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Mieter">Mieter</td>
+    <td>[ˈmiːtɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="租户">租户</td>
+    <td class="clickable" data-lang="en" data-word="tenant">tenant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Hôte">Hôte</td>
+    <td>[ot]</td>
+    <td class="clickable" data-lang="de" data-word="Gastgeber">Gastgeber</td>
+    <td>[ˈɡastˌɡeːbɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="主人">主人</td>
+    <td class="clickable" data-lang="en" data-word="host">host</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Invité">Invité</td>
+    <td>[ɛ̃vite]</td>
+    <td class="clickable" data-lang="de" data-word="Gast">Gast</td>
+    <td>[ɡast]</td>
+    <td class="clickable" data-lang="zh" data-word="客人">客人</td>
+    <td class="clickable" data-lang="en" data-word="guest">guest</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Voisin">Voisin</td>
+    <td>[vwazɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Nachbar">Nachbar</td>
+    <td>[ˈnaxbaːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="邻居">邻居</td>
+    <td class="clickable" data-lang="en" data-word="neighbor">neighbor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Étranger">Étranger</td>
+    <td>[etʁɑ̃ʒe]</td>
+    <td class="clickable" data-lang="de" data-word="Fremde">Fremde</td>
+    <td>[ˈfʁɛmdə]</td>
+    <td class="clickable" data-lang="zh" data-word="陌生人">陌生人</td>
+    <td class="clickable" data-lang="en" data-word="stranger">stranger</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Professeur">Professeur</td>
+    <td>[pʁɔfɛsœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Lehrer">Lehrer</td>
+    <td>[ˈleːʁɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="教师">教师</td>
+    <td class="clickable" data-lang="en" data-word="teacher">teacher</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Médecin">Médecin</td>
+    <td>[medsɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Arzt">Arzt</td>
+    <td>[aʁt͡st]</td>
+    <td class="clickable" data-lang="zh" data-word="医生">医生</td>
+    <td class="clickable" data-lang="en" data-word="doctor">doctor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Avocat">Avocat</td>
+    <td>[avɔka]</td>
+    <td class="clickable" data-lang="de" data-word="Anwalt">Anwalt</td>
+    <td>[ˈanvalt]</td>
+    <td class="clickable" data-lang="zh" data-word="律师">律师</td>
+    <td class="clickable" data-lang="en" data-word="lawyer">lawyer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Réalisateur">Réalisateur</td>
+    <td>[ʁealizatœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Regisseur">Regisseur</td>
+    <td>[ʁeʒiˈsøːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="导演">导演</td>
+    <td class="clickable" data-lang="en" data-word="director">director</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ingénieur">Ingénieur</td>
+    <td>[ɛ̃ʒenjœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Ingenieur">Ingenieur</td>
+    <td>[ɪnʒeˈnjøːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="工程师">工程师</td>
+    <td class="clickable" data-lang="en" data-word="engineer">engineer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Police">Police</td>
+    <td>[pɔlis]</td>
+    <td class="clickable" data-lang="de" data-word="Polizei">Polizei</td>
+    <td>[poliˈt͡saɪ]</td>
+    <td class="clickable" data-lang="zh" data-word="警察">警察</td>
+    <td class="clickable" data-lang="en" data-word="police">police</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Photographe">Photographe</td>
+    <td>[fɔtɔɡʁaf]</td>
+    <td class="clickable" data-lang="de" data-word="Fotograf">Fotograf</td>
+    <td>[ˈfoːtoˌɡʁaːf]</td>
+    <td class="clickable" data-lang="zh" data-word="摄影师">摄影师</td>
+    <td class="clickable" data-lang="en" data-word="photographer">photographer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fonctionnaire">Fonctionnaire</td>
+    <td>[fɔ̃ksjɔnɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Beamte">Beamte</td>
+    <td>[beˈamtə]</td>
+    <td class="clickable" data-lang="zh" data-word="公务员">公务员</td>
+    <td class="clickable" data-lang="en" data-word="civil servant">civil servant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mannequin">Mannequin</td>
+    <td>[manəkɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Model">Model</td>
+    <td>[moˈdɛl]</td>
+    <td class="clickable" data-lang="zh" data-word="模特">模特</td>
+    <td class="clickable" data-lang="en" data-word="model">model</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Acteur/Actrice">Acteur/Actrice</td>
+    <td>[aktœʁ/aktʁis]</td>
+    <td class="clickable" data-lang="de" data-word="Schauspieler">Schauspieler</td>
+    <td>[ˈʃaʊˌʃpiːlɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="演员">演员</td>
+    <td class="clickable" data-lang="en" data-word="actor/actress">actor/actress</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Scientifique">Scientifique</td>
+    <td>[sjɑ̃tifik]</td>
+    <td class="clickable" data-lang="de" data-word="Wissenschaftler">Wissenschaftler</td>
+    <td>[ˈvɪsn̩ʃaftlɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="科学家">科学家</td>
+    <td class="clickable" data-lang="en" data-word="scientist">scientist</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Écrivain">Écrivain</td>
+    <td>[ekʁivɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Schriftsteller">Schriftsteller</td>
+    <td>[ˈʃʁɪftˌʃtɛlɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="作家">作家</td>
+    <td class="clickable" data-lang="en" data-word="writer">writer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Infirmière">Infirmière</td>
+    <td>[ɛ̃fiʁmjɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Krankenschwester">Krankenschwester</td>
+    <td>[ˈkʁaŋkn̩ˌʃvɛstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="护士">护士</td>
+    <td class="clickable" data-lang="en" data-word="nurse">nurse</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Hôtesse de l'air">Hôtesse de l'air</td>
+    <td>[otɛs də lɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Stewardess">Stewardess</td>
+    <td>[ˈstjuːɐ̯dɛs]</td>
+    <td class="clickable" data-lang="zh" data-word="空姐">空姐</td>
+    <td class="clickable" data-lang="en" data-word="flight attendant">flight attendant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pilote">Pilote</td>
+    <td>[pilɔt]</td>
+    <td class="clickable" data-lang="de" data-word="Pilot">Pilot</td>
+    <td>[piˈloːt]</td>
+    <td class="clickable" data-lang="zh" data-word="飞行员">飞行员</td>
+    <td class="clickable" data-lang="en" data-word="pilot">pilot</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Présentateur">Présentateur</td>
+    <td>[pʁezɑ̃tatœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Moderator">Moderator</td>
+    <td>[modeˈʁaːtoːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="主持人">主持人</td>
+    <td class="clickable" data-lang="en" data-word="host, presenter">host, presenter</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Juge">Juge</td>
+    <td>[ʒyʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Richter">Richter</td>
+    <td>[ˈʁɪçtɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="法官">法官</td>
+    <td class="clickable" data-lang="en" data-word="judge">judge</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Chanteur">Chanteur</td>
+    <td>[ʃɑ̃tœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Sänger">Sänger</td>
+    <td>[ˈzɛŋɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="歌手">歌手</td>
+    <td class="clickable" data-lang="en" data-word="singer">singer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Danseur">Danseur</td>
+    <td>[dɑ̃sœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Tänzer">Tänzer</td>
+    <td>[ˈtɛnt͡sɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="舞蹈家">舞蹈家</td>
+    <td class="clickable" data-lang="en" data-word="dancer">dancer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Artiste">Artiste</td>
+    <td>[aʁtist]</td>
+    <td class="clickable" data-lang="de" data-word="Künstler">Künstler</td>
+    <td>[ˈkʏnstlɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="艺术家">艺术家</td>
+    <td class="clickable" data-lang="en" data-word="artist">artist</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Fonctionnaire">Fonctionnaire</td>
+    <td>[fɔ̃ksjɔnɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Beamte">Beamte</td>
+    <td>[beˈamtə]</td>
+    <td class="clickable" data-lang="zh" data-word="官员">官员</td>
+    <td class="clickable" data-lang="en" data-word="official">official</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Président">Président</td>
+    <td>[pʁezidɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Präsident">Präsident</td>
+    <td>[pʁɛziˈdɛnt]</td>
+    <td class="clickable" data-lang="zh" data-word="总统">总统</td>
+    <td class="clickable" data-lang="en" data-word="president">president</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Chancelier">Chancelier</td>
+    <td>[ʃɑ̃səlje]</td>
+    <td class="clickable" data-lang="de" data-word="Kanzler">Kanzler</td>
+    <td>[ˈkant͡slɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="总理">总理</td>
+    <td class="clickable" data-lang="en" data-word="chancellor">chancellor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ministre">Ministre</td>
+    <td>[ministʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Minister">Minister</td>
+    <td>[miˈnɪstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="部长">部长</td>
+    <td class="clickable" data-lang="en" data-word="minister">minister</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Gouvernement fédéral">Gouvernement fédéral</td>
+    <td>[ɡuvɛʁnəmɑ̃ fedeʁal]</td>
+    <td class="clickable" data-lang="de" data-word="Bundesregierung">Bundesregierung</td>
+    <td>[ˈbʊndəsʁeˌɡiːʁʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="联邦政府">联邦政府</td>
+    <td class="clickable" data-lang="en" data-word="federal government">federal government</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Gouverneur">Gouverneur</td>
+    <td>[ɡuvɛʁnœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Gouverneur">Gouverneur</td>
+    <td>[ɡuvɛʁˈnøːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="州长">州长</td>
+    <td class="clickable" data-lang="en" data-word="governor">governor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Maire">Maire</td>
+    <td>[mɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Bürgermeister">Bürgermeister</td>
+    <td>[ˈbʏʁɡɐˌmaɪstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="市长">市长</td>
+    <td class="clickable" data-lang="en" data-word="mayor">mayor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Parlementaire">Parlementaire</td>
+    <td>[paʁləmɑ̃tɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Parlamentarier">Parlamentarier</td>
+    <td>[paʁlaменˈtaːʁiɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="国会议员">国会议员</td>
+    <td class="clickable" data-lang="en" data-word="parliamentarian">parliamentarian</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ambassadeur">Ambassadeur</td>
+    <td>[ɑ̃basadœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Botschafter">Botschafter</td>
+    <td>[ˈboːtʃaftɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="大使">大使</td>
+    <td class="clickable" data-lang="en" data-word="ambassador">ambassador</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Consul">Consul</td>
+    <td>[kɔ̃syl]</td>
+    <td class="clickable" data-lang="de" data-word="Konsul">Konsul</td>
+    <td>[ˈkɔnzʊl]</td>
+    <td class="clickable" data-lang="zh" data-word="领事">领事</td>
+    <td class="clickable" data-lang="en" data-word="consul">consul</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Diplomate">Diplomate</td>
+    <td>[diplɔmat]</td>
+    <td class="clickable" data-lang="de" data-word="Diplomat">Diplomat</td>
+    <td>[diploˈmaːt]</td>
+    <td class="clickable" data-lang="zh" data-word="外交官">外交官</td>
+    <td class="clickable" data-lang="en" data-word="diplomat">diplomat</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ministre des Affaires étrangères">Ministre des Affaires étrangères</td>
+    <td>[ministʁ dez afɛʁ etʁɑ̃ʒɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Außenminister">Außenminister</td>
+    <td>[ˈaʊsn̩ˌmɪnɪstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="外长">外长</td>
+    <td class="clickable" data-lang="en" data-word="foreign minister">foreign minister</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bundestag">Bundestag</td>
+    <td>[bʊndəstaɡ]</td>
+    <td class="clickable" data-lang="de" data-word="Bundestag">Bundestag</td>
+    <td>[ˈbʊndəsˌtaːk]</td>
+    <td class="clickable" data-lang="zh" data-word="联邦议院">联邦议院</td>
+    <td class="clickable" data-lang="en" data-word="Federal Parliament">Federal Parliament</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Parlement">Parlement</td>
+    <td>[paʁləmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Parlament">Parlament</td>
+    <td>[paʁlaˈmɛnt]</td>
+    <td class="clickable" data-lang="zh" data-word="联邦议会">联邦议会</td>
+    <td class="clickable" data-lang="en" data-word="parliament">parliament</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ministre de la Défense">Ministre de la Défense</td>
+    <td>[ministʁ də la defɑ̃s]</td>
+    <td class="clickable" data-lang="de" data-word="Verteidigungsminister">Verteidigungsminister</td>
+    <td>[fɛɐ̯ˈtaɪdɪɡʊŋsˌmɪnɪstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="国防部长">国防部长</td>
+    <td class="clickable" data-lang="en" data-word="minister of defense">minister of defense</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ministre de l'Environnement">Ministre de l'Environnement</td>
+    <td>[ministʁ də lɑ̃viʁɔnmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Umweltminister">Umweltminister</td>
+    <td>[ˈʊmvɛltˌmɪnɪstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="环境部长">环境部长</td>
+    <td class="clickable" data-lang="en" data-word="minister of environment">minister of environment</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ministre de l'Éducation">Ministre de l'Éducation</td>
+    <td>[ministʁ də ledykasjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Bildungsminister">Bildungsminister</td>
+    <td>[ˈbɪldʊŋsˌmɪnɪstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="教育部长">教育部长</td>
+    <td class="clickable" data-lang="en" data-word="minister of education">minister of education</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ministre des Transports">Ministre des Transports</td>
+    <td>[ministʁ de tʁɑ̃spɔʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Verkehrsminister">Verkehrsminister</td>
+    <td>[fɛɐ̯ˈkeːɐ̯sˌmɪnɪstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="交通部长">交通部长</td>
+    <td class="clickable" data-lang="en" data-word="minister of transport">minister of transport</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ministre de la Santé">Ministre de la Santé</td>
+    <td>[ministʁ də la sɑ̃te]</td>
+    <td class="clickable" data-lang="de" data-word="Gesundheitsminister">Gesundheitsminister</td>
+    <td>[ɡəˈzʊnthaɪtsˌmɪnɪstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="卫生部长">卫生部长</td>
+    <td class="clickable" data-lang="en" data-word="minister of health">minister of health</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Acteur">Acteur</td>
+    <td>[aktœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Schauspieler">Schauspieler</td>
+    <td>[ˈʃaʊˌʃpiːlɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="演员">演员</td>
+    <td class="clickable" data-lang="en" data-word="actor">actor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Réalisateur">Réalisateur</td>
+    <td>[ʁealizatœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Regisseur">Regisseur</td>
+    <td>[ʁeʒiˈsøːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="导演">导演</td>
+    <td class="clickable" data-lang="en" data-word="director">director</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Scénariste">Scénariste</td>
+    <td>[senaʁist]</td>
+    <td class="clickable" data-lang="de" data-word="Drehbuchautor">Drehbuchautor</td>
+    <td>[ˈdʁeːbuxˌʔaʊtoːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="编剧">编剧</td>
+    <td class="clickable" data-lang="en" data-word="screenwriter">screenwriter</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Chanteur">Chanteur</td>
+    <td>[ʃɑ̃tœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Sänger">Sänger</td>
+    <td>[ˈzɛŋɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="歌手">歌手</td>
+    <td class="clickable" data-lang="en" data-word="singer">singer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Danseur">Danseur</td>
+    <td>[dɑ̃sœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Tänzer">Tänzer</td>
+    <td>[ˈtɛnt͡sɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="舞蹈家">舞蹈家</td>
+    <td class="clickable" data-lang="en" data-word="dancer">dancer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Héros">Héros</td>
+    <td>[eʁo]</td>
+    <td class="clickable" data-lang="de" data-word="Held">Held</td>
+    <td>[hɛlt]</td>
+    <td class="clickable" data-lang="zh" data-word="主人公">主人公</td>
+    <td class="clickable" data-lang="en" data-word="hero, protagonist">hero, protagonist</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Rôle principal">Rôle principal</td>
+    <td>[ʁol pʁɛ̃sipal]</td>
+    <td class="clickable" data-lang="de" data-word="Hauptrolle">Hauptrolle</td>
+    <td>[ˈhaʊptˌʁɔlə]</td>
+    <td class="clickable" data-lang="zh" data-word="主角">主角</td>
+    <td class="clickable" data-lang="en" data-word="main role">main role</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Rôle secondaire">Rôle secondaire</td>
+    <td>[ʁol səɡɔ̃dɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Nebenrolle">Nebenrolle</td>
+    <td>[ˈneːbn̩ˌʁɔlə]</td>
+    <td class="clickable" data-lang="zh" data-word="配角">配角</td>
+    <td class="clickable" data-lang="en" data-word="supporting role">supporting role</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Musicien">Musicien</td>
+    <td>[myzisjɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Musiker">Musiker</td>
+    <td>[ˈmuːzikɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="音乐家">音乐家</td>
+    <td class="clickable" data-lang="en" data-word="musician">musician</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Chef d'orchestre">Chef d'orchestre</td>
+    <td>[ʃɛf dɔʁkɛstʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Dirigent">Dirigent</td>
+    <td>[diʁiˈɡɛnt]</td>
+    <td class="clickable" data-lang="zh" data-word="乐队指挥">乐队指挥</td>
+    <td class="clickable" data-lang="en" data-word="conductor">conductor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Acrobate">Acrobate</td>
+    <td>[akʁɔbat]</td>
+    <td class="clickable" data-lang="de" data-word="Akrobat">Akrobat</td>
+    <td>[akʁoˈbaːt]</td>
+    <td class="clickable" data-lang="zh" data-word="杂技演员">杂技演员</td>
+    <td class="clickable" data-lang="en" data-word="acrobat">acrobat</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Journaliste">Journaliste</td>
+    <td>[ʒuʁnalist]</td>
+    <td class="clickable" data-lang="de" data-word="Journalist">Journalist</td>
+    <td>[ʒʊʁnaˈlɪst]</td>
+    <td class="clickable" data-lang="zh" data-word="记者">记者</td>
+    <td class="clickable" data-lang="en" data-word="journalist">journalist</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Producteur">Producteur</td>
+    <td>[pʁɔdyktœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Produzent">Produzent</td>
+    <td>[pʁoduˈt͡sɛnt]</td>
+    <td class="clickable" data-lang="zh" data-word="制片人">制片人</td>
+    <td class="clickable" data-lang="en" data-word="producer">producer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Comédie">Comédie</td>
+    <td>[kɔmedi]</td>
+    <td class="clickable" data-lang="de" data-word="Komödie">Komödie</td>
+    <td>[koˈmøːdiə]</td>
+    <td class="clickable" data-lang="zh" data-word="喜剧">喜剧</td>
+    <td class="clickable" data-lang="en" data-word="comedy">comedy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Théâtre">Théâtre</td>
+    <td>[teɑtʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Theater">Theater</td>
+    <td>[teˈaːtɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="戏剧">戏剧</td>
+    <td class="clickable" data-lang="en" data-word="theater">theater</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Opéra">Opéra</td>
+    <td>[ɔpeʁa]</td>
+    <td class="clickable" data-lang="de" data-word="Oper">Oper</td>
+    <td>[ˈoːpɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="歌剧">歌剧</td>
+    <td class="clickable" data-lang="en" data-word="opera">opera</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ballet">Ballet</td>
+    <td>[balɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Ballett">Ballett</td>
+    <td>[baˈlɛt]</td>
+    <td class="clickable" data-lang="zh" data-word="芭蕾舞">芭蕾舞</td>
+    <td class="clickable" data-lang="en" data-word="ballet">ballet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Symphonie">Symphonie</td>
+    <td>[sɛ̃fɔni]</td>
+    <td class="clickable" data-lang="de" data-word="Symphonie">Symphonie</td>
+    <td>[zʏmfoˈniː]</td>
+    <td class="clickable" data-lang="zh" data-word="交响曲">交响曲</td>
+    <td class="clickable" data-lang="en" data-word="symphony">symphony</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Compositeur">Compositeur</td>
+    <td>[kɔ̃pozitœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Komponist">Komponist</td>
+    <td>[kɔmpoˈnɪst]</td>
+    <td class="clickable" data-lang="zh" data-word="作曲家">作曲家</td>
+    <td class="clickable" data-lang="en" data-word="composer">composer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Orchestre">Orchestre</td>
+    <td>[ɔʁkɛstʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Orchester">Orchester</td>
+    <td>[ɔʁˈkɛstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="乐队">乐队</td>
+    <td class="clickable" data-lang="en" data-word="orchestra">orchestra</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Lieutenant">Lieutenant</td>
+    <td>[ljøtnɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Leutnant">Leutnant</td>
+    <td>[ˈlɔʏtnant]</td>
+    <td class="clickable" data-lang="zh" data-word="少尉">少尉</td>
+    <td class="clickable" data-lang="en" data-word="lieutenant">lieutenant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Premier lieutenant">Premier lieutenant</td>
+    <td>[pʁəmje ljøtnɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Oberleutnant">Oberleutnant</td>
+    <td>[ˈoːbɐˌlɔʏtnant]</td>
+    <td class="clickable" data-lang="zh" data-word="中尉">中尉</td>
+    <td class="clickable" data-lang="en" data-word="first lieutenant">first lieutenant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Capitaine">Capitaine</td>
+    <td>[kapitɛn]</td>
+    <td class="clickable" data-lang="de" data-word="Hauptmann">Hauptmann</td>
+    <td>[ˈhaʊptman]</td>
+    <td class="clickable" data-lang="zh" data-word="上尉">上尉</td>
+    <td class="clickable" data-lang="en" data-word="captain">captain</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Commandant">Commandant</td>
+    <td>[kɔmɑ̃dɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Major">Major</td>
+    <td>[maˈjoːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="少校">少校</td>
+    <td class="clickable" data-lang="en" data-word="major">major</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Colonel">Colonel</td>
+    <td>[kɔlɔnɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Oberst">Oberst</td>
+    <td>[ˈoːbɐst]</td>
+    <td class="clickable" data-lang="zh" data-word="上校">上校</td>
+    <td class="clickable" data-lang="en" data-word="colonel">colonel</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Colonel supérieur">Colonel supérieur</td>
+    <td>[kɔlɔnɛl sypeʁjœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Großoberst">Großoberst</td>
+    <td>[ˈɡʁoːsˌoːbɐst]</td>
+    <td class="clickable" data-lang="zh" data-word="大校">大校</td>
+    <td class="clickable" data-lang="en" data-word="senior colonel">senior colonel</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Général de brigade">Général de brigade</td>
+    <td>[ʒeneʁal də bʁiɡad]</td>
+    <td class="clickable" data-lang="de" data-word="Generalmajor">Generalmajor</td>
+    <td>[ɡeneˈʁaːlmaˌjoːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="少将">少将</td>
+    <td class="clickable" data-lang="en" data-word="brigadier general">brigadier general</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Général de division">Général de division</td>
+    <td>[ʒeneʁal də divizjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Generalleutnant">Generalleutnant</td>
+    <td>[ɡeneˈʁaːllɔʏtnant]</td>
+    <td class="clickable" data-lang="zh" data-word="中将">中将</td>
+    <td class="clickable" data-lang="en" data-word="lieutenant general">lieutenant general</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Général d'armée">Général d'armée</td>
+    <td>[ʒeneʁal daʁme]</td>
+    <td class="clickable" data-lang="de" data-word="General">General</td>
+    <td>[ɡeneˈʁaːl]</td>
+    <td class="clickable" data-lang="zh" data-word="上将">上将</td>
+    <td class="clickable" data-lang="en" data-word="general">general</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Sous-officier">Sous-officier</td>
+    <td>[suzɔfisje]</td>
+    <td class="clickable" data-lang="de" data-word="Unteroffizier">Unteroffizier</td>
+    <td>[ˈʊntɐˌʔɔfit͡siːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="士官">士官</td>
+    <td class="clickable" data-lang="en" data-word="non-commissioned officer">non-commissioned officer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Soldat">Soldat</td>
+    <td>[sɔlda]</td>
+    <td class="clickable" data-lang="de" data-word="Soldat">Soldat</td>
+    <td>[zɔlˈdaːt]</td>
+    <td class="clickable" data-lang="zh" data-word="士兵">士兵</td>
+    <td class="clickable" data-lang="en" data-word="soldier">soldier</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Armée">Armée</td>
+    <td>[aʁme]</td>
+    <td class="clickable" data-lang="de" data-word="Armee">Armee</td>
+    <td>[aʁˈmeː]</td>
+    <td class="clickable" data-lang="zh" data-word="军队">军队</td>
+    <td class="clickable" data-lang="en" data-word="army">army</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Général">Général</td>
+    <td>[ʒeneʁal]</td>
+    <td class="clickable" data-lang="de" data-word="General">General</td>
+    <td>[ɡeneˈʁaːl]</td>
+    <td class="clickable" data-lang="zh" data-word="将军">将军</td>
+    <td class="clickable" data-lang="en" data-word="general">general</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Adjudant-chef">Adjudant-chef</td>
+    <td>[adʒydɑ̃ ʃɛf]</td>
+    <td class="clickable" data-lang="de" data-word="Oberstabsfeldwebel">Oberstabsfeldwebel</td>
+    <td>[ˈoːbɐʃtaːpsˌfɛltveːbl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="一级军士长">一级军士长</td>
+    <td class="clickable" data-lang="en" data-word="chief warrant officer">chief warrant officer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Adjudant">Adjudant</td>
+    <td>[adʒydɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Oberfeldwebel">Oberfeldwebel</td>
+    <td>[ˈoːbɐˌfɛltveːbl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="上士">上士</td>
+    <td class="clickable" data-lang="en" data-word="staff sergeant">staff sergeant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Armée de terre">Armée de terre</td>
+    <td>[aʁme də tɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Heer">Heer</td>
+    <td>[heːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="陆军">陆军</td>
+    <td class="clickable" data-lang="en" data-word="army">army</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Armée de l'air">Armée de l'air</td>
+    <td>[aʁme də lɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Luftwaffe">Luftwaffe</td>
+    <td>[ˈlʊftˌvafə]</td>
+    <td class="clickable" data-lang="zh" data-word="空军">空军</td>
+    <td class="clickable" data-lang="en" data-word="air force">air force</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Marine de guerre">Marine de guerre</td>
+    <td>[maʁin də ɡɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Kriegsmarine">Kriegsmarine</td>
+    <td>[ˈkʁiːksmaˌʁiːnə]</td>
+    <td class="clickable" data-lang="zh" data-word="海军舰队">海军舰队</td>
+    <td class="clickable" data-lang="en" data-word="navy">navy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Sergent">Sergent</td>
+    <td>[sɛʁʒɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Unterfeldwebel">Unterfeldwebel</td>
+    <td>[ˈʊntɐˌfɛltveːbl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="下士">下士</td>
+    <td class="clickable" data-lang="en" data-word="sergeant">sergeant</td>
+</tr>
+</table>
+
+
+    <script>
+    const PIXABAY_API_KEY = '49256357-c30f2f538120ce8d74ff8921d';
+    let speechSynth = window.speechSynthesis;
+    let voices = [];
+
+    // Wait for voices to load
+    speechSynth.onvoiceschanged = function() {
+        voices = speechSynth.getVoices();
+    };
+
+    // Pronunciation function
+    function speak(text, lang) {
+        // Cancel any ongoing speech
+        speechSynth.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        
+        // For Chinese, select appropriate voice based on dialect
+        if (lang.startsWith('zh')) {
+            const voices = window.speechSynthesis.getVoices();
+            const chineseVoice = voices.find(voice => voice.lang.includes(lang));
+            if (chineseVoice) {
+                utterance.voice = chineseVoice;
+            }
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    } 
+    
+    let currentImageTimeout = null;  // 添加超时变量
+
+    // 清除背景图片
+    function clearBackgroundImages() {
+        if (currentImageTimeout) {
+            clearTimeout(currentImageTimeout);
+            currentImageTimeout = null;
+        }
+        document.querySelectorAll('.background-image').forEach(img => {
+            img.style.opacity = '0';
+            setTimeout(() => img.remove(), 300); // 淡出效果后移除
+        });
+    }
+
+    // Fetch and add background image
+    async function addBackgroundImage(cell, searchTerm) {
+        clearBackgroundImages();
+        
+        try {
+            const apiUrl = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(searchTerm)}&per_page=4&safesearch=true`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.hits && data.hits.length > 0) {
+                const randomIndex = Math.floor(Math.random() * Math.min(4, data.hits.length));
+                const img = document.createElement('img');
+                img.className = 'background-image';
+                img.alt = searchTerm;
+
+                // 图片加载完成后再显示
+                img.onload = () => {
+                    setTimeout(() => {
+                        img.style.opacity = '0.9';  // 设置为原来的不透明度
+                    }, 50);
+                };
+                
+                img.src = data.hits[randomIndex].previewURL;
+                
+                const firstCell = cell.closest('tr').querySelector('td:first-child');
+                firstCell.appendChild(img);
+
+                // 设置新的超时
+                currentImageTimeout = setTimeout(() => {
+                    clearBackgroundImages();
+                }, 3000);
+            }
+        } catch (error) {
+            console.error('Error fetching image:', error);
+        }
+    }
+
+    // Add click events to clickable cells
+    window.speechSynthesis.onvoiceschanged = () => {
+        document.querySelectorAll('.clickable').forEach(cell => {
+            cell.addEventListener('click', function() {
+                const text = this.textContent;
+                let lang;
+                
+                // Get language based on data-lang attribute
+                switch(this.dataset.lang) {
+                    case 'fr':
+                        lang = 'fr-FR';
+                        break;
+                    case 'de':
+                        lang = 'de-DE';
+                        break;
+                    case 'zh':
+                        // Use selected dialect for Chinese
+                        lang = document.getElementById('chineseDialect').value;
+                        break;
+                    default:
+                        lang = 'en-US';
+                }
+                
+                speak(text, lang);
+                addBackgroundImage(this, this.dataset.word);
+
+                // Visual feedback with cleanup
+                const originalBg = window.getComputedStyle(this).backgroundColor;
+                this.style.backgroundColor = '#c8e6c9';
+                
+                // Clear any existing timeout for this cell
+                if (this.resetTimeout) {
+                    clearTimeout(this.resetTimeout);
+                }
+                
+                // Set new timeout and store its ID
+                this.resetTimeout = setTimeout(() => {
+                    this.style.backgroundColor = '';
+                    this.resetTimeout = null;
+                }, 500);
+            });
+        });
+    };
+</script>
+
+</body>
+</html>

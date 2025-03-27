@@ -1,0 +1,3236 @@
+<!-- <使用这个模板，添加单词到table的部分就可以!> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr {
+            position: relative;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .clickable {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+        .clickable:hover {
+            background-color: #e6e6e6;
+        }
+        .background-image {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            opacity: 0;  /* 初始设置为透明 */
+            transition: opacity 0.3s ease-in-out;  /* 添加过渡效果 */
+        }
+        .background-image:hover {
+            opacity: 0.8;
+        }
+        .language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .language-selector select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="index.html" class="back-button">🏠 主页</a>
+      </div>
+
+    <div class="language-selector">
+        <select id="chineseDialect">
+            <option value="zh-CN">普通话</option>
+            <option value="zh-HK">粤语</option>
+        </select>
+    </div>
+
+
+    <table id="wordTable">
+        <tr>
+            <th>法语</th>
+            <th>音标</th>
+            <th>德语</th>
+            <th>音标</th>
+            <th>中文</th>
+            <th>英语</th>
+        </tr>
+
+        <tr>
+            <td class="clickable" data-lang="fr" data-word="Doux">Doux</td>
+            <td>[du]</td>
+            <td class="clickable" data-lang="de" data-word="sanft">sanft</td>
+            <td>[zanft]</td>
+            <td class="clickable" data-lang="zh" data-word="温和的">温和的</td>
+            <td class="clickable" data-lang="en" data-word="gentle">gentle</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Sérieux">Sérieux</td>
+            <td>[seʁjø]</td>
+            <td class="clickable" data-lang="de" data-word="ernst">ernst</td>
+            <td>[ɛʁnst]</td>
+            <td class="clickable" data-lang="zh" data-word="严肃的">严肃的</td>
+            <td class="clickable" data-lang="en" data-word="serious">serious</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Honnête">Honnête</td>
+            <td>[ɔnɛt]</td>
+            <td class="clickable" data-lang="de" data-word="ehrlich">ehrlich</td>
+            <td>[ˈeːɐ̯lɪç]</td>
+            <td class="clickable" data-lang="zh" data-word="老实的">老实的</td>
+            <td class="clickable" data-lang="en" data-word="honest">honest</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Rusé">Rusé</td>
+            <td>[ʁyze]</td>
+            <td class="clickable" data-lang="de" data-word="schlau">schlau</td>
+            <td>[ʃlaʊ]</td>
+            <td class="clickable" data-lang="zh" data-word="狡猾的">狡猾的</td>
+            <td class="clickable" data-lang="en" data-word="cunning">cunning</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Sauvage">Sauvage</td>
+            <td>[sovaʒ]</td>
+            <td class="clickable" data-lang="de" data-word="wild">wild</td>
+            <td>[vɪlt]</td>
+            <td class="clickable" data-lang="zh" data-word="野蛮的">野蛮的</td>
+            <td class="clickable" data-lang="en" data-word="wild">wild</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Brutal">Brutal</td>
+            <td>[bʁytal]</td>
+            <td class="clickable" data-lang="de" data-word="brutal">brutal</td>
+            <td>[bʁuˈtaːl]</td>
+            <td class="clickable" data-lang="zh" data-word="残忍的">残忍的</td>
+            <td class="clickable" data-lang="en" data-word="brutal">brutal</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Flexible">Flexible</td>
+            <td>[flɛksibl]</td>
+            <td class="clickable" data-lang="de" data-word="flexibel">flexibel</td>
+            <td>[flɛkˈsiːbl̩]</td>
+            <td class="clickable" data-lang="zh" data-word="灵活的">灵活的</td>
+            <td class="clickable" data-lang="en" data-word="flexible">flexible</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Enthousiaste">Enthousiaste</td>
+            <td>[ɑ̃tuzjast]</td>
+            <td class="clickable" data-lang="de" data-word="enthusiastisch">enthusiastisch</td>
+            <td>[ɛntuziˈastɪʃ]</td>
+            <td class="clickable" data-lang="zh" data-word="热情的">热情的</td>
+            <td class="clickable" data-lang="en" data-word="enthusiastic">enthusiastic</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Tendre">Tendre</td>
+            <td>[tɑ̃dʁ]</td>
+            <td class="clickable" data-lang="de" data-word="zärtlich">zärtlich</td>
+            <td>[ˈtsɛʁtlɪç]</td>
+            <td class="clickable" data-lang="zh" data-word="温柔的">温柔的</td>
+            <td class="clickable" data-lang="en" data-word="tender">tender</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Impoli">Impoli</td>
+            <td>[ɛ̃pɔli]</td>
+            <td class="clickable" data-lang="de" data-word="unhöflich">unhöflich</td>
+            <td>[ʊnˈhøːflɪç]</td>
+            <td class="clickable" data-lang="zh" data-word="没礼貌的">没礼貌的</td>
+            <td class="clickable" data-lang="en" data-word="impolite">impolite</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Obstiné">Obstiné</td>
+            <td>[ɔbstine]</td>
+            <td class="clickable" data-lang="de" data-word="hartnäckig">hartnäckig</td>
+            <td>[ˈhaʁtnɛkɪç]</td>
+            <td class="clickable" data-lang="zh" data-word="固执的">固执的</td>
+            <td class="clickable" data-lang="en" data-word="stubborn">stubborn</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Humoristique">Humoristique</td>
+            <td>[ymɔʁistik]</td>
+            <td class="clickable" data-lang="de" data-word="humorig">humorig</td>
+            <td>[huˈmoːʁɪç]</td>
+            <td class="clickable" data-lang="zh" data-word="幽默的">幽默的</td>
+            <td class="clickable" data-lang="en" data-word="humorous">humorous</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Ennuyeux">Ennuyeux</td>
+            <td>[ɑ̃nɥijø]</td>
+            <td class="clickable" data-lang="de" data-word="langweillig">langweillig</td>
+            <td>[ˈlaŋvaɪlɪç]</td>
+            <td class="clickable" data-lang="zh" data-word="无趣的">无趣的</td>
+            <td class="clickable" data-lang="en" data-word="boring">boring</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Intelligent">Intelligent</td>
+            <td>[ɛ̃teliʒɑ̃]</td>
+            <td class="clickable" data-lang="de" data-word="klug">klug</td>
+            <td>[kluːk]</td>
+            <td class="clickable" data-lang="zh" data-word="聪明的">聪明的</td>
+            <td class="clickable" data-lang="en" data-word="clever">clever</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Stupide">Stupide</td>
+            <td>[stypid]</td>
+            <td class="clickable" data-lang="de" data-word="dumm">dumm</td>
+            <td>[dʊm]</td>
+            <td class="clickable" data-lang="zh" data-word="笨拙的">笨拙的</td>
+            <td class="clickable" data-lang="en" data-word="stupid">stupid</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Introverti">Introverti</td>
+            <td>[ɛ̃tʁɔvɛʁti]</td>
+            <td class="clickable" data-lang="de" data-word="introvertiert">introvertiert</td>
+            <td>[ɪntʁovɛʁˈtiːɐ̯t]</td>
+            <td class="clickable" data-lang="zh" data-word="内向的">内向的</td>
+            <td class="clickable" data-lang="en" data-word="introverted">introverted</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Optimiste">Optimiste</td>
+            <td>[ɔptimist]</td>
+            <td class="clickable" data-lang="de" data-word="optimistisch">optimistisch</td>
+            <td>[ɔptiˈmɪstɪʃ]</td>
+            <td class="clickable" data-lang="zh" data-word="乐观的">乐观的</td>
+            <td class="clickable" data-lang="en" data-word="optimistic">optimistic</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Inflexible">Inflexible</td>
+            <td>[ɛ̃flɛksibl]</td>
+            <td class="clickable" data-lang="de" data-word="unbeugsam">unbeugsam</td>
+            <td>[ʊnˈbɔʏkzaːm]</td>
+            <td class="clickable" data-lang="zh" data-word="坚强不屈的">坚强不屈的</td>
+            <td class="clickable" data-lang="en" data-word="inflexible">inflexible</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Tolérant">Tolérant</td>
+            <td>[tɔleʁɑ̃]</td>
+            <td class="clickable" data-lang="de" data-word="tolerant">tolerant</td>
+            <td>[toleˈʁant]</td>
+            <td class="clickable" data-lang="zh" data-word="宽容的">宽容的</td>
+            <td class="clickable" data-lang="en" data-word="tolerant">tolerant</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Naïf">Naïf</td>
+            <td>[naif]</td>
+            <td class="clickable" data-lang="de" data-word="naiv">naiv</td>
+            <td>[naˈiːf]</td>
+            <td class="clickable" data-lang="zh" data-word="天真的">天真的</td>
+            <td class="clickable" data-lang="en" data-word="naive">naive</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="froid">froid</td>
+    <td>[fʁwa]</td>
+    <td class="clickable" data-lang="de" data-word="kalt">kalt</td>
+    <td>[kalt]</td>
+    <td class="clickable" data-lang="zh" data-word="冷的">冷的</td>
+    <td class="clickable" data-lang="en" data-word="cold">cold</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chaud">chaud</td>
+    <td>[ʃo]</td>
+    <td class="clickable" data-lang="de" data-word="heiß">heiß</td>
+    <td>[haɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="热的">热的</td>
+    <td class="clickable" data-lang="en" data-word="hot">hot</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="assoiffé">assoiffé</td>
+    <td>[aswaˈfe]</td>
+    <td class="clickable" data-lang="de" data-word="durstig">durstig</td>
+    <td>[ˈdʊʁstɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="渴的">渴的</td>
+    <td class="clickable" data-lang="en" data-word="thirsty">thirsty</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="affamé">affamé</td>
+    <td>[afaˈme]</td>
+    <td class="clickable" data-lang="de" data-word="hungrig">hungrig</td>
+    <td>[ˈhʊŋʁɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="饿的">饿的</td>
+    <td class="clickable" data-lang="en" data-word="hungry">hungry</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="frais">frais</td>
+    <td>[fʁɛ]</td>
+    <td class="clickable" data-lang="de" data-word="kühl">kühl</td>
+    <td>[kyːl]</td>
+    <td class="clickable" data-lang="zh" data-word="凉爽的">凉爽的</td>
+    <td class="clickable" data-lang="en" data-word="cool">cool</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="confortable">confortable</td>
+    <td>[kɔ̃fɔʁˈtabl]</td>
+    <td class="clickable" data-lang="de" data-word="bequem">bequem</td>
+    <td>[bəˈkveːm]</td>
+    <td class="clickable" data-lang="zh" data-word="舒服的">舒服的</td>
+    <td class="clickable" data-lang="en" data-word="comfortable">comfortable</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chaud">chaud</td>
+    <td>[ʃo]</td>
+    <td class="clickable" data-lang="de" data-word="warm">warm</td>
+    <td>[vaʁm]</td>
+    <td class="clickable" data-lang="zh" data-word="暖和的">暖和的</td>
+    <td class="clickable" data-lang="en" data-word="warm">warm</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="étourdi">étourdi</td>
+    <td>[etuʁˈdi]</td>
+    <td class="clickable" data-lang="de" data-word="schwindlig">schwindlig</td>
+    <td>[ˈʃvɪndlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="晕的">晕的</td>
+    <td class="clickable" data-lang="en" data-word="dizzy">dizzy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fatigant">fatigant</td>
+    <td>[fatiˈɡɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="anstrengend">anstrengend</td>
+    <td>[ˈanʃtʁɛŋənt]</td>
+    <td class="clickable" data-lang="zh" data-word="疲倦的">疲倦的</td>
+    <td class="clickable" data-lang="en" data-word="tiring">tiring</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sain">sain</td>
+    <td>[sɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="gesund">gesund</td>
+    <td>[ɡəˈzʊnt]</td>
+    <td class="clickable" data-lang="zh" data-word="健康的">健康的</td>
+    <td class="clickable" data-lang="en" data-word="healthy">healthy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="énergique">énergique</td>
+    <td>[eneʁˈʒik]</td>
+    <td class="clickable" data-lang="de" data-word="energisch">energisch</td>
+    <td>[enerˈɡɪʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="精力旺盛的">精力旺盛的</td>
+    <td class="clickable" data-lang="en" data-word="energetic">energetic</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="s'améliorer">s'améliorer</td>
+    <td>[sameˈljoʁe]</td>
+    <td class="clickable" data-lang="de" data-word="bessern">bessern</td>
+    <td>[ˈbɛsɐn]</td>
+    <td class="clickable" data-lang="zh" data-word="好转">好转</td>
+    <td class="clickable" data-lang="en" data-word="improve">improve</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="faire mal">faire mal</td>
+    <td>[fɛʁ mal]</td>
+    <td class="clickable" data-lang="de" data-word="schmerzen">schmerzen</td>
+    <td>[ˈʃmɛʁtsən]</td>
+    <td class="clickable" data-lang="zh" data-word="疼">疼</td>
+    <td class="clickable" data-lang="en" data-word="hurt">hurt</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="démanger">démanger</td>
+    <td>[demɑ̃ˈʒe]</td>
+    <td class="clickable" data-lang="de" data-word="jucken">jucken</td>
+    <td>[ˈjʊkən]</td>
+    <td class="clickable" data-lang="zh" data-word="痒">痒</td>
+    <td class="clickable" data-lang="en" data-word="itch">itch</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="tressaillir">tressaillir</td>
+    <td>[tʁɛsaˈjiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="zucken">zucken</td>
+    <td>[ˈtsʊkən]</td>
+    <td class="clickable" data-lang="zh" data-word="抽搐">抽搐</td>
+    <td class="clickable" data-lang="en" data-word="twitch">twitch</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="saigner">saigner</td>
+    <td>[sɛˈɲe]</td>
+    <td class="clickable" data-lang="de" data-word="bluten">bluten</td>
+    <td>[ˈbluːtən]</td>
+    <td class="clickable" data-lang="zh" data-word="流血">流血</td>
+    <td class="clickable" data-lang="en" data-word="bleed">bleed</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="blessure">blessure</td>
+    <td>[blɛˈsyʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Wunde">Wunde</td>
+    <td>[ˈvʊndə]</td>
+    <td class="clickable" data-lang="zh" data-word="伤口">伤口</td>
+    <td class="clickable" data-lang="en" data-word="wound">wound</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="malaise">malaise</td>
+    <td>[malˈɛz]</td>
+    <td class="clickable" data-lang="de" data-word="Unbehagen">Unbehagen</td>
+    <td>[ʊnbəˈhaːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="不舒服">不舒服</td>
+    <td class="clickable" data-lang="en" data-word="discomfort">discomfort</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pâle">pâle</td>
+    <td>[pɑl]</td>
+    <td class="clickable" data-lang="de" data-word="bleich">bleich</td>
+    <td>[blaɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="苍白的">苍白的</td>
+    <td class="clickable" data-lang="en" data-word="pale">pale</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="nausée">nausée</td>
+    <td>[noˈze]</td>
+    <td class="clickable" data-lang="de" data-word="Übelkeit">Übelkeit</td>
+    <td>[ˈyːbəlkaɪt]</td>
+    <td class="clickable" data-lang="zh" data-word="恶心">恶心</td>
+    <td class="clickable" data-lang="en" data-word="nausea">nausea</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="joyeux">joyeux</td>
+    <td>[ʒwaˈjø]</td>
+    <td class="clickable" data-lang="de" data-word="fröhlich">fröhlich</td>
+    <td>[ˈfʁøːlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="喜悦的">喜悦的</td>
+    <td class="clickable" data-lang="en" data-word="cheerful">cheerful</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="terrible">terrible</td>
+    <td>[tɛˈʁibl]</td>
+    <td class="clickable" data-lang="de" data-word="schrecklich">schrecklich</td>
+    <td>[ˈʃʁɛklɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="害怕的">害怕的</td>
+    <td class="clickable" data-lang="en" data-word="terrible">terrible</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="déçu">déçu</td>
+    <td>[deˈsy]</td>
+    <td class="clickable" data-lang="de" data-word="enttäuscht">enttäuscht</td>
+    <td>[ɛntˈtɔʏʃt]</td>
+    <td class="clickable" data-lang="zh" data-word="失望的">失望的</td>
+    <td class="clickable" data-lang="en" data-word="disappointed">disappointed</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="énervé">énervé</td>
+    <td>[enɛʁˈve]</td>
+    <td class="clickable" data-lang="de" data-word="ärgerlich">ärgerlich</td>
+    <td>[ˈɛʁɡɐlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="生气的">生气的</td>
+    <td class="clickable" data-lang="en" data-word="angry">angry</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="triste">triste</td>
+    <td>[tʁist]</td>
+    <td class="clickable" data-lang="de" data-word="traurig">traurig</td>
+    <td>[ˈtʁaʊʁɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="伤心的">伤心的</td>
+    <td class="clickable" data-lang="en" data-word="sad">sad</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="solitaire">solitaire</td>
+    <td>[sɔliˈtɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="einsam">einsam</td>
+    <td>[ˈaɪnzaːm]</td>
+    <td class="clickable" data-lang="zh" data-word="孤独的">孤独的</td>
+    <td class="clickable" data-lang="en" data-word="lonely">lonely</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="indigné">indigné</td>
+    <td>[ɛ̃diˈɲe]</td>
+    <td class="clickable" data-lang="de" data-word="entrüstet">entrüstet</td>
+    <td>[ɛntˈʁʏstət]</td>
+    <td class="clickable" data-lang="zh" data-word="愤怒的">愤怒的</td>
+    <td class="clickable" data-lang="en" data-word="indignant">indignant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="excitant">excitant</td>
+    <td>[ɛksiˈtɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="aufregend">aufregend</td>
+    <td>[ˈaʊfʁeːɡənt]</td>
+    <td class="clickable" data-lang="zh" data-word="激动的">激动的</td>
+    <td class="clickable" data-lang="en" data-word="exciting">exciting</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="tendu">tendu</td>
+    <td>[tɑ̃ˈdy]</td>
+    <td class="clickable" data-lang="de" data-word="spannend">spannend</td>
+    <td>[ˈʃpanənt]</td>
+    <td class="clickable" data-lang="zh" data-word="紧张的">紧张的</td>
+    <td class="clickable" data-lang="en" data-word="tense">tense</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="heureux">heureux</td>
+    <td>[øˈʁø]</td>
+    <td class="clickable" data-lang="de" data-word="glücklich">glücklich</td>
+    <td>[ˈɡlʏklɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="幸福的">幸福的</td>
+    <td class="clickable" data-lang="en" data-word="happy">happy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="impressionné">impressionné</td>
+    <td>[ɛ̃pʁɛsjɔˈne]</td>
+    <td class="clickable" data-lang="de" data-word="beeindruckt">beeindruckt</td>
+    <td>[bəˈaɪndʁʊkt]</td>
+    <td class="clickable" data-lang="zh" data-word="感动的">感动的</td>
+    <td class="clickable" data-lang="en" data-word="impressed">impressed</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mélancolique">mélancolique</td>
+    <td>[melɑ̃kɔˈlik]</td>
+    <td class="clickable" data-lang="de" data-word="trübsinnig">trübsinnig</td>
+    <td>[ˈtʁyːpzɪnɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="郁闷的">郁闷的</td>
+    <td class="clickable" data-lang="en" data-word="melancholic">melancholic</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="inquiet">inquiet</td>
+    <td>[ɛ̃ˈkjɛ]</td>
+    <td class="clickable" data-lang="de" data-word="beunruhigt">beunruhigt</td>
+    <td>[bəˈʊnʁuːɪçt]</td>
+    <td class="clickable" data-lang="zh" data-word="忧虑的，不安的">忧虑的，不安的</td>
+    <td class="clickable" data-lang="en" data-word="worried">worried</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="confus">confus</td>
+    <td>[kɔ̃ˈfy]</td>
+    <td class="clickable" data-lang="de" data-word="verwirrt">verwirrt</td>
+    <td>[fɛɐ̯ˈvɪʁt]</td>
+    <td class="clickable" data-lang="zh" data-word="迷茫的">迷茫的</td>
+    <td class="clickable" data-lang="en" data-word="confused">confused</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="haïr">haïr</td>
+    <td>[aˈiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="hassen">hassen</td>
+    <td>[ˈhasən]</td>
+    <td class="clickable" data-lang="zh" data-word="憎恨">憎恨</td>
+    <td class="clickable" data-lang="en" data-word="hate">hate</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="honteux">honteux</td>
+    <td>[ɔ̃ˈtø]</td>
+    <td class="clickable" data-lang="de" data-word="beschämt">beschämt</td>
+    <td>[bəˈʃɛːmt]</td>
+    <td class="clickable" data-lang="zh" data-word="羞愧的">羞愧的</td>
+    <td class="clickable" data-lang="en" data-word="ashamed">ashamed</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="reconnaissant">reconnaissant</td>
+    <td>[ʁəkɔnɛˈsɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="dankbar">dankbar</td>
+    <td>[ˈdaŋkbaːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="感激的">感激的</td>
+    <td class="clickable" data-lang="en" data-word="grateful">grateful</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="nerveux">nerveux</td>
+    <td>[nɛʁˈvø]</td>
+    <td class="clickable" data-lang="de" data-word="nervös">nervös</td>
+    <td>[nɛʁˈvøːs]</td>
+    <td class="clickable" data-lang="zh" data-word="烦躁的">烦躁的</td>
+    <td class="clickable" data-lang="en" data-word="nervous">nervous</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="indécis">indécis</td>
+    <td>[ɛ̃deˈsi]</td>
+    <td class="clickable" data-lang="de" data-word="unschlüssig">unschlüssig</td>
+    <td>[ˈʊnʃlʏsɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="犹豫不定的">犹豫不定的</td>
+    <td class="clickable" data-lang="en" data-word="indecisive">indecisive</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="embarrassant">embarrassant</td>
+    <td>[ɑ̃baʁaˈsɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="peinlich">peinlich</td>
+    <td>[ˈpaɪnlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="尴尬的">尴尬的</td>
+    <td class="clickable" data-lang="en" data-word="embarrassing">embarrassing</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mettre">mettre</td>
+    <td>[mɛtʁ]</td>
+    <td class="clickable" data-lang="de" data-word="setzen">setzen</td>
+    <td>[ˈzɛtsən]</td>
+    <td class="clickable" data-lang="zh" data-word="放">放</td>
+    <td class="clickable" data-lang="en" data-word="put">put</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="dormir">dormir</td>
+    <td>[dɔʁˈmiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="schlafen">schlafen</td>
+    <td>[ˈʃlaːfən]</td>
+    <td class="clickable" data-lang="zh" data-word="睡">睡</td>
+    <td class="clickable" data-lang="en" data-word="sleep">sleep</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="s'asseoir">s'asseoir</td>
+    <td>[sasˈwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="sitzen">sitzen</td>
+    <td>[ˈzɪtsən]</td>
+    <td class="clickable" data-lang="zh" data-word="坐">坐</td>
+    <td class="clickable" data-lang="en" data-word="sit">sit</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="se coucher">se coucher</td>
+    <td>[səkuˈʃe]</td>
+    <td class="clickable" data-lang="de" data-word="legen">legen</td>
+    <td>[ˈleːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="躺">躺</td>
+    <td class="clickable" data-lang="en" data-word="lie down">lie down</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="être debout">être debout</td>
+    <td>[ɛtʁ dəˈbu]</td>
+    <td class="clickable" data-lang="de" data-word="stehen">stehen</td>
+    <td>[ˈʃteːən]</td>
+    <td class="clickable" data-lang="zh" data-word="站">站</td>
+    <td class="clickable" data-lang="en" data-word="stand">stand</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="demander">demander</td>
+    <td>[dəmɑ̃ˈde]</td>
+    <td class="clickable" data-lang="de" data-word="fragen">fragen</td>
+    <td>[ˈfʁaːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="问">问</td>
+    <td class="clickable" data-lang="en" data-word="ask">ask</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sauter">sauter</td>
+    <td>[soˈte]</td>
+    <td class="clickable" data-lang="de" data-word="springen">springen</td>
+    <td>[ˈʃpʁɪŋən]</td>
+    <td class="clickable" data-lang="zh" data-word="跳">跳</td>
+    <td class="clickable" data-lang="en" data-word="jump">jump</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="courir">courir</td>
+    <td>[kuˈʁiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="laufen">laufen</td>
+    <td>[ˈlaʊfən]</td>
+    <td class="clickable" data-lang="zh" data-word="跑">跑</td>
+    <td class="clickable" data-lang="en" data-word="run">run</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="répondre">répondre</td>
+    <td>[ʁepɔ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="antworten">antworten</td>
+    <td>[ˈantvɔʁtən]</td>
+    <td class="clickable" data-lang="zh" data-word="答">答</td>
+    <td class="clickable" data-lang="en" data-word="answer">answer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="aller">aller</td>
+    <td>[aˈle]</td>
+    <td class="clickable" data-lang="de" data-word="gehen">gehen</td>
+    <td>[ˈɡeːən]</td>
+    <td class="clickable" data-lang="zh" data-word="走">走</td>
+    <td class="clickable" data-lang="en" data-word="go">go</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="frapper">frapper</td>
+    <td>[fʁaˈpe]</td>
+    <td class="clickable" data-lang="de" data-word="schlagen">schlagen</td>
+    <td>[ˈʃlaːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="打">打</td>
+    <td class="clickable" data-lang="en" data-word="hit">hit</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pleurer">pleurer</td>
+    <td>[plœˈʁe]</td>
+    <td class="clickable" data-lang="de" data-word="weinen">weinen</td>
+    <td>[ˈvaɪnən]</td>
+    <td class="clickable" data-lang="zh" data-word="哭">哭</td>
+    <td class="clickable" data-lang="en" data-word="cry">cry</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="rire">rire</td>
+    <td>[ʁiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="lachen">lachen</td>
+    <td>[ˈlaxən]</td>
+    <td class="clickable" data-lang="zh" data-word="笑">笑</td>
+    <td class="clickable" data-lang="en" data-word="laugh">laugh</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="entendre">entendre</td>
+    <td>[ɑ̃ˈtɑ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="hören">hören</td>
+    <td>[ˈhøːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="听">听</td>
+    <td class="clickable" data-lang="en" data-word="hear">hear</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="parler">parler</td>
+    <td>[paʁˈle]</td>
+    <td class="clickable" data-lang="de" data-word="sprechen">sprechen</td>
+    <td>[ˈʃpʁɛçən]</td>
+    <td class="clickable" data-lang="zh" data-word="说">说</td>
+    <td class="clickable" data-lang="en" data-word="speak">speak</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="lire">lire</td>
+    <td>[liʁ]</td>
+    <td class="clickable" data-lang="de" data-word="lesen">lesen</td>
+    <td>[ˈleːzən]</td>
+    <td class="clickable" data-lang="zh" data-word="读">读</td>
+    <td class="clickable" data-lang="en" data-word="read">read</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="écrire">écrire</td>
+    <td>[ekʁiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="schreiben">schreiben</td>
+    <td>[ˈʃʁaɪbən]</td>
+    <td class="clickable" data-lang="zh" data-word="写">写</td>
+    <td class="clickable" data-lang="en" data-word="write">write</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="voir">voir</td>
+    <td>[vwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="sehen">sehen</td>
+    <td>[ˈzeːən]</td>
+    <td class="clickable" data-lang="zh" data-word="看">看</td>
+    <td class="clickable" data-lang="en" data-word="see">see</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ouvrir">ouvrir</td>
+    <td>[uvˈʁiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="öffnen">öffnen</td>
+    <td>[ˈœfnən]</td>
+    <td class="clickable" data-lang="zh" data-word="打开">打开</td>
+    <td class="clickable" data-lang="en" data-word="open">open</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fermer">fermer</td>
+    <td>[fɛʁˈme]</td>
+    <td class="clickable" data-lang="de" data-word="schließen">schließen</td>
+    <td>[ˈʃliːsən]</td>
+    <td class="clickable" data-lang="zh" data-word="关闭">关闭</td>
+    <td class="clickable" data-lang="en" data-word="close">close</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="décider">décider</td>
+    <td>[desiˈde]</td>
+    <td class="clickable" data-lang="de" data-word="entscheiden">entscheiden</td>
+    <td>[ɛntˈʃaɪdən]</td>
+    <td class="clickable" data-lang="zh" data-word="决定">决定</td>
+    <td class="clickable" data-lang="en" data-word="decide">decide</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="planifier">planifier</td>
+    <td>[planifiˈe]</td>
+    <td class="clickable" data-lang="de" data-word="planen">planen</td>
+    <td>[ˈplaːnən]</td>
+    <td class="clickable" data-lang="zh" data-word="计划">计划</td>
+    <td class="clickable" data-lang="en" data-word="plan">plan</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="vouloir">vouloir</td>
+    <td>[vuˈlwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="mögen">mögen</td>
+    <td>[ˈmøːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="想要">想要</td>
+    <td class="clickable" data-lang="en" data-word="want">want</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="choisir">choisir</td>
+    <td>[ʃwaˈziʁ]</td>
+    <td class="clickable" data-lang="de" data-word="wählen">wählen</td>
+    <td>[ˈvɛːlən]</td>
+    <td class="clickable" data-lang="zh" data-word="选择">选择</td>
+    <td class="clickable" data-lang="en" data-word="choose">choose</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="volonté">volonté</td>
+    <td>[vɔlɔ̃ˈte]</td>
+    <td class="clickable" data-lang="de" data-word="Wille">Wille</td>
+    <td>[ˈvɪlə]</td>
+    <td class="clickable" data-lang="zh" data-word="意志">意志</td>
+    <td class="clickable" data-lang="en" data-word="will">will</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="intention">intention</td>
+    <td>[ɛ̃tɑ̃ˈsjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Absicht">Absicht</td>
+    <td>[ˈapzɪçt]</td>
+    <td class="clickable" data-lang="zh" data-word="意图">意图</td>
+    <td class="clickable" data-lang="en" data-word="intention">intention</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="but">but</td>
+    <td>[by]</td>
+    <td class="clickable" data-lang="de" data-word="Ziel">Ziel</td>
+    <td>[tsiːl]</td>
+    <td class="clickable" data-lang="zh" data-word="目标">目标</td>
+    <td class="clickable" data-lang="en" data-word="goal">goal</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="souhait">souhait</td>
+    <td>[suˈɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Wunsch">Wunsch</td>
+    <td>[vʊnʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="愿望">愿望</td>
+    <td class="clickable" data-lang="en" data-word="wish">wish</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="aimer">aimer</td>
+    <td>[ɛˈme]</td>
+    <td class="clickable" data-lang="de" data-word="mögen">mögen</td>
+    <td>[ˈmøːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="喜欢">喜欢</td>
+    <td class="clickable" data-lang="en" data-word="like">like</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="dégoûtant">dégoûtant</td>
+    <td>[deɡuˈtɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="widerlich">widerlich</td>
+    <td>[ˈviːdɐlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="讨厌的">讨厌的</td>
+    <td class="clickable" data-lang="en" data-word="disgusting">disgusting</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="espérer">espérer</td>
+    <td>[ɛspeˈʁe]</td>
+    <td class="clickable" data-lang="de" data-word="hoffen">hoffen</td>
+    <td>[ˈhɔfən]</td>
+    <td class="clickable" data-lang="zh" data-word="希望">希望</td>
+    <td class="clickable" data-lang="en" data-word="hope">hope</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="accepter">accepter</td>
+    <td>[aksɛpˈte]</td>
+    <td class="clickable" data-lang="de" data-word="annehmen">annehmen</td>
+    <td>[ˈanneːmən]</td>
+    <td class="clickable" data-lang="zh" data-word="接受">接受</td>
+    <td class="clickable" data-lang="en" data-word="accept">accept</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="refuser">refuser</td>
+    <td>[ʁəfyˈze]</td>
+    <td class="clickable" data-lang="de" data-word="ablehnen">ablehnen</td>
+    <td>[ˈapleːnən]</td>
+    <td class="clickable" data-lang="zh" data-word="拒绝">拒绝</td>
+    <td class="clickable" data-lang="en" data-word="refuse">refuse</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="forcer">forcer</td>
+    <td>[fɔʁˈse]</td>
+    <td class="clickable" data-lang="de" data-word="zwingen">zwingen</td>
+    <td>[ˈtsvɪŋən]</td>
+    <td class="clickable" data-lang="zh" data-word="强迫">强迫</td>
+    <td class="clickable" data-lang="en" data-word="force">force</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="compromis">compromis</td>
+    <td>[kɔ̃pʁoˈmi]</td>
+    <td class="clickable" data-lang="de" data-word="Kompromiss">Kompromiss</td>
+    <td>[kɔmpʁoˈmɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="妥协">妥协</td>
+    <td class="clickable" data-lang="en" data-word="compromise">compromise</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="exiger">exiger</td>
+    <td>[ɛɡziˈʒe]</td>
+    <td class="clickable" data-lang="de" data-word="verlangen">verlangen</td>
+    <td>[fɛɐ̯ˈlaŋən]</td>
+    <td class="clickable" data-lang="zh" data-word="要求">要求</td>
+    <td class="clickable" data-lang="en" data-word="demand">demand</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="proposer">proposer</td>
+    <td>[pʁɔpoˈze]</td>
+    <td class="clickable" data-lang="de" data-word="vorschlagen">vorschlagen</td>
+    <td>[ˈfoːɐ̯ʃlaːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="建议">建议</td>
+    <td class="clickable" data-lang="en" data-word="suggest">suggest</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="désirer">désirer</td>
+    <td>[deziˈʁe]</td>
+    <td class="clickable" data-lang="de" data-word="sehnen">sehnen</td>
+    <td>[ˈzeːnən]</td>
+    <td class="clickable" data-lang="zh" data-word="渴望">渴望</td>
+    <td class="clickable" data-lang="en" data-word="yearn">yearn</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="volontiers">volontiers</td>
+    <td>[vɔlɔ̃ˈtje]</td>
+    <td class="clickable" data-lang="de" data-word="gern">gern</td>
+    <td>[ɡɛʁn]</td>
+    <td class="clickable" data-lang="zh" data-word="乐意">乐意</td>
+    <td class="clickable" data-lang="en" data-word="gladly">gladly</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="prêt">prêt</td>
+    <td>[pʁɛ]</td>
+    <td class="clickable" data-lang="de" data-word="bereit">bereit</td>
+    <td>[bəˈʁaɪt]</td>
+    <td class="clickable" data-lang="zh" data-word="愿意的">愿意的</td>
+    <td class="clickable" data-lang="en" data-word="ready">ready</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="rationnel">rationnel</td>
+    <td>[ʁasjɔˈnɛl]</td>
+    <td class="clickable" data-lang="de" data-word="rational">rational</td>
+    <td>[ʁatsjoˈnaːl]</td>
+    <td class="clickable" data-lang="zh" data-word="理智的">理智的</td>
+    <td class="clickable" data-lang="en" data-word="rational">rational</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bête">bête</td>
+    <td>[bɛt]</td>
+    <td class="clickable" data-lang="de" data-word="dumm">dumm</td>
+    <td>[dʊm]</td>
+    <td class="clickable" data-lang="zh" data-word="笨拙的">笨拙的</td>
+    <td class="clickable" data-lang="en" data-word="stupid">stupid</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="absurde">absurde</td>
+    <td>[apˈsyʁd]</td>
+    <td class="clickable" data-lang="de" data-word="unsinnig">unsinnig</td>
+    <td>[ˈʊnzɪnɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="荒谬的">荒谬的</td>
+    <td class="clickable" data-lang="en" data-word="absurd">absurd</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="progressif">progressif</td>
+    <td>[pʁɔɡʁeˈsif]</td>
+    <td class="clickable" data-lang="de" data-word="fortschrittlich">fortschrittlich</td>
+    <td>[ˈfɔʁtʃʁɪtlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="先进的">先进的</td>
+    <td class="clickable" data-lang="en" data-word="progressive">progressive</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="conservateur">conservateur</td>
+    <td>[kɔ̃sɛʁvaˈtœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="konservativ">konservativ</td>
+    <td>[kɔnzɛʁvaˈtiːf]</td>
+    <td class="clickable" data-lang="zh" data-word="保守的">保守的</td>
+    <td class="clickable" data-lang="en" data-word="conservative">conservative</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="innovant">innovant</td>
+    <td>[inɔˈvɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="innovativ">innovativ</td>
+    <td>[ɪnovaˈtiːf]</td>
+    <td class="clickable" data-lang="zh" data-word="创新的">创新的</td>
+    <td class="clickable" data-lang="en" data-word="innovative">innovative</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pur">pur</td>
+    <td>[pyʁ]</td>
+    <td class="clickable" data-lang="de" data-word="rein">rein</td>
+    <td>[ʁaɪn]</td>
+    <td class="clickable" data-lang="zh" data-word="单纯的">单纯的</td>
+    <td class="clickable" data-lang="en" data-word="pure">pure</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="compliqué">compliqué</td>
+    <td>[kɔ̃pliˈke]</td>
+    <td class="clickable" data-lang="de" data-word="kompliziert">kompliziert</td>
+    <td>[kɔmpliˈtsiːɐ̯t]</td>
+    <td class="clickable" data-lang="zh" data-word="复杂的">复杂的</td>
+    <td class="clickable" data-lang="en" data-word="complicated">complicated</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="logique">logique</td>
+    <td>[lɔˈʒik]</td>
+    <td class="clickable" data-lang="de" data-word="logisch">logisch</td>
+    <td>[ˈloːɡɪʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="逻辑的">逻辑的</td>
+    <td class="clickable" data-lang="en" data-word="logical">logical</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pratique">pratique</td>
+    <td>[pʁaˈtik]</td>
+    <td class="clickable" data-lang="de" data-word="praktisch">praktisch</td>
+    <td>[ˈpʁaktɪʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="实用的">实用的</td>
+    <td class="clickable" data-lang="en" data-word="practical">practical</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="théorie">théorie</td>
+    <td>[teɔˈʁi]</td>
+    <td class="clickable" data-lang="de" data-word="Theorie">Theorie</td>
+    <td>[teoˈʁiː]</td>
+    <td class="clickable" data-lang="zh" data-word="理论">理论</td>
+    <td class="clickable" data-lang="en" data-word="theory">theory</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="absurdité">absurdité</td>
+    <td>[apsyʁdiˈte]</td>
+    <td class="clickable" data-lang="de" data-word="Absurdität">Absurdität</td>
+    <td>[apzʊʁdiˈtɛːt]</td>
+    <td class="clickable" data-lang="zh" data-word="谬论">谬论</td>
+    <td class="clickable" data-lang="en" data-word="absurdity">absurdity</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="conclusion">conclusion</td>
+    <td>[kɔ̃klyˈzjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Folgerung">Folgerung</td>
+    <td>[ˈfɔlɡəʁʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="结论">结论</td>
+    <td class="clickable" data-lang="en" data-word="conclusion">conclusion</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="idée">idée</td>
+    <td>[iˈde]</td>
+    <td class="clickable" data-lang="de" data-word="Idee">Idee</td>
+    <td>[iˈdeː]</td>
+    <td class="clickable" data-lang="zh" data-word="主意">主意</td>
+    <td class="clickable" data-lang="en" data-word="idea">idea</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="réfléchir">réfléchir</td>
+    <td>[ʁefleˈʃiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="nachdenken">nachdenken</td>
+    <td>[ˈnaːxdɛŋkən]</td>
+    <td class="clickable" data-lang="zh" data-word="思考">思考</td>
+    <td class="clickable" data-lang="en" data-word="think">think</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="objectif">objectif</td>
+    <td>[ɔbʒɛkˈtif]</td>
+    <td class="clickable" data-lang="de" data-word="objektiv">objektiv</td>
+    <td>[ɔpjɛkˈtiːf]</td>
+    <td class="clickable" data-lang="zh" data-word="客观的">客观的</td>
+    <td class="clickable" data-lang="en" data-word="objective">objective</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="subjectif">subjectif</td>
+    <td>[sybʒɛkˈtif]</td>
+    <td class="clickable" data-lang="de" data-word="subjektiv">subjektiv</td>
+    <td>[zʊpjɛkˈtiːf]</td>
+    <td class="clickable" data-lang="zh" data-word="主观的">主观的</td>
+    <td class="clickable" data-lang="en" data-word="subjective">subjective</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="opinion">opinion</td>
+    <td>[ɔpiˈnjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Meinung">Meinung</td>
+    <td>[ˈmaɪnʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="意见">意见</td>
+    <td class="clickable" data-lang="en" data-word="opinion">opinion</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="proposer">proposer</td>
+    <td>[pʁɔpoˈze]</td>
+    <td class="clickable" data-lang="de" data-word="vorschlagen">vorschlagen</td>
+    <td>[ˈfoːɐ̯ʃlaːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="建议">建议</td>
+    <td class="clickable" data-lang="en" data-word="suggest">suggest</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pensée">pensée</td>
+    <td>[pɑ̃ˈse]</td>
+    <td class="clickable" data-lang="de" data-word="Gedanke">Gedanke</td>
+    <td>[ɡəˈdaŋkə]</td>
+    <td class="clickable" data-lang="zh" data-word="思想，想法">思想，想法</td>
+    <td class="clickable" data-lang="en" data-word="thought">thought</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="comparer">comparer</td>
+    <td>[kɔ̃paˈʁe]</td>
+    <td class="clickable" data-lang="de" data-word="vergleichen">vergleichen</td>
+    <td>[fɛɐ̯ˈɡlaɪçən]</td>
+    <td class="clickable" data-lang="zh" data-word="比较">比较</td>
+    <td class="clickable" data-lang="en" data-word="compare">compare</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="distinguer">distinguer</td>
+    <td>[distɛ̃ˈɡe]</td>
+    <td class="clickable" data-lang="de" data-word="unterscheiden">unterscheiden</td>
+    <td>[ʊntɐˈʃaɪdən]</td>
+    <td class="clickable" data-lang="zh" data-word="区分">区分</td>
+    <td class="clickable" data-lang="en" data-word="distinguish">distinguish</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="analyser">analyser</td>
+    <td>[analiˈze]</td>
+    <td class="clickable" data-lang="de" data-word="analysieren">analysieren</td>
+    <td>[analyˈziːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="分析">分析</td>
+    <td class="clickable" data-lang="en" data-word="analyze">analyze</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="différence">différence</td>
+    <td>[difeˈʁɑ̃s]</td>
+    <td class="clickable" data-lang="de" data-word="Unterschied">Unterschied</td>
+    <td>[ˈʊntɐʃiːt]</td>
+    <td class="clickable" data-lang="zh" data-word="差别">差别</td>
+    <td class="clickable" data-lang="en" data-word="difference">difference</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="similaire">similaire</td>
+    <td>[simiˈlɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="ähnlich">ähnlich</td>
+    <td>[ˈɛːnlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="相似的，类似的">相似的，类似的</td>
+    <td class="clickable" data-lang="en" data-word="similar">similar</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="unanime">unanime</td>
+    <td>[ynaˈnim]</td>
+    <td class="clickable" data-lang="de" data-word="einmütig">einmütig</td>
+    <td>[ˈaɪnmyːtɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="一致的">一致的</td>
+    <td class="clickable" data-lang="en" data-word="unanimous">unanimous</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="différent">différent</td>
+    <td>[difeˈʁɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="verschieden">verschieden</td>
+    <td>[fɛɐ̯ˈʃiːdən]</td>
+    <td class="clickable" data-lang="zh" data-word="不同的">不同的</td>
+    <td class="clickable" data-lang="en" data-word="different">different</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="contradictoire">contradictoire</td>
+    <td>[kɔ̃tʁadikˈtwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="widersprüchlich">widersprüchlich</td>
+    <td>[ˈviːdɐʃpʁʏçlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="矛盾的">矛盾的</td>
+    <td class="clickable" data-lang="en" data-word="contradictory">contradictory</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="identique">identique</td>
+    <td>[idɑ̃ˈtik]</td>
+    <td class="clickable" data-lang="de" data-word="gleich">gleich</td>
+    <td>[ɡlaɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="相同的">相同的</td>
+    <td class="clickable" data-lang="en" data-word="identical">identical</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="que">que</td>
+    <td>[kə]</td>
+    <td class="clickable" data-lang="de" data-word="als">als</td>
+    <td>[als]</td>
+    <td class="clickable" data-lang="zh" data-word="比……">比……</td>
+    <td class="clickable" data-lang="en" data-word="than">than</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="comme">comme</td>
+    <td>[kɔm]</td>
+    <td class="clickable" data-lang="de" data-word="wie">wie</td>
+    <td>[viː]</td>
+    <td class="clickable" data-lang="zh" data-word="如同">如同</td>
+    <td class="clickable" data-lang="en" data-word="like, as">like, as</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="accord">accord</td>
+    <td>[aˈkɔʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Übereinstimmung">Übereinstimmung</td>
+    <td>[ˈyːbɐʔaɪnʃtɪmʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="一致">一致</td>
+    <td class="clickable" data-lang="en" data-word="agreement">agreement</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="correspondre">correspondre</td>
+    <td>[kɔʁɛspɔ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="entsprechen">entsprechen</td>
+    <td>[ɛntˈʃpʁɛçən]</td>
+    <td class="clickable" data-lang="zh" data-word="符合">符合</td>
+    <td class="clickable" data-lang="en" data-word="correspond">correspond</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="contraire">contraire</td>
+    <td>[kɔ̃ˈtʁɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Gegenteil">Gegenteil</td>
+    <td>[ˈɡeːɡəntaɪl]</td>
+    <td class="clickable" data-lang="zh" data-word="相反">相反</td>
+    <td class="clickable" data-lang="en" data-word="opposite">opposite</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="contraste">contraste</td>
+    <td>[kɔ̃ˈtʁast]</td>
+    <td class="clickable" data-lang="de" data-word="Gegensatz">Gegensatz</td>
+    <td>[ˈɡeːɡənzats]</td>
+    <td class="clickable" data-lang="zh" data-word="对比">对比</td>
+    <td class="clickable" data-lang="en" data-word="contrast">contrast</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mais">mais</td>
+    <td>[mɛ]</td>
+    <td class="clickable" data-lang="de" data-word="sondern">sondern</td>
+    <td>[ˈzɔndɐn]</td>
+    <td class="clickable" data-lang="zh" data-word="而是">而是</td>
+    <td class="clickable" data-lang="en" data-word="but rather">but rather</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ou">ou</td>
+    <td>[u]</td>
+    <td class="clickable" data-lang="de" data-word="oder">oder</td>
+    <td>[ˈoːdɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="或者">或者</td>
+    <td class="clickable" data-lang="en" data-word="or">or</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="contraste">contraste</td>
+    <td>[kɔ̃ˈtʁast]</td>
+    <td class="clickable" data-lang="de" data-word="Kontrast">Kontrast</td>
+    <td>[kɔnˈtʁast]</td>
+    <td class="clickable" data-lang="zh" data-word="反差">反差</td>
+    <td class="clickable" data-lang="en" data-word="contrast">contrast</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="relatif">relatif</td>
+    <td>[ʁəlaˈtif]</td>
+    <td class="clickable" data-lang="de" data-word="relativ">relativ</td>
+    <td>[ʁelaˈtiːf]</td>
+    <td class="clickable" data-lang="zh" data-word="相对的">相对的</td>
+    <td class="clickable" data-lang="en" data-word="relative">relative</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="harmonie">harmonie</td>
+    <td>[aʁmɔˈni]</td>
+    <td class="clickable" data-lang="de" data-word="Einklang">Einklang</td>
+    <td>[ˈaɪnklaŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="一致">一致</td>
+    <td class="clickable" data-lang="en" data-word="harmony">harmony</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="douter">douter</td>
+    <td>[duˈte]</td>
+    <td class="clickable" data-lang="de" data-word="zweifeln">zweifeln</td>
+    <td>[ˈtsvaɪfəln]</td>
+    <td class="clickable" data-lang="zh" data-word="怀疑">怀疑</td>
+    <td class="clickable" data-lang="en" data-word="doubt">doubt</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="suspect">suspect</td>
+    <td>[sysˈpɛkt]</td>
+    <td class="clickable" data-lang="de" data-word="verdächtig">verdächtig</td>
+    <td>[fɛɐ̯ˈdɛçtɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="可疑的">可疑的</td>
+    <td class="clickable" data-lang="en" data-word="suspicious">suspicious</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="expliquer">expliquer</td>
+    <td>[ɛkspliˈke]</td>
+    <td class="clickable" data-lang="de" data-word="erklären">erklären</td>
+    <td>[ɛɐ̯ˈklɛːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="解释">解释</td>
+    <td class="clickable" data-lang="en" data-word="explain">explain</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="examiner">examiner</td>
+    <td>[ɛɡzamiˈne]</td>
+    <td class="clickable" data-lang="de" data-word="untersuchen">untersuchen</td>
+    <td>[ʊntɐˈzuːxən]</td>
+    <td class="clickable" data-lang="zh" data-word="调查">调查</td>
+    <td class="clickable" data-lang="en" data-word="investigate">investigate</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="peu fiable">peu fiable</td>
+    <td>[pø fjabl]</td>
+    <td class="clickable" data-lang="de" data-word="unzuverlässig">unzuverlässig</td>
+    <td>[ˈʊntsuːfɛɐ̯lɛsɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="不可靠的">不可靠的</td>
+    <td class="clickable" data-lang="en" data-word="unreliable">unreliable</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="répondre">répondre</td>
+    <td>[ʁepɔ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="antworten">antworten</td>
+    <td>[ˈantvɔʁtən]</td>
+    <td class="clickable" data-lang="zh" data-word="回答">回答</td>
+    <td class="clickable" data-lang="en" data-word="answer">answer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="solution">solution</td>
+    <td>[sɔlyˈsjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Lösung">Lösung</td>
+    <td>[ˈløːzʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="答案">答案</td>
+    <td class="clickable" data-lang="en" data-word="solution">solution</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="analyser">analyser</td>
+    <td>[analiˈze]</td>
+    <td class="clickable" data-lang="de" data-word="analysieren">analysieren</td>
+    <td>[analyˈziːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="分析">分析</td>
+    <td class="clickable" data-lang="en" data-word="analyze">analyze</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="élucider">élucider</td>
+    <td>[elysiˈde]</td>
+    <td class="clickable" data-lang="de" data-word="aufklären">aufklären</td>
+    <td>[ˈaʊfklɛːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="查明">查明</td>
+    <td class="clickable" data-lang="en" data-word="clarify">clarify</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="peut-être">peut-être</td>
+    <td>[pøtˈɛtʁ]</td>
+    <td class="clickable" data-lang="de" data-word="vielleicht">vielleicht</td>
+    <td>[fiˈlaɪçt]</td>
+    <td class="clickable" data-lang="zh" data-word="可能">可能</td>
+    <td class="clickable" data-lang="en" data-word="maybe">maybe</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="soi-disant">soi-disant</td>
+    <td>[swadizɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="angeblich">angeblich</td>
+    <td>[ˈanɡeːplɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="据称">据称</td>
+    <td class="clickable" data-lang="en" data-word="allegedly">allegedly</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="probable">probable</td>
+    <td>[pʁɔˈbabl]</td>
+    <td class="clickable" data-lang="de" data-word="wahrscheinlich">wahrscheinlich</td>
+    <td>[ˈvaːʁʃaɪnlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="可能的">可能的</td>
+    <td class="clickable" data-lang="en" data-word="probable">probable</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="peu clair">peu clair</td>
+    <td>[pø klɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="unklar">unklar</td>
+    <td>[ˈʊnklaːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="不清楚的">不清楚的</td>
+    <td class="clickable" data-lang="en" data-word="unclear">unclear</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="effectivement">effectivement</td>
+    <td>[efɛktivˈmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="tatsächlich">tatsächlich</td>
+    <td>[ˈtatzɛçlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="事实上">事实上</td>
+    <td class="clickable" data-lang="en" data-word="actually">actually</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="détaillé">détaillé</td>
+    <td>[detaˈje]</td>
+    <td class="clickable" data-lang="de" data-word="ausführlich">ausführlich</td>
+    <td>[ˈaʊsfyːɐ̯lɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="详细的">详细的</td>
+    <td class="clickable" data-lang="en" data-word="detailed">detailed</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bref">bref</td>
+    <td>[bʁɛf]</td>
+    <td class="clickable" data-lang="de" data-word="kurz">kurz</td>
+    <td>[kʊʁts]</td>
+    <td class="clickable" data-lang="zh" data-word="简短的">简短的</td>
+    <td class="clickable" data-lang="en" data-word="brief">brief</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="aperçu">aperçu</td>
+    <td>[apɛʁˈsy]</td>
+    <td class="clickable" data-lang="de" data-word="Überblick">Überblick</td>
+    <td>[ˈyːbɐblɪk]</td>
+    <td class="clickable" data-lang="zh" data-word="概况">概况</td>
+    <td class="clickable" data-lang="en" data-word="overview">overview</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="superficiel">superficiel</td>
+    <td>[sypɛʁfiˈsjɛl]</td>
+    <td class="clickable" data-lang="de" data-word="flüchtig">flüchtig</td>
+    <td>[ˈflʏçtɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="粗略的">粗略的</td>
+    <td class="clickable" data-lang="en" data-word="superficial">superficial</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="faire confiance">faire confiance</td>
+    <td>[fɛʁ kɔ̃ˈfjɑ̃s]</td>
+    <td class="clickable" data-lang="de" data-word="vertrauen">vertrauen</td>
+    <td>[fɛɐ̯ˈtʁaʊən]</td>
+    <td class="clickable" data-lang="zh" data-word="相信">相信</td>
+    <td class="clickable" data-lang="en" data-word="trust">trust</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mensonge">mensonge</td>
+    <td>[mɑ̃ˈsɔ̃ʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Lüge">Lüge</td>
+    <td>[ˈlyːɡə]</td>
+    <td class="clickable" data-lang="zh" data-word="谎话">谎话</td>
+    <td class="clickable" data-lang="en" data-word="lie">lie</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="rencontrer">rencontrer</td>
+    <td>[ʁɑ̃kɔ̃ˈtʁe]</td>
+    <td class="clickable" data-lang="de" data-word="treffen">treffen</td>
+    <td>[ˈtʁɛfən]</td>
+    <td class="clickable" data-lang="zh" data-word="遇见">遇见</td>
+    <td class="clickable" data-lang="en" data-word="meet">meet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sortir">sortir</td>
+    <td>[sɔʁˈtiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="ausgehen">ausgehen</td>
+    <td>[ˈaʊsɡeːən]</td>
+    <td class="clickable" data-lang="zh" data-word="外出">外出</td>
+    <td class="clickable" data-lang="en" data-word="go out">go out</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="accompagner">accompagner</td>
+    <td>[akɔ̃paˈɲe]</td>
+    <td class="clickable" data-lang="de" data-word="begleiten">begleiten</td>
+    <td>[bəˈɡlaɪtən]</td>
+    <td class="clickable" data-lang="zh" data-word="陪伴">陪伴</td>
+    <td class="clickable" data-lang="en" data-word="accompany">accompany</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="accueillir">accueillir</td>
+    <td>[akœˈjiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="begrüßen">begrüßen</td>
+    <td>[bəˈɡʁyːsən]</td>
+    <td class="clickable" data-lang="zh" data-word="欢迎">欢迎</td>
+    <td class="clickable" data-lang="en" data-word="welcome">welcome</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bienvenu">bienvenu</td>
+    <td>[bjɛ̃vəˈny]</td>
+    <td class="clickable" data-lang="de" data-word="willkommen">willkommen</td>
+    <td>[ˈvɪlkɔmən]</td>
+    <td class="clickable" data-lang="zh" data-word="受欢迎的">受欢迎的</td>
+    <td class="clickable" data-lang="en" data-word="welcome">welcome</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="embrasser">embrasser</td>
+    <td>[ɑ̃bʁaˈse]</td>
+    <td class="clickable" data-lang="de" data-word="umarmen">umarmen</td>
+    <td>[ʊmˈʔaʁmən]</td>
+    <td class="clickable" data-lang="zh" data-word="拥抱">拥抱</td>
+    <td class="clickable" data-lang="en" data-word="hug">hug</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="connaître">connaître</td>
+    <td>[kɔˈnɛtʁ]</td>
+    <td class="clickable" data-lang="de" data-word="kennen">kennen</td>
+    <td>[ˈkɛnən]</td>
+    <td class="clickable" data-lang="zh" data-word="认识">认识</td>
+    <td class="clickable" data-lang="en" data-word="know">know</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="présenter">présenter</td>
+    <td>[pʁezɑ̃ˈte]</td>
+    <td class="clickable" data-lang="de" data-word="vorstellen">vorstellen</td>
+    <td>[ˈfoːɐ̯ʃtɛlən]</td>
+    <td class="clickable" data-lang="zh" data-word="介绍">介绍</td>
+    <td class="clickable" data-lang="en" data-word="introduce">introduce</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="rendez-vous">rendez-vous</td>
+    <td>[ʁɑ̃deˈvu]</td>
+    <td class="clickable" data-lang="de" data-word="Verabredung">Verabredung</td>
+    <td>[fɛɐ̯ˈʔaːbʁeːdʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="约会">约会</td>
+    <td class="clickable" data-lang="en" data-word="appointment">appointment</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="accueil">accueil</td>
+    <td>[aˈkœj]</td>
+    <td class="clickable" data-lang="de" data-word="Empfang">Empfang</td>
+    <td>[ɛmˈpfaŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="迎接">迎接</td>
+    <td class="clickable" data-lang="en" data-word="reception">reception</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="adieu">adieu</td>
+    <td>[aˈdjø]</td>
+    <td class="clickable" data-lang="de" data-word="Abschied">Abschied</td>
+    <td>[ˈapʃiːt]</td>
+    <td class="clickable" data-lang="zh" data-word="告别">告别</td>
+    <td class="clickable" data-lang="en" data-word="farewell">farewell</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="séparer">séparer</td>
+    <td>[sepaˈʁe]</td>
+    <td class="clickable" data-lang="de" data-word="trennen">trennen</td>
+    <td>[ˈtʁɛnən]</td>
+    <td class="clickable" data-lang="zh" data-word="分开">分开</td>
+    <td class="clickable" data-lang="en" data-word="separate">separate</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="faire signe">faire signe</td>
+    <td>[fɛʁ siɲ]</td>
+    <td class="clickable" data-lang="de" data-word="winken">winken</td>
+    <td>[ˈvɪŋkən]</td>
+    <td class="clickable" data-lang="zh" data-word="招手">招手</td>
+    <td class="clickable" data-lang="en" data-word="wave">wave</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="revoir">revoir</td>
+    <td>[ʁəˈvwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="wiedersehen">wiedersehen</td>
+    <td>[ˈviːdɐzeːən]</td>
+    <td class="clickable" data-lang="zh" data-word="再见">再见</td>
+    <td class="clickable" data-lang="en" data-word="see again">see again</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bonjour">bonjour</td>
+    <td>[bɔ̃ˈʒuʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Guten Tag">Guten Tag</td>
+    <td>[ˈɡuːtn̩ taːk]</td>
+    <td class="clickable" data-lang="zh" data-word="您好">您好</td>
+    <td class="clickable" data-lang="en" data-word="hello">hello</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="au revoir">au revoir</td>
+    <td>[o ʁəˈvwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Auf Wiedersehen">Auf Wiedersehen</td>
+    <td>[aʊf ˈviːdɐzeːən]</td>
+    <td class="clickable" data-lang="zh" data-word="再见">再见</td>
+    <td class="clickable" data-lang="en" data-word="goodbye">goodbye</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="aller">aller</td>
+    <td>[aˈle]</td>
+    <td class="clickable" data-lang="de" data-word="gehen">gehen</td>
+    <td>[ˈɡeːən]</td>
+    <td class="clickable" data-lang="zh" data-word="进行，进展">进行，进展</td>
+    <td class="clickable" data-lang="en" data-word="go">go</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="reconnaître">reconnaître</td>
+    <td>[ʁəkɔˈnɛtʁ]</td>
+    <td class="clickable" data-lang="de" data-word="erkennen">erkennen</td>
+    <td>[ɛɐ̯ˈkɛnən]</td>
+    <td class="clickable" data-lang="zh" data-word="认出">认出</td>
+    <td class="clickable" data-lang="en" data-word="recognize">recognize</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="plaisir">plaisir</td>
+    <td>[plɛˈziʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Spaß">Spaß</td>
+    <td>[ʃpaːs]</td>
+    <td class="clickable" data-lang="zh" data-word="愉快">愉快</td>
+    <td class="clickable" data-lang="en" data-word="fun">fun</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="excuser">excuser</td>
+    <td>[ɛkskyˈze]</td>
+    <td class="clickable" data-lang="de" data-word="entschuldigen">entschuldigen</td>
+    <td>[ɛntˈʃʊldɪɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="对不起，抱歉">对不起，抱歉</td>
+    <td class="clickable" data-lang="en" data-word="excuse">excuse</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="remercier">remercier</td>
+    <td>[ʁəmɛʁˈsje]</td>
+    <td class="clickable" data-lang="de" data-word="danken">danken</td>
+    <td>[ˈdaŋkən]</td>
+    <td class="clickable" data-lang="zh" data-word="谢谢">谢谢</td>
+    <td class="clickable" data-lang="en" data-word="thank">thank</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="regretter">regretter</td>
+    <td>[ʁəɡʁɛˈte]</td>
+    <td class="clickable" data-lang="de" data-word="bedauern">bedauern</td>
+    <td>[bəˈdaʊɐn]</td>
+    <td class="clickable" data-lang="zh" data-word="对……表示抱歉或遗憾">对……表示抱歉或遗憾</td>
+    <td class="clickable" data-lang="en" data-word="regret">regret</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="aimable">aimable</td>
+    <td>[ɛˈmabl]</td>
+    <td class="clickable" data-lang="de" data-word="freundlich">freundlich</td>
+    <td>[ˈfʁɔʏntlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="友好的，热情的">友好的，热情的</td>
+    <td class="clickable" data-lang="en" data-word="friendly">friendly</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="accueil">accueil</td>
+    <td>[aˈkœj]</td>
+    <td class="clickable" data-lang="de" data-word="Aufnahme">Aufnahme</td>
+    <td>[ˈaʊfnaːmə]</td>
+    <td class="clickable" data-lang="zh" data-word="接待">接待</td>
+    <td class="clickable" data-lang="en" data-word="reception">reception</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="en vouloir">en vouloir</td>
+    <td>[ɑ̃ vuˈlwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="übelnehmen">übelnehmen</td>
+    <td>[ˈyːbəlneːmən]</td>
+    <td class="clickable" data-lang="zh" data-word="介意，生气">介意，生气</td>
+    <td class="clickable" data-lang="en" data-word="take offense">take offense</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="comprendre">comprendre</td>
+    <td>[kɔ̃ˈpʁɑ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="verstehen">verstehen</td>
+    <td>[fɛɐ̯ˈʃteːən]</td>
+    <td class="clickable" data-lang="zh" data-word="理解，懂得">理解，懂得</td>
+    <td class="clickable" data-lang="en" data-word="understand">understand</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="faute">faute</td>
+    <td>[fot]</td>
+    <td class="clickable" data-lang="de" data-word="Schuld">Schuld</td>
+    <td>[ʃʊlt]</td>
+    <td class="clickable" data-lang="zh" data-word="过错，责任">过错，责任</td>
+    <td class="clickable" data-lang="en" data-word="fault">fault</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="dommage">dommage</td>
+    <td>[dɔˈmaʒ]</td>
+    <td class="clickable" data-lang="de" data-word="schade">schade</td>
+    <td>[ˈʃaːdə]</td>
+    <td class="clickable" data-lang="zh" data-word="可惜，遗憾">可惜，遗憾</td>
+    <td class="clickable" data-lang="en" data-word="pity">pity</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="adieu">adieu</td>
+    <td>[aˈdjø]</td>
+    <td class="clickable" data-lang="de" data-word="Abschied">Abschied</td>
+    <td>[ˈapʃiːt]</td>
+    <td class="clickable" data-lang="zh" data-word="离别，告别">离别，告别</td>
+    <td class="clickable" data-lang="en" data-word="farewell">farewell</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="remercier">remercier</td>
+    <td>[ʁəmɛʁˈsje]</td>
+    <td class="clickable" data-lang="de" data-word="bedanken">bedanken</td>
+    <td>[bəˈdaŋkən]</td>
+    <td class="clickable" data-lang="zh" data-word="感谢，道谢">感谢，道谢</td>
+    <td class="clickable" data-lang="en" data-word="thank">thank</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="interrompre">interrompre</td>
+    <td>[ɛ̃tɛʁɔ̃ˈpʁ]</td>
+    <td class="clickable" data-lang="de" data-word="unterbrechen">unterbrechen</td>
+    <td>[ʊntɐˈbʁɛçən]</td>
+    <td class="clickable" data-lang="zh" data-word="打扰，干扰">打扰，干扰</td>
+    <td class="clickable" data-lang="en" data-word="interrupt">interrupt</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="méchant">méchant</td>
+    <td>[meˈʃɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="böse">böse</td>
+    <td>[ˈbøːzə]</td>
+    <td class="clickable" data-lang="zh" data-word="坏的，令人不愉快的">坏的，令人不愉快的</td>
+    <td class="clickable" data-lang="en" data-word="mean">mean</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="malade">malade</td>
+    <td>[maˈlad]</td>
+    <td class="clickable" data-lang="de" data-word="krank">krank</td>
+    <td>[kʁaŋk]</td>
+    <td class="clickable" data-lang="zh" data-word="有病的">有病的</td>
+    <td class="clickable" data-lang="en" data-word="sick">sick</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="visiter">visiter</td>
+    <td>[viziˈte]</td>
+    <td class="clickable" data-lang="de" data-word="besuchen">besuchen</td>
+    <td>[bəˈzuːxən]</td>
+    <td class="clickable" data-lang="zh" data-word="拜访，访问">拜访，访问</td>
+    <td class="clickable" data-lang="en" data-word="visit">visit</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="inviter">inviter</td>
+    <td>[ɛ̃viˈte]</td>
+    <td class="clickable" data-lang="de" data-word="einladen">einladen</td>
+    <td>[ˈaɪnlaːdən]</td>
+    <td class="clickable" data-lang="zh" data-word="邀请">邀请</td>
+    <td class="clickable" data-lang="en" data-word="invite">invite</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="tard">tard</td>
+    <td>[taʁ]</td>
+    <td class="clickable" data-lang="de" data-word="spät">spät</td>
+    <td>[ʃpɛːt]</td>
+    <td class="clickable" data-lang="zh" data-word="迟的，晚的">迟的，晚的</td>
+    <td class="clickable" data-lang="en" data-word="late">late</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="offrir">offrir</td>
+    <td>[ɔˈfʁiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="schenken">schenken</td>
+    <td>[ˈʃɛŋkən]</td>
+    <td class="clickable" data-lang="zh" data-word="赠送">赠送</td>
+    <td class="clickable" data-lang="en" data-word="give">give</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="convenir">convenir</td>
+    <td>[kɔ̃vəˈniʁ]</td>
+    <td class="clickable" data-lang="de" data-word="verabreden">verabreden</td>
+    <td>[fɛɐ̯ˈʔaːbʁeːdən]</td>
+    <td class="clickable" data-lang="zh" data-word="约定">约定</td>
+    <td class="clickable" data-lang="en" data-word="arrange">arrange</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="visiter">visiter</td>
+    <td>[viziˈte]</td>
+    <td class="clickable" data-lang="de" data-word="besuchen">besuchen</td>
+    <td>[bəˈzuːxən]</td>
+    <td class="clickable" data-lang="zh" data-word="拜访">拜访</td>
+    <td class="clickable" data-lang="en" data-word="visit">visit</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="invitation">invitation</td>
+    <td>[ɛ̃vitaˈsjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Einladung">Einladung</td>
+    <td>[ˈaɪnlaːdʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="邀请">邀请</td>
+    <td class="clickable" data-lang="en" data-word="invitation">invitation</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="visite">visite</td>
+    <td>[viˈzit]</td>
+    <td class="clickable" data-lang="de" data-word="Besuch">Besuch</td>
+    <td>[bəˈzuːx]</td>
+    <td class="clickable" data-lang="zh" data-word="做客">做客</td>
+    <td class="clickable" data-lang="en" data-word="visit">visit</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="connaissance">connaissance</td>
+    <td>[kɔnɛˈsɑ̃s]</td>
+    <td class="clickable" data-lang="de" data-word="Bekannte">Bekannte</td>
+    <td>[bəˈkantə]</td>
+    <td class="clickable" data-lang="zh" data-word="熟人">熟人</td>
+    <td class="clickable" data-lang="en" data-word="acquaintance">acquaintance</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="invité">invité</td>
+    <td>[ɛ̃viˈte]</td>
+    <td class="clickable" data-lang="de" data-word="Gast">Gast</td>
+    <td>[ɡast]</td>
+    <td class="clickable" data-lang="zh" data-word="客人">客人</td>
+    <td class="clickable" data-lang="en" data-word="guest">guest</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="hôte">hôte</td>
+    <td>[ot]</td>
+    <td class="clickable" data-lang="de" data-word="Gastgeber">Gastgeber</td>
+    <td>[ˈɡastɡeːbɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="主人">主人</td>
+    <td class="clickable" data-lang="en" data-word="host">host</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fête">fête</td>
+    <td>[fɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Party">Party</td>
+    <td>[ˈpaːɐ̯ti]</td>
+    <td class="clickable" data-lang="zh" data-word="聚会">聚会</td>
+    <td class="clickable" data-lang="en" data-word="party">party</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="club">club</td>
+    <td>[klœb]</td>
+    <td class="clickable" data-lang="de" data-word="Club">Club</td>
+    <td>[klʊp]</td>
+    <td class="clickable" data-lang="zh" data-word="俱乐部">俱乐部</td>
+    <td class="clickable" data-lang="en" data-word="club">club</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fête">fête</td>
+    <td>[fɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Fest">Fest</td>
+    <td>[fɛst]</td>
+    <td class="clickable" data-lang="zh" data-word="节日">节日</td>
+    <td class="clickable" data-lang="en" data-word="festival">festival</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="événement">événement</td>
+    <td>[evɛnˈmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Veranstaltung">Veranstaltung</td>
+    <td>[fɛɐ̯ˈʔanʃtaltʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="活动">活动</td>
+    <td class="clickable" data-lang="en" data-word="event">event</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="célébrer">célébrer</td>
+    <td>[seleˈbʁe]</td>
+    <td class="clickable" data-lang="de" data-word="feiern">feiern</td>
+    <td>[ˈfaɪɐn]</td>
+    <td class="clickable" data-lang="zh" data-word="庆祝">庆祝</td>
+    <td class="clickable" data-lang="en" data-word="celebrate">celebrate</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="présent">présent</td>
+    <td>[pʁeˈzɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="anwesend">anwesend</td>
+    <td>[ˈanveːzənt]</td>
+    <td class="clickable" data-lang="zh" data-word="在场的">在场的</td>
+    <td class="clickable" data-lang="en" data-word="present">present</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="absent">absent</td>
+    <td>[apˈsɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="abwesend">abwesend</td>
+    <td>[ˈapveːzənt]</td>
+    <td class="clickable" data-lang="zh" data-word="缺席的">缺席的</td>
+    <td class="clickable" data-lang="en" data-word="absent">absent</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="retard">retard</td>
+    <td>[ʁəˈtaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Verspätung">Verspätung</td>
+    <td>[fɛɐ̯ˈʃpɛːtʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="晚到">晚到</td>
+    <td class="clickable" data-lang="en" data-word="delay">delay</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ponctuel">ponctuel</td>
+    <td>[pɔ̃kˈtɥɛl]</td>
+    <td class="clickable" data-lang="de" data-word="pünktlich">pünktlich</td>
+    <td>[ˈpʏŋktlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="准时的">准时的</td>
+    <td class="clickable" data-lang="en" data-word="punctual">punctual</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="abolir">abolir</td>
+    <td>[abɔˈliʁ]</td>
+    <td class="clickable" data-lang="de" data-word="abschaffen">abschaffen</td>
+    <td>[ˈapʃafən]</td>
+    <td class="clickable" data-lang="zh" data-word="取消">取消</td>
+    <td class="clickable" data-lang="en" data-word="abolish">abolish</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="terminer">terminer</td>
+    <td>[tɛʁmiˈne]</td>
+    <td class="clickable" data-lang="de" data-word="beenden">beenden</td>
+    <td>[bəˈʔɛndən]</td>
+    <td class="clickable" data-lang="zh" data-word="结束">结束</td>
+    <td class="clickable" data-lang="en" data-word="end">end</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="rencontrer">rencontrer</td>
+    <td>[ʁɑ̃kɔ̃ˈtʁe]</td>
+    <td class="clickable" data-lang="de" data-word="begegnen">begegnen</td>
+    <td>[bəˈɡeːɡnən]</td>
+    <td class="clickable" data-lang="zh" data-word="遇见">遇见</td>
+    <td class="clickable" data-lang="en" data-word="meet">meet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="attendre">attendre</td>
+    <td>[atɑ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="erwarten">erwarten</td>
+    <td>[ɛɐ̯ˈvaʁtən]</td>
+    <td class="clickable" data-lang="zh" data-word="等待">等待</td>
+    <td class="clickable" data-lang="en" data-word="expect">expect</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mariage">mariage</td>
+    <td>[maˈʁjaʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Ehe">Ehe</td>
+    <td>[ˈeːə]</td>
+    <td class="clickable" data-lang="zh" data-word="婚姻">婚姻</td>
+    <td class="clickable" data-lang="en" data-word="marriage">marriage</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="célibataire">célibataire</td>
+    <td>[selibaˈtɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="ledig">ledig</td>
+    <td>[ˈleːdɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="单身的">单身的</td>
+    <td class="clickable" data-lang="en" data-word="single">single</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="se fiancer">se fiancer</td>
+    <td>[sə fjɑ̃ˈse]</td>
+    <td class="clickable" data-lang="de" data-word="verloben">verloben</td>
+    <td>[fɛɐ̯ˈloːbən]</td>
+    <td class="clickable" data-lang="zh" data-word="订婚">订婚</td>
+    <td class="clickable" data-lang="en" data-word="get engaged">get engaged</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="se marier">se marier</td>
+    <td>[sə maˈʁje]</td>
+    <td class="clickable" data-lang="de" data-word="heiraten">heiraten</td>
+    <td>[ˈhaɪʁatən]</td>
+    <td class="clickable" data-lang="zh" data-word="结婚">结婚</td>
+    <td class="clickable" data-lang="en" data-word="marry">marry</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="divorcer">divorcer</td>
+    <td>[divɔʁˈse]</td>
+    <td class="clickable" data-lang="de" data-word="scheiden">scheiden</td>
+    <td>[ˈʃaɪdən]</td>
+    <td class="clickable" data-lang="zh" data-word="离婚">离婚</td>
+    <td class="clickable" data-lang="en" data-word="divorce">divorce</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="marié">marié</td>
+    <td>[maˈʁje]</td>
+    <td class="clickable" data-lang="de" data-word="verheiratet">verheiratet</td>
+    <td>[fɛɐ̯ˈhaɪʁatət]</td>
+    <td class="clickable" data-lang="zh" data-word="已婚的">已婚的</td>
+    <td class="clickable" data-lang="en" data-word="married">married</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mariage">mariage</td>
+    <td>[maˈʁjaʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Hochzeit">Hochzeit</td>
+    <td>[ˈhoːxtsaɪt]</td>
+    <td class="clickable" data-lang="zh" data-word="婚礼">婚礼</td>
+    <td class="clickable" data-lang="en" data-word="wedding">wedding</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="état civil">état civil</td>
+    <td>[eta siˈvil]</td>
+    <td class="clickable" data-lang="de" data-word="Standesamt">Standesamt</td>
+    <td>[ˈʃtandəsʔamt]</td>
+    <td class="clickable" data-lang="zh" data-word="户籍登记处">户籍登记处</td>
+    <td class="clickable" data-lang="en" data-word="registry office">registry office</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="marié">marié</td>
+    <td>[maˈʁje]</td>
+    <td class="clickable" data-lang="de" data-word="Bräutigam">Bräutigam</td>
+    <td>[ˈbʁɔɪtɪɡam]</td>
+    <td class="clickable" data-lang="zh" data-word="新郎">新郎</td>
+    <td class="clickable" data-lang="en" data-word="groom">groom</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mariée">mariée</td>
+    <td>[maˈʁje]</td>
+    <td class="clickable" data-lang="de" data-word="Braut">Braut</td>
+    <td>[bʁaʊt]</td>
+    <td class="clickable" data-lang="zh" data-word="新娘">新娘</td>
+    <td class="clickable" data-lang="en" data-word="bride">bride</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bague">bague</td>
+    <td>[baɡ]</td>
+    <td class="clickable" data-lang="de" data-word="Ring">Ring</td>
+    <td>[ʁɪŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="戒指">戒指</td>
+    <td class="clickable" data-lang="en" data-word="ring">ring</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="amour">amour</td>
+    <td>[aˈmuʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Liebe">Liebe</td>
+    <td>[ˈliːbə]</td>
+    <td class="clickable" data-lang="zh" data-word="爱">爱</td>
+    <td class="clickable" data-lang="en" data-word="love">love</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="embrasser">embrasser</td>
+    <td>[ɑ̃bʁaˈse]</td>
+    <td class="clickable" data-lang="de" data-word="küssen">küssen</td>
+    <td>[ˈkʏsən]</td>
+    <td class="clickable" data-lang="zh" data-word="亲吻">亲吻</td>
+    <td class="clickable" data-lang="en" data-word="kiss">kiss</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="passion">passion</td>
+    <td>[paˈsjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Leidenschaft">Leidenschaft</td>
+    <td>[ˈlaɪdənʃaft]</td>
+    <td class="clickable" data-lang="zh" data-word="激情">激情</td>
+    <td class="clickable" data-lang="en" data-word="passion">passion</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="état civil">état civil</td>
+    <td>[eta siˈvil]</td>
+    <td class="clickable" data-lang="de" data-word="Familienstand">Familienstand</td>
+    <td>[faˈmiːljənʃtant]</td>
+    <td class="clickable" data-lang="zh" data-word="婚姻状况">婚姻状况</td>
+    <td class="clickable" data-lang="en" data-word="marital status">marital status</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="lune de miel">lune de miel</td>
+    <td>[lyn də mjɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Flitterwoche">Flitterwoche</td>
+    <td>[ˈflɪtɐvoːxə]</td>
+    <td class="clickable" data-lang="zh" data-word="蜜月">蜜月</td>
+    <td class="clickable" data-lang="en" data-word="honeymoon">honeymoon</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="enceinte">enceinte</td>
+    <td>[ɑ̃ˈsɛ̃t]</td>
+    <td class="clickable" data-lang="de" data-word="schwanger">schwanger</td>
+    <td>[ˈʃvaŋɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="怀孕的">怀孕的</td>
+    <td class="clickable" data-lang="en" data-word="pregnant">pregnant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="naissance">naissance</td>
+    <td>[nɛˈsɑ̃s]</td>
+    <td class="clickable" data-lang="de" data-word="Geburt">Geburt</td>
+    <td>[ɡəˈbuːɐ̯t]</td>
+    <td class="clickable" data-lang="zh" data-word="分娩">分娩</td>
+    <td class="clickable" data-lang="en" data-word="birth">birth</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="célibataire">célibataire</td>
+    <td>[selibaˈtɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="ledig">ledig</td>
+    <td>[ˈleːdɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="单身的">单身的</td>
+    <td class="clickable" data-lang="en" data-word="single">single</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="noces d'or">noces d'or</td>
+    <td>[nɔs dɔʁ]</td>
+    <td class="clickable" data-lang="de" data-word="goldene Hochzeit">goldene Hochzeit</td>
+    <td>[ˈɡɔldənə ˈhoːxtsaɪt]</td>
+    <td class="clickable" data-lang="zh" data-word="金婚">金婚</td>
+    <td class="clickable" data-lang="en" data-word="golden wedding">golden wedding</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="comportement">comportement</td>
+    <td>[kɔ̃pɔʁtəˈmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Benehmen">Benehmen</td>
+    <td>[bəˈneːmən]</td>
+    <td class="clickable" data-lang="zh" data-word="行为">行为</td>
+    <td class="clickable" data-lang="en" data-word="behavior">behavior</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="manières">manières</td>
+    <td>[maˈnjɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Umgangsformen">Umgangsformen</td>
+    <td>[ˈʊmɡaŋsfɔʁmən]</td>
+    <td class="clickable" data-lang="zh" data-word="举止">举止</td>
+    <td class="clickable" data-lang="en" data-word="manners">manners</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="communication">communication</td>
+    <td>[kɔmynikaˈsjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Kommunikation">Kommunikation</td>
+    <td>[kɔmunikaˈtsi̯oːn]</td>
+    <td class="clickable" data-lang="zh" data-word="交际">交际</td>
+    <td class="clickable" data-lang="en" data-word="communication">communication</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="poli">poli</td>
+    <td>[pɔˈli]</td>
+    <td class="clickable" data-lang="de" data-word="höflich">höflich</td>
+    <td>[ˈhøːflɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="礼貌的">礼貌的</td>
+    <td class="clickable" data-lang="en" data-word="polite">polite</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="aimable">aimable</td>
+    <td>[ɛˈmabl]</td>
+    <td class="clickable" data-lang="de" data-word="liebenswürdig">liebenswürdig</td>
+    <td>[ˈliːbənsvʏʁdɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="亲切的">亲切的</td>
+    <td class="clickable" data-lang="en" data-word="kind">kind</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="gentil">gentil</td>
+    <td>[ʒɑ̃ˈti]</td>
+    <td class="clickable" data-lang="de" data-word="nett">nett</td>
+    <td>[nɛt]</td>
+    <td class="clickable" data-lang="zh" data-word="友好的">友好的</td>
+    <td class="clickable" data-lang="en" data-word="nice">nice</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="modeste">modeste</td>
+    <td>[mɔˈdɛst]</td>
+    <td class="clickable" data-lang="de" data-word="bescheiden">bescheiden</td>
+    <td>[bəˈʃaɪdən]</td>
+    <td class="clickable" data-lang="zh" data-word="谦虚的">谦虚的</td>
+    <td class="clickable" data-lang="en" data-word="modest">modest</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="populaire">populaire</td>
+    <td>[pɔpyˈlɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="beliebt">beliebt</td>
+    <td>[bəˈliːpt]</td>
+    <td class="clickable" data-lang="zh" data-word="受欢迎的">受欢迎的</td>
+    <td class="clickable" data-lang="en" data-word="popular">popular</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="raisonnable">raisonnable</td>
+    <td>[ʁɛzɔˈnabl]</td>
+    <td class="clickable" data-lang="de" data-word="vernünftig">vernünftig</td>
+    <td>[fɛɐ̯ˈnʏnftɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="理智的">理智的</td>
+    <td class="clickable" data-lang="en" data-word="reasonable">reasonable</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="distingué">distingué</td>
+    <td>[distɛ̃ˈɡe]</td>
+    <td class="clickable" data-lang="de" data-word="vornehm">vornehm</td>
+    <td>[ˈfoːɐ̯neːm]</td>
+    <td class="clickable" data-lang="zh" data-word="高雅的">高雅的</td>
+    <td class="clickable" data-lang="en" data-word="elegant">elegant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="impoli">impoli</td>
+    <td>[ɛ̃pɔˈli]</td>
+    <td class="clickable" data-lang="de" data-word="unhöflich">unhöflich</td>
+    <td>[ˈʊnhøːflɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="不礼貌的">不礼貌的</td>
+    <td class="clickable" data-lang="en" data-word="impolite">impolite</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="indélicat">indélicat</td>
+    <td>[ɛ̃deliˈka]</td>
+    <td class="clickable" data-lang="de" data-word="taktlos">taktlos</td>
+    <td>[ˈtaktloːs]</td>
+    <td class="clickable" data-lang="zh" data-word="不得体的">不得体的</td>
+    <td class="clickable" data-lang="en" data-word="tactless">tactless</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="insolent">insolent</td>
+    <td>[ɛ̃sɔˈlɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="frech">frech</td>
+    <td>[fʁɛç]</td>
+    <td class="clickable" data-lang="zh" data-word="无礼的">无礼的</td>
+    <td class="clickable" data-lang="en" data-word="impudent">impudent</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="prétentieux">prétentieux</td>
+    <td>[pʁetɑ̃ˈsjø]</td>
+    <td class="clickable" data-lang="de" data-word="eingebildet">eingebildet</td>
+    <td>[ˈaɪnɡəbɪldət]</td>
+    <td class="clickable" data-lang="zh" data-word="自负的">自负的</td>
+    <td class="clickable" data-lang="en" data-word="conceited">conceited</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="gênant">gênant</td>
+    <td>[ʒeˈnɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="peinlich">peinlich</td>
+    <td>[ˈpaɪnlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="尴尬的">尴尬的</td>
+    <td class="clickable" data-lang="en" data-word="embarrassing">embarrassing</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="relation">relation</td>
+    <td>[ʁəlaˈsjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Verhältnis">Verhältnis</td>
+    <td>[fɛɐ̯ˈhɛltnɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="关系">关系</td>
+    <td class="clickable" data-lang="en" data-word="relationship">relationship</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mal élevé">mal élevé</td>
+    <td>[mal eleˈve]</td>
+    <td class="clickable" data-lang="de" data-word="ungezogen">ungezogen</td>
+    <td>[ˈʊnɡətsoːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="没教养的">没教养的</td>
+    <td class="clickable" data-lang="en" data-word="ill-mannered">ill-mannered</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sage">sage</td>
+    <td>[saʒ]</td>
+    <td class="clickable" data-lang="de" data-word="artig">artig</td>
+    <td>[ˈaːɐ̯tɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="有规矩的">有规矩的</td>
+    <td class="clickable" data-lang="en" data-word="well-behaved">well-behaved</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="gâté">gâté</td>
+    <td>[ɡaˈte]</td>
+    <td class="clickable" data-lang="de" data-word="verwöhnt">verwöhnt</td>
+    <td>[fɛɐ̯ˈvøːnt]</td>
+    <td class="clickable" data-lang="zh" data-word="任性的">任性的</td>
+    <td class="clickable" data-lang="en" data-word="spoiled">spoiled</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="naturel">naturel</td>
+    <td>[natyˈʁɛl]</td>
+    <td class="clickable" data-lang="de" data-word="ungekünstelt">ungekünstelt</td>
+    <td>[ˈʊnɡəkʏnstəlt]</td>
+    <td class="clickable" data-lang="zh" data-word="纯朴的">纯朴的</td>
+    <td class="clickable" data-lang="en" data-word="natural">natural</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="conseiller">conseiller</td>
+    <td>[kɔ̃sɛˈje]</td>
+    <td class="clickable" data-lang="de" data-word="beraten">beraten</td>
+    <td>[bəˈʁaːtən]</td>
+    <td class="clickable" data-lang="zh" data-word="提供意见">提供意见</td>
+    <td class="clickable" data-lang="en" data-word="advise">advise</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="proposer">proposer</td>
+    <td>[pʁɔpoˈze]</td>
+    <td class="clickable" data-lang="de" data-word="vorschlagen">vorschlagen</td>
+    <td>[ˈfoːɐ̯ʃlaːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="建议">建议</td>
+    <td class="clickable" data-lang="en" data-word="suggest">suggest</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="prier">prier</td>
+    <td>[pʁiˈe]</td>
+    <td class="clickable" data-lang="de" data-word="bitten">bitten</td>
+    <td>[ˈbɪtən]</td>
+    <td class="clickable" data-lang="zh" data-word="请求">请求</td>
+    <td class="clickable" data-lang="en" data-word="request">request</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="charger">charger</td>
+    <td>[ʃaʁˈʒe]</td>
+    <td class="clickable" data-lang="de" data-word="beauftragen">beauftragen</td>
+    <td>[bəˈʔaʊftʁaːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="委托">委托</td>
+    <td class="clickable" data-lang="en" data-word="commission">commission</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="exiger">exiger</td>
+    <td>[ɛɡziˈʒe]</td>
+    <td class="clickable" data-lang="de" data-word="auffordern">auffordern</td>
+    <td>[ˈaʊffɔʁdɐn]</td>
+    <td class="clickable" data-lang="zh" data-word="要求">要求</td>
+    <td class="clickable" data-lang="en" data-word="demand">demand</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="demander">demander</td>
+    <td>[dəmɑ̃ˈde]</td>
+    <td class="clickable" data-lang="de" data-word="verlangen">verlangen</td>
+    <td>[fɛɐ̯ˈlaŋən]</td>
+    <td class="clickable" data-lang="zh" data-word="要求">要求</td>
+    <td class="clickable" data-lang="en" data-word="require">require</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="forcer">forcer</td>
+    <td>[fɔʁˈse]</td>
+    <td class="clickable" data-lang="de" data-word="zwingen">zwingen</td>
+    <td>[ˈtsvɪŋən]</td>
+    <td class="clickable" data-lang="zh" data-word="强迫">强迫</td>
+    <td class="clickable" data-lang="en" data-word="force">force</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="persuader">persuader</td>
+    <td>[pɛʁsɥaˈde]</td>
+    <td class="clickable" data-lang="de" data-word="überreden">überreden</td>
+    <td>[yːbɐˈʁeːdən]</td>
+    <td class="clickable" data-lang="zh" data-word="说服">说服</td>
+    <td class="clickable" data-lang="en" data-word="persuade">persuade</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="influencer">influencer</td>
+    <td>[ɛ̃flyɑ̃ˈse]</td>
+    <td class="clickable" data-lang="de" data-word="beeinflussen">beeinflussen</td>
+    <td>[bəˈʔaɪnflʊsən]</td>
+    <td class="clickable" data-lang="zh" data-word="影响">影响</td>
+    <td class="clickable" data-lang="en" data-word="influence">influence</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ordre">ordre</td>
+    <td>[ɔʁdʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Befehl">Befehl</td>
+    <td>[bəˈfeːl]</td>
+    <td class="clickable" data-lang="zh" data-word="命令">命令</td>
+    <td class="clickable" data-lang="en" data-word="command">command</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="instruction">instruction</td>
+    <td>[ɛ̃stʁykˈsjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Anweisung">Anweisung</td>
+    <td>[ˈanvaɪzʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="指示">指示</td>
+    <td class="clickable" data-lang="en" data-word="instruction">instruction</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="laisser">laisser</td>
+    <td>[lɛˈse]</td>
+    <td class="clickable" data-lang="de" data-word="lassen">lassen</td>
+    <td>[ˈlasən]</td>
+    <td class="clickable" data-lang="zh" data-word="让">让</td>
+    <td class="clickable" data-lang="en" data-word="let">let</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="devoir">devoir</td>
+    <td>[dəˈvwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="sollen">sollen</td>
+    <td>[ˈzɔlən]</td>
+    <td class="clickable" data-lang="zh" data-word="应该">应该</td>
+    <td class="clickable" data-lang="en" data-word="should">should</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="proposition">proposition</td>
+    <td>[pʁɔpɔziˈsjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Vorschlag">Vorschlag</td>
+    <td>[ˈfoːɐ̯ʃlaːk]</td>
+    <td class="clickable" data-lang="zh" data-word="建议">建议</td>
+    <td class="clickable" data-lang="en" data-word="suggestion">suggestion</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="opinion">opinion</td>
+    <td>[ɔpiˈnjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Meinung">Meinung</td>
+    <td>[ˈmaɪnʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="意见">意见</td>
+    <td class="clickable" data-lang="en" data-word="opinion">opinion</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="demande">demande</td>
+    <td>[dəˈmɑ̃d]</td>
+    <td class="clickable" data-lang="de" data-word="Bitte">Bitte</td>
+    <td>[ˈbɪtə]</td>
+    <td class="clickable" data-lang="zh" data-word="请求">请求</td>
+    <td class="clickable" data-lang="en" data-word="request">request</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sincère">sincère</td>
+    <td>[sɛ̃ˈsɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="aufrichtig">aufrichtig</td>
+    <td>[ˈaʊfʁɪçtɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="真诚的">真诚的</td>
+    <td class="clickable" data-lang="en" data-word="sincere">sincere</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="dur">dur</td>
+    <td>[dyʁ]</td>
+    <td class="clickable" data-lang="de" data-word="hart">hart</td>
+    <td>[haʁt]</td>
+    <td class="clickable" data-lang="zh" data-word="强硬的">强硬的</td>
+    <td class="clickable" data-lang="en" data-word="hard">hard</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="insinuer">insinuer</td>
+    <td>[ɛ̃sinɥˈe]</td>
+    <td class="clickable" data-lang="de" data-word="hinweisen">hinweisen</td>
+    <td>[ˈhɪnvaɪzən]</td>
+    <td class="clickable" data-lang="zh" data-word="暗示">暗示</td>
+    <td class="clickable" data-lang="en" data-word="hint">hint</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ordonner">ordonner</td>
+    <td>[ɔʁdɔˈne]</td>
+    <td class="clickable" data-lang="de" data-word="anordnen">anordnen</td>
+    <td>[ˈanʔɔʁdnən]</td>
+    <td class="clickable" data-lang="zh" data-word="规定">规定</td>
+    <td class="clickable" data-lang="en" data-word="decree">decree</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="approbation">approbation</td>
+    <td>[apʁɔbaˈsjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Zustimmung">Zustimmung</td>
+    <td>[ˈtsuːʃtɪmʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="赞成">赞成</td>
+    <td class="clickable" data-lang="en" data-word="approval">approval</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="permettre">permettre</td>
+    <td>[pɛʁˈmɛtʁ]</td>
+    <td class="clickable" data-lang="de" data-word="erlauben">erlauben</td>
+    <td>[ɛɐ̯ˈlaʊbən]</td>
+    <td class="clickable" data-lang="zh" data-word="允许">允许</td>
+    <td class="clickable" data-lang="en" data-word="allow">allow</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="hocher">hocher</td>
+    <td>[ɔˈʃe]</td>
+    <td class="clickable" data-lang="de" data-word="nicken">nicken</td>
+    <td>[ˈnɪkən]</td>
+    <td class="clickable" data-lang="zh" data-word="点头">点头</td>
+    <td class="clickable" data-lang="en" data-word="nod">nod</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="approuver">approuver</td>
+    <td>[apʁuˈve]</td>
+    <td class="clickable" data-lang="de" data-word="genehmigen">genehmigen</td>
+    <td>[ɡəˈneːmɪɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="批准">批准</td>
+    <td class="clickable" data-lang="en" data-word="approve">approve</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="laisser">laisser</td>
+    <td>[lɛˈse]</td>
+    <td class="clickable" data-lang="de" data-word="lassen">lassen</td>
+    <td>[ˈlasən]</td>
+    <td class="clickable" data-lang="zh" data-word="允许">允许</td>
+    <td class="clickable" data-lang="en" data-word="let">let</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pouvoir">pouvoir</td>
+    <td>[puˈvwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="dürfen">dürfen</td>
+    <td>[ˈdʏʁfən]</td>
+    <td class="clickable" data-lang="zh" data-word="可以">可以</td>
+    <td class="clickable" data-lang="en" data-word="may">may</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="d'accord">d'accord</td>
+    <td>[daˈkɔʁ]</td>
+    <td class="clickable" data-lang="de" data-word="einverstanden">einverstanden</td>
+    <td>[ˈaɪnfɛɐ̯ʃtandən]</td>
+    <td class="clickable" data-lang="zh" data-word="同意">同意</td>
+    <td class="clickable" data-lang="en" data-word="agreed">agreed</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="refuser">refuser</td>
+    <td>[ʁəfyˈze]</td>
+    <td class="clickable" data-lang="de" data-word="ablehnen">ablehnen</td>
+    <td>[ˈapleːnən]</td>
+    <td class="clickable" data-lang="zh" data-word="拒绝">拒绝</td>
+    <td class="clickable" data-lang="en" data-word="refuse">refuse</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="protester">protester</td>
+    <td>[pʁɔtɛsˈte]</td>
+    <td class="clickable" data-lang="de" data-word="protestieren">protestieren</td>
+    <td>[pʁotɛsˈtiːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="抗议">抗议</td>
+    <td class="clickable" data-lang="en" data-word="protest">protest</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="interdire">interdire</td>
+    <td>[ɛ̃tɛʁˈdiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="verbieten">verbieten</td>
+    <td>[fɛɐ̯ˈbiːtən]</td>
+    <td class="clickable" data-lang="zh" data-word="禁止">禁止</td>
+    <td class="clickable" data-lang="en" data-word="forbid">forbid</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="empêcher">empêcher</td>
+    <td>[ɑ̃pɛˈʃe]</td>
+    <td class="clickable" data-lang="de" data-word="verhindern">verhindern</td>
+    <td>[fɛɐ̯ˈhɪndɐn]</td>
+    <td class="clickable" data-lang="zh" data-word="阻止">阻止</td>
+    <td class="clickable" data-lang="en" data-word="prevent">prevent</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="compromis">compromis</td>
+    <td>[kɔ̃pʁoˈmi]</td>
+    <td class="clickable" data-lang="de" data-word="Kompromiss">Kompromiss</td>
+    <td>[kɔmpʁoˈmɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="妥协">妥协</td>
+    <td class="clickable" data-lang="en" data-word="compromise">compromise</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="réserve">réserve</td>
+    <td>[ʁeˈzɛʁv]</td>
+    <td class="clickable" data-lang="de" data-word="Bedenken">Bedenken</td>
+    <td>[bəˈdɛŋkən]</td>
+    <td class="clickable" data-lang="zh" data-word="顾虑">顾虑</td>
+    <td class="clickable" data-lang="en" data-word="concern">concern</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="positif">positif</td>
+    <td>[pɔziˈtif]</td>
+    <td class="clickable" data-lang="de" data-word="positiv">positiv</td>
+    <td>[poziˈtiːf]</td>
+    <td class="clickable" data-lang="zh" data-word="肯定的">肯定的</td>
+    <td class="clickable" data-lang="en" data-word="positive">positive</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="négatif">négatif</td>
+    <td>[neɡaˈtif]</td>
+    <td class="clickable" data-lang="de" data-word="negativ">negativ</td>
+    <td>[neɡaˈtiːf]</td>
+    <td class="clickable" data-lang="zh" data-word="否定的">否定的</td>
+    <td class="clickable" data-lang="en" data-word="negative">negative</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pour">pour</td>
+    <td>[puʁ]</td>
+    <td class="clickable" data-lang="de" data-word="dafür">dafür</td>
+    <td>[daˈfyːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="支持">支持</td>
+    <td class="clickable" data-lang="en" data-word="in favor">in favor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="contre">contre</td>
+    <td>[kɔ̃tʁ]</td>
+    <td class="clickable" data-lang="de" data-word="dagegen">dagegen</td>
+    <td>[daˈɡeːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="反对">反对</td>
+    <td class="clickable" data-lang="en" data-word="against">against</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="affection">affection</td>
+    <td>[afɛkˈsjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Zuneigung">Zuneigung</td>
+    <td>[ˈtsuːnaɪɡʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="好感">好感</td>
+    <td class="clickable" data-lang="en" data-word="affection">affection</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sympathie">sympathie</td>
+    <td>[sɛ̃paˈti]</td>
+    <td class="clickable" data-lang="de" data-word="Sympathie">Sympathie</td>
+    <td>[zʏmpaˈtiː]</td>
+    <td class="clickable" data-lang="zh" data-word="好感">好感</td>
+    <td class="clickable" data-lang="en" data-word="sympathy">sympathy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="aimer">aimer</td>
+    <td>[ɛˈme]</td>
+    <td class="clickable" data-lang="de" data-word="mögen">mögen</td>
+    <td>[ˈmøːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="喜欢">喜欢</td>
+    <td class="clickable" data-lang="en" data-word="like">like</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="plaire">plaire</td>
+    <td>[plɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="gefallen">gefallen</td>
+    <td>[ɡəˈfalən]</td>
+    <td class="clickable" data-lang="zh" data-word="喜欢">喜欢</td>
+    <td class="clickable" data-lang="en" data-word="please">please</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="s'entendre">s'entendre</td>
+    <td>[sɑ̃ˈtɑ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="sich verstehen">sich verstehen</td>
+    <td>[zɪç fɛɐ̯ˈʃteːən]</td>
+    <td class="clickable" data-lang="zh" data-word="和睦相处">和睦相处</td>
+    <td class="clickable" data-lang="en" data-word="get along">get along</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="heureux">heureux</td>
+    <td>[øˈʁø]</td>
+    <td class="clickable" data-lang="de" data-word="glücklich">glücklich</td>
+    <td>[ˈɡlʏklɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="幸福的">幸福的</td>
+    <td class="clickable" data-lang="en" data-word="happy">happy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ami">ami</td>
+    <td>[aˈmi]</td>
+    <td class="clickable" data-lang="de" data-word="Freund">Freund</td>
+    <td>[fʁɔʏnt]</td>
+    <td class="clickable" data-lang="zh" data-word="朋友">朋友</td>
+    <td class="clickable" data-lang="en" data-word="friend">friend</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="confiance">confiance</td>
+    <td>[kɔ̃ˈfjɑ̃s]</td>
+    <td class="clickable" data-lang="de" data-word="Vertrauen">Vertrauen</td>
+    <td>[fɛɐ̯ˈtʁaʊən]</td>
+    <td class="clickable" data-lang="zh" data-word="信任">信任</td>
+    <td class="clickable" data-lang="en" data-word="trust">trust</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="jaloux">jaloux</td>
+    <td>[ʒaˈlu]</td>
+    <td class="clickable" data-lang="de" data-word="eifersüchtig">eifersüchtig</td>
+    <td>[ˈaɪfɐzʏçtɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="嫉妒的">嫉妒的</td>
+    <td class="clickable" data-lang="en" data-word="jealous">jealous</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="aversion">aversion</td>
+    <td>[avɛʁˈsjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Abneigung">Abneigung</td>
+    <td>[ˈapnaɪɡʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="厌恶">厌恶</td>
+    <td class="clickable" data-lang="en" data-word="aversion">aversion</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="haïr">haïr</td>
+    <td>[aˈiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="hassen">hassen</td>
+    <td>[ˈhasən]</td>
+    <td class="clickable" data-lang="zh" data-word="憎恨">憎恨</td>
+    <td class="clickable" data-lang="en" data-word="hate">hate</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fâché">fâché</td>
+    <td>[faˈʃe]</td>
+    <td class="clickable" data-lang="de" data-word="ärgerlich">ärgerlich</td>
+    <td>[ˈɛʁɡɐlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="生气的">生气的</td>
+    <td class="clickable" data-lang="en" data-word="angry">angry</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="méchant">méchant</td>
+    <td>[meˈʃɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="böse">böse</td>
+    <td>[ˈbøːzə]</td>
+    <td class="clickable" data-lang="zh" data-word="恼怒的">恼怒的</td>
+    <td class="clickable" data-lang="en" data-word="angry">angry</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mépriser">mépriser</td>
+    <td>[mepʁiˈze]</td>
+    <td class="clickable" data-lang="de" data-word="verachten">verachten</td>
+    <td>[fɛɐ̯ˈʔaxtən]</td>
+    <td class="clickable" data-lang="zh" data-word="蔑视">蔑视</td>
+    <td class="clickable" data-lang="en" data-word="despise">despise</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ennemi">ennemi</td>
+    <td>[ɛnəˈmi]</td>
+    <td class="clickable" data-lang="de" data-word="Feind">Feind</td>
+    <td>[faɪnt]</td>
+    <td class="clickable" data-lang="zh" data-word="敌人">敌人</td>
+    <td class="clickable" data-lang="en" data-word="enemy">enemy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="méfiance">méfiance</td>
+    <td>[meˈfjɑ̃s]</td>
+    <td class="clickable" data-lang="de" data-word="Misstrauen">Misstrauen</td>
+    <td>[ˈmɪstʁaʊən]</td>
+    <td class="clickable" data-lang="zh" data-word="不信任">不信任</td>
+    <td class="clickable" data-lang="en" data-word="distrust">distrust</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="envie">envie</td>
+    <td>[ɑ̃ˈvi]</td>
+    <td class="clickable" data-lang="de" data-word="Lust">Lust</td>
+    <td>[lʊst]</td>
+    <td class="clickable" data-lang="zh" data-word="兴趣">兴趣</td>
+    <td class="clickable" data-lang="en" data-word="desire">desire</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fasciner">fasciner</td>
+    <td>[fasiˈne]</td>
+    <td class="clickable" data-lang="de" data-word="faszinieren">faszinieren</td>
+    <td>[fastsɪˈniːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="令人神往">令人神往</td>
+    <td class="clickable" data-lang="en" data-word="fascinate">fascinate</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="dégoûter">dégoûter</td>
+    <td>[deɡuˈte]</td>
+    <td class="clickable" data-lang="de" data-word="ekeln">ekeln</td>
+    <td>[ˈeːkəln]</td>
+    <td class="clickable" data-lang="zh" data-word="使恶心">使恶心</td>
+    <td class="clickable" data-lang="en" data-word="disgust">disgust</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="dégoûtant">dégoûtant</td>
+    <td>[deɡuˈtɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="eklig">eklig</td>
+    <td>[ˈeːklɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="讨厌的">讨厌的</td>
+    <td class="clickable" data-lang="en" data-word="disgusting">disgusting</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="dispute">dispute</td>
+    <td>[disˈpyt]</td>
+    <td class="clickable" data-lang="de" data-word="Streit">Streit</td>
+    <td>[ʃtʁaɪt]</td>
+    <td class="clickable" data-lang="zh" data-word="争吵">争吵</td>
+    <td class="clickable" data-lang="en" data-word="argument">argument</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="conflit">conflit</td>
+    <td>[kɔ̃ˈfli]</td>
+    <td class="clickable" data-lang="de" data-word="Konflikt">Konflikt</td>
+    <td>[kɔnˈflɪkt]</td>
+    <td class="clickable" data-lang="zh" data-word="冲突">冲突</td>
+    <td class="clickable" data-lang="en" data-word="conflict">conflict</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="reproche">reproche</td>
+    <td>[ʁəˈpʁɔʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Vorwurf">Vorwurf</td>
+    <td>[ˈfoːɐ̯vʊʁf]</td>
+    <td class="clickable" data-lang="zh" data-word="指责">指责</td>
+    <td class="clickable" data-lang="en" data-word="reproach">reproach</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="moquerie">moquerie</td>
+    <td>[mɔkˈʁi]</td>
+    <td class="clickable" data-lang="de" data-word="Spott">Spott</td>
+    <td>[ʃpɔt]</td>
+    <td class="clickable" data-lang="zh" data-word="嘲讽">嘲讽</td>
+    <td class="clickable" data-lang="en" data-word="mockery">mockery</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="réagir">réagir</td>
+    <td>[ʁeaˈʒiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="reagieren">reagieren</td>
+    <td>[ʁeaˈɡiːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="反应">反应</td>
+    <td class="clickable" data-lang="en" data-word="react">react</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="gronder">gronder</td>
+    <td>[ɡʁɔ̃ˈde]</td>
+    <td class="clickable" data-lang="de" data-word="schimpfen">schimpfen</td>
+    <td>[ˈʃɪmpfən]</td>
+    <td class="clickable" data-lang="zh" data-word="辱骂">辱骂</td>
+    <td class="clickable" data-lang="en" data-word="scold">scold</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="insulter">insulter</td>
+    <td>[ɛ̃sylˈte]</td>
+    <td class="clickable" data-lang="de" data-word="beleidigen">beleidigen</td>
+    <td>[bəˈlaɪdɪɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="侮辱">侮辱</td>
+    <td class="clickable" data-lang="en" data-word="insult">insult</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="frapper">frapper</td>
+    <td>[fʁaˈpe]</td>
+    <td class="clickable" data-lang="de" data-word="schlagen">schlagen</td>
+    <td>[ˈʃlaːɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="打">打</td>
+    <td class="clickable" data-lang="en" data-word="hit">hit</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="s'excuser">s'excuser</td>
+    <td>[sɛkskyˈze]</td>
+    <td class="clickable" data-lang="de" data-word="entschuldigen">entschuldigen</td>
+    <td>[ɛntˈʃʊldɪɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="道歉">道歉</td>
+    <td class="clickable" data-lang="en" data-word="apologize">apologize</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pardonner">pardonner</td>
+    <td>[paʁdɔˈne]</td>
+    <td class="clickable" data-lang="de" data-word="verzeihen">verzeihen</td>
+    <td>[fɛɐ̯ˈtsaɪən]</td>
+    <td class="clickable" data-lang="zh" data-word="原谅">原谅</td>
+    <td class="clickable" data-lang="en" data-word="forgive">forgive</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="calmer">calmer</td>
+    <td>[kalˈme]</td>
+    <td class="clickable" data-lang="de" data-word="beruhigen">beruhigen</td>
+    <td>[bəˈʁuːɪɡən]</td>
+    <td class="clickable" data-lang="zh" data-word="平静下来">平静下来</td>
+    <td class="clickable" data-lang="en" data-word="calm down">calm down</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fou">fou</td>
+    <td>[fu]</td>
+    <td class="clickable" data-lang="de" data-word="verrückt">verrückt</td>
+    <td>[fɛɐ̯ˈʁʏkt]</td>
+    <td class="clickable" data-lang="zh" data-word="疯的">疯的</td>
+    <td class="clickable" data-lang="en" data-word="crazy">crazy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="nerveux">nerveux</td>
+    <td>[nɛʁˈvø]</td>
+    <td class="clickable" data-lang="de" data-word="nervös">nervös</td>
+    <td>[nɛʁˈvøːs]</td>
+    <td class="clickable" data-lang="zh" data-word="神经质的">神经质的</td>
+    <td class="clickable" data-lang="en" data-word="nervous">nervous</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="furieux">furieux</td>
+    <td>[fyˈʁjø]</td>
+    <td class="clickable" data-lang="de" data-word="zornig">zornig</td>
+    <td>[ˈtsɔʁnɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="愤怒的">愤怒的</td>
+    <td class="clickable" data-lang="en" data-word="furious">furious</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="malheureusement">malheureusement</td>
+    <td>[malœʁøzˈmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="leider">leider</td>
+    <td>[ˈlaɪdɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="遗憾">遗憾</td>
+    <td class="clickable" data-lang="en" data-word="unfortunately">unfortunately</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="réconciliation">réconciliation</td>
+    <td>[ʁekɔ̃siljaˈsjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Versöhnung">Versöhnung</td>
+    <td>[fɛɐ̯ˈzøːnʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="和解">和解</td>
+    <td class="clickable" data-lang="en" data-word="reconciliation">reconciliation</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="compromis">compromis</td>
+    <td>[kɔ̃pʁoˈmi]</td>
+    <td class="clickable" data-lang="de" data-word="Kompromiss">Kompromiss</td>
+    <td>[kɔmpʁoˈmɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="妥协">妥协</td>
+    <td class="clickable" data-lang="en" data-word="compromise">compromise</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="médier">médier</td>
+    <td>[medˈje]</td>
+    <td class="clickable" data-lang="de" data-word="vermitteln">vermitteln</td>
+    <td>[fɛɐ̯ˈmɪtəln]</td>
+    <td class="clickable" data-lang="zh" data-word="调解">调解</td>
+    <td class="clickable" data-lang="en" data-word="mediate">mediate</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="se rendre">se rendre</td>
+    <td>[sə ʁɑ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="ergeben">ergeben</td>
+    <td>[ɛɐ̯ˈɡeːbən]</td>
+    <td class="clickable" data-lang="zh" data-word="屈服">屈服</td>
+    <td class="clickable" data-lang="en" data-word="surrender">surrender</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="colère">colère</td>
+    <td>[kɔˈlɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Wut">Wut</td>
+    <td>[vuːt]</td>
+    <td class="clickable" data-lang="zh" data-word="愤怒">愤怒</td>
+    <td class="clickable" data-lang="en" data-word="rage">rage</td>
+</tr>
+</table>
+
+
+    <script>
+    const PIXABAY_API_KEY = '49256357-c30f2f538120ce8d74ff8921d';
+    let speechSynth = window.speechSynthesis;
+    let voices = [];
+
+    // Wait for voices to load
+    speechSynth.onvoiceschanged = function() {
+        voices = speechSynth.getVoices();
+    };
+
+    // Pronunciation function
+    function speak(text, lang) {
+        // Cancel any ongoing speech
+        speechSynth.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        
+        // For Chinese, select appropriate voice based on dialect
+        if (lang.startsWith('zh')) {
+            const voices = window.speechSynthesis.getVoices();
+            const chineseVoice = voices.find(voice => voice.lang.includes(lang));
+            if (chineseVoice) {
+                utterance.voice = chineseVoice;
+            }
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    } 
+    
+    let currentImageTimeout = null;  // 添加超时变量
+
+    // 清除背景图片
+    function clearBackgroundImages() {
+        if (currentImageTimeout) {
+            clearTimeout(currentImageTimeout);
+            currentImageTimeout = null;
+        }
+        document.querySelectorAll('.background-image').forEach(img => {
+            img.style.opacity = '0';
+            setTimeout(() => img.remove(), 300); // 淡出效果后移除
+        });
+    }
+
+    // Fetch and add background image
+    async function addBackgroundImage(cell, searchTerm) {
+        clearBackgroundImages();
+        
+        try {
+            const apiUrl = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(searchTerm)}&per_page=4&safesearch=true`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.hits && data.hits.length > 0) {
+                const randomIndex = Math.floor(Math.random() * Math.min(4, data.hits.length));
+                const img = document.createElement('img');
+                img.className = 'background-image';
+                img.alt = searchTerm;
+
+                // 图片加载完成后再显示
+                img.onload = () => {
+                    setTimeout(() => {
+                        img.style.opacity = '0.9';  // 设置为原来的不透明度
+                    }, 50);
+                };
+                
+                img.src = data.hits[randomIndex].previewURL;
+                
+                const firstCell = cell.closest('tr').querySelector('td:first-child');
+                firstCell.appendChild(img);
+
+                // 设置新的超时
+                currentImageTimeout = setTimeout(() => {
+                    clearBackgroundImages();
+                }, 3000);
+            }
+        } catch (error) {
+            console.error('Error fetching image:', error);
+        }
+    }
+
+    // Add click events to clickable cells
+    window.speechSynthesis.onvoiceschanged = () => {
+        document.querySelectorAll('.clickable').forEach(cell => {
+            cell.addEventListener('click', function() {
+                const text = this.textContent;
+                let lang;
+                
+                // Get language based on data-lang attribute
+                switch(this.dataset.lang) {
+                    case 'fr':
+                        lang = 'fr-FR';
+                        break;
+                    case 'de':
+                        lang = 'de-DE';
+                        break;
+                    case 'zh':
+                        // Use selected dialect for Chinese
+                        lang = document.getElementById('chineseDialect').value;
+                        break;
+                    default:
+                        lang = 'en-US';
+                }
+                
+                speak(text, lang);
+                addBackgroundImage(this, this.dataset.word);
+
+                // Visual feedback with cleanup
+                const originalBg = window.getComputedStyle(this).backgroundColor;
+                this.style.backgroundColor = '#c8e6c9';
+                
+                // Clear any existing timeout for this cell
+                if (this.resetTimeout) {
+                    clearTimeout(this.resetTimeout);
+                }
+                
+                // Set new timeout and store its ID
+                this.resetTimeout = setTimeout(() => {
+                    this.style.backgroundColor = '';
+                    this.resetTimeout = null;
+                }, 500);
+            });
+        });
+    };
+</script>
+
+</body>
+</html>

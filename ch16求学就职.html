@@ -1,0 +1,2334 @@
+<!-- <使用这个模板，添加单词到table的部分就可以!> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr {
+            position: relative;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .clickable {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+        .clickable:hover {
+            background-color: #e6e6e6;
+        }
+        .background-image {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            opacity: 0;  /* 初始设置为透明 */
+            transition: opacity 0.3s ease-in-out;  /* 添加过渡效果 */
+        }
+        .background-image:hover {
+            opacity: 0.8;
+        }
+        .language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .language-selector select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="index.html" class="back-button">🏠 主页</a>
+      </div>
+
+    <div class="language-selector">
+        <select id="chineseDialect">
+            <option value="zh-CN">普通话</option>
+            <option value="zh-HK">粤语</option>
+        </select>
+    </div>
+
+
+    <table id="wordTable">
+        <tr>
+            <th>法语</th>
+            <th>音标</th>
+            <th>德语</th>
+            <th>音标</th>
+            <th>中文</th>
+            <th>英语</th>
+        </tr>
+        <tr>
+            <td class="clickable" data-lang="fr" data-word="jardin d'enfants">jardin d'enfants</td>
+            <td>[ʒaʁdɛ̃ dɑ̃fɑ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Kindergarten">Kindergarten</td>
+            <td>[ˈkɪndɐˌɡaːtn̩]</td>
+            <td class="clickable" data-lang="zh" data-word="幼儿园">幼儿园</td>
+            <td class="clickable" data-lang="en" data-word="kindergarten">kindergarten</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="école publique">école publique</td>
+            <td>[ekɔl pyblik]</td>
+            <td class="clickable" data-lang="de" data-word="staatliche Schule">staatliche Schule</td>
+            <td>[ˈʃtaːtlɪçə ˈʃuːlə]</td>
+            <td class="clickable" data-lang="zh" data-word="公立学校">公立学校</td>
+            <td class="clickable" data-lang="en" data-word="public school">public school</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="école privée">école privée</td>
+            <td>[ekɔl pʁive]</td>
+            <td class="clickable" data-lang="de" data-word="Privatschule">Privatschule</td>
+            <td>[pʁiˈvaːtʃuːlə]</td>
+            <td class="clickable" data-lang="zh" data-word="私立学校">私立学校</td>
+            <td class="clickable" data-lang="en" data-word="private school">private school</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="école primaire">école primaire</td>
+            <td>[ekɔl pʁimɛʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Grundschule">Grundschule</td>
+            <td>[ˈɡʁʊntʃuːlə]</td>
+            <td class="clickable" data-lang="zh" data-word="小学">小学</td>
+            <td class="clickable" data-lang="en" data-word="primary school">primary school</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="collège">collège</td>
+            <td>[kɔlɛʒ]</td>
+            <td class="clickable" data-lang="de" data-word="Mittelschule">Mittelschule</td>
+            <td>[ˈmɪtl̩ʃuːlə]</td>
+            <td class="clickable" data-lang="zh" data-word="初中">初中</td>
+            <td class="clickable" data-lang="en" data-word="middle school">middle school</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="lycée">lycée</td>
+            <td>[lise]</td>
+            <td class="clickable" data-lang="de" data-word="Oberschule">Oberschule</td>
+            <td>[ˈoːbɐʃuːlə]</td>
+            <td class="clickable" data-lang="zh" data-word="高中">高中</td>
+            <td class="clickable" data-lang="en" data-word="high school">high school</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="école supérieure">école supérieure</td>
+            <td>[ekɔl sypeʁjœʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Hochschule">Hochschule</td>
+            <td>[ˈhoːxʃuːlə]</td>
+            <td class="clickable" data-lang="zh" data-word="高等学校">高等学校</td>
+            <td class="clickable" data-lang="en" data-word="college">college</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="université">université</td>
+            <td>[ynivɛʁsite]</td>
+            <td class="clickable" data-lang="de" data-word="Universität">Universität</td>
+            <td>[ˌuniverziˈtɛːt]</td>
+            <td class="clickable" data-lang="zh" data-word="大学">大学</td>
+            <td class="clickable" data-lang="en" data-word="university">university</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="classe">classe</td>
+            <td>[klas]</td>
+            <td class="clickable" data-lang="de" data-word="Klasse">Klasse</td>
+            <td>[ˈklasə]</td>
+            <td class="clickable" data-lang="zh" data-word="班级">班级</td>
+            <td class="clickable" data-lang="en" data-word="class">class</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="bourse">bourse</td>
+            <td>[buʁs]</td>
+            <td class="clickable" data-lang="de" data-word="Stipendium">Stipendium</td>
+            <td>[ʃtiˈpɛndi̯ʊm]</td>
+            <td class="clickable" data-lang="zh" data-word="奖学金">奖学金</td>
+            <td class="clickable" data-lang="en" data-word="scholarship">scholarship</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="former">former</td>
+            <td>[fɔʁme]</td>
+            <td class="clickable" data-lang="de" data-word="ausbilden">ausbilden</td>
+            <td>[ˈaʊ̯sˌbɪldən]</td>
+            <td class="clickable" data-lang="zh" data-word="教育">教育</td>
+            <td class="clickable" data-lang="en" data-word="educate">educate</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="cours">cours</td>
+            <td>[kuʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Kurs">Kurs</td>
+            <td>[kʊʁs]</td>
+            <td class="clickable" data-lang="zh" data-word="课程">课程</td>
+            <td class="clickable" data-lang="en" data-word="course">course</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="année scolaire">année scolaire</td>
+            <td>[ane skɔlɛʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Schuljahr">Schuljahr</td>
+            <td>[ˈʃuːljaːɐ̯]</td>
+            <td class="clickable" data-lang="zh" data-word="学年">学年</td>
+            <td class="clickable" data-lang="en" data-word="school year">school year</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="institut">institut</td>
+            <td>[ɛ̃stity]</td>
+            <td class="clickable" data-lang="de" data-word="Institut">Institut</td>
+            <td>[ɪnstiˈtuːt]</td>
+            <td class="clickable" data-lang="zh" data-word="学院">学院</td>
+            <td class="clickable" data-lang="en" data-word="institute">institute</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="étudier">étudier</td>
+            <td>[etydje]</td>
+            <td class="clickable" data-lang="de" data-word="studieren">studieren</td>
+            <td>[ʃtuˈdiːʁən]</td>
+            <td class="clickable" data-lang="zh" data-word="学习">学习</td>
+            <td class="clickable" data-lang="en" data-word="study">study</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="pratiquer">pratiquer</td>
+            <td>[pʁatike]</td>
+            <td class="clickable" data-lang="de" data-word="üben">üben</td>
+            <td>[ˈyːbn̩]</td>
+            <td class="clickable" data-lang="zh" data-word="练习">练习</td>
+            <td class="clickable" data-lang="en" data-word="practice">practice</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="examen">examen</td>
+            <td>[ɛɡzamɛ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Prüfung">Prüfung</td>
+            <td>[ˈpʁyːfʊŋ]</td>
+            <td class="clickable" data-lang="zh" data-word="测验">测验</td>
+            <td class="clickable" data-lang="en" data-word="exam">exam</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="demander">demander</td>
+            <td>[dəmɑ̃de]</td>
+            <td class="clickable" data-lang="de" data-word="fragen">fragen</td>
+            <td>[ˈfʁaːɡən]</td>
+            <td class="clickable" data-lang="zh" data-word="提问">提问</td>
+            <td class="clickable" data-lang="en" data-word="ask">ask</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="réviser">réviser</td>
+            <td>[ʁevize]</td>
+            <td class="clickable" data-lang="de" data-word="wiederholen">wiederholen</td>
+            <td>[viːdɐˈhoːlən]</td>
+            <td class="clickable" data-lang="zh" data-word="复习">复习</td>
+            <td class="clickable" data-lang="en" data-word="review">review</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="comprendre">comprendre</td>
+            <td>[kɔ̃pʁɑ̃dʁ]</td>
+            <td class="clickable" data-lang="de" data-word="verstehen">verstehen</td>
+            <td>[fɛɐ̯ˈʃteːən]</td>
+            <td class="clickable" data-lang="zh" data-word="理解">理解</td>
+            <td class="clickable" data-lang="en" data-word="understand">understand</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="élève">élève</td>
+    <td>[elɛv]</td>
+    <td class="clickable" data-lang="de" data-word="Schüler">Schüler</td>
+    <td>[ˈʃyːlɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="中小学生">中小学生</td>
+    <td class="clickable" data-lang="en" data-word="pupil, student">pupil, student</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="étudiant">étudiant</td>
+    <td>[etydjɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Student">Student</td>
+    <td>[ʃtuˈdɛnt]</td>
+    <td class="clickable" data-lang="zh" data-word="大学生">大学生</td>
+    <td class="clickable" data-lang="en" data-word="university student">university student</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="délégué de classe">délégué de classe</td>
+    <td>[delege də klas]</td>
+    <td class="clickable" data-lang="de" data-word="Monitor">Monitor</td>
+    <td>[moniˈtoːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="班长">班长</td>
+    <td class="clickable" data-lang="en" data-word="class monitor">class monitor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="recteur">recteur</td>
+    <td>[ʁɛktœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Rektor">Rektor</td>
+    <td>[ˈʁɛktoːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="校长">校长</td>
+    <td class="clickable" data-lang="en" data-word="rector, chancellor">rector, chancellor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="professeur invité">professeur invité</td>
+    <td>[pʁɔfɛsœʁ ɛ̃vite]</td>
+    <td class="clickable" data-lang="de" data-word="Gastprofessor">Gastprofessor</td>
+    <td>[ɡastpʁoˈfɛsoːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="客座教授">客座教授</td>
+    <td class="clickable" data-lang="en" data-word="visiting professor">visiting professor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="professeur">professeur</td>
+    <td>[pʁɔfɛsœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Lehrer">Lehrer</td>
+    <td>[ˈleːʁɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="老师">老师</td>
+    <td class="clickable" data-lang="en" data-word="teacher">teacher</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="professeur">professeur</td>
+    <td>[pʁɔfɛsœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Professor">Professor</td>
+    <td>[pʁoˈfɛsoːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="教授">教授</td>
+    <td class="clickable" data-lang="en" data-word="professor">professor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="assistant">assistant</td>
+    <td>[asistɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Assistent">Assistent</td>
+    <td>[asɪsˈtɛnt]</td>
+    <td class="clickable" data-lang="zh" data-word="助教">助教</td>
+    <td class="clickable" data-lang="en" data-word="teaching assistant">teaching assistant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="doyen">doyen</td>
+    <td>[dwajɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Dekan">Dekan</td>
+    <td>[deˈkaːn]</td>
+    <td class="clickable" data-lang="zh" data-word="系主任">系主任</td>
+    <td class="clickable" data-lang="en" data-word="dean">dean</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="directeur">directeur</td>
+    <td>[diʁɛktœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Direktor">Direktor</td>
+    <td>[diʁɛkˈtoːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="院长">院长</td>
+    <td class="clickable" data-lang="en" data-word="director">director</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="tuteur">tuteur</td>
+    <td>[tytœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Betreuer">Betreuer</td>
+    <td>[bəˈtʁɔʏ̯ɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="导师">导师</td>
+    <td class="clickable" data-lang="en" data-word="supervisor">supervisor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="licence">licence</td>
+    <td>[lisɑ̃s]</td>
+    <td class="clickable" data-lang="de" data-word="Bachelor">Bachelor</td>
+    <td>[ˈbɛtʃəlɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="学士学位">学士学位</td>
+    <td class="clickable" data-lang="en" data-word="bachelor's degree">bachelor's degree</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="master">master</td>
+    <td>[mastɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Magister">Magister</td>
+    <td>[maˈɡɪstɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="文科硕士学位">文科硕士学位</td>
+    <td class="clickable" data-lang="en" data-word="master's degree (arts)">master's degree (arts)</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="diplôme">diplôme</td>
+    <td>[diplom]</td>
+    <td class="clickable" data-lang="de" data-word="Diplom">Diplom</td>
+    <td>[diˈploːm]</td>
+    <td class="clickable" data-lang="zh" data-word="理工科硕士学位">理工科硕士学位</td>
+    <td class="clickable" data-lang="en" data-word="master's degree (science)">master's degree (science)</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="docteur">docteur</td>
+    <td>[dɔktœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Doktor">Doktor</td>
+    <td>[ˈdɔktoːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="博士">博士</td>
+    <td class="clickable" data-lang="en" data-word="doctor, Ph.D.">doctor, Ph.D.</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="étudiant étranger">étudiant étranger</td>
+    <td>[etydjɑ̃ etʁɑ̃ʒe]</td>
+    <td class="clickable" data-lang="de" data-word="Auslandsstudent">Auslandsstudent</td>
+    <td>[ˈaʊ̯slantsʃtuˌdɛnt]</td>
+    <td class="clickable" data-lang="zh" data-word="留学生">留学生</td>
+    <td class="clickable" data-lang="en" data-word="international student">international student</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="maître de conférences">maître de conférences</td>
+    <td>[mɛtʁ də kɔ̃feʁɑ̃s]</td>
+    <td class="clickable" data-lang="de" data-word="Dozent">Dozent</td>
+    <td>[doˈtsɛnt]</td>
+    <td class="clickable" data-lang="zh" data-word="讲师">讲师</td>
+    <td class="clickable" data-lang="en" data-word="lecturer">lecturer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="diplômé">diplômé</td>
+    <td>[diplome]</td>
+    <td class="clickable" data-lang="de" data-word="Absolvent">Absolvent</td>
+    <td>[apzɔlˈvɛnt]</td>
+    <td class="clickable" data-lang="zh" data-word="毕业生">毕业生</td>
+    <td class="clickable" data-lang="en" data-word="graduate">graduate</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="camarade de classe">camarade de classe</td>
+    <td>[kamaʁad də klas]</td>
+    <td class="clickable" data-lang="de" data-word="Mitschüler">Mitschüler</td>
+    <td>[ˈmɪtʃyːlɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="同学">同学</td>
+    <td class="clickable" data-lang="en" data-word="classmate">classmate</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="géographie">géographie</td>
+    <td>[ʒeɔɡʁafi]</td>
+    <td class="clickable" data-lang="de" data-word="Geographie">Geographie</td>
+    <td>[ɡeoɡʁaˈfiː]</td>
+    <td class="clickable" data-lang="zh" data-word="地理学">地理学</td>
+    <td class="clickable" data-lang="en" data-word="geography">geography</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="droit">droit</td>
+    <td>[dʁwa]</td>
+    <td class="clickable" data-lang="de" data-word="Jus">Jus</td>
+    <td>[juːs]</td>
+    <td class="clickable" data-lang="zh" data-word="法学">法学</td>
+    <td class="clickable" data-lang="en" data-word="law">law</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="technique">technique</td>
+    <td>[tɛknik]</td>
+    <td class="clickable" data-lang="de" data-word="Technik">Technik</td>
+    <td>[ˈtɛçnɪk]</td>
+    <td class="clickable" data-lang="zh" data-word="工程学">工程学</td>
+    <td class="clickable" data-lang="en" data-word="engineering">engineering</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chimie">chimie</td>
+    <td>[ʃimi]</td>
+    <td class="clickable" data-lang="de" data-word="Chemie">Chemie</td>
+    <td>[çeˈmiː]</td>
+    <td class="clickable" data-lang="zh" data-word="化学">化学</td>
+    <td class="clickable" data-lang="en" data-word="chemistry">chemistry</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="architecture">architecture</td>
+    <td>[aʁʃitɛktyʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Architektur">Architektur</td>
+    <td>[aʁçitɛkˈtuːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="建筑学">建筑学</td>
+    <td class="clickable" data-lang="en" data-word="architecture">architecture</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="économie">économie</td>
+    <td>[ekɔnɔmi]</td>
+    <td class="clickable" data-lang="de" data-word="Ökonomie">Ökonomie</td>
+    <td>[økonoˈmiː]</td>
+    <td class="clickable" data-lang="zh" data-word="经济学">经济学</td>
+    <td class="clickable" data-lang="en" data-word="economics">economics</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="histoire">histoire</td>
+    <td>[istwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Geschichte">Geschichte</td>
+    <td>[ɡəˈʃɪçtə]</td>
+    <td class="clickable" data-lang="zh" data-word="历史学">历史学</td>
+    <td class="clickable" data-lang="en" data-word="history">history</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sociologie">sociologie</td>
+    <td>[sɔsjɔlɔʒi]</td>
+    <td class="clickable" data-lang="de" data-word="Soziologie">Soziologie</td>
+    <td>[zotsioloˈɡiː]</td>
+    <td class="clickable" data-lang="zh" data-word="社会学">社会学</td>
+    <td class="clickable" data-lang="en" data-word="sociology">sociology</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="biologie">biologie</td>
+    <td>[bjɔlɔʒi]</td>
+    <td class="clickable" data-lang="de" data-word="Biologie">Biologie</td>
+    <td>[bioloˈɡiː]</td>
+    <td class="clickable" data-lang="zh" data-word="生物学">生物学</td>
+    <td class="clickable" data-lang="en" data-word="biology">biology</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mathématiques">mathématiques</td>
+    <td>[matematiк]</td>
+    <td class="clickable" data-lang="de" data-word="Mathematik">Mathematik</td>
+    <td>[matemaˈtiːk]</td>
+    <td class="clickable" data-lang="zh" data-word="数学">数学</td>
+    <td class="clickable" data-lang="en" data-word="mathematics">mathematics</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="statistique">statistique</td>
+    <td>[statistik]</td>
+    <td class="clickable" data-lang="de" data-word="Statistik">Statistik</td>
+    <td>[ʃtaˈtɪstɪk]</td>
+    <td class="clickable" data-lang="zh" data-word="统计学">统计学</td>
+    <td class="clickable" data-lang="en" data-word="statistics">statistics</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sciences humaines">sciences humaines</td>
+    <td>[sjɑ̃s ymɛn]</td>
+    <td class="clickable" data-lang="de" data-word="Geisteswissenschaft">Geisteswissenschaft</td>
+    <td>[ˈɡaɪstəsˌvɪsn̩ʃaft]</td>
+    <td class="clickable" data-lang="zh" data-word="人文学">人文学</td>
+    <td class="clickable" data-lang="en" data-word="humanities">humanities</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="littérature">littérature</td>
+    <td>[liteʁatyʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Literatur">Literatur</td>
+    <td>[litəʁaˈtuːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="文学">文学</td>
+    <td class="clickable" data-lang="en" data-word="literature">literature</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="physique">physique</td>
+    <td>[fizik]</td>
+    <td class="clickable" data-lang="de" data-word="Physik">Physik</td>
+    <td>[fyˈziːk]</td>
+    <td class="clickable" data-lang="zh" data-word="物理学">物理学</td>
+    <td class="clickable" data-lang="en" data-word="physics">physics</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="psychologie">psychologie</td>
+    <td>[psikɔlɔʒi]</td>
+    <td class="clickable" data-lang="de" data-word="Psychologie">Psychologie</td>
+    <td>[psyçoloˈɡiː]</td>
+    <td class="clickable" data-lang="zh" data-word="心理学">心理学</td>
+    <td class="clickable" data-lang="en" data-word="psychology">psychology</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="médecine">médecine</td>
+    <td>[mɛdsin]</td>
+    <td class="clickable" data-lang="de" data-word="Medizin">Medizin</td>
+    <td>[mediˈtsiːn]</td>
+    <td class="clickable" data-lang="zh" data-word="医学">医学</td>
+    <td class="clickable" data-lang="en" data-word="medicine">medicine</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="linguistique">linguistique</td>
+    <td>[lɛ̃ɡɥistik]</td>
+    <td class="clickable" data-lang="de" data-word="Linguistik">Linguistik</td>
+    <td>[lɪŋɡuˈɪstɪk]</td>
+    <td class="clickable" data-lang="zh" data-word="语言学">语言学</td>
+    <td class="clickable" data-lang="en" data-word="linguistics">linguistics</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="philosophie">philosophie</td>
+    <td>[filɔzɔfi]</td>
+    <td class="clickable" data-lang="de" data-word="Philosophie">Philosophie</td>
+    <td>[filozoˈfiː]</td>
+    <td class="clickable" data-lang="zh" data-word="哲学">哲学</td>
+    <td class="clickable" data-lang="en" data-word="philosophy">philosophy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="science politique">science politique</td>
+    <td>[sjɑ̃s pɔlitik]</td>
+    <td class="clickable" data-lang="de" data-word="Politologie">Politologie</td>
+    <td>[politoloˈɡiː]</td>
+    <td class="clickable" data-lang="zh" data-word="政治学">政治学</td>
+    <td class="clickable" data-lang="en" data-word="political science">political science</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mécanique">mécanique</td>
+    <td>[mekanik]</td>
+    <td class="clickable" data-lang="de" data-word="Mechanik">Mechanik</td>
+    <td>[meˈçaːnɪk]</td>
+    <td class="clickable" data-lang="zh" data-word="机械学">机械学</td>
+    <td class="clickable" data-lang="en" data-word="mechanics">mechanics</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="salle de classe">salle de classe</td>
+    <td>[sal də klas]</td>
+    <td class="clickable" data-lang="de" data-word="Klassenzimmer">Klassenzimmer</td>
+    <td>[ˈklasənˌtsɪmɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="教室">教室</td>
+    <td class="clickable" data-lang="en" data-word="classroom">classroom</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bibliothèque">bibliothèque</td>
+    <td>[biblijɔtɛk]</td>
+    <td class="clickable" data-lang="de" data-word="Bibliothek">Bibliothek</td>
+    <td>[biblioˈteːk]</td>
+    <td class="clickable" data-lang="zh" data-word="图书馆">图书馆</td>
+    <td class="clickable" data-lang="en" data-word="library">library</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="gymnase">gymnase</td>
+    <td>[ʒimnaz]</td>
+    <td class="clickable" data-lang="de" data-word="Sporthalle">Sporthalle</td>
+    <td>[ˈʃpɔrthalə]</td>
+    <td class="clickable" data-lang="zh" data-word="体育馆">体育馆</td>
+    <td class="clickable" data-lang="en" data-word="gymnasium">gymnasium</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="terrain de sport">terrain de sport</td>
+    <td>[tɛʁɛ̃ də spɔʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Sportplatz">Sportplatz</td>
+    <td>[ˈʃpɔrtplats]</td>
+    <td class="clickable" data-lang="zh" data-word="操场">操场</td>
+    <td class="clickable" data-lang="en" data-word="sports ground">sports ground</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bureau">bureau</td>
+    <td>[byʁo]</td>
+    <td class="clickable" data-lang="de" data-word="Büro">Büro</td>
+    <td>[byˈʁoː]</td>
+    <td class="clickable" data-lang="zh" data-word="办公室">办公室</td>
+    <td class="clickable" data-lang="en" data-word="office">office</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="résidence universitaire">résidence universitaire</td>
+    <td>[ʁezidɑ̃s ynivɛʁsitɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Studentenheim">Studentenheim</td>
+    <td>[ʃtuˈdɛntn̩haɪm]</td>
+    <td class="clickable" data-lang="zh" data-word="宿舍">宿舍</td>
+    <td class="clickable" data-lang="en" data-word="dormitory">dormitory</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="restaurant universitaire">restaurant universitaire</td>
+    <td>[ʁɛstoʁɑ̃ ynivɛʁsitɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Mensa">Mensa</td>
+    <td>[ˈmɛnza]</td>
+    <td class="clickable" data-lang="zh" data-word="食堂">食堂</td>
+    <td class="clickable" data-lang="en" data-word="cafeteria">cafeteria</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="parking">parking</td>
+    <td>[paʁkiŋ]</td>
+    <td class="clickable" data-lang="de" data-word="Parkplatz">Parkplatz</td>
+    <td>[ˈpaʁkplats]</td>
+    <td class="clickable" data-lang="zh" data-word="停车场">停车场</td>
+    <td class="clickable" data-lang="en" data-word="parking lot">parking lot</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="campus">campus</td>
+    <td>[kɑ̃pys]</td>
+    <td class="clickable" data-lang="de" data-word="Campus">Campus</td>
+    <td>[ˈkampʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="校园">校园</td>
+    <td class="clickable" data-lang="en" data-word="campus">campus</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="clinique">clinique</td>
+    <td>[klinik]</td>
+    <td class="clickable" data-lang="de" data-word="Klinik">Klinik</td>
+    <td>[kliˈniːk]</td>
+    <td class="clickable" data-lang="zh" data-word="医院">医院</td>
+    <td class="clickable" data-lang="en" data-word="clinic">clinic</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="tableau">tableau</td>
+    <td>[tablo]</td>
+    <td class="clickable" data-lang="de" data-word="Tafel">Tafel</td>
+    <td>[ˈtaːfl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="黑板">黑板</td>
+    <td class="clickable" data-lang="en" data-word="blackboard">blackboard</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pupitre">pupitre</td>
+    <td>[pypitʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Pult">Pult</td>
+    <td>[pʊlt]</td>
+    <td class="clickable" data-lang="zh" data-word="讲台">讲台</td>
+    <td class="clickable" data-lang="en" data-word="lectern">lectern</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="amphithéâtre">amphithéâtre</td>
+    <td>[ɑ̃fiteɑtʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Aula">Aula</td>
+    <td>[ˈaʊla]</td>
+    <td class="clickable" data-lang="zh" data-word="礼堂">礼堂</td>
+    <td class="clickable" data-lang="en" data-word="auditorium">auditorium</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="salle de lecture">salle de lecture</td>
+    <td>[sal də lɛktyʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Lesesaal">Lesesaal</td>
+    <td>[ˈleːzəzaːl]</td>
+    <td class="clickable" data-lang="zh" data-word="阅览室">阅览室</td>
+    <td class="clickable" data-lang="en" data-word="reading room">reading room</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="amphithéâtre">amphithéâtre</td>
+    <td>[ɑ̃fiteɑtʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Hörsaal">Hörsaal</td>
+    <td>[ˈhøːɐ̯zaːl]</td>
+    <td class="clickable" data-lang="zh" data-word="阶梯教室">阶梯教室</td>
+    <td class="clickable" data-lang="en" data-word="lecture hall">lecture hall</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="accueil">accueil</td>
+    <td>[akœj]</td>
+    <td class="clickable" data-lang="de" data-word="Anmeldung">Anmeldung</td>
+    <td>[ˈanmɛldʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="传达室">传达室</td>
+    <td class="clickable" data-lang="en" data-word="reception">reception</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bâtiment d'enseignement">bâtiment d'enseignement</td>
+    <td>[batimɑ̃ dɑ̃sɛɲmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Unterrichtsgebäude">Unterrichtsgebäude</td>
+    <td>[ˈʊntɐʁɪçtsɡəbɔʏdə]</td>
+    <td class="clickable" data-lang="zh" data-word="教学楼">教学楼</td>
+    <td class="clickable" data-lang="en" data-word="teaching building">teaching building</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="laboratoire de langues">laboratoire de langues</td>
+    <td>[labɔʁatwaʁ də lɑ̃ɡ]</td>
+    <td class="clickable" data-lang="de" data-word="Sprachlabor">Sprachlabor</td>
+    <td>[ˈʃpʁaːxlaˌboːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="语音室">语音室</td>
+    <td class="clickable" data-lang="en" data-word="language lab">language lab</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="livre">livre</td>
+    <td>[livʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Buch">Buch</td>
+    <td>[buːx]</td>
+    <td class="clickable" data-lang="zh" data-word="书">书</td>
+    <td class="clickable" data-lang="en" data-word="book">book</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cahier">cahier</td>
+    <td>[kaje]</td>
+    <td class="clickable" data-lang="de" data-word="Heft">Heft</td>
+    <td>[hɛft]</td>
+    <td class="clickable" data-lang="zh" data-word="本子">本子</td>
+    <td class="clickable" data-lang="en" data-word="notebook">notebook</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="stylo">stylo</td>
+    <td>[stilo]</td>
+    <td class="clickable" data-lang="de" data-word="Stift">Stift</td>
+    <td>[ʃtɪft]</td>
+    <td class="clickable" data-lang="zh" data-word="笔">笔</td>
+    <td class="clickable" data-lang="en" data-word="pen">pen</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="gomme">gomme</td>
+    <td>[ɡɔm]</td>
+    <td class="clickable" data-lang="de" data-word="Radiergummi">Radiergummi</td>
+    <td>[ʁaˈdiːɐ̯ˌɡʊmi]</td>
+    <td class="clickable" data-lang="zh" data-word="橡皮">橡皮</td>
+    <td class="clickable" data-lang="en" data-word="eraser">eraser</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="calculatrice">calculatrice</td>
+    <td>[kalkylatʁis]</td>
+    <td class="clickable" data-lang="de" data-word="Taschenrechner">Taschenrechner</td>
+    <td>[ˈtaʃn̩ˌʁɛçnɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="计算器">计算器</td>
+    <td class="clickable" data-lang="en" data-word="calculator">calculator</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="lampe">lampe</td>
+    <td>[lɑ̃p]</td>
+    <td class="clickable" data-lang="de" data-word="Lampe">Lampe</td>
+    <td>[ˈlampə]</td>
+    <td class="clickable" data-lang="zh" data-word="台灯">台灯</td>
+    <td class="clickable" data-lang="en" data-word="lamp">lamp</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="règle">règle</td>
+    <td>[ʁɛɡl]</td>
+    <td class="clickable" data-lang="de" data-word="Lineal">Lineal</td>
+    <td>[liniˈaːl]</td>
+    <td class="clickable" data-lang="zh" data-word="尺子">尺子</td>
+    <td class="clickable" data-lang="en" data-word="ruler">ruler</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ordinateur">ordinateur</td>
+    <td>[ɔʁdinatœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Computer">Computer</td>
+    <td>[kɔmˈpjuːtɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="电脑">电脑</td>
+    <td class="clickable" data-lang="en" data-word="computer">computer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="carte">carte</td>
+    <td>[kaʁt]</td>
+    <td class="clickable" data-lang="de" data-word="Landkarte">Landkarte</td>
+    <td>[ˈlantkartə]</td>
+    <td class="clickable" data-lang="zh" data-word="地图">地图</td>
+    <td class="clickable" data-lang="en" data-word="map">map</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bureau">bureau</td>
+    <td>[byʁo]</td>
+    <td class="clickable" data-lang="de" data-word="Schreibtisch">Schreibtisch</td>
+    <td>[ˈʃʁaɪpˌtɪʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="书桌">书桌</td>
+    <td class="clickable" data-lang="en" data-word="desk">desk</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="papier">papier</td>
+    <td>[papje]</td>
+    <td class="clickable" data-lang="de" data-word="Papier">Papier</td>
+    <td>[paˈpiːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="纸">纸</td>
+    <td class="clickable" data-lang="en" data-word="paper">paper</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="dictionnaire">dictionnaire</td>
+    <td>[diksjɔnɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Wörterbuch">Wörterbuch</td>
+    <td>[ˈvœʁtɐbuːx]</td>
+    <td class="clickable" data-lang="zh" data-word="词典">词典</td>
+    <td class="clickable" data-lang="en" data-word="dictionary">dictionary</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="manuel">manuel</td>
+    <td>[manɥɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Lehrbuch">Lehrbuch</td>
+    <td>[ˈleːɐ̯buːx]</td>
+    <td class="clickable" data-lang="zh" data-word="教科书">教科书</td>
+    <td class="clickable" data-lang="en" data-word="textbook">textbook</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cahier d'exercices">cahier d'exercices</td>
+    <td>[kaje dɛɡzɛʁsis]</td>
+    <td class="clickable" data-lang="de" data-word="Übungsbuch">Übungsbuch</td>
+    <td>[ˈyːbʊŋsbuːx]</td>
+    <td class="clickable" data-lang="zh" data-word="练习册">练习册</td>
+    <td class="clickable" data-lang="en" data-word="workbook">workbook</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="crayon">crayon</td>
+    <td>[kʁɛjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Bleistift">Bleistift</td>
+    <td>[ˈblaɪʃtɪft]</td>
+    <td class="clickable" data-lang="zh" data-word="铅笔">铅笔</td>
+    <td class="clickable" data-lang="en" data-word="pencil">pencil</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cartable">cartable</td>
+    <td>[kaʁtabl]</td>
+    <td class="clickable" data-lang="de" data-word="Schultasche">Schultasche</td>
+    <td>[ˈʃuːltaʃə]</td>
+    <td class="clickable" data-lang="zh" data-word="书包">书包</td>
+    <td class="clickable" data-lang="en" data-word="school bag">school bag</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="compas">compas</td>
+    <td>[kɔ̃pɑ]</td>
+    <td class="clickable" data-lang="de" data-word="Zirkel">Zirkel</td>
+    <td>[ˈtsɪʁkl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="圆规">圆规</td>
+    <td class="clickable" data-lang="en" data-word="compass">compass</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="encre">encre</td>
+    <td>[ɑ̃kʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Tinte">Tinte</td>
+    <td>[ˈtɪntə]</td>
+    <td class="clickable" data-lang="zh" data-word="墨水">墨水</td>
+    <td class="clickable" data-lang="en" data-word="ink">ink</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="crayon de couleur">crayon de couleur</td>
+    <td>[kʁɛjɔ̃ də kulœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Buntstift">Buntstift</td>
+    <td>[ˈbʊntʃtɪft]</td>
+    <td class="clickable" data-lang="zh" data-word="彩笔">彩笔</td>
+    <td class="clickable" data-lang="en" data-word="colored pencil">colored pencil</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="nom">nom</td>
+    <td>[nɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Name">Name</td>
+    <td>[ˈnaːmə]</td>
+    <td class="clickable" data-lang="zh" data-word="姓名">姓名</td>
+    <td class="clickable" data-lang="en" data-word="name">name</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="adresse">adresse</td>
+    <td>[adʁɛs]</td>
+    <td class="clickable" data-lang="de" data-word="Adresse">Adresse</td>
+    <td>[aˈdʁɛsə]</td>
+    <td class="clickable" data-lang="zh" data-word="地址">地址</td>
+    <td class="clickable" data-lang="en" data-word="address">address</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="numéro de portable">numéro de portable</td>
+    <td>[nymeʁo də pɔʁtabl]</td>
+    <td class="clickable" data-lang="de" data-word="Handynummer">Handynummer</td>
+    <td>[ˈhɛndiˌnʊmɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="手机号码">手机号码</td>
+    <td class="clickable" data-lang="en" data-word="mobile number">mobile number</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="âge">âge</td>
+    <td>[aʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Alter">Alter</td>
+    <td>[ˈaltɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="年龄">年龄</td>
+    <td class="clickable" data-lang="en" data-word="age">age</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sexe">sexe</td>
+    <td>[sɛks]</td>
+    <td class="clickable" data-lang="de" data-word="Geschlecht">Geschlecht</td>
+    <td>[ɡəˈʃlɛçt]</td>
+    <td class="clickable" data-lang="zh" data-word="性别">性别</td>
+    <td class="clickable" data-lang="en" data-word="gender">gender</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="état civil">état civil</td>
+    <td>[eta sivil]</td>
+    <td class="clickable" data-lang="de" data-word="Familienstand">Familienstand</td>
+    <td>[faˈmiːli̯ənʃtant]</td>
+    <td class="clickable" data-lang="zh" data-word="婚姻状况">婚姻状况</td>
+    <td class="clickable" data-lang="en" data-word="marital status">marital status</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="parcours éducatif">parcours éducatif</td>
+    <td>[paʁkuʁ edykatif]</td>
+    <td class="clickable" data-lang="de" data-word="Bildungsgang">Bildungsgang</td>
+    <td>[ˈbɪldʊŋsˌɡaŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="教育经历">教育经历</td>
+    <td class="clickable" data-lang="en" data-word="educational background">educational background</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="profession">profession</td>
+    <td>[pʁɔfɛsjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Beruf">Beruf</td>
+    <td>[bəˈʁuːf]</td>
+    <td class="clickable" data-lang="zh" data-word="职务">职务</td>
+    <td class="clickable" data-lang="en" data-word="profession">profession</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="qualification">qualification</td>
+    <td>[kalifikasjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Qualifikation">Qualifikation</td>
+    <td>[kvalifikaˈtsi̯oːn]</td>
+    <td class="clickable" data-lang="zh" data-word="能力">能力</td>
+    <td class="clickable" data-lang="en" data-word="qualification">qualification</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="curriculum vitae">curriculum vitae</td>
+    <td>[kyʁikyløm vite]</td>
+    <td class="clickable" data-lang="de" data-word="Lebenslauf">Lebenslauf</td>
+    <td>[ˈleːbn̩sˌlaʊ̯f]</td>
+    <td class="clickable" data-lang="zh" data-word="简历">简历</td>
+    <td class="clickable" data-lang="en" data-word="resume, CV">resume, CV</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="poste">poste</td>
+    <td>[pɔst]</td>
+    <td class="clickable" data-lang="de" data-word="Stelle">Stelle</td>
+    <td>[ˈʃtɛlə]</td>
+    <td class="clickable" data-lang="zh" data-word="职位">职位</td>
+    <td class="clickable" data-lang="en" data-word="position">position</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="exigence">exigence</td>
+    <td>[ɛɡziʒɑ̃s]</td>
+    <td class="clickable" data-lang="de" data-word="Anforderung">Anforderung</td>
+    <td>[ˈanfɔʁdəʁʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="要求">要求</td>
+    <td class="clickable" data-lang="en" data-word="requirement">requirement</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="offre d'emploi">offre d'emploi</td>
+    <td>[ɔfʁ dɑ̃plwa]</td>
+    <td class="clickable" data-lang="de" data-word="Stellenangebot">Stellenangebot</td>
+    <td>[ˈʃtɛlənˌanɡeboːt]</td>
+    <td class="clickable" data-lang="zh" data-word="招聘">招聘</td>
+    <td class="clickable" data-lang="en" data-word="job offer">job offer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="expérience professionnelle">expérience professionnelle</td>
+    <td>[ɛkspeʁjɑ̃s pʁɔfɛsjɔnɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Berufserfahrung">Berufserfahrung</td>
+    <td>[bəˈʁuːfsʔɛɐ̯ˌfaːʁʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="工作经验">工作经验</td>
+    <td class="clickable" data-lang="en" data-word="work experience">work experience</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="candidat">candidat</td>
+    <td>[kɑ̃dida]</td>
+    <td class="clickable" data-lang="de" data-word="Bewerber">Bewerber</td>
+    <td>[bəˈvɛʁbɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="申请人">申请人</td>
+    <td class="clickable" data-lang="en" data-word="applicant">applicant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="connaissance professionnelle">connaissance professionnelle</td>
+    <td>[kɔnɛsɑ̃s pʁɔfɛsjɔnɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Fachkenntnis">Fachkenntnis</td>
+    <td>[ˈfaxkɛntnɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="专业知识">专业知识</td>
+    <td class="clickable" data-lang="en" data-word="professional knowledge">professional knowledge</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="avantage">avantage</td>
+    <td>[avɑ̃taʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Vorzug">Vorzug</td>
+    <td>[ˈfoːɐ̯ˌtsuːk]</td>
+    <td class="clickable" data-lang="zh" data-word="优点">优点</td>
+    <td class="clickable" data-lang="en" data-word="advantage">advantage</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="collaborer">collaborer</td>
+    <td>[kɔlabɔʁe]</td>
+    <td class="clickable" data-lang="de" data-word="zusammenarbeiten">zusammenarbeiten</td>
+    <td>[tsuˈzamənˌʔaʁbaɪ̯tn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="合作">合作</td>
+    <td class="clickable" data-lang="en" data-word="collaborate">collaborate</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="présenter">présenter</td>
+    <td>[pʁezɑ̃te]</td>
+    <td class="clickable" data-lang="de" data-word="vorstellen">vorstellen</td>
+    <td>[ˈfoːɐ̯ˌʃtɛlən]</td>
+    <td class="clickable" data-lang="zh" data-word="介绍">介绍</td>
+    <td class="clickable" data-lang="en" data-word="introduce">introduce</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="postuler">postuler</td>
+    <td>[pɔstyle]</td>
+    <td class="clickable" data-lang="de" data-word="bewerben">bewerben</td>
+    <td>[bəˈvɛʁbn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="申请">申请</td>
+    <td class="clickable" data-lang="en" data-word="apply">apply</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="siège social">siège social</td>
+    <td>[sjɛʒ sɔsjal]</td>
+    <td class="clickable" data-lang="de" data-word="Zentrale des Unternehmens">Zentrale des Unternehmens</td>
+    <td>[tsɛnˈtʁaːlə dɛs ʊntɐˈneːməns]</td>
+    <td class="clickable" data-lang="zh" data-word="公司总部">公司总部</td>
+    <td class="clickable" data-lang="en" data-word="company headquarters">company headquarters</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="filiale">filiale</td>
+    <td>[filjal]</td>
+    <td class="clickable" data-lang="de" data-word="Tochtergesellschaft">Tochtergesellschaft</td>
+    <td>[ˈtɔxtɐɡəzɛlʃaft]</td>
+    <td class="clickable" data-lang="zh" data-word="子公司">子公司</td>
+    <td class="clickable" data-lang="en" data-word="subsidiary">subsidiary</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="conseil d'administration">conseil d'administration</td>
+    <td>[kɔ̃sɛj dadministʁasjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Vorstand">Vorstand</td>
+    <td>[ˈfoːɐ̯ʃtant]</td>
+    <td class="clickable" data-lang="zh" data-word="董事会">董事会</td>
+    <td class="clickable" data-lang="en" data-word="board of directors">board of directors</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="gestion">gestion</td>
+    <td>[ʒɛstjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Management">Management</td>
+    <td>[ˈmɛnɪdʒmənt]</td>
+    <td class="clickable" data-lang="zh" data-word="管理">管理</td>
+    <td class="clickable" data-lang="en" data-word="management">management</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="assistant de projet">assistant de projet</td>
+    <td>[asistɑ̃ də pʁɔʒɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Projekt-Assistent">Projekt-Assistent</td>
+    <td>[pʁoˈjɛkt ʔasɪstɛnt]</td>
+    <td class="clickable" data-lang="zh" data-word="项目助理">项目助理</td>
+    <td class="clickable" data-lang="en" data-word="project assistant">project assistant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="département">département</td>
+    <td>[depaʁtəmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Abteilung">Abteilung</td>
+    <td>[ˈaptaɪlʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="部门">部门</td>
+    <td class="clickable" data-lang="en" data-word="department">department</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="administration">administration</td>
+    <td>[administʁasjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Verwaltung">Verwaltung</td>
+    <td>[fɛɐ̯ˈvaltʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="行政部门">行政部门</td>
+    <td class="clickable" data-lang="en" data-word="administration">administration</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="directeur">directeur</td>
+    <td>[diʁɛktœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Direktor">Direktor</td>
+    <td>[diˈʁɛktoːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="经理">经理</td>
+    <td class="clickable" data-lang="en" data-word="director">director</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="président">président</td>
+    <td>[pʁezidɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Vorsitzender">Vorsitzender</td>
+    <td>[ˈfoːɐ̯zɪtsn̩dɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="主席">主席</td>
+    <td class="clickable" data-lang="en" data-word="chairman">chairman</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="secrétaire">secrétaire</td>
+    <td>[səkʁetɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Sekretär">Sekretär</td>
+    <td>[zekʁeˈtɛːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="秘书">秘书</td>
+    <td class="clickable" data-lang="en" data-word="secretary">secretary</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="comptable">comptable</td>
+    <td>[kɔ̃tabl]</td>
+    <td class="clickable" data-lang="de" data-word="Buchhalterin">Buchhalterin</td>
+    <td>[ˈbuːxhaltəʁɪn]</td>
+    <td class="clickable" data-lang="zh" data-word="女会计">女会计</td>
+    <td class="clickable" data-lang="en" data-word="accountant">accountant</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="acheteur">acheteur</td>
+    <td>[aʃətœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Einkäufer">Einkäufer</td>
+    <td>[ˈaɪ̯nkɔʏ̯fɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="采购员">采购员</td>
+    <td class="clickable" data-lang="en" data-word="buyer">buyer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="vendeur">vendeur</td>
+    <td>[vɑ̃dœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Verkäufer">Verkäufer</td>
+    <td>[fɛɐ̯ˈkɔʏ̯fɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="销售">销售</td>
+    <td class="clickable" data-lang="en" data-word="salesperson">salesperson</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="service du personnel">service du personnel</td>
+    <td>[sɛʁvis dy pɛʁsɔnɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Personalabteilung">Personalabteilung</td>
+    <td>[pɛʁzoˈnaːlʔaptaɪlʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="人事部门">人事部门</td>
+    <td class="clickable" data-lang="en" data-word="HR department">HR department</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="poste">poste</td>
+    <td>[pɔst]</td>
+    <td class="clickable" data-lang="de" data-word="Stellung">Stellung</td>
+    <td>[ˈʃtɛlʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="工作；职位">工作；职位</td>
+    <td class="clickable" data-lang="en" data-word="position">position</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="prendre fonction">prendre fonction</td>
+    <td>[pʁɑ̃dʁ fɔ̃ksjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="antreten">antreten</td>
+    <td>[ˈantʁeːtn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="上任，接任">上任，接任</td>
+    <td class="clickable" data-lang="en" data-word="take office">take office</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="promouvoir">promouvoir</td>
+    <td>[pʁɔmuvwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="befördern">befördern</td>
+    <td>[bəˈfœʁdɐn]</td>
+    <td class="clickable" data-lang="zh" data-word="提拔">提拔</td>
+    <td class="clickable" data-lang="en" data-word="promote">promote</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="diriger">diriger</td>
+    <td>[diʁiʒe]</td>
+    <td class="clickable" data-lang="de" data-word="leiten">leiten</td>
+    <td>[ˈlaɪ̯tn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="领导">领导</td>
+    <td class="clickable" data-lang="en" data-word="lead">lead</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="adjoint">adjoint</td>
+    <td>[adʒwɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="stellvertretend">stellvertretend</td>
+    <td>[ˈʃtɛlfɛɐ̯ˌtʁeːtənt]</td>
+    <td class="clickable" data-lang="zh" data-word="副职的">副职的</td>
+    <td class="clickable" data-lang="en" data-word="deputy">deputy</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="réunion">réunion</td>
+    <td>[ʁeynjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Sitzung">Sitzung</td>
+    <td>[ˈzɪtsʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="会议">会议</td>
+    <td class="clickable" data-lang="en" data-word="meeting">meeting</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="travail de nuit">travail de nuit</td>
+    <td>[tʁavaj də nɥi]</td>
+    <td class="clickable" data-lang="de" data-word="Nachtschicht">Nachtschicht</td>
+    <td>[ˈnaxtʃɪçt]</td>
+    <td class="clickable" data-lang="zh" data-word="夜班">夜班</td>
+    <td class="clickable" data-lang="en" data-word="night shift">night shift</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="heures supplémentaires">heures supplémentaires</td>
+    <td>[œʁ syplemɑ̃tɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Überstunde">Überstunde</td>
+    <td>[ˈyːbɐˌʃtʊndə]</td>
+    <td class="clickable" data-lang="zh" data-word="加班">加班</td>
+    <td class="clickable" data-lang="en" data-word="overtime">overtime</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="congé">congé</td>
+    <td>[kɔ̃ʒe]</td>
+    <td class="clickable" data-lang="de" data-word="Beurlaubung">Beurlaubung</td>
+    <td>[bəˈʔʊʁlaʊ̯bʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="请假">请假</td>
+    <td class="clickable" data-lang="en" data-word="leave">leave</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="salaire">salaire</td>
+    <td>[salɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Gehalt">Gehalt</td>
+    <td>[ɡəˈhalt]</td>
+    <td class="clickable" data-lang="zh" data-word="工资">工资</td>
+    <td class="clickable" data-lang="en" data-word="salary">salary</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="collègue">collègue</td>
+    <td>[kɔlɛɡ]</td>
+    <td class="clickable" data-lang="de" data-word="Arbeitskollege">Arbeitskollege</td>
+    <td>[ˈaʁbaɪtsˌkɔleːɡə]</td>
+    <td class="clickable" data-lang="zh" data-word="同事">同事</td>
+    <td class="clickable" data-lang="en" data-word="colleague">colleague</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="salaire">salaire</td>
+    <td>[salɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Lohn">Lohn</td>
+    <td>[loːn]</td>
+    <td class="clickable" data-lang="zh" data-word="薪水">薪水</td>
+    <td class="clickable" data-lang="en" data-word="wage">wage</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="salaire de base">salaire de base</td>
+    <td>[salɛʁ də baz]</td>
+    <td class="clickable" data-lang="de" data-word="Grundgehalt">Grundgehalt</td>
+    <td>[ˈɡʁʊntɡəhalt]</td>
+    <td class="clickable" data-lang="zh" data-word="基本工资">基本工资</td>
+    <td class="clickable" data-lang="en" data-word="basic salary">basic salary</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="période d'essai">période d'essai</td>
+    <td>[peʁjɔd dɛsɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Probezeit">Probezeit</td>
+    <td>[ˈpʁoːbətsaɪt]</td>
+    <td class="clickable" data-lang="zh" data-word="试用期">试用期</td>
+    <td class="clickable" data-lang="en" data-word="probation period">probation period</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="congé annuel">congé annuel</td>
+    <td>[kɔ̃ʒe anɥɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Jahresurlaub">Jahresurlaub</td>
+    <td>[ˈjaːʁəsˌʔuːɐ̯laʊp]</td>
+    <td class="clickable" data-lang="zh" data-word="年假">年假</td>
+    <td class="clickable" data-lang="en" data-word="annual leave">annual leave</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pause">pause</td>
+    <td>[poz]</td>
+    <td class="clickable" data-lang="de" data-word="Pause">Pause</td>
+    <td>[ˈpaʊ̯zə]</td>
+    <td class="clickable" data-lang="zh" data-word="休息">休息</td>
+    <td class="clickable" data-lang="en" data-word="break">break</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="examiner">examiner</td>
+    <td>[ɛɡzamine]</td>
+    <td class="clickable" data-lang="de" data-word="untersuchen">untersuchen</td>
+    <td>[ʊntɐˈzuːxn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="研究">研究</td>
+    <td class="clickable" data-lang="en" data-word="examine">examine</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="travailler">travailler</td>
+    <td>[tʁavaje]</td>
+    <td class="clickable" data-lang="de" data-word="arbeiten">arbeiten</td>
+    <td>[ˈaʁbaɪtn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="工作">工作</td>
+    <td class="clickable" data-lang="en" data-word="work">work</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="nommer">nommer</td>
+    <td>[nɔme]</td>
+    <td class="clickable" data-lang="de" data-word="einsetzen">einsetzen</td>
+    <td>[ˈaɪ̯nzɛtsn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="任命">任命</td>
+    <td class="clickable" data-lang="en" data-word="appoint">appoint</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pause thé">pause thé</td>
+    <td>[poz te]</td>
+    <td class="clickable" data-lang="de" data-word="Tea Time">Tea Time</td>
+    <td>[tiː taɪm]</td>
+    <td class="clickable" data-lang="zh" data-word="下午茶">下午茶</td>
+    <td class="clickable" data-lang="en" data-word="tea time">tea time</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="licencier">licencier</td>
+    <td>[lisɑ̃sje]</td>
+    <td class="clickable" data-lang="de" data-word="kündigen">kündigen</td>
+    <td>[ˈkʏndɪɡn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="解雇">解雇</td>
+    <td class="clickable" data-lang="en" data-word="dismiss">dismiss</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="compétent">compétent</td>
+    <td>[kɔ̃petɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="kompetent">kompetent</td>
+    <td>[kɔmpəˈtɛnt]</td>
+    <td class="clickable" data-lang="zh" data-word="有才能的">有才能的</td>
+    <td class="clickable" data-lang="en" data-word="competent">competent</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="occupé">occupé</td>
+    <td>[ɔkype]</td>
+    <td class="clickable" data-lang="de" data-word="beschäftigt">beschäftigt</td>
+    <td>[bəˈʃɛftɪçt]</td>
+    <td class="clickable" data-lang="zh" data-word="忙的">忙的</td>
+    <td class="clickable" data-lang="en" data-word="busy">busy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="présentation">présentation</td>
+    <td>[pʁezɑ̃tasjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Presentation">Presentation</td>
+    <td>[pʁezɛntaˈtsjoːn]</td>
+    <td class="clickable" data-lang="zh" data-word="报告">报告</td>
+    <td class="clickable" data-lang="en" data-word="presentation">presentation</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="stress">stress</td>
+    <td>[stʁɛs]</td>
+    <td class="clickable" data-lang="de" data-word="Stress">Stress</td>
+    <td>[ʃtʁɛs]</td>
+    <td class="clickable" data-lang="zh" data-word="压力">压力</td>
+    <td class="clickable" data-lang="en" data-word="stress">stress</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fournitures de bureau">fournitures de bureau</td>
+    <td>[fuʁnityʁ də byʁo]</td>
+    <td class="clickable" data-lang="de" data-word="Büroartikel">Büroartikel</td>
+    <td>[ˈbyʁoʔaʁtiːkl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="办公用品">办公用品</td>
+    <td class="clickable" data-lang="en" data-word="office supplies">office supplies</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="table">table</td>
+    <td>[tabl]</td>
+    <td class="clickable" data-lang="de" data-word="Tisch">Tisch</td>
+    <td>[tɪʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="桌子">桌子</td>
+    <td class="clickable" data-lang="en" data-word="table">table</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="étiquette">étiquette</td>
+    <td>[etikɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Aufkleber">Aufkleber</td>
+    <td>[ˈaʊ̯fkleːbɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="标签">标签</td>
+    <td class="clickable" data-lang="en" data-word="sticker">sticker</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fax">fax</td>
+    <td>[faks]</td>
+    <td class="clickable" data-lang="de" data-word="Fax">Fax</td>
+    <td>[faks]</td>
+    <td class="clickable" data-lang="zh" data-word="传真机">传真机</td>
+    <td class="clickable" data-lang="en" data-word="fax machine">fax machine</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="disquette">disquette</td>
+    <td>[diskɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Diskette">Diskette</td>
+    <td>[dɪsˈkɛtə]</td>
+    <td class="clickable" data-lang="zh" data-word="磁盘">磁盘</td>
+    <td class="clickable" data-lang="en" data-word="floppy disk">floppy disk</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mémoire">mémoire</td>
+    <td>[memwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Speicher">Speicher</td>
+    <td>[ˈʃpaɪ̯çɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="存储器">存储器</td>
+    <td class="clickable" data-lang="en" data-word="memory">memory</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="imprimante">imprimante</td>
+    <td>[ɛ̃pʁimɑ̃t]</td>
+    <td class="clickable" data-lang="de" data-word="Drucker">Drucker</td>
+    <td>[ˈdʁʊkɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="打印机">打印机</td>
+    <td class="clickable" data-lang="en" data-word="printer">printer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="dossier">dossier</td>
+    <td>[dɔsje]</td>
+    <td class="clickable" data-lang="de" data-word="Akte">Akte</td>
+    <td>[ˈaktə]</td>
+    <td class="clickable" data-lang="zh" data-word="文件">文件</td>
+    <td class="clickable" data-lang="en" data-word="file">file</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="calculateur">calculateur</td>
+    <td>[kalkylatœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Rechner">Rechner</td>
+    <td>[ˈʁɛçnɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="计算机">计算机</td>
+    <td class="clickable" data-lang="en" data-word="calculator">calculator</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ruban adhésif">ruban adhésif</td>
+    <td>[ʁybɑ̃ adesif]</td>
+    <td class="clickable" data-lang="de" data-word="Klebstreifen">Klebstreifen</td>
+    <td>[ˈkleːpˌʃtʁaɪ̯fn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="胶带">胶带</td>
+    <td class="clickable" data-lang="en" data-word="adhesive tape">adhesive tape</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="carte de visite">carte de visite</td>
+    <td>[kaʁt də vizit]</td>
+    <td class="clickable" data-lang="de" data-word="Visitenkarte">Visitenkarte</td>
+    <td>[viˈziːtn̩ˌkaʁtə]</td>
+    <td class="clickable" data-lang="zh" data-word="名片">名片</td>
+    <td class="clickable" data-lang="en" data-word="business card">business card</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="calendrier">calendrier</td>
+    <td>[kalɑ̃dʁije]</td>
+    <td class="clickable" data-lang="de" data-word="Kalender">Kalender</td>
+    <td>[kaˈlɛndɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="日历">日历</td>
+    <td class="clickable" data-lang="en" data-word="calendar">calendar</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="document">document</td>
+    <td>[dɔkymɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Dokument">Dokument</td>
+    <td>[dokuˈmɛnt]</td>
+    <td class="clickable" data-lang="zh" data-word="文档">文档</td>
+    <td class="clickable" data-lang="en" data-word="document">document</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fauteuil">fauteuil</td>
+    <td>[fotœj]</td>
+    <td class="clickable" data-lang="de" data-word="Sessel">Sessel</td>
+    <td>[ˈzɛsl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="椅子">椅子</td>
+    <td class="clickable" data-lang="en" data-word="armchair">armchair</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="photocopieuse">photocopieuse</td>
+    <td>[fɔtokɔpjøz]</td>
+    <td class="clickable" data-lang="de" data-word="Kopiermaschine">Kopiermaschine</td>
+    <td>[kɔˈpiːɐ̯maˌʃiːnə]</td>
+    <td class="clickable" data-lang="zh" data-word="复印机">复印机</td>
+    <td class="clickable" data-lang="en" data-word="copy machine">copy machine</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="toner">toner</td>
+    <td>[tɔnɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Toner">Toner</td>
+    <td>[ˈtoːnɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="打印机墨水">打印机墨水</td>
+    <td class="clickable" data-lang="en" data-word="toner">toner</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="porte-documents">porte-documents</td>
+    <td>[pɔʁt dɔkymɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Aktentasche">Aktentasche</td>
+    <td>[ˈaktn̩ˌtaʃə]</td>
+    <td class="clickable" data-lang="zh" data-word="文件袋">文件袋</td>
+    <td class="clickable" data-lang="en" data-word="briefcase">briefcase</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="scanner">scanner</td>
+    <td>[skanɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Scanner">Scanner</td>
+    <td>[ˈskɛnɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="扫描仪">扫描仪</td>
+    <td class="clickable" data-lang="en" data-word="scanner">scanner</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="déchiqueteuse">déchiqueteuse</td>
+    <td>[deʃiktøz]</td>
+    <td class="clickable" data-lang="de" data-word="Aktenvernichter">Aktenvernichter</td>
+    <td>[ˈaktn̩fɛɐ̯ˌnɪçtɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="碎纸机">碎纸机</td>
+    <td class="clickable" data-lang="en" data-word="paper shredder">paper shredder</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ordinateur">ordinateur</td>
+    <td>[ɔʁdinatœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Computer">Computer</td>
+    <td>[kɔmˈpjuːtɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="电脑">电脑</td>
+    <td class="clickable" data-lang="en" data-word="computer">computer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="souris">souris</td>
+    <td>[suʁi]</td>
+    <td class="clickable" data-lang="de" data-word="Maus">Maus</td>
+    <td>[maʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="鼠标">鼠标</td>
+    <td class="clickable" data-lang="en" data-word="mouse">mouse</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="clavier">clavier</td>
+    <td>[klavje]</td>
+    <td class="clickable" data-lang="de" data-word="Tastatur">Tastatur</td>
+    <td>[tastaˈtuːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="键盘">键盘</td>
+    <td class="clickable" data-lang="en" data-word="keyboard">keyboard</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="logiciel">logiciel</td>
+    <td>[lɔʒisjɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Software">Software</td>
+    <td>[ˈsɔftvɛːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="软件">软件</td>
+    <td class="clickable" data-lang="en" data-word="software">software</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="disque dur">disque dur</td>
+    <td>[disk dyʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Festplatte">Festplatte</td>
+    <td>[ˈfɛstˌplatə]</td>
+    <td class="clickable" data-lang="zh" data-word="硬盘">硬盘</td>
+    <td class="clickable" data-lang="en" data-word="hard drive">hard drive</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="matériel">matériel</td>
+    <td>[mateʁjɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Hardware">Hardware</td>
+    <td>[ˈhaːɐ̯tvɛːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="硬件">硬件</td>
+    <td class="clickable" data-lang="en" data-word="hardware">hardware</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="écran">écran</td>
+    <td>[ekʁɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Bildschirm">Bildschirm</td>
+    <td>[ˈbɪltʃɪʁm]</td>
+    <td class="clickable" data-lang="zh" data-word="屏幕">屏幕</td>
+    <td class="clickable" data-lang="en" data-word="screen">screen</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="internet">internet</td>
+    <td>[ɛ̃tɛʁnɛt]</td>
+    <td class="clickable" data-lang="de" data-word="Internet">Internet</td>
+    <td>[ˈɪntɐnɛt]</td>
+    <td class="clickable" data-lang="zh" data-word="网络">网络</td>
+    <td class="clickable" data-lang="en" data-word="internet">internet</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mot de passe">mot de passe</td>
+    <td>[mo də pas]</td>
+    <td class="clickable" data-lang="de" data-word="Passwort">Passwort</td>
+    <td>[ˈpasvɔʁt]</td>
+    <td class="clickable" data-lang="zh" data-word="密码">密码</td>
+    <td class="clickable" data-lang="en" data-word="password">password</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fichier">fichier</td>
+    <td>[fiʃje]</td>
+    <td class="clickable" data-lang="de" data-word="Datei">Datei</td>
+    <td>[daˈtaɪ]</td>
+    <td class="clickable" data-lang="zh" data-word="计算机文件">计算机文件</td>
+    <td class="clickable" data-lang="en" data-word="file">file</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="paramètre">paramètre</td>
+    <td>[paʁamɛtʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Einstellung">Einstellung</td>
+    <td>[ˈaɪ̯nʃtɛlʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="设置">设置</td>
+    <td class="clickable" data-lang="en" data-word="setting">setting</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="formater">formater</td>
+    <td>[fɔʁmate]</td>
+    <td class="clickable" data-lang="de" data-word="formatieren">formatieren</td>
+    <td>[fɔʁmaˈtiːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="格式化">格式化</td>
+    <td class="clickable" data-lang="en" data-word="format">format</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="appuyer">appuyer</td>
+    <td>[apɥije]</td>
+    <td class="clickable" data-lang="de" data-word="drücken">drücken</td>
+    <td>[ˈdʁʏkən]</td>
+    <td class="clickable" data-lang="zh" data-word="按">按</td>
+    <td class="clickable" data-lang="en" data-word="press">press</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sauvegarder">sauvegarder</td>
+    <td>[sovɡaʁde]</td>
+    <td class="clickable" data-lang="de" data-word="speichern">speichern</td>
+    <td>[ˈʃpaɪ̯çɐn]</td>
+    <td class="clickable" data-lang="zh" data-word="存储">存储</td>
+    <td class="clickable" data-lang="en" data-word="save">save</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="saisir">saisir</td>
+    <td>[seziʁ]</td>
+    <td class="clickable" data-lang="de" data-word="eintippen">eintippen</td>
+    <td>[ˈaɪ̯ntɪpn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="输入">输入</td>
+    <td class="clickable" data-lang="en" data-word="input">input</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="synchroniser">synchroniser</td>
+    <td>[sɛ̃kʁonize]</td>
+    <td class="clickable" data-lang="de" data-word="synchronisieren">synchronisieren</td>
+    <td>[zʏnkʁoniˈziːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="使同步">使同步</td>
+    <td class="clickable" data-lang="en" data-word="synchronize">synchronize</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="copier">copier</td>
+    <td>[kɔpje]</td>
+    <td class="clickable" data-lang="de" data-word="kopieren">kopieren</td>
+    <td>[koˈpiːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="复印">复印</td>
+    <td class="clickable" data-lang="en" data-word="copy">copy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="effacer">effacer</td>
+    <td>[efase]</td>
+    <td class="clickable" data-lang="de" data-word="löschen">löschen</td>
+    <td>[ˈlœʃn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="删除">删除</td>
+    <td class="clickable" data-lang="en" data-word="delete">delete</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="installer">installer</td>
+    <td>[ɛ̃stale]</td>
+    <td class="clickable" data-lang="de" data-word="installieren">installieren</td>
+    <td>[ɪnstaˈliːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="安装">安装</td>
+    <td class="clickable" data-lang="en" data-word="install">install</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="touche">touche</td>
+    <td>[tuʃ]</td>
+    <td class="clickable" data-lang="de" data-word="Taste">Taste</td>
+    <td>[ˈtastə]</td>
+    <td class="clickable" data-lang="zh" data-word="按键">按键</td>
+    <td class="clickable" data-lang="en" data-word="key">key</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="parler">parler</td>
+    <td>[paʁle]</td>
+    <td class="clickable" data-lang="de" data-word="sprechen">sprechen</td>
+    <td>[ˈʃpʁɛçn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="讲话">讲话</td>
+    <td class="clickable" data-lang="en" data-word="speak">speak</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ici">ici</td>
+    <td>[isi]</td>
+    <td class="clickable" data-lang="de" data-word="hier">hier</td>
+    <td>[hiːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="这里">这里</td>
+    <td class="clickable" data-lang="en" data-word="here">here</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="appareil">appareil</td>
+    <td>[apaʁɛj]</td>
+    <td class="clickable" data-lang="de" data-word="Apparat">Apparat</td>
+    <td>[apaˈʁaːt]</td>
+    <td class="clickable" data-lang="zh" data-word="电话机">电话机</td>
+    <td class="clickable" data-lang="en" data-word="telephone">telephone</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="noter">noter</td>
+    <td>[nɔte]</td>
+    <td class="clickable" data-lang="de" data-word="notieren">notieren</td>
+    <td>[noˈtiːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="记录">记录</td>
+    <td class="clickable" data-lang="en" data-word="note down">note down</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="rappeler">rappeler</td>
+    <td>[ʁaple]</td>
+    <td class="clickable" data-lang="de" data-word="zurückrufen">zurückrufen</td>
+    <td>[tsuˈʁʏkʁuːfn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="回电话">回电话</td>
+    <td class="clickable" data-lang="en" data-word="call back">call back</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="téléphoner">téléphoner</td>
+    <td>[telefɔne]</td>
+    <td class="clickable" data-lang="de" data-word="telefonieren">telefonieren</td>
+    <td>[telefoˈniːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="打电话">打电话</td>
+    <td class="clickable" data-lang="en" data-word="telephone">telephone</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="aider">aider</td>
+    <td>[ede]</td>
+    <td class="clickable" data-lang="de" data-word="helfen">helfen</td>
+    <td>[ˈhɛlfn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="帮忙">帮忙</td>
+    <td class="clickable" data-lang="en" data-word="help">help</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="entendre">entendre</td>
+    <td>[ɑ̃tɑ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="hören">hören</td>
+    <td>[ˈhøːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="听见">听见</td>
+    <td class="clickable" data-lang="en" data-word="hear">hear</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="répéter">répéter</td>
+    <td>[ʁepete]</td>
+    <td class="clickable" data-lang="de" data-word="wiederholen">wiederholen</td>
+    <td>[viːdɐˈhoːlən]</td>
+    <td class="clickable" data-lang="zh" data-word="重复">重复</td>
+    <td class="clickable" data-lang="en" data-word="repeat">repeat</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="signal">signal</td>
+    <td>[siɲal]</td>
+    <td class="clickable" data-lang="de" data-word="Signal">Signal</td>
+    <td>[zɪˈɡnaːl]</td>
+    <td class="clickable" data-lang="zh" data-word="信号">信号</td>
+    <td class="clickable" data-lang="en" data-word="signal">signal</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="fort">fort</td>
+    <td>[fɔʁ]</td>
+    <td class="clickable" data-lang="de" data-word="laut">laut</td>
+    <td>[laʊt]</td>
+    <td class="clickable" data-lang="zh" data-word="大声的">大声的</td>
+    <td class="clickable" data-lang="en" data-word="loud">loud</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="perturbation">perturbation</td>
+    <td>[pɛʁtyʁbasjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Störung">Störung</td>
+    <td>[ˈʃtøːʁʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="干扰">干扰</td>
+    <td class="clickable" data-lang="en" data-word="interference">interference</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ligne">ligne</td>
+    <td>[liɲ]</td>
+    <td class="clickable" data-lang="de" data-word="Leitung">Leitung</td>
+    <td>[ˈlaɪ̯tʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="线路">线路</td>
+    <td class="clickable" data-lang="en" data-word="line">line</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="appeler">appeler</td>
+    <td>[aple]</td>
+    <td class="clickable" data-lang="de" data-word="anrufen">anrufen</td>
+    <td>[ˈanʁuːfn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="打电话">打电话</td>
+    <td class="clickable" data-lang="en" data-word="call">call</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="se tromper de numéro">se tromper de numéro</td>
+    <td>[sə tʁɔ̃pe də nymeʁo]</td>
+    <td class="clickable" data-lang="de" data-word="verwählen">verwählen</td>
+    <td>[fɛɐ̯ˈveːlən]</td>
+    <td class="clickable" data-lang="zh" data-word="拨错电话号码">拨错电话号码</td>
+    <td class="clickable" data-lang="en" data-word="dial wrong number">dial wrong number</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="connecter">connecter</td>
+    <td>[kɔnɛkte]</td>
+    <td class="clickable" data-lang="de" data-word="verbinden">verbinden</td>
+    <td>[fɛɐ̯ˈbɪndən]</td>
+    <td class="clickable" data-lang="zh" data-word="接通电话">接通电话</td>
+    <td class="clickable" data-lang="en" data-word="connect">connect</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="numéro">numéro</td>
+    <td>[nymeʁo]</td>
+    <td class="clickable" data-lang="de" data-word="Nummer">Nummer</td>
+    <td>[ˈnʊmɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="号码">号码</td>
+    <td class="clickable" data-lang="en" data-word="number">number</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="répondeur">répondeur</td>
+    <td>[ʁepɔ̃dœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Anrufbeantworter">Anrufbeantworter</td>
+    <td>[ˈanʁuːfbəˌʔantvɔʁtɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="电话应答装置">电话应答装置</td>
+    <td class="clickable" data-lang="en" data-word="answering machine">answering machine</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="transmettre">transmettre</td>
+    <td>[tʁɑ̃smɛtʁ]</td>
+    <td class="clickable" data-lang="de" data-word="ausrichten">ausrichten</td>
+    <td>[ˈaʊsʁɪçtn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="转告">转告</td>
+    <td class="clickable" data-lang="en" data-word="relay">relay</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="au revoir">au revoir</td>
+    <td>[o ʁəvwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Wiederhören">Wiederhören</td>
+    <td>[ˈviːdɐˌhøːʁən]</td>
+    <td class="clickable" data-lang="zh" data-word="再见">再见</td>
+    <td class="clickable" data-lang="en" data-word="goodbye">goodbye</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="envoyer">envoyer</td>
+    <td>[ɑ̃vwaje]</td>
+    <td class="clickable" data-lang="de" data-word="senden">senden</td>
+    <td>[ˈzɛndən]</td>
+    <td class="clickable" data-lang="zh" data-word="邮寄">邮寄</td>
+    <td class="clickable" data-lang="en" data-word="send">send</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="à">à</td>
+    <td>[a]</td>
+    <td class="clickable" data-lang="de" data-word="an">an</td>
+    <td>[an]</td>
+    <td class="clickable" data-lang="zh" data-word="向">向</td>
+    <td class="clickable" data-lang="en" data-word="to">to</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="adresse e-mail">adresse e-mail</td>
+    <td>[adʁɛs imɛl]</td>
+    <td class="clickable" data-lang="de" data-word="E-Mail-Adresse">E-Mail-Adresse</td>
+    <td>[iːmeːl aˈdʁɛsə]</td>
+    <td class="clickable" data-lang="zh" data-word="邮箱地址">邮箱地址</td>
+    <td class="clickable" data-lang="en" data-word="email address">email address</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="recevoir">recevoir</td>
+    <td>[ʁəsəvwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="bekommen">bekommen</td>
+    <td>[bəˈkɔmən]</td>
+    <td class="clickable" data-lang="zh" data-word="收到">收到</td>
+    <td class="clickable" data-lang="en" data-word="receive">receive</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="répondre">répondre</td>
+    <td>[ʁepɔ̃dʁ]</td>
+    <td class="clickable" data-lang="de" data-word="antworten">antworten</td>
+    <td>[ˈantvɔʁtn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="答复">答复</td>
+    <td class="clickable" data-lang="en" data-word="reply">reply</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="notifier">notifier</td>
+    <td>[nɔtifje]</td>
+    <td class="clickable" data-lang="de" data-word="benachrichtigen">benachrichtigen</td>
+    <td>[bəˈnaxʁɪçtɪɡn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="通知">通知</td>
+    <td class="clickable" data-lang="en" data-word="notify">notify</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="honoré">honoré</td>
+    <td>[ɔnɔʁe]</td>
+    <td class="clickable" data-lang="de" data-word="geehrt">geehrt</td>
+    <td>[ɡəˈeːɐ̯t]</td>
+    <td class="clickable" data-lang="zh" data-word="尊敬的">尊敬的</td>
+    <td class="clickable" data-lang="en" data-word="honored">honored</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="madame">madame</td>
+    <td>[madam]</td>
+    <td class="clickable" data-lang="de" data-word="Dame">Dame</td>
+    <td>[ˈdaːmə]</td>
+    <td class="clickable" data-lang="zh" data-word="女士">女士</td>
+    <td class="clickable" data-lang="en" data-word="madam">madam</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="monsieur">monsieur</td>
+    <td>[məsjø]</td>
+    <td class="clickable" data-lang="de" data-word="Herr">Herr</td>
+    <td>[hɛʁ]</td>
+    <td class="clickable" data-lang="zh" data-word="先生">先生</td>
+    <td class="clickable" data-lang="en" data-word="mister">mister</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cher">cher</td>
+    <td>[ʃɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="lieb">lieb</td>
+    <td>[liːp]</td>
+    <td class="clickable" data-lang="zh" data-word="亲爱的">亲爱的</td>
+    <td class="clickable" data-lang="en" data-word="dear">dear</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="merci">merci</td>
+    <td>[mɛʁsi]</td>
+    <td class="clickable" data-lang="de" data-word="Dank">Dank</td>
+    <td>[daŋk]</td>
+    <td class="clickable" data-lang="zh" data-word="谢谢">谢谢</td>
+    <td class="clickable" data-lang="en" data-word="thanks">thanks</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="se réjouir">se réjouir</td>
+    <td>[sə ʁeʒwiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="freuen">freuen</td>
+    <td>[ˈfʁɔʏ̯ən]</td>
+    <td class="clickable" data-lang="zh" data-word="高兴">高兴</td>
+    <td class="clickable" data-lang="en" data-word="be pleased">be pleased</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="prochain">prochain</td>
+    <td>[pʁɔʃɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="baldig">baldig</td>
+    <td>[ˈbaldɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="尽快的">尽快的</td>
+    <td class="clickable" data-lang="en" data-word="prompt">prompt</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="salutation">salutation</td>
+    <td>[salytasjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Gruß">Gruß</td>
+    <td>[ɡʁuːs]</td>
+    <td class="clickable" data-lang="zh" data-word="问候">问候</td>
+    <td class="clickable" data-lang="en" data-word="greeting">greeting</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cordial">cordial</td>
+    <td>[kɔʁdjal]</td>
+    <td class="clickable" data-lang="de" data-word="herzlich">herzlich</td>
+    <td>[ˈhɛʁtslɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="衷心的">衷心的</td>
+    <td class="clickable" data-lang="en" data-word="cordial">cordial</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="expéditeur">expéditeur</td>
+    <td>[ɛkspeditœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Absender">Absender</td>
+    <td>[ˈapzɛndɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="发信人">发信人</td>
+    <td class="clickable" data-lang="en" data-word="sender">sender</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="destinataire">destinataire</td>
+    <td>[dɛstinatɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Empfänger">Empfänger</td>
+    <td>[ɛmˈpfɛŋɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="收信人">收信人</td>
+    <td class="clickable" data-lang="en" data-word="recipient">recipient</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="rapide">rapide</td>
+    <td>[ʁapid]</td>
+    <td class="clickable" data-lang="de" data-word="schnell">schnell</td>
+    <td>[ʃnɛl]</td>
+    <td class="clickable" data-lang="zh" data-word="快的">快的</td>
+    <td class="clickable" data-lang="en" data-word="fast">fast</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="écrire">écrire</td>
+    <td>[ekʁiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="schreiben">schreiben</td>
+    <td>[ˈʃʁaɪ̯bn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="写下">写下</td>
+    <td class="clickable" data-lang="en" data-word="write">write</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="boîte de réception">boîte de réception</td>
+    <td>[bwat də ʁesɛpsjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Inbox">Inbox</td>
+    <td>[ˈɪnbɔks]</td>
+    <td class="clickable" data-lang="zh" data-word="收件箱">收件箱</td>
+    <td class="clickable" data-lang="en" data-word="inbox">inbox</td>
+</tr>
+</table>
+
+
+    <script>
+    const PIXABAY_API_KEY = '49256357-c30f2f538120ce8d74ff8921d';
+    let speechSynth = window.speechSynthesis;
+    let voices = [];
+
+    // Wait for voices to load
+    speechSynth.onvoiceschanged = function() {
+        voices = speechSynth.getVoices();
+    };
+
+    // Pronunciation function
+    function speak(text, lang) {
+        // Cancel any ongoing speech
+        speechSynth.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        
+        // For Chinese, select appropriate voice based on dialect
+        if (lang.startsWith('zh')) {
+            const voices = window.speechSynthesis.getVoices();
+            const chineseVoice = voices.find(voice => voice.lang.includes(lang));
+            if (chineseVoice) {
+                utterance.voice = chineseVoice;
+            }
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    } 
+    
+    let currentImageTimeout = null;  // 添加超时变量
+
+    // 清除背景图片
+    function clearBackgroundImages() {
+        if (currentImageTimeout) {
+            clearTimeout(currentImageTimeout);
+            currentImageTimeout = null;
+        }
+        document.querySelectorAll('.background-image').forEach(img => {
+            img.style.opacity = '0';
+            setTimeout(() => img.remove(), 300); // 淡出效果后移除
+        });
+    }
+
+    // Fetch and add background image
+    async function addBackgroundImage(cell, searchTerm) {
+        clearBackgroundImages();
+        
+        try {
+            const apiUrl = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(searchTerm)}&per_page=4&safesearch=true`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.hits && data.hits.length > 0) {
+                const randomIndex = Math.floor(Math.random() * Math.min(4, data.hits.length));
+                const img = document.createElement('img');
+                img.className = 'background-image';
+                img.alt = searchTerm;
+
+                // 图片加载完成后再显示
+                img.onload = () => {
+                    setTimeout(() => {
+                        img.style.opacity = '0.9';  // 设置为原来的不透明度
+                    }, 50);
+                };
+                
+                img.src = data.hits[randomIndex].previewURL;
+                
+                const firstCell = cell.closest('tr').querySelector('td:first-child');
+                firstCell.appendChild(img);
+
+                // 设置新的超时
+                currentImageTimeout = setTimeout(() => {
+                    clearBackgroundImages();
+                }, 3000);
+            }
+        } catch (error) {
+            console.error('Error fetching image:', error);
+        }
+    }
+
+    // Add click events to clickable cells
+    window.speechSynthesis.onvoiceschanged = () => {
+        document.querySelectorAll('.clickable').forEach(cell => {
+            cell.addEventListener('click', function() {
+                const text = this.textContent;
+                let lang;
+                
+                // Get language based on data-lang attribute
+                switch(this.dataset.lang) {
+                    case 'fr':
+                        lang = 'fr-FR';
+                        break;
+                    case 'de':
+                        lang = 'de-DE';
+                        break;
+                    case 'zh':
+                        // Use selected dialect for Chinese
+                        lang = document.getElementById('chineseDialect').value;
+                        break;
+                    default:
+                        lang = 'en-US';
+                }
+                
+                speak(text, lang);
+                addBackgroundImage(this, this.dataset.word);
+
+                // Visual feedback with cleanup
+                const originalBg = window.getComputedStyle(this).backgroundColor;
+                this.style.backgroundColor = '#c8e6c9';
+                
+                // Clear any existing timeout for this cell
+                if (this.resetTimeout) {
+                    clearTimeout(this.resetTimeout);
+                }
+                
+                // Set new timeout and store its ID
+                this.resetTimeout = setTimeout(() => {
+                    this.style.backgroundColor = '';
+                    this.resetTimeout = null;
+                }, 500);
+            });
+        });
+    };
+</script>
+
+</body>
+</html>

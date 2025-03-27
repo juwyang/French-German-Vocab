@@ -1,0 +1,862 @@
+<!-- <使用这个模板，添加单词到table的部分就可以!> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr {
+            position: relative;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .clickable {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+        .clickable:hover {
+            background-color: #e6e6e6;
+        }
+        .background-image {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            opacity: 0;  /* 初始设置为透明 */
+            transition: opacity 0.3s ease-in-out;  /* 添加过渡效果 */
+        }
+        .background-image:hover {
+            opacity: 0.8;
+        }
+        .language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .language-selector select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="index.html" class="back-button">🏠 主页</a>
+      </div>
+
+    <div class="language-selector">
+        <select id="chineseDialect">
+            <option value="zh-CN">普通话</option>
+            <option value="zh-HK">粤语</option>
+        </select>
+    </div>
+
+
+    <table id="wordTable">
+        <tr>
+            <th>法语</th>
+            <th>音标</th>
+            <th>德语</th>
+            <th>音标</th>
+            <th>中文</th>
+            <th>英语</th>
+        </tr>
+        <tr>
+            <td class="clickable" data-lang="fr" data-word="Parti">Parti</td>
+            <td>[paʁti]</td>
+            <td class="clickable" data-lang="de" data-word="Partei">Partei</td>
+            <td>[paʁˈtaɪ]</td>
+            <td class="clickable" data-lang="zh" data-word="党派">党派</td>
+            <td class="clickable" data-lang="en" data-word="party">party</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Parti au pouvoir">Parti au pouvoir</td>
+            <td>[paʁti o puvwaʁ]</td>
+            <td class="clickable" data-lang="de" data-word="regierende Partei">regierende Partei</td>
+            <td>[ʁeˈgiːʁəndə paʁˈtaɪ]</td>
+            <td class="clickable" data-lang="zh" data-word="执政党">执政党</td>
+            <td class="clickable" data-lang="en" data-word="ruling party">ruling party</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Parti d'opposition">Parti d'opposition</td>
+            <td>[paʁti dɔpɔzisjɔ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Oppositionspartei">Oppositionspartei</td>
+            <td>[ɔpoziˈt͡si̯oːnspaʁˌtaɪ]</td>
+            <td class="clickable" data-lang="zh" data-word="在野党">在野党</td>
+            <td class="clickable" data-lang="en" data-word="opposition party">opposition party</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Élection">Élection</td>
+            <td>[elɛksjɔ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Wahl">Wahl</td>
+            <td>[vaːl]</td>
+            <td class="clickable" data-lang="zh" data-word="选举">选举</td>
+            <td class="clickable" data-lang="en" data-word="election">election</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Pour">Pour</td>
+            <td>[puʁ]</td>
+            <td class="clickable" data-lang="de" data-word="für">für</td>
+            <td>[fyːɐ]</td>
+            <td class="clickable" data-lang="zh" data-word="支持">支持</td>
+            <td class="clickable" data-lang="en" data-word="for">for</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Contre">Contre</td>
+            <td>[kɔ̃tʁ]</td>
+            <td class="clickable" data-lang="de" data-word="gegen">gegen</td>
+            <td>[ˈgeːgən]</td>
+            <td class="clickable" data-lang="zh" data-word="反对">反对</td>
+            <td class="clickable" data-lang="en" data-word="against">against</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Congrès">Congrès</td>
+            <td>[kɔ̃gʁɛ]</td>
+            <td class="clickable" data-lang="de" data-word="Kongress">Kongress</td>
+            <td>[kɔŋˈgʁɛs]</td>
+            <td class="clickable" data-lang="zh" data-word="国会">国会</td>
+            <td class="clickable" data-lang="en" data-word="congress">congress</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Parlement">Parlement</td>
+            <td>[paʁləmɑ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Parlament">Parlament</td>
+            <td>[paʁlaˈmɛnt]</td>
+            <td class="clickable" data-lang="zh" data-word="议会">议会</td>
+            <td class="clickable" data-lang="en" data-word="parliament">parliament</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Discours">Discours</td>
+            <td>[diskuʁ]</td>
+            <td class="clickable" data-lang="de" data-word="Rede">Rede</td>
+            <td>[ˈʁeːdə]</td>
+            <td class="clickable" data-lang="zh" data-word="演说">演说</td>
+            <td class="clickable" data-lang="en" data-word="speech">speech</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Congrès du parti">Congrès du parti</td>
+            <td>[kɔ̃gʁɛ dy paʁti]</td>
+            <td class="clickable" data-lang="de" data-word="Parteitag">Parteitag</td>
+            <td>[paʁˈtaɪtaːk]</td>
+            <td class="clickable" data-lang="zh" data-word="党代会">党代会</td>
+            <td class="clickable" data-lang="en" data-word="party congress">party congress</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Président">Président</td>
+            <td>[pʁezidɑ̃]</td>
+            <td class="clickable" data-lang="de" data-word="Vorsitzende">Vorsitzende</td>
+            <td>[ˈfoːɐ̯zɪt͡səndə]</td>
+            <td class="clickable" data-lang="zh" data-word="主席">主席</td>
+            <td class="clickable" data-lang="en" data-word="chairman">chairman</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Élire">Élire</td>
+            <td>[eliʁ]</td>
+            <td class="clickable" data-lang="de" data-word="wählen">wählen</td>
+            <td>[ˈvɛːlən]</td>
+            <td class="clickable" data-lang="zh" data-word="选举">选举</td>
+            <td class="clickable" data-lang="en" data-word="to elect">to elect</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Voix">Voix</td>
+            <td>[vwa]</td>
+            <td class="clickable" data-lang="de" data-word="Stimme">Stimme</td>
+            <td>[ˈʃtɪmə]</td>
+            <td class="clickable" data-lang="zh" data-word="投票">投票</td>
+            <td class="clickable" data-lang="en" data-word="vote">vote</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Système multipartite">Système multipartite</td>
+            <td>[sistɛm myltipaʁtit]</td>
+            <td class="clickable" data-lang="de" data-word="Mehrparteiensystem">Mehrparteiensystem</td>
+            <td>[ˈmeːɐ̯paʁˌtaɪənzʏsˌteːm]</td>
+            <td class="clickable" data-lang="zh" data-word="多党制">多党制</td>
+            <td class="clickable" data-lang="en" data-word="multi-party system">multi-party system</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="Démocratie">Démocratie</td>
+            <td>[demɔkʁasi]</td>
+            <td class="clickable" data-lang="de" data-word="Demokratie">Demokratie</td>
+            <td>[demokʁaˈtiː]</td>
+            <td class="clickable" data-lang="zh" data-word="民主">民主</td>
+            <td class="clickable" data-lang="en" data-word="democracy">democracy</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Première Guerre mondiale">Première Guerre mondiale</td>
+    <td>[pʁəmjɛʁ gɛʁ mɔ̃djal]</td>
+    <td class="clickable" data-lang="de" data-word="der Erste Weltkrieg">der Erste Weltkrieg</td>
+    <td>[deːɐ ˈeːɐ̯stə ˈvɛltkriːk]</td>
+    <td class="clickable" data-lang="zh" data-word="第一次世界大战">第一次世界大战</td>
+    <td class="clickable" data-lang="en" data-word="World War I">World War I</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Seconde Guerre mondiale">Seconde Guerre mondiale</td>
+    <td>[səgɔ̃d gɛʁ mɔ̃djal]</td>
+    <td class="clickable" data-lang="de" data-word="der Zweite Weltkrieg">der Zweite Weltkrieg</td>
+    <td>[deːɐ ˈt͡svaɪtə ˈvɛltkriːk]</td>
+    <td class="clickable" data-lang="zh" data-word="第二次世界大战">第二次世界大战</td>
+    <td class="clickable" data-lang="en" data-word="World War II">World War II</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Germanique">Germanique</td>
+    <td>[ʒɛʁmanik]</td>
+    <td class="clickable" data-lang="de" data-word="germanisch">germanisch</td>
+    <td>[gɛʁˈmaːnɪʃ]</td>
+    <td class="clickable" data-lang="zh" data-word="日耳曼的">日耳曼的</td>
+    <td class="clickable" data-lang="en" data-word="Germanic">Germanic</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Prusse">Prusse</td>
+    <td>[pʁys]</td>
+    <td class="clickable" data-lang="de" data-word="Preußen">Preußen</td>
+    <td>[ˈpʁɔʏsn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="普鲁士">普鲁士</td>
+    <td class="clickable" data-lang="en" data-word="Prussia">Prussia</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Nazi">Nazi</td>
+    <td>[nazi]</td>
+    <td class="clickable" data-lang="de" data-word="Nazi">Nazi</td>
+    <td>[ˈnaːt͡si]</td>
+    <td class="clickable" data-lang="zh" data-word="纳粹">纳粹</td>
+    <td class="clickable" data-lang="en" data-word="Nazi">Nazi</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Camp de concentration">Camp de concentration</td>
+    <td>[kɑ̃ də kɔ̃sɑ̃tʁasjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Konzentrationslager">Konzentrationslager</td>
+    <td>[kɔnt͡sɛntʁaˈt͡si̯oːnsˌlaːgɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="集中营">集中营</td>
+    <td class="clickable" data-lang="en" data-word="concentration camp">concentration camp</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Antiquité">Antiquité</td>
+    <td>[ɑ̃tikite]</td>
+    <td class="clickable" data-lang="de" data-word="Antike">Antike</td>
+    <td>[anˈtiːkə]</td>
+    <td class="clickable" data-lang="zh" data-word="古代">古代</td>
+    <td class="clickable" data-lang="en" data-word="antiquity">antiquity</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Histoire">Histoire</td>
+    <td>[istwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Geschichte">Geschichte</td>
+    <td>[gəˈʃɪçtə]</td>
+    <td class="clickable" data-lang="zh" data-word="历史">历史</td>
+    <td class="clickable" data-lang="en" data-word="history">history</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Les Lumières">Les Lumières</td>
+    <td>[le lymjɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Aufklärung">Aufklärung</td>
+    <td>[ˈaʊ̯fklɛːʁʊŋ]</td>
+    <td class="clickable" data-lang="zh" data-word="启蒙运动">启蒙运动</td>
+    <td class="clickable" data-lang="en" data-word="Enlightenment">Enlightenment</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Siècle">Siècle</td>
+    <td>[sjɛkl]</td>
+    <td class="clickable" data-lang="de" data-word="Jahrhundert">Jahrhundert</td>
+    <td>[ˈjaːɐ̯ˌhʊndɐt]</td>
+    <td class="clickable" data-lang="zh" data-word="世纪">世纪</td>
+    <td class="clickable" data-lang="en" data-word="century">century</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Raconter">Raconter</td>
+    <td>[ʁakɔ̃te]</td>
+    <td class="clickable" data-lang="de" data-word="erzählen">erzählen</td>
+    <td>[ɛɐ̯ˈt͡sɛːlən]</td>
+    <td class="clickable" data-lang="zh" data-word="讲述">讲述</td>
+    <td class="clickable" data-lang="en" data-word="to tell">to tell</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Oublier">Oublier</td>
+    <td>[ublije]</td>
+    <td class="clickable" data-lang="de" data-word="vergessen">vergessen</td>
+    <td>[fɛɐ̯ˈgɛsn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="忘记">忘记</td>
+    <td class="clickable" data-lang="en" data-word="to forget">to forget</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Mémoire">Mémoire</td>
+    <td>[memwaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Gedächtnis">Gedächtnis</td>
+    <td>[gəˈdɛçtnɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="记忆">记忆</td>
+    <td class="clickable" data-lang="en" data-word="memory">memory</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Se remémorer">Se remémorer</td>
+    <td>[sə ʁememɔʁe]</td>
+    <td class="clickable" data-lang="de" data-word="zurückdenken">zurückdenken</td>
+    <td>[t͡suˈʁʏkdɛŋkən]</td>
+    <td class="clickable" data-lang="zh" data-word="回想">回想</td>
+    <td class="clickable" data-lang="en" data-word="to recall">to recall</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Ancien">Ancien</td>
+    <td>[ɑ̃sjɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="alt">alt</td>
+    <td>[alt]</td>
+    <td class="clickable" data-lang="zh" data-word="古老的">古老的</td>
+    <td class="clickable" data-lang="en" data-word="old">old</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Développer">Développer</td>
+    <td>[devlɔpe]</td>
+    <td class="clickable" data-lang="de" data-word="entwickeln">entwickeln</td>
+    <td>[ɛntˈvɪkl̩n]</td>
+    <td class="clickable" data-lang="zh" data-word="发展">发展</td>
+    <td class="clickable" data-lang="en" data-word="to develop">to develop</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Loi">Loi</td>
+    <td>[lwa]</td>
+    <td class="clickable" data-lang="de" data-word="Gesetz">Gesetz</td>
+    <td>[gəˈzɛt͡s]</td>
+    <td class="clickable" data-lang="zh" data-word="法律">法律</td>
+    <td class="clickable" data-lang="en" data-word="law">law</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Violence">Violence</td>
+    <td>[vjɔlɑ̃s]</td>
+    <td class="clickable" data-lang="de" data-word="Gewalt">Gewalt</td>
+    <td>[gəˈvalt]</td>
+    <td class="clickable" data-lang="zh" data-word="暴力">暴力</td>
+    <td class="clickable" data-lang="en" data-word="violence">violence</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Punissable">Punissable</td>
+    <td>[pynisabl]</td>
+    <td class="clickable" data-lang="de" data-word="strafbar">strafbar</td>
+    <td>[ˈʃtʁaːfbaːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="违法的">违法的</td>
+    <td class="clickable" data-lang="en" data-word="punishable">punishable</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Délit">Délit</td>
+    <td>[deli]</td>
+    <td class="clickable" data-lang="de" data-word="Vergehen">Vergehen</td>
+    <td>[fɛɐ̯ˈgeːən]</td>
+    <td class="clickable" data-lang="zh" data-word="违法行为">违法行为</td>
+    <td class="clickable" data-lang="en" data-word="offense">offense</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Crime">Crime</td>
+    <td>[kʁim]</td>
+    <td class="clickable" data-lang="de" data-word="Verbrechen">Verbrechen</td>
+    <td>[fɛɐ̯ˈbʁɛçn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="犯罪">犯罪</td>
+    <td class="clickable" data-lang="en" data-word="crime">crime</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Police">Police</td>
+    <td>[pɔlis]</td>
+    <td class="clickable" data-lang="de" data-word="Polizei">Polizei</td>
+    <td>[poliˈt͡saɪ]</td>
+    <td class="clickable" data-lang="zh" data-word="警察">警察</td>
+    <td class="clickable" data-lang="en" data-word="police">police</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Arrêter">Arrêter</td>
+    <td>[aʁete]</td>
+    <td class="clickable" data-lang="de" data-word="verhaften">verhaften</td>
+    <td>[fɛɐ̯ˈhaftən]</td>
+    <td class="clickable" data-lang="zh" data-word="逮捕">逮捕</td>
+    <td class="clickable" data-lang="en" data-word="to arrest">to arrest</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Accuser">Accuser</td>
+    <td>[akyze]</td>
+    <td class="clickable" data-lang="de" data-word="beschuldigen">beschuldigen</td>
+    <td>[bəˈʃʊldɪgən]</td>
+    <td class="clickable" data-lang="zh" data-word="指控">指控</td>
+    <td class="clickable" data-lang="en" data-word="to accuse">to accuse</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Tribunal">Tribunal</td>
+    <td>[tʁibynal]</td>
+    <td class="clickable" data-lang="de" data-word="Gericht">Gericht</td>
+    <td>[gəˈʁɪçt]</td>
+    <td class="clickable" data-lang="zh" data-word="法院">法院</td>
+    <td class="clickable" data-lang="en" data-word="court">court</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Procès">Procès</td>
+    <td>[pʁɔsɛ]</td>
+    <td class="clickable" data-lang="de" data-word="Prozess">Prozess</td>
+    <td>[pʁoˈt͡sɛs]</td>
+    <td class="clickable" data-lang="zh" data-word="诉讼">诉讼</td>
+    <td class="clickable" data-lang="en" data-word="trial">trial</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Juge">Juge</td>
+    <td>[ʒyʒ]</td>
+    <td class="clickable" data-lang="de" data-word="Richter">Richter</td>
+    <td>[ˈʁɪçtɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="法官">法官</td>
+    <td class="clickable" data-lang="en" data-word="judge">judge</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Procureur">Procureur</td>
+    <td>[pʁɔkyʁœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Staatsanwalt">Staatsanwalt</td>
+    <td>[ˈʃtaːt͡sanvalt]</td>
+    <td class="clickable" data-lang="zh" data-word="检察官">检察官</td>
+    <td class="clickable" data-lang="en" data-word="prosecutor">prosecutor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Avocat">Avocat</td>
+    <td>[avɔka]</td>
+    <td class="clickable" data-lang="de" data-word="Rechtsanwalt">Rechtsanwalt</td>
+    <td>[ˈʁɛçt͡sanvalt]</td>
+    <td class="clickable" data-lang="zh" data-word="律师">律师</td>
+    <td class="clickable" data-lang="en" data-word="lawyer">lawyer</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Témoin">Témoin</td>
+    <td>[temwɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Zeuge">Zeuge</td>
+    <td>[ˈt͡sɔʏgə]</td>
+    <td class="clickable" data-lang="zh" data-word="证人">证人</td>
+    <td class="clickable" data-lang="en" data-word="witness">witness</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Jugement">Jugement</td>
+    <td>[ʒyʒmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Urteil">Urteil</td>
+    <td>[ˈʊʁtaɪl]</td>
+    <td class="clickable" data-lang="zh" data-word="判决">判决</td>
+    <td class="clickable" data-lang="en" data-word="verdict">verdict</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Innocent">Innocent</td>
+    <td>[inɔsɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="unschuldig">unschuldig</td>
+    <td>[ˈʊnʃʊldɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="无罪的">无罪的</td>
+    <td class="clickable" data-lang="en" data-word="innocent">innocent</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Coupable">Coupable</td>
+    <td>[kupabl]</td>
+    <td class="clickable" data-lang="de" data-word="schuldig">schuldig</td>
+    <td>[ˈʃʊldɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="有罪的">有罪的</td>
+    <td class="clickable" data-lang="en" data-word="guilty">guilty</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Juste">Juste</td>
+    <td>[ʒyst]</td>
+    <td class="clickable" data-lang="de" data-word="gerecht">gerecht</td>
+    <td>[gəˈʁɛçt]</td>
+    <td class="clickable" data-lang="zh" data-word="公正的">公正的</td>
+    <td class="clickable" data-lang="en" data-word="just">just</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Prison">Prison</td>
+    <td>[pʁizɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Gefängnis">Gefängnis</td>
+    <td>[gəˈfɛŋnɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="监狱">监狱</td>
+    <td class="clickable" data-lang="en" data-word="prison">prison</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Condamner">Condamner</td>
+    <td>[kɔ̃dane]</td>
+    <td class="clickable" data-lang="de" data-word="verurteilen">verurteilen</td>
+    <td>[fɛɐ̯ˈʊʁtaɪlən]</td>
+    <td class="clickable" data-lang="zh" data-word="审判">审判</td>
+    <td class="clickable" data-lang="en" data-word="to sentence">to sentence</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Religion">Religion</td>
+    <td>[ʁəliʒjɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="Religion">Religion</td>
+    <td>[ʁeligiˈoːn]</td>
+    <td class="clickable" data-lang="zh" data-word="宗教">宗教</td>
+    <td class="clickable" data-lang="en" data-word="religion">religion</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Église">Église</td>
+    <td>[egliz]</td>
+    <td class="clickable" data-lang="de" data-word="Kirche">Kirche</td>
+    <td>[ˈkɪʁçə]</td>
+    <td class="clickable" data-lang="zh" data-word="教堂">教堂</td>
+    <td class="clickable" data-lang="en" data-word="church">church</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Paradis">Paradis</td>
+    <td>[paʁadi]</td>
+    <td class="clickable" data-lang="de" data-word="Paradies">Paradies</td>
+    <td>[paʁaˈdiːs]</td>
+    <td class="clickable" data-lang="zh" data-word="天堂">天堂</td>
+    <td class="clickable" data-lang="en" data-word="paradise">paradise</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Enfer">Enfer</td>
+    <td>[ɑ̃fɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Hölle">Hölle</td>
+    <td>[ˈhœlə]</td>
+    <td class="clickable" data-lang="zh" data-word="地狱">地狱</td>
+    <td class="clickable" data-lang="en" data-word="hell">hell</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bible">Bible</td>
+    <td>[bibl]</td>
+    <td class="clickable" data-lang="de" data-word="Bibel">Bibel</td>
+    <td>[ˈbiːbl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="圣经">圣经</td>
+    <td class="clickable" data-lang="en" data-word="Bible">Bible</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Dieu">Dieu</td>
+    <td>[djø]</td>
+    <td class="clickable" data-lang="de" data-word="Gott">Gott</td>
+    <td>[gɔt]</td>
+    <td class="clickable" data-lang="zh" data-word="上帝">上帝</td>
+    <td class="clickable" data-lang="en" data-word="God">God</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Christianisme">Christianisme</td>
+    <td>[kʁistjanism]</td>
+    <td class="clickable" data-lang="de" data-word="Christentum">Christentum</td>
+    <td>[ˈkʁɪstn̩tuːm]</td>
+    <td class="clickable" data-lang="zh" data-word="基督教">基督教</td>
+    <td class="clickable" data-lang="en" data-word="Christianity">Christianity</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Bouddhisme">Bouddhisme</td>
+    <td>[budism]</td>
+    <td class="clickable" data-lang="de" data-word="Buddhismus">Buddhismus</td>
+    <td>[ˈbʊdɪsmʊs]</td>
+    <td class="clickable" data-lang="zh" data-word="佛教">佛教</td>
+    <td class="clickable" data-lang="en" data-word="Buddhism">Buddhism</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Âme">Âme</td>
+    <td>[ɑm]</td>
+    <td class="clickable" data-lang="de" data-word="Seele">Seele</td>
+    <td>[ˈzeːlə]</td>
+    <td class="clickable" data-lang="zh" data-word="灵魂">灵魂</td>
+    <td class="clickable" data-lang="en" data-word="soul">soul</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Diable">Diable</td>
+    <td>[djabl]</td>
+    <td class="clickable" data-lang="de" data-word="Teufel">Teufel</td>
+    <td>[ˈtɔʏfl̩]</td>
+    <td class="clickable" data-lang="zh" data-word="魔鬼">魔鬼</td>
+    <td class="clickable" data-lang="en" data-word="devil">devil</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pieux">Pieux</td>
+    <td>[pjø]</td>
+    <td class="clickable" data-lang="de" data-word="fromm">fromm</td>
+    <td>[fʁɔm]</td>
+    <td class="clickable" data-lang="zh" data-word="虔诚的">虔诚的</td>
+    <td class="clickable" data-lang="en" data-word="pious">pious</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pasteur">Pasteur</td>
+    <td>[pastœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Pfarrer">Pfarrer</td>
+    <td>[ˈpfaʁɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="牧师">牧师</td>
+    <td class="clickable" data-lang="en" data-word="pastor">pastor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Prier">Prier</td>
+    <td>[pʁije]</td>
+    <td class="clickable" data-lang="de" data-word="beten">beten</td>
+    <td>[ˈbeːtn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="祈祷">祈祷</td>
+    <td class="clickable" data-lang="en" data-word="to pray">to pray</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Noël">Noël</td>
+    <td>[nɔɛl]</td>
+    <td class="clickable" data-lang="de" data-word="Weihnachten">Weihnachten</td>
+    <td>[ˈvaɪnaxtn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="圣诞节">圣诞节</td>
+    <td class="clickable" data-lang="en" data-word="Christmas">Christmas</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Carnaval">Carnaval</td>
+    <td>[kaʁnaval]</td>
+    <td class="clickable" data-lang="de" data-word="Karneval">Karneval</td>
+    <td>[kaʁnəˈval]</td>
+    <td class="clickable" data-lang="zh" data-word="狂欢节">狂欢节</td>
+    <td class="clickable" data-lang="en" data-word="carnival">carnival</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pâques">Pâques</td>
+    <td>[pɑk]</td>
+    <td class="clickable" data-lang="de" data-word="Ostern">Ostern</td>
+    <td>[ˈoːstɐn]</td>
+    <td class="clickable" data-lang="zh" data-word="复活节">复活节</td>
+    <td class="clickable" data-lang="en" data-word="Easter">Easter</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Saint">Saint</td>
+    <td>[sɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="heilig">heilig</td>
+    <td>[ˈhaɪlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="神圣的">神圣的</td>
+    <td class="clickable" data-lang="en" data-word="holy">holy</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Pèleriner">Pèleriner</td>
+    <td>[pɛlʁine]</td>
+    <td class="clickable" data-lang="de" data-word="pilgern">pilgern</td>
+    <td>[ˈpɪlgɐn]</td>
+    <td class="clickable" data-lang="zh" data-word="朝圣">朝圣</td>
+    <td class="clickable" data-lang="en" data-word="to pilgrim">to pilgrim</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="Moine">Moine</td>
+    <td>[mwan]</td>
+    <td class="clickable" data-lang="de" data-word="Mönch">Mönch</td>
+    <td>[mœnç]</td>
+    <td class="clickable" data-lang="zh" data-word="和尚">和尚</td>
+    <td class="clickable" data-lang="en" data-word="monk">monk</td>
+</tr>
+</table>
+
+
+    <script>
+    const PIXABAY_API_KEY = '49256357-c30f2f538120ce8d74ff8921d';
+    let speechSynth = window.speechSynthesis;
+    let voices = [];
+
+    // Wait for voices to load
+    speechSynth.onvoiceschanged = function() {
+        voices = speechSynth.getVoices();
+    };
+
+    // Pronunciation function
+    function speak(text, lang) {
+        // Cancel any ongoing speech
+        speechSynth.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        
+        // For Chinese, select appropriate voice based on dialect
+        if (lang.startsWith('zh')) {
+            const voices = window.speechSynthesis.getVoices();
+            const chineseVoice = voices.find(voice => voice.lang.includes(lang));
+            if (chineseVoice) {
+                utterance.voice = chineseVoice;
+            }
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    } 
+    
+    let currentImageTimeout = null;  // 添加超时变量
+
+    // 清除背景图片
+    function clearBackgroundImages() {
+        if (currentImageTimeout) {
+            clearTimeout(currentImageTimeout);
+            currentImageTimeout = null;
+        }
+        document.querySelectorAll('.background-image').forEach(img => {
+            img.style.opacity = '0';
+            setTimeout(() => img.remove(), 300); // 淡出效果后移除
+        });
+    }
+
+    // Fetch and add background image
+    async function addBackgroundImage(cell, searchTerm) {
+        clearBackgroundImages();
+        
+        try {
+            const apiUrl = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(searchTerm)}&per_page=4&safesearch=true`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.hits && data.hits.length > 0) {
+                const randomIndex = Math.floor(Math.random() * Math.min(4, data.hits.length));
+                const img = document.createElement('img');
+                img.className = 'background-image';
+                img.alt = searchTerm;
+
+                // 图片加载完成后再显示
+                img.onload = () => {
+                    setTimeout(() => {
+                        img.style.opacity = '0.9';  // 设置为原来的不透明度
+                    }, 50);
+                };
+                
+                img.src = data.hits[randomIndex].previewURL;
+                
+                const firstCell = cell.closest('tr').querySelector('td:first-child');
+                firstCell.appendChild(img);
+
+                // 设置新的超时
+                currentImageTimeout = setTimeout(() => {
+                    clearBackgroundImages();
+                }, 3000);
+            }
+        } catch (error) {
+            console.error('Error fetching image:', error);
+        }
+    }
+
+    // Add click events to clickable cells
+    window.speechSynthesis.onvoiceschanged = () => {
+        document.querySelectorAll('.clickable').forEach(cell => {
+            cell.addEventListener('click', function() {
+                const text = this.textContent;
+                let lang;
+                
+                // Get language based on data-lang attribute
+                switch(this.dataset.lang) {
+                    case 'fr':
+                        lang = 'fr-FR';
+                        break;
+                    case 'de':
+                        lang = 'de-DE';
+                        break;
+                    case 'zh':
+                        // Use selected dialect for Chinese
+                        lang = document.getElementById('chineseDialect').value;
+                        break;
+                    default:
+                        lang = 'en-US';
+                }
+                
+                speak(text, lang);
+                addBackgroundImage(this, this.dataset.word);
+
+                // Visual feedback with cleanup
+                const originalBg = window.getComputedStyle(this).backgroundColor;
+                this.style.backgroundColor = '#c8e6c9';
+                
+                // Clear any existing timeout for this cell
+                if (this.resetTimeout) {
+                    clearTimeout(this.resetTimeout);
+                }
+                
+                // Set new timeout and store its ID
+                this.resetTimeout = setTimeout(() => {
+                    this.style.backgroundColor = '';
+                    this.resetTimeout = null;
+                }, 500);
+            });
+        });
+    };
+</script>
+
+</body>
+</html>
