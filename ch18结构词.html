@@ -1,0 +1,1327 @@
+<!-- <使用这个模板，添加单词到table的部分就可以!> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr {
+            position: relative;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .clickable {
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+        .clickable:hover {
+            background-color: #e6e6e6;
+        }
+        .background-image {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            opacity: 0;  /* 初始设置为透明 */
+            transition: opacity 0.3s ease-in-out;  /* 添加过渡效果 */
+        }
+        .background-image:hover {
+            opacity: 0.8;
+        }
+        .language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .language-selector select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="index.html" class="back-button">🏠 主页</a>
+      </div>
+
+    <div class="language-selector">
+        <select id="chineseDialect">
+            <option value="zh-CN">普通话</option>
+            <option value="zh-HK">粤语</option>
+        </select>
+    </div>
+
+
+    <table id="wordTable">
+        <tr>
+            <th>法语</th>
+            <th>音标</th>
+            <th>德语</th>
+            <th>音标</th>
+            <th>中文</th>
+            <th>英语</th>
+        </tr>
+        <tr>
+            <td class="clickable" data-lang="fr" data-word="je">je</td>
+            <td>[ʒə]</td>
+            <td class="clickable" data-lang="de" data-word="ich">ich</td>
+            <td>[ɪç]</td>
+            <td class="clickable" data-lang="zh" data-word="我（主格）">我（主格）</td>
+            <td class="clickable" data-lang="en" data-word="I">I</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="tu">tu</td>
+            <td>[ty]</td>
+            <td class="clickable" data-lang="de" data-word="du">du</td>
+            <td>[duː]</td>
+            <td class="clickable" data-lang="zh" data-word="你（主格）">你（主格）</td>
+            <td class="clickable" data-lang="en" data-word="you">you</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="il">il</td>
+            <td>[il]</td>
+            <td class="clickable" data-lang="de" data-word="er">er</td>
+            <td>[eːɐ̯]</td>
+            <td class="clickable" data-lang="zh" data-word="他（主格）">他（主格）</td>
+            <td class="clickable" data-lang="en" data-word="he">he</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="ce/ça">ce/ça</td>
+            <td>[sə/sa]</td>
+            <td class="clickable" data-lang="de" data-word="es">es</td>
+            <td>[ɛs]</td>
+            <td class="clickable" data-lang="zh" data-word="它（主格）">它（主格）</td>
+            <td class="clickable" data-lang="en" data-word="it">it</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="elle">elle</td>
+            <td>[ɛl]</td>
+            <td class="clickable" data-lang="de" data-word="sie">sie</td>
+            <td>[ziː]</td>
+            <td class="clickable" data-lang="zh" data-word="她（主格）">她（主格）</td>
+            <td class="clickable" data-lang="en" data-word="she">she</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="nous">nous</td>
+            <td>[nu]</td>
+            <td class="clickable" data-lang="de" data-word="wir">wir</td>
+            <td>[viːɐ̯]</td>
+            <td class="clickable" data-lang="zh" data-word="我们（主格）">我们（主格）</td>
+            <td class="clickable" data-lang="en" data-word="we">we</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="vous">vous</td>
+            <td>[vu]</td>
+            <td class="clickable" data-lang="de" data-word="ihr">ihr</td>
+            <td>[iːɐ̯]</td>
+            <td class="clickable" data-lang="zh" data-word="你们（主格）">你们（主格）</td>
+            <td class="clickable" data-lang="en" data-word="you">you</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="ils/elles">ils/elles</td>
+            <td>[il/ɛl]</td>
+            <td class="clickable" data-lang="de" data-word="sie">sie</td>
+            <td>[ziː]</td>
+            <td class="clickable" data-lang="zh" data-word="他们/她们（主格）">他们/她们（主格）</td>
+            <td class="clickable" data-lang="en" data-word="they">they</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="vous">vous</td>
+            <td>[vu]</td>
+            <td class="clickable" data-lang="de" data-word="Sie">Sie</td>
+            <td>[ziː]</td>
+            <td class="clickable" data-lang="zh" data-word="您（主格）">您（主格）</td>
+            <td class="clickable" data-lang="en" data-word="you (formal)">you (formal)</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="me">me</td>
+            <td>[mə]</td>
+            <td class="clickable" data-lang="de" data-word="mich">mich</td>
+            <td>[mɪç]</td>
+            <td class="clickable" data-lang="zh" data-word="我（宾格）">我（宾格）</td>
+            <td class="clickable" data-lang="en" data-word="me">me</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="te">te</td>
+            <td>[tə]</td>
+            <td class="clickable" data-lang="de" data-word="dich">dich</td>
+            <td>[dɪç]</td>
+            <td class="clickable" data-lang="zh" data-word="你（宾格）">你（宾格）</td>
+            <td class="clickable" data-lang="en" data-word="you">you</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="le">le</td>
+            <td>[lə]</td>
+            <td class="clickable" data-lang="de" data-word="ihn">ihn</td>
+            <td>[iːn]</td>
+            <td class="clickable" data-lang="zh" data-word="他（宾格）">他（宾格）</td>
+            <td class="clickable" data-lang="en" data-word="him">him</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="le/la">le/la</td>
+            <td>[lə/la]</td>
+            <td class="clickable" data-lang="de" data-word="es">es</td>
+            <td>[ɛs]</td>
+            <td class="clickable" data-lang="zh" data-word="它（宾格）">它（宾格）</td>
+            <td class="clickable" data-lang="en" data-word="it">it</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="la">la</td>
+            <td>[la]</td>
+            <td class="clickable" data-lang="de" data-word="sie">sie</td>
+            <td>[ziː]</td>
+            <td class="clickable" data-lang="zh" data-word="她（宾格）">她（宾格）</td>
+            <td class="clickable" data-lang="en" data-word="her">her</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="nous">nous</td>
+            <td>[nu]</td>
+            <td class="clickable" data-lang="de" data-word="uns">uns</td>
+            <td>[ʊns]</td>
+            <td class="clickable" data-lang="zh" data-word="我们（宾格）">我们（宾格）</td>
+            <td class="clickable" data-lang="en" data-word="us">us</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="vous">vous</td>
+            <td>[vu]</td>
+            <td class="clickable" data-lang="de" data-word="euch">euch</td>
+            <td>[ɔʏç]</td>
+            <td class="clickable" data-lang="zh" data-word="你们（宾格）">你们（宾格）</td>
+            <td class="clickable" data-lang="en" data-word="you">you</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="les">les</td>
+            <td>[le]</td>
+            <td class="clickable" data-lang="de" data-word="sie">sie</td>
+            <td>[ziː]</td>
+            <td class="clickable" data-lang="zh" data-word="他们（宾格）">他们（宾格）</td>
+            <td class="clickable" data-lang="en" data-word="them">them</td>
+</tr>
+
+<tr>
+            <td class="clickable" data-lang="fr" data-word="vous">vous</td>
+            <td>[vu]</td>
+            <td class="clickable" data-lang="de" data-word="Sie">Sie</td>
+            <td>[ziː]</td>
+            <td class="clickable" data-lang="zh" data-word="您（宾格）">您（宾格）</td>
+            <td class="clickable" data-lang="en" data-word="you (formal)">you (formal)</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="me">me</td>
+    <td>[mə]</td>
+    <td class="clickable" data-lang="de" data-word="mir">mir</td>
+    <td>[miːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="我（与格）">我（与格）</td>
+    <td class="clickable" data-lang="en" data-word="to me">to me</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="te">te</td>
+    <td>[tə]</td>
+    <td class="clickable" data-lang="de" data-word="dir">dir</td>
+    <td>[diːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="你（与格）">你（与格）</td>
+    <td class="clickable" data-lang="en" data-word="to you">to you</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="lui">lui</td>
+    <td>[lɥi]</td>
+    <td class="clickable" data-lang="de" data-word="ihm">ihm</td>
+    <td>[iːm]</td>
+    <td class="clickable" data-lang="zh" data-word="他（与格）">他（与格）</td>
+    <td class="clickable" data-lang="en" data-word="to him">to him</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="lui">lui</td>
+    <td>[lɥi]</td>
+    <td class="clickable" data-lang="de" data-word="ihr">ihr</td>
+    <td>[iːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="她（与格）">她（与格）</td>
+    <td class="clickable" data-lang="en" data-word="to her">to her</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="nous">nous</td>
+    <td>[nu]</td>
+    <td class="clickable" data-lang="de" data-word="uns">uns</td>
+    <td>[ʊns]</td>
+    <td class="clickable" data-lang="zh" data-word="我们（与格）">我们（与格）</td>
+    <td class="clickable" data-lang="en" data-word="to us">to us</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="vous">vous</td>
+    <td>[vu]</td>
+    <td class="clickable" data-lang="de" data-word="euch">euch</td>
+    <td>[ɔʏç]</td>
+    <td class="clickable" data-lang="zh" data-word="你们（与格）">你们（与格）</td>
+    <td class="clickable" data-lang="en" data-word="to you">to you</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="leur">leur</td>
+    <td>[lœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="ihnen">ihnen</td>
+    <td>[ˈiːnən]</td>
+    <td class="clickable" data-lang="zh" data-word="他们（与格）">他们（与格）</td>
+    <td class="clickable" data-lang="en" data-word="to them">to them</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="vous">vous</td>
+    <td>[vu]</td>
+    <td class="clickable" data-lang="de" data-word="Ihnen">Ihnen</td>
+    <td>[ˈiːnən]</td>
+    <td class="clickable" data-lang="zh" data-word="您（与格）">您（与格）</td>
+    <td class="clickable" data-lang="en" data-word="to you (formal)">to you (formal)</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mon">mon</td>
+    <td>[mɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="mein">mein</td>
+    <td>[maɪ̯n]</td>
+    <td class="clickable" data-lang="zh" data-word="我的">我的</td>
+    <td class="clickable" data-lang="en" data-word="my">my</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ton">ton</td>
+    <td>[tɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="dein">dein</td>
+    <td>[daɪ̯n]</td>
+    <td class="clickable" data-lang="zh" data-word="你的">你的</td>
+    <td class="clickable" data-lang="en" data-word="your">your</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="son">son</td>
+    <td>[sɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="sein">sein</td>
+    <td>[zaɪ̯n]</td>
+    <td class="clickable" data-lang="zh" data-word="他的">他的</td>
+    <td class="clickable" data-lang="en" data-word="his">his</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="son">son</td>
+    <td>[sɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="ihr">ihr</td>
+    <td>[iːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="她的">她的</td>
+    <td class="clickable" data-lang="en" data-word="her">her</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="notre">notre</td>
+    <td>[nɔtʁ]</td>
+    <td class="clickable" data-lang="de" data-word="unser">unser</td>
+    <td>[ˈʊnzɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="我们的">我们的</td>
+    <td class="clickable" data-lang="en" data-word="our">our</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="votre">votre</td>
+    <td>[vɔtʁ]</td>
+    <td class="clickable" data-lang="de" data-word="euer">euer</td>
+    <td>[ˈɔʏɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="你们的">你们的</td>
+    <td class="clickable" data-lang="en" data-word="your">your</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="leur">leur</td>
+    <td>[lœʁ]</td>
+    <td class="clickable" data-lang="de" data-word="ihr">ihr</td>
+    <td>[iːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="他们的">他们的</td>
+    <td class="clickable" data-lang="en" data-word="their">their</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="votre">votre</td>
+    <td>[vɔtʁ]</td>
+    <td class="clickable" data-lang="de" data-word="Ihr">Ihr</td>
+    <td>[iːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="您的">您的</td>
+    <td class="clickable" data-lang="en" data-word="your (formal)">your (formal)</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sans">sans</td>
+    <td>[sɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="ohne">ohne</td>
+    <td>[ˈoːnə]</td>
+    <td class="clickable" data-lang="zh" data-word="没有……就">没有……就</td>
+    <td class="clickable" data-lang="en" data-word="without">without</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="et">et</td>
+    <td>[e]</td>
+    <td class="clickable" data-lang="de" data-word="und">und</td>
+    <td>[ʊnt]</td>
+    <td class="clickable" data-lang="zh" data-word="和">和</td>
+    <td class="clickable" data-lang="en" data-word="and">and</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="aussi">aussi</td>
+    <td>[osi]</td>
+    <td class="clickable" data-lang="de" data-word="auch">auch</td>
+    <td>[aʊ̯x]</td>
+    <td class="clickable" data-lang="zh" data-word="也，一样">也，一样</td>
+    <td class="clickable" data-lang="en" data-word="also">also</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="donc">donc</td>
+    <td>[dɔ̃k]</td>
+    <td class="clickable" data-lang="de" data-word="deshalb">deshalb</td>
+    <td>[ˈdɛshalp]</td>
+    <td class="clickable" data-lang="zh" data-word="所以">所以</td>
+    <td class="clickable" data-lang="en" data-word="therefore">therefore</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="donc">donc</td>
+    <td>[dɔ̃k]</td>
+    <td class="clickable" data-lang="de" data-word="deswegen">deswegen</td>
+    <td>[dɛsˈveːɡn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="因此">因此</td>
+    <td class="clickable" data-lang="en" data-word="therefore">therefore</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="c'est-à-dire">c'est-à-dire</td>
+    <td>[sɛtadiʁ]</td>
+    <td class="clickable" data-lang="de" data-word="nämlich">nämlich</td>
+    <td>[ˈnɛːmlɪç]</td>
+    <td class="clickable" data-lang="zh" data-word="即，也就是">即，也就是</td>
+    <td class="clickable" data-lang="en" data-word="namely">namely</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="comme">comme</td>
+    <td>[kɔm]</td>
+    <td class="clickable" data-lang="de" data-word="als">als</td>
+    <td>[als]</td>
+    <td class="clickable" data-lang="zh" data-word="作为……，当……时">作为……，当……时</td>
+    <td class="clickable" data-lang="en" data-word="as, when">as, when</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="quand">quand</td>
+    <td>[kɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="wenn">wenn</td>
+    <td>[vɛn]</td>
+    <td class="clickable" data-lang="zh" data-word="如果，当……时">如果，当……时</td>
+    <td class="clickable" data-lang="en" data-word="when, if">when, if</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="comme">comme</td>
+    <td>[kɔm]</td>
+    <td class="clickable" data-lang="de" data-word="wie">wie</td>
+    <td>[viː]</td>
+    <td class="clickable" data-lang="zh" data-word="如同，正如">如同，正如</td>
+    <td class="clickable" data-lang="en" data-word="like, as">like, as</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="mais">mais</td>
+    <td>[mɛ]</td>
+    <td class="clickable" data-lang="de" data-word="aber">aber</td>
+    <td>[ˈaːbɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="但是">但是</td>
+    <td class="clickable" data-lang="en" data-word="but">but</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="cependant">cependant</td>
+    <td>[səpɑ̃dɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="jedoch">jedoch</td>
+    <td>[jəˈdɔx]</td>
+    <td class="clickable" data-lang="zh" data-word="然而，可是">然而，可是</td>
+    <td class="clickable" data-lang="en" data-word="however">however</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="car">car</td>
+    <td>[kaʁ]</td>
+    <td class="clickable" data-lang="de" data-word="denn">denn</td>
+    <td>[dɛn]</td>
+    <td class="clickable" data-lang="zh" data-word="因为">因为</td>
+    <td class="clickable" data-lang="en" data-word="because">because</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="quand même">quand même</td>
+    <td>[kɑ̃mɛm]</td>
+    <td class="clickable" data-lang="de" data-word="trotzdem">trotzdem</td>
+    <td>[ˈtʁɔtsdеːm]</td>
+    <td class="clickable" data-lang="zh" data-word="虽然，尽管">虽然，尽管</td>
+    <td class="clickable" data-lang="en" data-word="nevertheless">nevertheless</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="après que">après que</td>
+    <td>[apʁɛkə]</td>
+    <td class="clickable" data-lang="de" data-word="nachdem">nachdem</td>
+    <td>[ˈnaːxdeːm]</td>
+    <td class="clickable" data-lang="zh" data-word="在……之后">在……之后</td>
+    <td class="clickable" data-lang="en" data-word="after">after</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="que">que</td>
+    <td>[kə]</td>
+    <td class="clickable" data-lang="de" data-word="dass">dass</td>
+    <td>[das]</td>
+    <td class="clickable" data-lang="zh" data-word="连接句子，无具体意义">连接句子，无具体意义</td>
+    <td class="clickable" data-lang="en" data-word="that">that</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="si">si</td>
+    <td>[si]</td>
+    <td class="clickable" data-lang="de" data-word="ob">ob</td>
+    <td>[ɔp]</td>
+    <td class="clickable" data-lang="zh" data-word="是否">是否</td>
+    <td class="clickable" data-lang="en" data-word="if, whether">if, whether</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="si">si</td>
+    <td>[si]</td>
+    <td class="clickable" data-lang="de" data-word="falls">falls</td>
+    <td>[fals]</td>
+    <td class="clickable" data-lang="zh" data-word="假如">假如</td>
+    <td class="clickable" data-lang="en" data-word="if">if</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="puisque">puisque</td>
+    <td>[pɥiskə]</td>
+    <td class="clickable" data-lang="de" data-word="da">da</td>
+    <td>[daː]</td>
+    <td class="clickable" data-lang="zh" data-word="因为，由于">因为，由于</td>
+    <td class="clickable" data-lang="en" data-word="since, as">since, as</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="parce que">parce que</td>
+    <td>[paʁskə]</td>
+    <td class="clickable" data-lang="de" data-word="weil">weil</td>
+    <td>[vaɪ̯l]</td>
+    <td class="clickable" data-lang="zh" data-word="因为">因为</td>
+    <td class="clickable" data-lang="en" data-word="because">because</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="en">en</td>
+    <td>[ɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="indem">indem</td>
+    <td>[ɪnˈdeːm]</td>
+    <td class="clickable" data-lang="zh" data-word="通过……方法">通过……方法</td>
+    <td class="clickable" data-lang="en" data-word="by (means of)">by (means of)</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="au lieu de">au lieu de</td>
+    <td>[olјødə]</td>
+    <td class="clickable" data-lang="de" data-word="statt">statt</td>
+    <td>[ʃtat]</td>
+    <td class="clickable" data-lang="zh" data-word="而不是">而不是</td>
+    <td class="clickable" data-lang="en" data-word="instead of">instead of</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ou">ou</td>
+    <td>[u]</td>
+    <td class="clickable" data-lang="de" data-word="oder">oder</td>
+    <td>[ˈoːdɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="或者">或者</td>
+    <td class="clickable" data-lang="en" data-word="or">or</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pendant que">pendant que</td>
+    <td>[pɑ̃dɑ̃kə]</td>
+    <td class="clickable" data-lang="de" data-word="während">während</td>
+    <td>[ˈvɛːʁənt]</td>
+    <td class="clickable" data-lang="zh" data-word="当……时">当……时</td>
+    <td class="clickable" data-lang="en" data-word="while">while</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="jusqu'à">jusqu'à</td>
+    <td>[ʒyska]</td>
+    <td class="clickable" data-lang="de" data-word="bis">bis</td>
+    <td>[bɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="直到……为止">直到……为止</td>
+    <td class="clickable" data-lang="en" data-word="until">until</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="avant que">avant que</td>
+    <td>[avɑ̃kə]</td>
+    <td class="clickable" data-lang="de" data-word="bevor">bevor</td>
+    <td>[bəˈfoːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="在……之前">在……之前</td>
+    <td class="clickable" data-lang="en" data-word="before">before</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="depuis que">depuis que</td>
+    <td>[dəpɥikə]</td>
+    <td class="clickable" data-lang="de" data-word="seit">seit</td>
+    <td>[zaɪ̯t]</td>
+    <td class="clickable" data-lang="zh" data-word="从……以后">从……以后</td>
+    <td class="clickable" data-lang="en" data-word="since">since</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="afin que">afin que</td>
+    <td>[afɛ̃kə]</td>
+    <td class="clickable" data-lang="de" data-word="damit">damit</td>
+    <td>[daˈmɪt]</td>
+    <td class="clickable" data-lang="zh" data-word="为了，以便">为了，以便</td>
+    <td class="clickable" data-lang="en" data-word="so that">so that</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="bien que">bien que</td>
+    <td>[bjɛ̃kə]</td>
+    <td class="clickable" data-lang="de" data-word="obwohl">obwohl</td>
+    <td>[ˈɔpvoːl]</td>
+    <td class="clickable" data-lang="zh" data-word="尽管，即使">尽管，即使</td>
+    <td class="clickable" data-lang="en" data-word="although">although</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="dès que">dès que</td>
+    <td>[dɛkə]</td>
+    <td class="clickable" data-lang="de" data-word="sobald">sobald</td>
+    <td>[zoˈbalt]</td>
+    <td class="clickable" data-lang="zh" data-word="一……就">一……就</td>
+    <td class="clickable" data-lang="en" data-word="as soon as">as soon as</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="tant que">tant que</td>
+    <td>[tɑ̃kə]</td>
+    <td class="clickable" data-lang="de" data-word="solange">solange</td>
+    <td>[zoˈlaŋə]</td>
+    <td class="clickable" data-lang="zh" data-word="只要">只要</td>
+    <td class="clickable" data-lang="en" data-word="as long as">as long as</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="ni...ni">ni...ni</td>
+    <td>[ni...ni]</td>
+    <td class="clickable" data-lang="de" data-word="weder...noch">weder...noch</td>
+    <td>[ˈveːdɐ...nɔx]</td>
+    <td class="clickable" data-lang="zh" data-word="既不……也不">既不……也不</td>
+    <td class="clickable" data-lang="en" data-word="neither...nor">neither...nor</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="certes...mais">certes...mais</td>
+    <td>[sɛʁt...mɛ]</td>
+    <td class="clickable" data-lang="de" data-word="zwar...aber">zwar...aber</td>
+    <td>[tsvaːɐ̯...ˈaːbɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="虽然……但是">虽然……但是</td>
+    <td class="clickable" data-lang="en" data-word="although...but">although...but</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="non seulement...mais aussi">non seulement...mais aussi</td>
+    <td>[nɔ̃sœlmɑ̃...mɛzosi]</td>
+    <td class="clickable" data-lang="de" data-word="nicht nur...sondern auch">nicht nur...sondern auch</td>
+    <td>[nɪçt nuːɐ̯...ˈzɔndɐn ʔaʊ̯x]</td>
+    <td class="clickable" data-lang="zh" data-word="不仅……而且">不仅……而且</td>
+    <td class="clickable" data-lang="en" data-word="not only...but also">not only...but also</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="aussi bien...que">aussi bien...que</td>
+    <td>[osibjɛ̃...kə]</td>
+    <td class="clickable" data-lang="de" data-word="sowohl...als auch">sowohl...als auch</td>
+    <td>[zoˈvoːl...als ʔaʊ̯x]</td>
+    <td class="clickable" data-lang="zh" data-word="既……也……">既……也……</td>
+    <td class="clickable" data-lang="en" data-word="both...and">both...and</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="soit...soit">soit...soit</td>
+    <td>[swa...swa]</td>
+    <td class="clickable" data-lang="de" data-word="entweder...oder">entweder...oder</td>
+    <td>[ˈɛntveːdɐ...ˈoːdɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="或者……或者">或者……或者</td>
+    <td class="clickable" data-lang="en" data-word="either...or">either...or</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pour">pour</td>
+    <td>[puʁ]</td>
+    <td class="clickable" data-lang="de" data-word="um...zu">um...zu</td>
+    <td>[ʊm...tsuː]</td>
+    <td class="clickable" data-lang="zh" data-word="为了">为了</td>
+    <td class="clickable" data-lang="en" data-word="in order to">in order to</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="plus...plus">plus...plus</td>
+    <td>[ply...ply]</td>
+    <td class="clickable" data-lang="de" data-word="je...desto/umso">je...desto/umso</td>
+    <td>[jeː...ˈdɛsto/ˈʊmzo]</td>
+    <td class="clickable" data-lang="zh" data-word="越……越……">越……越……</td>
+    <td class="clickable" data-lang="en" data-word="the more...the more">the more...the more</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="à">à</td>
+    <td>[a]</td>
+    <td class="clickable" data-lang="de" data-word="an">an</td>
+    <td>[an]</td>
+    <td class="clickable" data-lang="zh" data-word="在……旁边，在……的时候">在……旁边，在……的时候</td>
+    <td class="clickable" data-lang="en" data-word="at, on">at, on</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="dans">dans</td>
+    <td>[dɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="in">in</td>
+    <td>[ɪn]</td>
+    <td class="clickable" data-lang="zh" data-word="在……里面">在……里面</td>
+    <td class="clickable" data-lang="en" data-word="in">in</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sur">sur</td>
+    <td>[syʁ]</td>
+    <td class="clickable" data-lang="de" data-word="auf">auf</td>
+    <td>[aʊ̯f]</td>
+    <td class="clickable" data-lang="zh" data-word="在……上边">在……上边</td>
+    <td class="clickable" data-lang="en" data-word="on">on</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="au-dessus de">au-dessus de</td>
+    <td>[odəsydə]</td>
+    <td class="clickable" data-lang="de" data-word="über">über</td>
+    <td>[ˈyːbɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="在……上方">在……上方</td>
+    <td class="clickable" data-lang="en" data-word="over, above">over, above</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sous">sous</td>
+    <td>[su]</td>
+    <td class="clickable" data-lang="de" data-word="unter">unter</td>
+    <td>[ˈʊntɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="在……下边">在……下边</td>
+    <td class="clickable" data-lang="en" data-word="under">under</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="devant">devant</td>
+    <td>[dəvɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="vor">vor</td>
+    <td>[foːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="在……前面">在……前面</td>
+    <td class="clickable" data-lang="en" data-word="in front of">in front of</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="derrière">derrière</td>
+    <td>[dɛʁjɛʁ]</td>
+    <td class="clickable" data-lang="de" data-word="hinter">hinter</td>
+    <td>[ˈhɪntɐ]</td>
+    <td class="clickable" data-lang="zh" data-word="在……后面">在……后面</td>
+    <td class="clickable" data-lang="en" data-word="behind">behind</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="à côté de">à côté de</td>
+    <td>[akotedə]</td>
+    <td class="clickable" data-lang="de" data-word="neben">neben</td>
+    <td>[ˈneːbn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="在……旁边">在……旁边</td>
+    <td class="clickable" data-lang="en" data-word="next to">next to</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="entre">entre</td>
+    <td>[ɑ̃tʁ]</td>
+    <td class="clickable" data-lang="de" data-word="zwischen">zwischen</td>
+    <td>[ˈtsvɪʃn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="在……中间">在……中间</td>
+    <td class="clickable" data-lang="en" data-word="between">between</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pour">pour</td>
+    <td>[puʁ]</td>
+    <td class="clickable" data-lang="de" data-word="für">für</td>
+    <td>[fyːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="为了">为了</td>
+    <td class="clickable" data-lang="en" data-word="for">for</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="à">à</td>
+    <td>[a]</td>
+    <td class="clickable" data-lang="de" data-word="um">um</td>
+    <td>[ʊm]</td>
+    <td class="clickable" data-lang="zh" data-word="在……点钟">在……点钟</td>
+    <td class="clickable" data-lang="en" data-word="at (time)">at (time)</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="contre">contre</td>
+    <td>[kɔ̃tʁ]</td>
+    <td class="clickable" data-lang="de" data-word="gegen">gegen</td>
+    <td>[ˈɡeːɡn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="对着，反对">对着，反对</td>
+    <td class="clickable" data-lang="en" data-word="against">against</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="par">par</td>
+    <td>[paʁ]</td>
+    <td class="clickable" data-lang="de" data-word="per">per</td>
+    <td>[pɛʁ]</td>
+    <td class="clickable" data-lang="zh" data-word="用……，以……">用……，以……</td>
+    <td class="clickable" data-lang="en" data-word="per, by">per, by</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="sans">sans</td>
+    <td>[sɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="ohne">ohne</td>
+    <td>[ˈoːnə]</td>
+    <td class="clickable" data-lang="zh" data-word="没有，无">没有，无</td>
+    <td class="clickable" data-lang="en" data-word="without">without</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="avec">avec</td>
+    <td>[avɛk]</td>
+    <td class="clickable" data-lang="de" data-word="mit">mit</td>
+    <td>[mɪt]</td>
+    <td class="clickable" data-lang="zh" data-word="和……一起">和……一起</td>
+    <td class="clickable" data-lang="en" data-word="with">with</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="à">à</td>
+    <td>[a]</td>
+    <td class="clickable" data-lang="de" data-word="zu">zu</td>
+    <td>[tsuː]</td>
+    <td class="clickable" data-lang="zh" data-word="到……去">到……去</td>
+    <td class="clickable" data-lang="en" data-word="to">to</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="de">de</td>
+    <td>[də]</td>
+    <td class="clickable" data-lang="de" data-word="aus">aus</td>
+    <td>[aʊ̯s]</td>
+    <td class="clickable" data-lang="zh" data-word="从……来">从……来</td>
+    <td class="clickable" data-lang="en" data-word="from, out of">from, out of</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="par">par</td>
+    <td>[paʁ]</td>
+    <td class="clickable" data-lang="de" data-word="durch">durch</td>
+    <td>[dʊʁç]</td>
+    <td class="clickable" data-lang="zh" data-word="通过">通过</td>
+    <td class="clickable" data-lang="en" data-word="through">through</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="chez">chez</td>
+    <td>[ʃe]</td>
+    <td class="clickable" data-lang="de" data-word="bei">bei</td>
+    <td>[baɪ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="在……处">在……处</td>
+    <td class="clickable" data-lang="en" data-word="at, with">at, with</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="après">après</td>
+    <td>[apʁɛ]</td>
+    <td class="clickable" data-lang="de" data-word="nach">nach</td>
+    <td>[naːx]</td>
+    <td class="clickable" data-lang="zh" data-word="……以后">……以后</td>
+    <td class="clickable" data-lang="en" data-word="after">after</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="jusqu'à">jusqu'à</td>
+    <td>[ʒyska]</td>
+    <td class="clickable" data-lang="de" data-word="bis">bis</td>
+    <td>[bɪs]</td>
+    <td class="clickable" data-lang="zh" data-word="直到……为止">直到……为止</td>
+    <td class="clickable" data-lang="en" data-word="until">until</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="de">de</td>
+    <td>[də]</td>
+    <td class="clickable" data-lang="de" data-word="von">von</td>
+    <td>[fɔn]</td>
+    <td class="clickable" data-lang="zh" data-word="从……起">从……起</td>
+    <td class="clickable" data-lang="en" data-word="from">from</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="à partir de">à partir de</td>
+    <td>[apaʁtiʁdə]</td>
+    <td class="clickable" data-lang="de" data-word="ab">ab</td>
+    <td>[ap]</td>
+    <td class="clickable" data-lang="zh" data-word="从……起">从……起</td>
+    <td class="clickable" data-lang="en" data-word="from, starting from">from, starting from</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="depuis">depuis</td>
+    <td>[dəpɥi]</td>
+    <td class="clickable" data-lang="de" data-word="seit">seit</td>
+    <td>[zaɪ̯t]</td>
+    <td class="clickable" data-lang="zh" data-word="自从">自从</td>
+    <td class="clickable" data-lang="en" data-word="since">since</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="à cause de">à cause de</td>
+    <td>[akozə]</td>
+    <td class="clickable" data-lang="de" data-word="wegen">wegen</td>
+    <td>[ˈveːɡn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="由于">由于</td>
+    <td class="clickable" data-lang="en" data-word="because of">because of</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pendant">pendant</td>
+    <td>[pɑ̃dɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="während">während</td>
+    <td>[ˈvɛːʁənt]</td>
+    <td class="clickable" data-lang="zh" data-word="在……期间">在……期间</td>
+    <td class="clickable" data-lang="en" data-word="during">during</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="selon">selon</td>
+    <td>[səlɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="laut">laut</td>
+    <td>[laʊ̯t]</td>
+    <td class="clickable" data-lang="zh" data-word="根据，按照">根据，按照</td>
+    <td class="clickable" data-lang="en" data-word="according to">according to</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="selon">selon</td>
+    <td>[səlɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="zufolge">zufolge</td>
+    <td>[tsuˈfɔlɡə]</td>
+    <td class="clickable" data-lang="zh" data-word="依据，按照">依据，按照</td>
+    <td class="clickable" data-lang="en" data-word="according to">according to</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="en raison de">en raison de</td>
+    <td>[ɑ̃ʁɛzɔ̃də]</td>
+    <td class="clickable" data-lang="de" data-word="aufgrund">aufgrund</td>
+    <td>[ˈaʊ̯fɡʁʊnt]</td>
+    <td class="clickable" data-lang="zh" data-word="由于，基于">由于，基于</td>
+    <td class="clickable" data-lang="en" data-word="due to">due to</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="conformément à">conformément à</td>
+    <td>[kɔ̃fɔʁmemɑ̃ta]</td>
+    <td class="clickable" data-lang="de" data-word="entsprechend">entsprechend</td>
+    <td>[ɛntˈʃpʁɛçənt]</td>
+    <td class="clickable" data-lang="zh" data-word="根据，依据">根据，依据</td>
+    <td class="clickable" data-lang="en" data-word="according to">according to</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="selon">selon</td>
+    <td>[səlɔ̃]</td>
+    <td class="clickable" data-lang="de" data-word="gemäß">gemäß</td>
+    <td>[ɡəˈmɛːs]</td>
+    <td class="clickable" data-lang="zh" data-word="根据">根据</td>
+    <td class="clickable" data-lang="en" data-word="according to">according to</td>
+</tr>
+<tr>
+    <td class="clickable" data-lang="fr" data-word="qui">qui</td>
+    <td>[ki]</td>
+    <td class="clickable" data-lang="de" data-word="wer">wer</td>
+    <td>[veːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="谁（主格）">谁（主格）</td>
+    <td class="clickable" data-lang="en" data-word="who">who</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="que">que</td>
+    <td>[kə]</td>
+    <td class="clickable" data-lang="de" data-word="was">was</td>
+    <td>[vas]</td>
+    <td class="clickable" data-lang="zh" data-word="什么（主格/宾格）">什么（主格/宾格）</td>
+    <td class="clickable" data-lang="en" data-word="what">what</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="où">où</td>
+    <td>[u]</td>
+    <td class="clickable" data-lang="de" data-word="wo">wo</td>
+    <td>[voː]</td>
+    <td class="clickable" data-lang="zh" data-word="在哪里">在哪里</td>
+    <td class="clickable" data-lang="en" data-word="where">where</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="quand">quand</td>
+    <td>[kɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="wann">wann</td>
+    <td>[van]</td>
+    <td class="clickable" data-lang="zh" data-word="什么时候">什么时候</td>
+    <td class="clickable" data-lang="en" data-word="when">when</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pourquoi">pourquoi</td>
+    <td>[puʁkwa]</td>
+    <td class="clickable" data-lang="de" data-word="warum">warum</td>
+    <td>[vaˈʁʊm]</td>
+    <td class="clickable" data-lang="zh" data-word="为什么">为什么</td>
+    <td class="clickable" data-lang="en" data-word="why">why</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="comment">comment</td>
+    <td>[kɔmɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="wie">wie</td>
+    <td>[viː]</td>
+    <td class="clickable" data-lang="zh" data-word="怎么样">怎么样</td>
+    <td class="clickable" data-lang="en" data-word="how">how</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="quel/quelle">quel/quelle</td>
+    <td>[kɛl/kɛl]</td>
+    <td class="clickable" data-lang="de" data-word="welcher/welche/welches">welcher/welche/welches</td>
+    <td>[ˈvɛlçɐ/ˈvɛlçə/ˈvɛlçəs]</td>
+    <td class="clickable" data-lang="zh" data-word="哪个">哪个</td>
+    <td class="clickable" data-lang="en" data-word="which">which</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="combien">combien</td>
+    <td>[kɔ̃bjɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="wie viel">wie viel</td>
+    <td>[viː fiːl]</td>
+    <td class="clickable" data-lang="zh" data-word="多少">多少</td>
+    <td class="clickable" data-lang="en" data-word="how much">how much</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="combien de">combien de</td>
+    <td>[kɔ̃bjɛ̃də]</td>
+    <td class="clickable" data-lang="de" data-word="wie viele">wie viele</td>
+    <td>[viː ˈfiːlə]</td>
+    <td class="clickable" data-lang="zh" data-word="多少个">多少个</td>
+    <td class="clickable" data-lang="en" data-word="how many">how many</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="à qui">à qui</td>
+    <td>[aki]</td>
+    <td class="clickable" data-lang="de" data-word="wem">wem</td>
+    <td>[veːm]</td>
+    <td class="clickable" data-lang="zh" data-word="谁（与格）">谁（与格）</td>
+    <td class="clickable" data-lang="en" data-word="to whom">to whom</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="de qui">de qui</td>
+    <td>[dəki]</td>
+    <td class="clickable" data-lang="de" data-word="wessen">wessen</td>
+    <td>[ˈvɛsn̩]</td>
+    <td class="clickable" data-lang="zh" data-word="谁的">谁的</td>
+    <td class="clickable" data-lang="en" data-word="whose">whose</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="d'où">d'où</td>
+    <td>[du]</td>
+    <td class="clickable" data-lang="de" data-word="woher">woher</td>
+    <td>[voˈheːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="从哪里来">从哪里来</td>
+    <td class="clickable" data-lang="en" data-word="where from">where from</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="où">où</td>
+    <td>[u]</td>
+    <td class="clickable" data-lang="de" data-word="wohin">wohin</td>
+    <td>[voˈhɪn]</td>
+    <td class="clickable" data-lang="zh" data-word="到哪里去">到哪里去</td>
+    <td class="clickable" data-lang="en" data-word="where to">where to</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="depuis quand">depuis quand</td>
+    <td>[dəpɥikɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="seit wann">seit wann</td>
+    <td>[zaɪ̯t van]</td>
+    <td class="clickable" data-lang="zh" data-word="从什么时候起">从什么时候起</td>
+    <td class="clickable" data-lang="en" data-word="since when">since when</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="jusqu'à quand">jusqu'à quand</td>
+    <td>[ʒyskakɑ̃]</td>
+    <td class="clickable" data-lang="de" data-word="bis wann">bis wann</td>
+    <td>[bɪs van]</td>
+    <td class="clickable" data-lang="zh" data-word="到什么时候">到什么时候</td>
+    <td class="clickable" data-lang="en" data-word="until when">until when</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="pour quoi">pour quoi</td>
+    <td>[puʁkwa]</td>
+    <td class="clickable" data-lang="de" data-word="wofür">wofür</td>
+    <td>[voˈfyːɐ̯]</td>
+    <td class="clickable" data-lang="zh" data-word="为了什么">为了什么</td>
+    <td class="clickable" data-lang="en" data-word="what for">what for</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="avec quoi">avec quoi</td>
+    <td>[avɛkkwa]</td>
+    <td class="clickable" data-lang="de" data-word="womit">womit</td>
+    <td>[voˈmɪt]</td>
+    <td class="clickable" data-lang="zh" data-word="用什么">用什么</td>
+    <td class="clickable" data-lang="en" data-word="with what">with what</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="de quoi">de quoi</td>
+    <td>[dəkwa]</td>
+    <td class="clickable" data-lang="de" data-word="wovon">wovon</td>
+    <td>[voˈfɔn]</td>
+    <td class="clickable" data-lang="zh" data-word="关于什么">关于什么</td>
+    <td class="clickable" data-lang="en" data-word="about what">about what</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="par où">par où</td>
+    <td>[paʁu]</td>
+    <td class="clickable" data-lang="de" data-word="wodurch">wodurch</td>
+    <td>[voˈdʊʁç]</td>
+    <td class="clickable" data-lang="zh" data-word="通过什么">通过什么</td>
+    <td class="clickable" data-lang="en" data-word="through what">through what</td>
+</tr>
+
+<tr>
+    <td class="clickable" data-lang="fr" data-word="à quel point">à quel point</td>
+    <td>[akɛlpwɛ̃]</td>
+    <td class="clickable" data-lang="de" data-word="inwiefern">inwiefern</td>
+    <td>[ɪnviːˈfɛʁn]</td>
+    <td class="clickable" data-lang="zh" data-word="在什么程度上">在什么程度上</td>
+    <td class="clickable" data-lang="en" data-word="to what extent">to what extent</td>
+</tr>
+</table>
+
+
+    <script>
+    const PIXABAY_API_KEY = '49256357-c30f2f538120ce8d74ff8921d';
+    let speechSynth = window.speechSynthesis;
+    let voices = [];
+
+    // Wait for voices to load
+    speechSynth.onvoiceschanged = function() {
+        voices = speechSynth.getVoices();
+    };
+
+    // Pronunciation function
+    function speak(text, lang) {
+        // Cancel any ongoing speech
+        speechSynth.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        
+        // For Chinese, select appropriate voice based on dialect
+        if (lang.startsWith('zh')) {
+            const voices = window.speechSynthesis.getVoices();
+            const chineseVoice = voices.find(voice => voice.lang.includes(lang));
+            if (chineseVoice) {
+                utterance.voice = chineseVoice;
+            }
+        }
+        
+        window.speechSynthesis.speak(utterance);
+    } 
+    
+    let currentImageTimeout = null;  // 添加超时变量
+
+    // 清除背景图片
+    function clearBackgroundImages() {
+        if (currentImageTimeout) {
+            clearTimeout(currentImageTimeout);
+            currentImageTimeout = null;
+        }
+        document.querySelectorAll('.background-image').forEach(img => {
+            img.style.opacity = '0';
+            setTimeout(() => img.remove(), 300); // 淡出效果后移除
+        });
+    }
+
+    // Fetch and add background image
+    async function addBackgroundImage(cell, searchTerm) {
+        clearBackgroundImages();
+        
+        try {
+            const apiUrl = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(searchTerm)}&per_page=4&safesearch=true`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.hits && data.hits.length > 0) {
+                const randomIndex = Math.floor(Math.random() * Math.min(4, data.hits.length));
+                const img = document.createElement('img');
+                img.className = 'background-image';
+                img.alt = searchTerm;
+
+                // 图片加载完成后再显示
+                img.onload = () => {
+                    setTimeout(() => {
+                        img.style.opacity = '0.9';  // 设置为原来的不透明度
+                    }, 50);
+                };
+                
+                img.src = data.hits[randomIndex].previewURL;
+                
+                const firstCell = cell.closest('tr').querySelector('td:first-child');
+                firstCell.appendChild(img);
+
+                // 设置新的超时
+                currentImageTimeout = setTimeout(() => {
+                    clearBackgroundImages();
+                }, 3000);
+            }
+        } catch (error) {
+            console.error('Error fetching image:', error);
+        }
+    }
+
+    // Add click events to clickable cells
+    window.speechSynthesis.onvoiceschanged = () => {
+        document.querySelectorAll('.clickable').forEach(cell => {
+            cell.addEventListener('click', function() {
+                const text = this.textContent;
+                let lang;
+                
+                // Get language based on data-lang attribute
+                switch(this.dataset.lang) {
+                    case 'fr':
+                        lang = 'fr-FR';
+                        break;
+                    case 'de':
+                        lang = 'de-DE';
+                        break;
+                    case 'zh':
+                        // Use selected dialect for Chinese
+                        lang = document.getElementById('chineseDialect').value;
+                        break;
+                    default:
+                        lang = 'en-US';
+                }
+                
+                speak(text, lang);
+                addBackgroundImage(this, this.dataset.word);
+
+                // Visual feedback with cleanup
+                const originalBg = window.getComputedStyle(this).backgroundColor;
+                this.style.backgroundColor = '#c8e6c9';
+                
+                // Clear any existing timeout for this cell
+                if (this.resetTimeout) {
+                    clearTimeout(this.resetTimeout);
+                }
+                
+                // Set new timeout and store its ID
+                this.resetTimeout = setTimeout(() => {
+                    this.style.backgroundColor = '';
+                    this.resetTimeout = null;
+                }, 500);
+            });
+        });
+    };
+</script>
+
+</body>
+</html>
