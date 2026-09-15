@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>语音自检</title>
+<style>
+    body {
+        font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 1rem;
+        background: #f5f7fa;
+        color: #2c3e50;
+    }
+    .box {
+        max-width: 720px;
+        margin: 0 auto 1rem;
+        background: #fff;
+        padding: 1rem 1.2rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    }
+    h1 { font-size: 1.4rem; margin: 0 0 .5rem; }
+    h2 { font-size: 1.05rem; margin: 0 0 .6rem; }
+    button {
+        font-size: 15px;
+        padding: 10px 14px;
+        margin: 4px 6px 4px 0;
+        border: 1px solid #ccd;
+        border-radius: 8px;
+        background: #fff;
+        cursor: pointer;
+        touch-action: manipulation;
+    }
+    button:active { background: #e6f0ff; }
+    .ok { color: #1a7f37; font-weight: 600; }
+    .bad { color: #c0392b; font-weight: 600; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    td, th { border-bottom: 1px solid #eee; padding: 6px 4px; text-align: left; }
+    th { background: #fafafa; }
+    code { background: #f0f2f5; padding: 1px 4px; border-radius: 3px; }
+    .back { display: inline-block; margin-bottom: 1rem; text-decoration: none; color: #3498db; }
+</style>
+</head>
+<body>
+<div class="box">
+    <a class="back" href="index.html">🏠 返回主页</a>
+    <h1>语音自检</h1>
+    <p>用来确认这台设备上到底装了哪些语言的发音包。<strong>单词被一个字母一个字母读出来</strong>，就是因为没有对应语言的语音包，系统退回用中文或英文引擎去念，引擎不认识这个词，只好拼字母。</p>
+</div>
+
+<div class="box">
+    <h2>1. 试听</h2>
+    <p>依次点，听哪个不对：</p>
+    <button data-lang="fr-FR" data-text="Circulation">🇫🇷 法语 Circulation</button>
+    <button data-lang="de-DE" data-text="Hauptbahnhof">🇩🇪 德语 Hauptbahnhof</button>
+    <button data-lang="en-US" data-text="traffic">🇬🇧 英语 traffic</button>
+    <button data-lang="zh-CN" data-text="交通">🇨🇳 中文 交通</button>
+    <p id="status"></p>
+</div>
+
+<div class="box">
+    <h2>2. 本机语言支持</h2>
+    <div id="summary">正在读取语音列表…</div>
+</div>
+
+<div class="box">
+    <h2>3. 完整语音列表</h2>
+    <div id="list">…</div>
+</div>
+
+<div class="box">
+    <h2>怎么补装语音包</h2>
+    <p><strong>安卓：</strong>设置 → 系统 → 语言和输入法 → 文字转语音输出 → 首选引擎（Google 文字转语音）旁的齿轮 → 安装语音数据 → 选 Français / Deutsch 下载。</p>
+    <p><strong>iPhone：</strong>设置 → 辅助功能 → 朗读内容 → 声音 → 选择法语 / 德语并下载。</p>
+    <p>装完<strong>重启一次浏览器</strong>再回来试。</p>
+</div>
+
+<script>
+var synth = window.speechSynthesis;
+var voices = [];
+
+function norm(s) { return (s || '').replace(/_/g, '-').toLowerCase(); }
+function base(s) { return norm(s).split('-')[0]; }
+
+function render() {
+    var list = synth ? synth.getVoices() : [];
+    if (!list || !list.length) return false;
+    voices = list;
+
+    var want = [['fr', '法语'], ['de', '德语'], ['en', '英语'], ['zh', '中文']];
+    var html = '<table><tr><th>语言</th><th>状态</th><th>可用嗓音</th></tr>';
+    want.forEach(function (w) {
+        var hits = voices.filter(function (v) { return base(v.lang) === w[0]; });
+        html += '<tr><td>' + w[1] + '</td><td>' +
+            (hits.length ? '<span class="ok">✓ 有 ' + hits.length + ' 个</span>'
+                         : '<span class="bad">✗ 缺失</span>') +
+            '</td><td>' + (hits.map(function (v) { return v.name; }).join('<br>') || '—') +
+            '</td></tr>';
+    });
+    html += '</table>';
+    document.getElementById('summary').innerHTML = html;
+
+    var full = '<p>共 ' + voices.length + ' 个。<code>本地</code> 表示离线可用，网络嗓音断网时不出声。</p><table>' +
+        '<tr><th>名称</th><th>lang</th><th></th></tr>';
+    voices.forEach(function (v) {
+        full += '<tr><td>' + v.name + '</td><td><code>' + v.lang + '</code></td><td>' +
+            (v.localService ? '本地' : '网络') + '</td></tr>';
+    });
+    document.getElementById('list').innerHTML = full + '</table>';
+    return true;
+}
+
+function pick(lang) {
+    var want = norm(lang), b = base(lang);
+    var same = voices.filter(function (v) { return base(v.lang) === b; });
+    if (!same.length) return null;
+    return same.filter(function (v) { return norm(v.lang) === want && v.localService; })[0]
+        || same.filter(function (v) { return norm(v.lang) === want; })[0]
+        || same.filter(function (v) { return v.localService; })[0]
+        || same[0];
+}
+
+document.querySelectorAll('button[data-lang]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        var lang = btn.dataset.lang, text = btn.dataset.text;
+        var st = document.getElementById('status');
+        if (!synth) { st.innerHTML = '<span class="bad">这个浏览器不支持语音合成</span>'; return; }
+        render();
+        var v = pick(lang);
+        if (!v) {
+            st.innerHTML = '<span class="bad">✗ 没有 ' + lang + ' 的嗓音，单词页里点这一列不会发音</span>';
+            return;
+        }
+        var u = new SpeechSynthesisUtterance(text);
+        u.voice = v;
+        u.lang = norm(v.lang);
+        u.rate = 0.9;
+        if (synth.speaking || synth.pending) {
+            synth.cancel();
+            setTimeout(function () { synth.speak(u); }, 120);
+        } else {
+            synth.speak(u);
+        }
+        st.innerHTML = '正在用 <code>' + v.name + '</code>（' + v.lang + '，' +
+            (v.localService ? '本地' : '网络') + '）朗读 <strong>' + text + '</strong>';
+    });
+});
+
+if (synth) {
+    render();
+    synth.addEventListener('voiceschanged', render);
+    var n = 0;
+    var t = setInterval(function () { if (render() || ++n > 40) clearInterval(t); }, 200);
+} else {
+    document.getElementById('summary').innerHTML = '<span class="bad">这个浏览器不支持 SpeechSynthesis</span>';
+}
+</script>
+</body>
+</html>

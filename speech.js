@@ -1,24 +1,27 @@
-/* 发音 + 配图脚本，所有章节页面共用。
-   修复要点：手机版 Chrome 上 speechSynthesis.onvoiceschanged 往往不会触发，
-   原来的代码把点击事件绑定写在了这个回调里，导致手机上根本没有绑定监听器。 */
+/* 发音 + 配图脚本，所有章节页面共用。 */
 (function () {
     'use strict';
 
     var PIXABAY_API_KEY = '49256357-c30f2f538120ce8d74ff8921d';
     var synth = window.speechSynthesis;
     var voices = [];
+    var voicesReady = false;
     var unlocked = false;
 
-    /* ---------- 语音 ---------- */
+    /* ---------- 语音列表加载 ---------- */
 
     function loadVoices() {
-        if (!synth) return;
+        if (!synth) return false;
         var list = synth.getVoices();
-        if (list && list.length) voices = list;
+        if (list && list.length) {
+            voices = list;
+            voicesReady = true;
+        }
+        return voicesReady;
     }
 
-    // 两条腿走路：立刻取一次（安卓 Chrome 是同步返回的），
-    // 同时监听 onvoiceschanged（桌面 Chrome 是异步加载的）。
+    // 桌面 Chrome 异步加载语音，安卓 Chrome 多数同步返回，少数机型两者都不灵。
+    // 三重保险，谁先到算谁的。
     if (synth) {
         loadVoices();
         if (typeof synth.addEventListener === 'function') {
@@ -26,58 +29,81 @@
         } else {
             synth.onvoiceschanged = loadVoices;
         }
-        // 少数安卓机型两者都不灵，兜底轮询几次。
         var tries = 0;
         var poll = setInterval(function () {
-            loadVoices();
-            if (voices.length || ++tries > 20) clearInterval(poll);
-        }, 250);
+            if (loadVoices() || ++tries > 40) clearInterval(poll);
+        }, 200);
     }
 
-    // 挑一个和目标语言匹配的声音。安卓上只设 utterance.lang 经常被忽略，
-    // 会用系统默认声音念，或者干脆不出声，所以必须显式指定 voice。
+    /* ---------- 选音 ---------- */
+
+    // 安卓返回的 lang 可能是 fr_FR 这种下划线形式，不是合法的 BCP-47，
+    // 直接塞进 utterance.lang 会被 Chrome 忽略，从而退回默认嗓音。
+    function normLang(s) {
+        return (s || '').replace(/_/g, '-').toLowerCase();
+    }
+
+    function baseOf(s) {
+        return normLang(s).split('-')[0];
+    }
+
+    // 按优先级挑：地区完全一致且本地 > 地区一致 > 同语种且本地 > 同语种。
+    // 必须挑到同语种的嗓音才发音 —— 用中文引擎念 "Circulation"，
+    // 引擎不认识这个词，就会一个字母一个字母拼出来。
     function pickVoice(lang) {
         if (!voices.length) return null;
-        var base = lang.split('-')[0].toLowerCase();
-        var exact = null, sameLang = null;
+        var want = normLang(lang), base = baseOf(lang);
+        var exactLocal = null, exact = null, langLocal = null, langAny = null;
+
         for (var i = 0; i < voices.length; i++) {
-            var v = voices[i];
-            var vl = (v.lang || '').replace('_', '-').toLowerCase();
-            if (vl === lang.toLowerCase()) { exact = exact || v; }
-            else if (vl.split('-')[0] === base) { sameLang = sameLang || v; }
+            var v = voices[i], vl = normLang(v.lang);
+            if (baseOf(vl) !== base) continue;
+            if (vl === want) {
+                if (v.localService) { exactLocal = exactLocal || v; }
+                else { exact = exact || v; }
+            } else {
+                if (v.localService) { langLocal = langLocal || v; }
+                else { langAny = langAny || v; }
+            }
         }
-        return exact || sameLang;
+        return exactLocal || exact || langLocal || langAny;
     }
 
-    // iOS / 部分安卓需要在第一次用户手势里"解锁"语音合成。
+    function langName(lang) {
+        var m = { fr: '法语', de: '德语', en: '英语', zh: '中文' };
+        return m[baseOf(lang)] || lang;
+    }
+
+    /* ---------- 朗读 ---------- */
+
+    // iOS / 部分安卓需要在第一次用户手势里“解锁”语音合成。
     function unlock() {
         if (unlocked || !synth) return;
         unlocked = true;
         try {
-            var u = new SpeechSynthesisUtterance('');
+            var u = new SpeechSynthesisUtterance(' ');
             u.volume = 0;
             synth.speak(u);
         } catch (e) { /* 忽略 */ }
     }
 
-    function speak(text, lang) {
-        if (!synth || !text) return;
-
-        var utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = lang;
-        utterance.rate = 0.9;
+    function doSpeak(text, lang) {
         var voice = pickVoice(lang);
-        if (voice) {
-            utterance.voice = voice;
-            utterance.lang = voice.lang;
-        } else if (voices.length) {
-            // 手机上没装对应语言包时是彻底静音的，给个提示而不是无声失败。
-            toast('手机未安装 ' + lang + ' 语音包，无法朗读');
+
+        // 宁可不念，也不要用错误的嗓音把单词拼成字母。
+        if (!voice) {
+            toast('手机里没有' + langName(lang) + '语音包，无法朗读\n' +
+                  '请到 设置 → 语言和输入法 → 文字转语音 里下载');
             return;
         }
 
-        // 安卓 Chrome 的老 bug：cancel() 之后紧接着 speak()，新的语句会被吞掉。
-        // 所以只在真的还在说话时才 cancel，并且让出一帧再 speak。
+        var utterance = new SpeechSynthesisUtterance(text);
+        utterance.voice = voice;
+        // 两个都设：部分安卓机型只认 lang，部分只认 voice。
+        utterance.lang = normLang(voice.lang);
+        utterance.rate = 0.9;
+
+        // 安卓 Chrome 的老 bug：cancel() 之后紧接着 speak()，新语句会被吞掉。
         if (synth.speaking || synth.pending) {
             synth.cancel();
             setTimeout(function () { synth.speak(utterance); }, 120);
@@ -85,8 +111,29 @@
             synth.speak(utterance);
         }
 
-        // 某些机型息屏/切后台回来后会卡在 paused 状态。
         if (synth.paused) synth.resume();
+    }
+
+    function speak(text, lang) {
+        if (!synth || !text) return;
+
+        // 语音列表还没加载完就发音，会用系统默认嗓音（多半是中文）念外语，
+        // 结果就是逐字母拼读。这里等一下再念。
+        if (!loadVoices()) {
+            var waited = 0;
+            var wait = setInterval(function () {
+                waited += 100;
+                if (loadVoices()) {
+                    clearInterval(wait);
+                    doSpeak(text, lang);
+                } else if (waited >= 2000) {
+                    clearInterval(wait);
+                    toast('浏览器没有可用的语音引擎');
+                }
+            }, 100);
+            return;
+        }
+        doSpeak(text, lang);
     }
 
     /* ---------- 提示条 ---------- */
@@ -98,14 +145,15 @@
             el = document.createElement('div');
             el.id = 'speechToast';
             el.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);' +
-                'background:rgba(0,0,0,.8);color:#fff;padding:10px 16px;border-radius:20px;' +
-                'font-size:14px;z-index:2000;max-width:80vw;text-align:center;';
+                'background:rgba(0,0,0,.85);color:#fff;padding:10px 16px;border-radius:14px;' +
+                'font-size:14px;line-height:1.5;z-index:2000;max-width:84vw;text-align:center;' +
+                'white-space:pre-line;';
             document.body.appendChild(el);
         }
         el.textContent = msg;
         el.style.display = 'block';
         clearTimeout(toastTimer);
-        toastTimer = setTimeout(function () { el.style.display = 'none'; }, 2500);
+        toastTimer = setTimeout(function () { el.style.display = 'none'; }, 3500);
     }
 
     /* ---------- 配图 ---------- */
@@ -183,18 +231,14 @@
         if (!cell) return;
 
         unlock();
-        // 必须在用户手势的同步执行栈里调用 speak，
-        // 否则安卓 Chrome 会当成"非用户触发"而拒绝播放。
         speak(cell.textContent.trim(), langOf(cell));
         flash(cell);
         addBackgroundImage(cell, cell.dataset.word);
     }
 
     function init() {
-        // 事件委托绑在 document 上：不依赖语音列表是否加载完，
-        // 后续动态加进表格的新行也自动生效。
+        // 事件委托：不依赖语音列表是否加载完，新加的单词行也自动生效。
         document.addEventListener('click', handleActivate);
-        // 手机上先来一次 touchstart 解锁，真正发音仍走 click。
         document.addEventListener('touchstart', unlock, { once: true, passive: true });
     }
 
