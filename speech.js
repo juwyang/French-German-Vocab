@@ -48,8 +48,7 @@
     }
 
     // 按优先级挑：地区完全一致且本地 > 地区一致 > 同语种且本地 > 同语种。
-    // 必须挑到同语种的嗓音才发音 —— 用中文引擎念 "Circulation"，
-    // 引擎不认识这个词，就会一个字母一个字母拼出来。
+    // 挑不到只是降级（交给引擎按 lang 自己找），绝不因此拒绝发音。
     function pickVoice(lang) {
         if (!voices.length) return null;
         var want = normLang(lang), base = baseOf(lang);
@@ -87,21 +86,34 @@
         } catch (e) { /* 忽略 */ }
     }
 
-    function doSpeak(text, lang) {
-        var voice = pickVoice(lang);
+    function speak(text, lang) {
+        if (!synth || !text) return;
 
-        // 宁可不念，也不要用错误的嗓音把单词拼成字母。
-        if (!voice) {
-            toast('手机里没有' + langName(lang) + '语音包，无法朗读\n' +
-                  '请到 设置 → 语言和输入法 → 文字转语音 里下载');
-            return;
+        // 关键：永远先把话说出去。有些安卓机型的 Chrome 里 getVoices() 始终
+        // 返回空数组，但系统 TTS 其实是能用的 —— 如果因为挑不到 voice 就拒绝
+        // 发音，结果是一个字都听不到。所以这里只把 voice 当作"锦上添花"。
+        var utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = normLang(lang);
+        utterance.rate = 0.9;
+
+        loadVoices();
+        var voice = pickVoice(lang);
+        if (voice) {
+            utterance.voice = voice;
+            // 安卓部分引擎返回 fr_FR 这种下划线形式，不是合法 BCP-47，
+            // 直接赋给 utterance.lang 会被 Chrome 忽略并退回默认嗓音。
+            utterance.lang = normLang(voice.lang);
+        } else if (voices.length && baseOf(lang) !== 'en') {
+            // 语音列表读得到、却没有这个语种 —— 这种情况下引擎会用默认嗓音
+            // 硬念，外语词就被拼成一个个字母。提示一下，但仍然照念不误。
+            toast('本机可能缺少' + langName(lang) + '语音包，发音可能不准\n' +
+                  '详情见主页的「发音自检」');
         }
 
-        var utterance = new SpeechSynthesisUtterance(text);
-        utterance.voice = voice;
-        // 两个都设：部分安卓机型只认 lang，部分只认 voice。
-        utterance.lang = normLang(voice.lang);
-        utterance.rate = 0.9;
+        utterance.onerror = function (e) {
+            if (e && e.error === 'interrupted') return;
+            toast('朗读失败：' + ((e && e.error) || '未知错误'));
+        };
 
         // 安卓 Chrome 的老 bug：cancel() 之后紧接着 speak()，新语句会被吞掉。
         if (synth.speaking || synth.pending) {
@@ -112,28 +124,6 @@
         }
 
         if (synth.paused) synth.resume();
-    }
-
-    function speak(text, lang) {
-        if (!synth || !text) return;
-
-        // 语音列表还没加载完就发音，会用系统默认嗓音（多半是中文）念外语，
-        // 结果就是逐字母拼读。这里等一下再念。
-        if (!loadVoices()) {
-            var waited = 0;
-            var wait = setInterval(function () {
-                waited += 100;
-                if (loadVoices()) {
-                    clearInterval(wait);
-                    doSpeak(text, lang);
-                } else if (waited >= 2000) {
-                    clearInterval(wait);
-                    toast('浏览器没有可用的语音引擎');
-                }
-            }, 100);
-            return;
-        }
-        doSpeak(text, lang);
     }
 
     /* ---------- 提示条 ---------- */

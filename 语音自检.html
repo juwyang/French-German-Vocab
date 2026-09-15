@@ -86,7 +86,17 @@ function base(s) { return norm(s).split('-')[0]; }
 
 function render() {
     var list = synth ? synth.getVoices() : [];
-    if (!list || !list.length) return false;
+    if (!list || !list.length) {
+        document.getElementById('summary').innerHTML =
+            '<span class="bad">getVoices() 返回 0 个嗓音。</span>' +
+            '<p>部分安卓机型的 Chrome 就是这样：系统 TTS 能用，但不向网页上报语音列表。' +
+            '这种情况下网页无法指定用哪个嗓音，只能把语言代码交给系统引擎，' +
+            '系统用什么嗓音念就完全由它决定 —— 外语词常因此被默认中文引擎拼成字母。</p>' +
+            '<p>先点上面的试听按钮：<strong>能出声</strong>说明引擎可用、只是不上报列表；' +
+            '<strong>完全没声</strong>说明这台设备的 Chrome 拿不到 TTS。</p>';
+        document.getElementById('list').innerHTML = '<p>—</p>';
+        return false;
+    }
     voices = list;
 
     var want = [['fr', '法语'], ['de', '德语'], ['en', '英语'], ['zh', '中文']];
@@ -129,22 +139,29 @@ document.querySelectorAll('button[data-lang]').forEach(function (btn) {
         if (!synth) { st.innerHTML = '<span class="bad">这个浏览器不支持语音合成</span>'; return; }
         render();
         var v = pick(lang);
-        if (!v) {
-            st.innerHTML = '<span class="bad">✗ 没有 ' + lang + ' 的嗓音，单词页里点这一列不会发音</span>';
-            return;
-        }
         var u = new SpeechSynthesisUtterance(text);
-        u.voice = v;
-        u.lang = norm(v.lang);
+        u.lang = norm(lang);
         u.rate = 0.9;
+        if (v) {
+            u.voice = v;
+            u.lang = norm(v.lang);
+        }
+        u.onerror = function (e) {
+            if (e && e.error === 'interrupted') return;
+            st.innerHTML += '<br><span class="bad">朗读报错：' + ((e && e.error) || '未知') + '</span>';
+        };
         if (synth.speaking || synth.pending) {
             synth.cancel();
             setTimeout(function () { synth.speak(u); }, 120);
         } else {
             synth.speak(u);
         }
-        st.innerHTML = '正在用 <code>' + v.name + '</code>（' + v.lang + '，' +
-            (v.localService ? '本地' : '网络') + '）朗读 <strong>' + text + '</strong>';
+        st.innerHTML = v
+            ? '正在用 <code>' + v.name + '</code>（' + v.lang + '，' +
+              (v.localService ? '本地' : '网络') + '）朗读 <strong>' + text + '</strong>'
+            : '<span class="bad">列表里没有 ' + lang + ' 的嗓音</span>，' +
+              '已改为只指定 <code>lang=' + lang + '</code> 交给系统引擎朗读 <strong>' + text +
+              '</strong>。能听到就说明引擎可用、只是不上报列表。';
     });
 });
 
